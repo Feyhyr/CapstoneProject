@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d96545dffeb4347996486a278789c2, type: 3}
   m_Name: Wind
   m_EditorClassIdentifier: 
-  runeName: WIND
+  runeName: Wind
   icon: {fileID: 0}
   audioSFX: {fileID: 0}

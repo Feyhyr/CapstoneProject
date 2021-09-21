@@ -437,6 +437,12 @@ MonoBehaviour:
   - {fileID: 1705276595759794648, guid: 918eacf574c751d4c88d8592dd429290, type: 3}
   - {fileID: 1705276595759794648, guid: a56d4b057fd1d844191559f9a14b8b67, type: 3}
   - {fileID: 1705276595759794648, guid: af0c20271307a58468e69be70dda6784, type: 3}
+  - {fileID: 1705276595759794648, guid: 6ddaab3433806a441aecc19571b10060, type: 3}
+  - {fileID: 1705276595759794648, guid: 40ea558d73a1ad94985395858b0fd21f, type: 3}
+  - {fileID: 1705276595759794648, guid: 4b05e91f04088a34aaa09520938389d3, type: 3}
+  - {fileID: 1705276595759794648, guid: fd4e35ea375658849af30aad767e06cc, type: 3}
+  - {fileID: 1705276595759794648, guid: 1ffe8f16bb0759b44b8e5a0db72177ba, type: 3}
+  - {fileID: 1705276595759794648, guid: 3719c534352af624e8161f6abba6fc3d, type: 3}
   spellLocation: {fileID: 419981036}
   runeList:
   - {fileID: 11400000, guid: 1c6d54c59245478469fd5e1e092ecf2f, type: 2}
@@ -450,9 +456,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 86787b572954f6749bc11b5c7dbbc7f5, type: 2}
   - {fileID: 11400000, guid: b94d4aa797ba5204484603480b3a1ace, type: 2}
   - {fileID: 11400000, guid: 299b258d5cea0b845a16b394fa99a00f, type: 2}
+  - {fileID: 11400000, guid: 58ad9040cdc56f041afd7ab534533d3e, type: 2}
+  - {fileID: 11400000, guid: 66348bc828d874147a127803d5d70e75, type: 2}
+  - {fileID: 11400000, guid: 5ea33c205e266104c805b15e544bef74, type: 2}
+  - {fileID: 11400000, guid: dcaaeddb3491fe543ae3d9c8950850a2, type: 2}
+  - {fileID: 11400000, guid: f0c2ce0b69acb6744af136c29774c4b9, type: 2}
+  - {fileID: 11400000, guid: 4bda422f2e26ae14bbf21b1b19dea523, type: 2}
   rune1: 
   rune2: 
   spellText: {fileID: 1542947410}
+  objs: []
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0

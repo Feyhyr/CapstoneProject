@@ -41,29 +41,53 @@ public class BattleManager : MonoBehaviour
     {
         int index = 0;
 
-        if ((rune1 == "FIRE" && rune2 == "WATER") || (rune1 == "WATER" && rune2 == "FIRE"))
+        if (rune1 == "Wind" && rune2 == "Water")
         {
             index = 0;
         }
-        else if ((rune1 == "FIRE" && rune2 == "POISON") || (rune1 == "POISON" && rune2 == "FIRE"))
+        else if (rune1 == "Wind" && rune2 == "Fire")
         {
             index = 1;
         }
-        else if ((rune1 == "POISON" && rune2 == "WATER") || (rune1 == "WATER" && rune2 == "POISON"))
+        else if (rune1 == "Wind" && rune2 == "Earth")
         {
             index = 2;
         }
-        else if ((rune1 == "POISON" && rune2 == "WIND") || (rune1 == "WIND" && rune2 == "POISON"))
+        else if (rune1 == "Water" && rune2 == "Fire")
         {
             index = 3;
         }
-        else if ((rune1 == "WATER" && rune2 == "WIND") || (rune1 == "WIND" && rune2 == "WATER"))
+        else if (rune1 == "Water" && rune2 == "Earth")
         {
             index = 4;
         }
-        else if ((rune1 == "FIRE" && rune2 == "WIND") || (rune1 == "WIND" && rune2 == "FIRE"))
+        else if (rune1 == "Fire" && rune2 == "Earth")
         {
             index = 5;
+        }
+        else if (rune1 == "Water" && rune2 == "Wind")
+        {
+            index = 6;
+        }
+        else if (rune1 == "Fire" && rune2 == "Wind")
+        {
+            index = 7;
+        }
+        else if (rune1 == "Earth" && rune2 == "Wind")
+        {
+            index = 8;
+        }
+        else if (rune1 == "Fire" && rune2 == "Water")
+        {
+            index = 9;
+        }
+        else if (rune1 == "Earth" && rune2 == "Water")
+        {
+            index = 10;
+        }
+        else if (rune1 == "Earth" && rune2 == "Fire")
+        {
+            index = 11;
         }
 
         GameObject sPrefab;

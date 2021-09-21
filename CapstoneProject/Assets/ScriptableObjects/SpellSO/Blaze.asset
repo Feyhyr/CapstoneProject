@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
-  m_Name: Spell1
+  m_Name: Blaze
   m_EditorClassIdentifier: 
-  rune1: {fileID: 11400000, guid: 1c6d54c59245478469fd5e1e092ecf2f, type: 2}
-  rune2: {fileID: 11400000, guid: c47453add2901974abd4d7814a9924c5, type: 2}
-  spellName: Spell1
-  particleEffect: {fileID: 1705276595759794648, guid: 00a6450eed64bd04f8c9b10ac21b61ff, type: 3}
+  spellName: Blaze
+  particleEffect: {fileID: 1705276595759794648, guid: 40ea558d73a1ad94985395858b0fd21f, type: 3}
