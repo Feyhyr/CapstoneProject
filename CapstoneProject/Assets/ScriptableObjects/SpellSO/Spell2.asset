@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
+  m_Name: Spell2
+  m_EditorClassIdentifier: 
+  rune1: {fileID: 11400000, guid: 1c6d54c59245478469fd5e1e092ecf2f, type: 2}
+  rune2: {fileID: 11400000, guid: 8faaf2cfdff49404ca360e74074be148, type: 2}
+  spellName: Spell2
+  particleEffect: {fileID: 1705276595759794648, guid: f40cf73ba24344244bce62c2c35edef5, type: 3}
