@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
+    public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE }
+    public BattleState battleState;
+
     public GameObject runePrefab;
     public Transform runeLocation;
 
@@ -21,8 +24,22 @@ public class BattleManager : MonoBehaviour
 
     public GameObject[] objs;
 
+    public int charMaxHealth;
+    public int charCurrentHealth;
+
+    public GameObject enemyPrefab;
+    public Transform enemyLocation;
+
+    GameObject ePrefab;
+
+    public bool playerAttacked = false;
+
     private void Start()
     {
+        battleState = BattleState.START;
+
+        charCurrentHealth = charMaxHealth;
+
         GameObject rPrefab;
 
         for (int i = 0; i < runeList.Count; i++)
@@ -35,6 +52,100 @@ public class BattleManager : MonoBehaviour
         }
 
         objs = GameObject.FindGameObjectsWithTag("Button");
+
+        StartCoroutine(BeginBattle());
+    }
+
+    IEnumerator BeginBattle()
+    {
+        ePrefab = Instantiate(enemyPrefab, enemyLocation);
+
+        ePrefab.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+
+        yield return new WaitForSeconds(1);
+
+        // fade in our characters sprites
+        yield return StartCoroutine(FadeInOpponents());
+
+        yield return new WaitForSeconds(2);
+
+        battleState = BattleState.PLAYERTURN;
+
+        yield return StartCoroutine(PlayerTurn());
+    }
+
+    IEnumerator PlayerTurn()
+    {
+        yield return new WaitForSeconds(1);
+
+        playerAttacked = false;
+    }
+
+    IEnumerator PAttackPhase()
+    {
+        if (ePrefab.GetComponent<EnemyController>().enemCurrentHealth <= 0)
+        {
+            battleState = BattleState.WIN;
+            yield return StartCoroutine(EndBattle());
+        }
+
+        else
+        {
+            rune1 = "";
+            rune2 = "";
+
+            foreach (GameObject Button in objs)
+            {
+                Button.GetComponent<Button>().interactable = true;
+            }
+
+            battleState = BattleState.ENEMYTURN;
+            yield return StartCoroutine(EnemyTurn());
+        }
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        EnemyAttack();
+
+        if (charCurrentHealth <= 0)
+        {
+            battleState = BattleState.LOSE;
+            yield return StartCoroutine(EndBattle());
+        }
+        else
+        {
+            battleState = BattleState.PLAYERTURN;
+            yield return StartCoroutine(PlayerTurn());
+        }
+    }
+
+    IEnumerator EndBattle()
+    {
+        if (battleState == BattleState.WIN)
+        {
+            yield return new WaitForSeconds(1);
+            Debug.Log("YOU WIN");
+        }
+        else if (battleState == BattleState.LOSE)
+        {
+            yield return new WaitForSeconds(1);
+            Debug.Log("YOU LOSE");
+        }
+    }
+
+    public void PlayerAttack()
+    {
+        ePrefab.GetComponent<EnemyController>().enemCurrentHealth -= 10;
+        Debug.Log("Player deals 10 dmg\n Enemy has " + ePrefab.GetComponent<EnemyController>().enemCurrentHealth + " health left");
+        playerAttacked = true;
+    }
+
+    public void EnemyAttack()
+    {
+        int enemyDmg = Random.Range(ePrefab.GetComponent<EnemyController>().lowestDmg, ePrefab.GetComponent<EnemyController>().highestDmg);
+        charCurrentHealth -= enemyDmg;
+        Debug.Log("Enemy deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
     }
 
     public void CreateSpell()
@@ -101,17 +212,33 @@ public class BattleManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        if ((rune1 != "") && (rune2 != ""))
+        if ((battleState == BattleState.PLAYERTURN) && (playerAttacked == false))
         {
-            CreateSpell();
-
-            rune1 = "";
-            rune2 = "";
-
-            foreach (GameObject Button in objs)
+            if ((rune1 != "") && (rune2 != ""))
             {
-                Button.GetComponent<Button>().interactable = true;
+                CreateSpell();
+                PlayerAttack();
+                StartCoroutine(PAttackPhase());
             }
         }
+    }
+
+    IEnumerator FadeInOpponents(int steps = 10)
+    {
+        float totalTransparencyPerStep = 1 / (float)steps;
+
+        for (int i = 0; i < steps; i++)
+        {
+            setSpriteOpacity(ePrefab, totalTransparencyPerStep);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void setSpriteOpacity(GameObject ob, float transPerStep)
+    {
+        Color currColor = ob.GetComponent<SpriteRenderer>().color;
+        float alpha = currColor.a;
+        alpha += transPerStep;
+        ob.GetComponent<SpriteRenderer>().color = new Color(currColor.r, currColor.g, currColor.b, alpha);
     }
 }
