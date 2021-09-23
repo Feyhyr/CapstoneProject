@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spell")]
 public class SpellSO : ScriptableObject
 {
-    public string spellName;
+    public string sName;
     public GameObject particleEffect;
+    public int sDamage;
 }

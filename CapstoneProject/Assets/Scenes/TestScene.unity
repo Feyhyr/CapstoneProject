@@ -458,6 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ccff86586145b439408a14eed9a97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleState: 0
   runePrefab: {fileID: 823993379849303736, guid: ccc101b3f889fbc41851a140793158fe, type: 3}
   runeLocation: {fileID: 1157296911}
   spellPrefab:
@@ -496,11 +497,11 @@ MonoBehaviour:
   rune2: 
   spellText: {fileID: 1542947410}
   objs: []
-  charMaxHealth: 100
+  charMaxHealth: 50
   charCurrentHealth: 0
-  enemCurrentHealth: 0
   enemyPrefab: {fileID: 1257839107371354557, guid: 9bea768031a88e244a3e65e6de7bb535, type: 3}
   enemyLocation: {fileID: 21708405}
+  playerAttacked: 0
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0

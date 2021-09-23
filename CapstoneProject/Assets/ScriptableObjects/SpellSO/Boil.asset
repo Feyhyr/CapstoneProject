@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Boil
   m_EditorClassIdentifier: 
-  rune1: {fileID: 11400000, guid: c47453add2901974abd4d7814a9924c5, type: 2}
-  rune2: {fileID: 11400000, guid: 1c6d54c59245478469fd5e1e092ecf2f, type: 2}
-  spellName: Boil
+  sName: Boil
   particleEffect: {fileID: 1705276595759794648, guid: 918eacf574c751d4c88d8592dd429290, type: 3}
+  sDamage: 5

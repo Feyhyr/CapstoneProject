@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Crystalize
   m_EditorClassIdentifier: 
-  spellName: Crystalize
+  sName: Crystalize
   particleEffect: {fileID: 1705276595759794648, guid: 3719c534352af624e8161f6abba6fc3d, type: 3}
+  sDamage: 5

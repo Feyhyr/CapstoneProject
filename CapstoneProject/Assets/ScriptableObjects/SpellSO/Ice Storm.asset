@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Ice Storm
   m_EditorClassIdentifier: 
-  spellName: Ice Storm
+  sName: Ice Storm
   particleEffect: {fileID: 1705276595759794648, guid: 6ddaab3433806a441aecc19571b10060, type: 3}
+  sDamage: 5

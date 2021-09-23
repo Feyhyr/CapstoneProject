@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Reverb
   m_EditorClassIdentifier: 
-  spellName: Reverb
+  sName: Reverb
   particleEffect: {fileID: 1705276595759794648, guid: 4b05e91f04088a34aaa09520938389d3, type: 3}
+  sDamage: 5

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Steam
   m_EditorClassIdentifier: 
-  spellName: Steam
+  sName: Steam
   particleEffect: {fileID: 1705276595759794648, guid: fd4e35ea375658849af30aad767e06cc, type: 3}
+  sDamage: 5

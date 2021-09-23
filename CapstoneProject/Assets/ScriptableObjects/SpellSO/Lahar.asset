@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Lahar
   m_EditorClassIdentifier: 
-  spellName: Lahar
+  sName: Lahar
   particleEffect: {fileID: 1705276595759794648, guid: 1ffe8f16bb0759b44b8e5a0db72177ba, type: 3}
+  sDamage: 5

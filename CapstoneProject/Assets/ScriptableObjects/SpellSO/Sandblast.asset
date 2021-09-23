@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Sandblast
   m_EditorClassIdentifier: 
-  rune1: {fileID: 11400000, guid: 7f9e9ed61c44835428c47e959f551d6f, type: 2}
-  rune2: {fileID: 11400000, guid: 8faaf2cfdff49404ca360e74074be148, type: 2}
-  spellName: Sandblast
+  sName: Sandblast
   particleEffect: {fileID: 1705276595759794648, guid: 6c7bc2f10c4fa6d448fc6cab71925f2e, type: 3}
+  sDamage: 5

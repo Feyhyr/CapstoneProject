@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d213cbad2d5731a4ea36aa4bc3f85058, type: 3}
   m_Name: Blaze
   m_EditorClassIdentifier: 
-  spellName: Blaze
+  sName: Blaze
   particleEffect: {fileID: 1705276595759794648, guid: 40ea558d73a1ad94985395858b0fd21f, type: 3}
+  sDamage: 5
