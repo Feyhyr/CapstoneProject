@@ -95,10 +95,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995826257f6d0cd48b186b8a707ccc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 3010d35102fdd154c8ecd3835a1feb70, type: 2}
+  enemy: {fileID: 11400000, guid: edecbf53d7f557d4497bd971eee381fc, type: 2}
   enemCurrentHealth: 0
   atk: 0
   weak: []
   resist: []
   immune: []
   spriteRenderer: {fileID: 0}
+  eIdle: {fileID: 0}
+  eAttack: {fileID: 0}
+  eDamage: {fileID: 0}
+  eSkeletonAnimation: {fileID: 0}
+  currentState: 

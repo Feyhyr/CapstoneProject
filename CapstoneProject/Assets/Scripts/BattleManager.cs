@@ -78,12 +78,12 @@ public class BattleManager : MonoBehaviour
     {
         ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
-        ePrefab.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        //ePrefab.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
         // fade in our characters sprites
-        yield return FadeInOpponents();
+        //yield return FadeInOpponents();
 
         //yield return new WaitForSeconds(2);
 
@@ -448,7 +448,7 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    IEnumerator FadeInOpponents(int steps = 10)
+    /*IEnumerator FadeInOpponents(int steps = 10)
     {
         float totalTransparencyPerStep = 1 / (float)steps;
 
@@ -465,5 +465,5 @@ public class BattleManager : MonoBehaviour
         float alpha = currColor.a;
         alpha += transPerStep;
         ob.GetComponent<SpriteRenderer>().color = new Color(currColor.r, currColor.g, currColor.b, alpha);
-    }
+    }*/
 }
