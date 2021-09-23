@@ -14,8 +14,6 @@ public class RuneController : MonoBehaviour
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
-            Debug.Log("You have selected the " + rune.runeName + " rune");
-
             if (bm.rune1 == "")
             {
                 bm.rune1 = rune.runeName;
@@ -23,6 +21,7 @@ public class RuneController : MonoBehaviour
             else if ((bm.rune1 != "") && (bm.rune2 == ""))
             {
                 bm.rune2 = rune.runeName;
+                Debug.Log("You have selected the " + bm.rune1 + " " + bm.rune2 + " rune");
                 bm.TriggerAttack();
             }
             gameObject.GetComponent<Button>().interactable = false;

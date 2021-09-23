@@ -38,6 +38,7 @@ public class BattleManager : MonoBehaviour
     bool isPoisoned = false;
     int poisonTurnCount = 2;
     bool isExposed = false;
+    int exposedTurnCount = 1;
     bool isMelt = false;
     bool isFreeze = false;
     bool isBurn = false;
@@ -96,6 +97,14 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PAttackPhase()
     {
+        foreach (GameObject Button in objs)
+        {
+            Button.GetComponent<Button>().interactable = true;
+        }
+
+        rune1 = "";
+        rune2 = "";
+
         if (ePrefab.GetComponent<EnemyController>().enemCurrentHealth <= 0)
         {
             battleState = BattleState.WIN;
@@ -104,14 +113,6 @@ public class BattleManager : MonoBehaviour
 
         else
         {
-            rune1 = "";
-            rune2 = "";
-
-            foreach (GameObject Button in objs)
-            {
-                Button.GetComponent<Button>().interactable = true;
-            }
-
             battleState = BattleState.ENEMYTURN;
             yield return EnemyTurn();
         }
@@ -167,6 +168,21 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerAttack(int damage)
     {
+        if (Weakness())
+        {
+            Debug.Log("Damage double");
+            damage *= 2;
+        }
+        else if (Resistent())
+        {
+            Debug.Log("Damage half");
+            damage /= 2;
+        }
+        else
+        {
+            Debug.Log("Damage normal");
+        }
+
         ePrefab.GetComponent<EnemyController>().enemCurrentHealth -= damage;
         Debug.Log("Player deals " + damage + " dmg\n Enemy has " + ePrefab.GetComponent<EnemyController>().enemCurrentHealth + " health left");
         playerAttacked = true;
@@ -182,7 +198,14 @@ public class BattleManager : MonoBehaviour
 
     public bool Weakness()
     {
-        if ((ePrefab.GetComponent<EnemyController>().weak.Contains(rune1) || (ePrefab.GetComponent<EnemyController>().weak.Contains(rune2))))
+        List<string> weakHolder = ePrefab.GetComponent<EnemyController>().weak;
+        List<string> resistHolder = ePrefab.GetComponent<EnemyController>().resist;
+
+        if (((weakHolder.Contains(rune1) && (resistHolder.Contains(rune2)))) || (resistHolder.Contains(rune1) && (weakHolder.Contains(rune2))))
+        {
+            return false;
+        }
+        else if ((weakHolder.Contains(rune1) || (weakHolder.Contains(rune2))))
         {
             return true;
         }
@@ -192,7 +215,14 @@ public class BattleManager : MonoBehaviour
 
     public bool Resistent()
     {
-        if ((ePrefab.GetComponent<EnemyController>().resist.Contains(rune1) || (ePrefab.GetComponent<EnemyController>().resist.Contains(rune2))))
+        List<string> weakHolder = ePrefab.GetComponent<EnemyController>().weak;
+        List<string> resistHolder = ePrefab.GetComponent<EnemyController>().resist;
+
+        if (((weakHolder.Contains(rune1) && (resistHolder.Contains(rune2)))) || (resistHolder.Contains(rune1) && (weakHolder.Contains(rune2))))
+        {
+            return false;
+        }
+        else if ((resistHolder.Contains(rune1) || (resistHolder.Contains(rune2))))
         {
             return true;
         }
@@ -218,8 +248,12 @@ public class BattleManager : MonoBehaviour
         else if (rune1 == "Wind" && rune2 == "Earth")
         {
             index = 2;
-            isExposed = true;
-            Debug.Log("Enemy has become vulnerable");
+            if (!Resistent())
+            {
+                isExposed = true;
+                exposedTurnCount = 1;
+                Debug.Log("Enemy has become vulnerable");
+            }
         }
         else if (rune1 == "Water" && rune2 == "Fire")
         {
@@ -281,6 +315,19 @@ public class BattleManager : MonoBehaviour
         sPrefab.GetComponent<SpellCreation>().damage = spellList[index].sDamage;
 
         spellText.text = "You created " + sPrefab.GetComponent<SpellCreation>().spellName;
+
+        if ((isExposed) && (exposedTurnCount <= 0))
+        {
+            if (!Weakness())
+            {
+                sPrefab.GetComponent<SpellCreation>().damage *= 2;
+            }
+            isExposed = false;
+        }
+        else if ((isExposed) && (exposedTurnCount > 0))
+        {
+            exposedTurnCount--;
+        }
 
         PlayerAttack(sPrefab.GetComponent<SpellCreation>().damage);
     }

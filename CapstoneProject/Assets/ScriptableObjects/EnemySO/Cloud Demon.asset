@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cloud Demon
   m_EditorClassIdentifier: 
   enemyName: Cloud Demon
-  enemySprite: {fileID: 0}
+  enemySprite: {fileID: 21300000, guid: 2b1b450fd42007743a96da75c0f008d8, type: 3}
   dmg: 3
   maxHealth: 50
   weakness:
