@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,10 +19,11 @@ public class BattleManager : MonoBehaviour
 
     public string rune1;
     public string rune2;
+    public int runeIndex;
 
     public Text spellText;
 
-    public GameObject[] objs;
+    public GameObject[] buttonObjs;
 
     public int charMaxHealth;
     public int charCurrentHealth;
@@ -40,16 +40,20 @@ public class BattleManager : MonoBehaviour
     bool isExposed = false;
     int exposedTurnCount = 1;
     bool isMelt = false;
+    int meltTurnCount = 3;
     bool isFreeze = false;
+    int freezeTurnCount = 2;
     bool isBurn = false;
+    int burnTurnCount = 3;
     bool isReverb = false;
+    int reverbCount = 1;
     bool isCrystalize = false;
-
-    bool isWeak = false;
-    bool isResist = false;
+    int crystalTurnCount = 2;
 
     private void Start()
     {
+        //Random.InitState((int)System.DateTime.Now.Ticks);
+
         battleState = BattleState.START;
 
         charCurrentHealth = charMaxHealth;
@@ -65,7 +69,7 @@ public class BattleManager : MonoBehaviour
             rPrefab.GetComponent<RuneController>().nameText.text = runeList[i].runeName;
         }
 
-        objs = GameObject.FindGameObjectsWithTag("Button");
+        buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
         StartCoroutine(BeginBattle());
     }
@@ -97,15 +101,38 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PAttackPhase()
     {
-        foreach (GameObject Button in objs)
+        foreach (GameObject Button in buttonObjs)
         {
             Button.GetComponent<Button>().interactable = true;
+        }
+
+        if (isReverb)
+        {
+            buttonObjs[runeIndex].GetComponent<Button>().interactable = true;
+            isReverb = false;
+        }
+        else
+        {
+            reverbCount = 1;
+            buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
 
         rune1 = "";
         rune2 = "";
 
-        if (ePrefab.GetComponent<EnemyController>().enemCurrentHealth <= 0)
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            Debug.Log("Enemy cannot move");
+            freezeTurnCount--;
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+            }
+            battleState = BattleState.PLAYERTURN;
+            yield return PlayerTurn();
+        }
+
+        else if (ePrefab.GetComponent<EnemyController>().enemCurrentHealth <= 0)
         {
             battleState = BattleState.WIN;
             yield return EndBattle();
@@ -135,13 +162,31 @@ public class BattleManager : MonoBehaviour
 
         if (isPoisoned)
         {
-            ePrefab.GetComponent<EnemyController>().enemCurrentHealth -= 3;
+            EnemyDamage(3);
             poisonTurnCount--;
-            Debug.Log("Enemy current health: " + ePrefab.GetComponent<EnemyController>().enemCurrentHealth);
-
             if (poisonTurnCount <= 0)
             {
                 isPoisoned = false;
+            }
+        }
+
+        if (isMelt)
+        {
+            EnemyDamage(1);
+            meltTurnCount--;
+            if (meltTurnCount <= 0)
+            {
+                isMelt = false;
+            }
+        }
+
+        if (isBurn)
+        {
+            EnemyDamage(1);
+            burnTurnCount--;
+            if (burnTurnCount <= 0)
+            {
+                isBurn = false;
             }
         }
 
@@ -168,30 +213,62 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerAttack(int damage)
     {
-        if (Weakness())
+        if (Immunity())
         {
-            Debug.Log("Damage double");
-            damage *= 2;
-        }
-        else if (Resistent())
-        {
-            Debug.Log("Damage half");
-            damage /= 2;
+            damage = 0;
         }
         else
         {
-            Debug.Log("Damage normal");
-        }
+            if (Weakness() && !CheckNeutral())
+            {
+                Debug.Log("Damage double");
+                damage *= 2;
+            }
+            else if (Resistant() && !CheckNeutral())
+            {
+                Debug.Log("Damage half");
+                damage /= 2;
+            }
+            else
+            {
+                Debug.Log("Damage normal");
+            }
 
-        ePrefab.GetComponent<EnemyController>().enemCurrentHealth -= damage;
-        Debug.Log("Player deals " + damage + " dmg\n Enemy has " + ePrefab.GetComponent<EnemyController>().enemCurrentHealth + " health left");
+            if ((isMelt) && ((rune1 == "Fire") || (rune2 == "Fire")) && (meltTurnCount <= 2))
+            {
+                damage += 2;
+            }
+
+            if ((isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (burnTurnCount <= 2))
+            {
+                damage += 2;
+            }
+
+            if (isReverb)
+            {
+                damage += reverbCount;
+                reverbCount++;
+            }
+        }
+        
+        Debug.Log("Player deals " + damage + " dmg");
+        EnemyDamage(damage);
         playerAttacked = true;
     }
 
     public void EnemyAttack()
     {
         int enemyDmg = ePrefab.GetComponent<EnemyController>().atk;
-        //int enemyDmg = Random.Range(ePrefab.GetComponent<EnemyController>().lowestDmg, ePrefab.GetComponent<EnemyController>().highestDmg);
+        if (isCrystalize)
+        {
+            enemyDmg /= 2;
+            crystalTurnCount--;
+            if (crystalTurnCount <= 0)
+            {
+                isCrystalize = false;
+            }
+        }
+
         charCurrentHealth -= enemyDmg;
         Debug.Log("Enemy deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
     }
@@ -199,13 +276,8 @@ public class BattleManager : MonoBehaviour
     public bool Weakness()
     {
         List<string> weakHolder = ePrefab.GetComponent<EnemyController>().weak;
-        List<string> resistHolder = ePrefab.GetComponent<EnemyController>().resist;
 
-        if (((weakHolder.Contains(rune1) && (resistHolder.Contains(rune2)))) || (resistHolder.Contains(rune1) && (weakHolder.Contains(rune2))))
-        {
-            return false;
-        }
-        else if ((weakHolder.Contains(rune1) || (weakHolder.Contains(rune2))))
+        if ((weakHolder.Contains(rune1) || (weakHolder.Contains(rune2))))
         {
             return true;
         }
@@ -213,20 +285,34 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    public bool Resistent()
+    public bool Resistant()
     {
-        List<string> weakHolder = ePrefab.GetComponent<EnemyController>().weak;
         List<string> resistHolder = ePrefab.GetComponent<EnemyController>().resist;
 
-        if (((weakHolder.Contains(rune1) && (resistHolder.Contains(rune2)))) || (resistHolder.Contains(rune1) && (weakHolder.Contains(rune2))))
-        {
-            return false;
-        }
-        else if ((resistHolder.Contains(rune1) || (resistHolder.Contains(rune2))))
+        if ((resistHolder.Contains(rune1) || (resistHolder.Contains(rune2))))
         {
             return true;
         }
+        return false;
+    }
 
+    public bool Immunity()
+    {
+        List<string> immuneHolder = ePrefab.GetComponent<EnemyController>().immune;
+
+        if ((immuneHolder.Contains(rune1) || (immuneHolder.Contains(rune2))))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool CheckNeutral()
+    {
+        if (Weakness() && Resistant())
+        {
+            return true;
+        }
         return false;
     }
 
@@ -248,7 +334,7 @@ public class BattleManager : MonoBehaviour
         else if (rune1 == "Wind" && rune2 == "Earth")
         {
             index = 2;
-            if (!Resistent())
+            if (!Resistant())
             {
                 isExposed = true;
                 exposedTurnCount = 1;
@@ -259,6 +345,7 @@ public class BattleManager : MonoBehaviour
         {
             index = 3;
             isMelt = true;
+            meltTurnCount = 3;
             Debug.Log("Enemy has melted");
         }
         else if (rune1 == "Water" && rune2 == "Earth")
@@ -273,19 +360,25 @@ public class BattleManager : MonoBehaviour
         {
             index = 6;
             isFreeze = true;
+            freezeTurnCount = 2;
             Debug.Log("Enemy is frozen");
+            //if (ChanceStatusEffect(0.7f))
+            //{
+
+            //}
         }
         else if (rune1 == "Fire" && rune2 == "Wind")
         {
             index = 7;
             isBurn = true;
+            burnTurnCount = 3;
             Debug.Log("Enemy has been burned");
         }
         else if (rune1 == "Earth" && rune2 == "Wind")
         {
             index = 8;
             isReverb = true;
-            Debug.Log("Reverb effect");
+            Debug.Log("Reverb effect " + reverbCount);
         }
         else if (rune1 == "Fire" && rune2 == "Water")
         {
@@ -295,6 +388,7 @@ public class BattleManager : MonoBehaviour
             {
                 charCurrentHealth = 50;
             }
+            Debug.Log("Character Health: " + charCurrentHealth);
         }
         else if (rune1 == "Earth" && rune2 == "Water")
         {
@@ -304,6 +398,7 @@ public class BattleManager : MonoBehaviour
         {
             index = 11;
             isCrystalize = true;
+            crystalTurnCount = 2;
             Debug.Log("You crystalized");
         }
 
@@ -318,7 +413,7 @@ public class BattleManager : MonoBehaviour
 
         if ((isExposed) && (exposedTurnCount <= 0))
         {
-            if (!Weakness())
+            if (!Weakness() && CheckNeutral())
             {
                 sPrefab.GetComponent<SpellCreation>().damage *= 2;
             }
@@ -334,14 +429,23 @@ public class BattleManager : MonoBehaviour
 
     public void TriggerAttack()
     {
-        //if ((battleState == BattleState.PLAYERTURN) && (playerAttacked == false))
-        //{
-            //if ((rune1 != "") && (rune2 != ""))
-            //{
-       CreateSpell();
-       StartCoroutine(PAttackPhase());
-            //}
-        //}
+        CreateSpell();
+        StartCoroutine(PAttackPhase());
+    }
+
+    public void EnemyDamage(int damage)
+    {
+        ePrefab.GetComponent<EnemyController>().enemCurrentHealth -= damage;
+        Debug.Log("Enemy current health: " + ePrefab.GetComponent<EnemyController>().enemCurrentHealth);
+    }
+
+    public bool ChanceStatusEffect(float chance)
+    {
+        if (Random.value >= chance)
+        {
+            return true;
+        }
+        return false;
     }
 
     IEnumerator FadeInOpponents(int steps = 10)

@@ -6,6 +6,7 @@ using UnityEngine;
 public class RuneSO : ScriptableObject
 {
     public string runeName;
+    public int runeId;
     public Sprite icon;
     public AudioClip audioSFX;
 }

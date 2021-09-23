@@ -9,9 +9,8 @@ public class EnemyController : MonoBehaviour
     public int atk;
     public List<string> weak;
     public List<string> resist;
+    public List<string> immune;
     public SpriteRenderer spriteRenderer;
-    //public int lowestDmg;
-    //public int highestDmg;
 
     private void Awake()
     {
@@ -19,10 +18,8 @@ public class EnemyController : MonoBehaviour
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
+        immune = enemy.immunity;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = enemy.enemySprite;
-        
-        //lowestDmg = enemy.lowDmg;
-        //highestDmg = enemy.highDmg;
     }
 }

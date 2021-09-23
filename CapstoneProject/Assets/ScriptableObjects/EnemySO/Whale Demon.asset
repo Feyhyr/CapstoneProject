@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d96545dffeb4347996486a278789c2, type: 3}
-  m_Name: Wind
+  m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
+  m_Name: Whale Demon
   m_EditorClassIdentifier: 
-  runeName: Wind
-  runeId: 3
-  icon: {fileID: 0}
-  audioSFX: {fileID: 0}
+  enemyName: Whale Demon
+  enemySprite: {fileID: 21300000, guid: 5336c48722d9dee44b8aa102be585780, type: 3}
+  dmg: 5
+  maxHealth: 50
+  weakness:
+  - Fire
+  resistance:
+  - Water
+  immunity: []

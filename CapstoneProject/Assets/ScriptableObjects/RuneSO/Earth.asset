@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Earth
   m_EditorClassIdentifier: 
   runeName: Earth
+  runeId: 1
   icon: {fileID: 0}
   audioSFX: {fileID: 0}

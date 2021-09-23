@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   runeName: Water
+  runeId: 2
   icon: {fileID: 0}
   audioSFX: {fileID: 0}

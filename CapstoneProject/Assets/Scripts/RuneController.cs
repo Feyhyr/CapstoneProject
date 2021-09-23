@@ -17,14 +17,16 @@ public class RuneController : MonoBehaviour
             if (bm.rune1 == "")
             {
                 bm.rune1 = rune.runeName;
+                gameObject.GetComponent<Button>().interactable = false;
             }
             else if ((bm.rune1 != "") && (bm.rune2 == ""))
             {
                 bm.rune2 = rune.runeName;
+                bm.runeIndex = rune.runeId;
                 Debug.Log("You have selected the " + bm.rune1 + " " + bm.rune2 + " rune");
+                gameObject.GetComponent<Button>().interactable = false;
                 bm.TriggerAttack();
             }
-            gameObject.GetComponent<Button>().interactable = false;
         }
     }
 }
