@@ -47,5 +47,13 @@ public class EnemyController : MonoBehaviour
         {
             SetAnimation(eIdle, true, 1f);
         }
+        else if (state.Equals("Attack"))
+        {
+            SetAnimation(eAttack, false, 1f);
+        }
+        else if (state.Equals("Damage"))
+        {
+            SetAnimation(eDamage, false, 1f);
+        }
     }
 }

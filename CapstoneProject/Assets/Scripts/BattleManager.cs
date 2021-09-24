@@ -55,9 +55,7 @@ public class BattleManager : MonoBehaviour
         //Random.InitState((int)System.DateTime.Now.Ticks);
 
         battleState = BattleState.START;
-
         charCurrentHealth = charMaxHealth;
-
         GameObject rPrefab;
 
         for (int i = 0; i < runeList.Count; i++)
@@ -147,7 +145,11 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        yield return new WaitForSeconds(1);
         EnemyAttack();
+        yield return new WaitForSeconds(1);
+        ePrefab.GetComponent<EnemyController>().currentState = "Idle";
+        ePrefab.GetComponent<EnemyController>().SetCharacterState(ePrefab.GetComponent<EnemyController>().currentState);
 
         if (charCurrentHealth <= 0)
         {
@@ -253,6 +255,8 @@ public class BattleManager : MonoBehaviour
         
         Debug.Log("Player deals " + damage + " dmg");
         EnemyDamage(damage);
+        ePrefab.GetComponent<EnemyController>().currentState = "Damage";
+        ePrefab.GetComponent<EnemyController>().SetCharacterState(ePrefab.GetComponent<EnemyController>().currentState);
         playerAttacked = true;
     }
 
@@ -270,6 +274,8 @@ public class BattleManager : MonoBehaviour
         }
 
         charCurrentHealth -= enemyDmg;
+        ePrefab.GetComponent<EnemyController>().currentState = "Attack";
+        ePrefab.GetComponent<EnemyController>().SetCharacterState(ePrefab.GetComponent<EnemyController>().currentState);
         Debug.Log("Enemy deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
     }
 
