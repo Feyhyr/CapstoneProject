@@ -130,7 +130,7 @@ public class BattleManager : MonoBehaviour
             yield return PlayerTurn();
         }
 
-        else if (ePrefab.GetComponent<EnemyController>().enemCurrentHealth <= 0)
+        else if (ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
         {
             battleState = BattleState.WIN;
             yield return EndBattle();
@@ -148,8 +148,8 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         EnemyAttack();
         yield return new WaitForSeconds(1);
-        ePrefab.GetComponent<EnemyController>().currentState = "Idle";
-        ePrefab.GetComponent<EnemyController>().SetCharacterState(ePrefab.GetComponent<EnemyController>().currentState);
+        ePrefab.GetComponentInChildren<EnemyController>().currentState = "Idle";
+        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(ePrefab.GetComponentInChildren<EnemyController>().currentState);
 
         if (charCurrentHealth <= 0)
         {
@@ -192,7 +192,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (ePrefab.GetComponent<EnemyController>().enemCurrentHealth <= 0)
+        if (ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
         {
             battleState = BattleState.WIN;
             yield return EndBattle();
@@ -255,14 +255,14 @@ public class BattleManager : MonoBehaviour
         
         Debug.Log("Player deals " + damage + " dmg");
         EnemyDamage(damage);
-        ePrefab.GetComponent<EnemyController>().currentState = "Damage";
-        ePrefab.GetComponent<EnemyController>().SetCharacterState(ePrefab.GetComponent<EnemyController>().currentState);
+        ePrefab.GetComponentInChildren<EnemyController>().currentState = "Damage";
+        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(ePrefab.GetComponentInChildren<EnemyController>().currentState);
         playerAttacked = true;
     }
 
     public void EnemyAttack()
     {
-        int enemyDmg = ePrefab.GetComponent<EnemyController>().atk;
+        int enemyDmg = ePrefab.GetComponentInChildren<EnemyController>().atk;
         if (isCrystalize)
         {
             enemyDmg /= 2;
@@ -274,14 +274,14 @@ public class BattleManager : MonoBehaviour
         }
 
         charCurrentHealth -= enemyDmg;
-        ePrefab.GetComponent<EnemyController>().currentState = "Attack";
-        ePrefab.GetComponent<EnemyController>().SetCharacterState(ePrefab.GetComponent<EnemyController>().currentState);
+        ePrefab.GetComponentInChildren<EnemyController>().currentState = "Attack";
+        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(ePrefab.GetComponentInChildren<EnemyController>().currentState);
         Debug.Log("Enemy deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
     }
 
     public bool Weakness()
     {
-        List<string> weakHolder = ePrefab.GetComponent<EnemyController>().weak;
+        List<string> weakHolder = ePrefab.GetComponentInChildren<EnemyController>().weak;
 
         if ((weakHolder.Contains(rune1) || (weakHolder.Contains(rune2))))
         {
@@ -293,7 +293,7 @@ public class BattleManager : MonoBehaviour
 
     public bool Resistant()
     {
-        List<string> resistHolder = ePrefab.GetComponent<EnemyController>().resist;
+        List<string> resistHolder = ePrefab.GetComponentInChildren<EnemyController>().resist;
 
         if ((resistHolder.Contains(rune1) || (resistHolder.Contains(rune2))))
         {
@@ -301,10 +301,10 @@ public class BattleManager : MonoBehaviour
         }
         return false;
     }
-
+    
     public bool Immunity()
     {
-        List<string> immuneHolder = ePrefab.GetComponent<EnemyController>().immune;
+        List<string> immuneHolder = ePrefab.GetComponentInChildren<EnemyController>().immune;
 
         if ((immuneHolder.Contains(rune1) || (immuneHolder.Contains(rune2))))
         {
@@ -441,8 +441,8 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyDamage(int damage)
     {
-        ePrefab.GetComponent<EnemyController>().enemCurrentHealth -= damage;
-        Debug.Log("Enemy current health: " + ePrefab.GetComponent<EnemyController>().enemCurrentHealth);
+        ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth -= damage;
+        Debug.Log("Enemy current health: " + ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth);
     }
 
     public bool ChanceStatusEffect(float chance)
