@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class BattleManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class BattleManager : MonoBehaviour
 
     public List<RuneSO> runeList;
     public List<SpellSO> spellList;
+    public List<EnemySO> enemyList;
 
     public string rune1;
     public string rune2;
@@ -28,7 +30,14 @@ public class BattleManager : MonoBehaviour
     public int charMaxHealth;
     public int charCurrentHealth;
 
-    public GameObject enemyPrefab;
+    int randomEnemyCount;
+    int randomEnemy;
+    int enemyIndex = 0;
+    public List<GameObject> enemyPrefab;
+    public List<GameObject> currentEnemyList;
+    public GameObject targetEnemyPrefab;
+    public int targetEnemy = 0;
+    //public GameObject enemyPrefab;
     public Transform enemyLocation;
 
     GameObject ePrefab;
@@ -53,7 +62,7 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        //Random.InitState((int)System.DateTime.Now.Ticks);
+        Random.InitState((int)System.DateTime.Now.Ticks);
 
         battleState = BattleState.START;
         charCurrentHealth = charMaxHealth;
@@ -77,9 +86,26 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator BeginBattle()
     {
-        ePrefab = Instantiate(enemyPrefab, enemyLocation);
+        enemyIndex = 0;
+        randomEnemyCount = Random.Range(1, 4);
+        Debug.Log("Random enemy count: " + randomEnemyCount);
 
-        enemyState = ePrefab.GetComponentInChildren<EnemyController>().currentState;
+        for (int i = 0; i < randomEnemyCount; i++)
+        {
+            randomEnemy = Random.Range(1, enemyList.Count);
+            ePrefab = Instantiate(enemyPrefab[randomEnemy], enemyLocation);
+
+            ePrefab.GetComponentInChildren<EnemyController>().bm = this;
+            ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+            enemyIndex++;
+            currentEnemyList.Add(ePrefab);
+        }
+
+        CheckMultipleEnemies();
+        
+        //ePrefab = Instantiate(enemyPrefab[0], enemyLocation);
+
+        enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
 
         //ePrefab.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
 
@@ -135,7 +161,7 @@ public class BattleManager : MonoBehaviour
             yield return PlayerTurn();
         }
 
-        else if (ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
+        else if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
         {
             battleState = BattleState.WIN;
             yield return EndBattle();
@@ -151,11 +177,14 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1);
-        EnemyAttack();
-        yield return new WaitForSeconds(1);
-        enemyState = "Idle";
-        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-
+        for (int i = 0; i < currentEnemyList.Count; i++)
+        {
+            EnemyAttack(i);
+            yield return new WaitForSeconds(1);
+            enemyState = "Idle";
+            currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+        }
+        
         if (charCurrentHealth <= 0)
         {
             battleState = BattleState.LOSE;
@@ -197,7 +226,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
+        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
         {
             battleState = BattleState.WIN;
             yield return EndBattle();
@@ -261,13 +290,13 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Player deals " + damage + " dmg");
         EnemyDamage(damage);
         enemyState = "Damage";
-        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         playerAttacked = true;
     }
 
-    public void EnemyAttack()
+    public void EnemyAttack(int value)
     {
-        int enemyDmg = ePrefab.GetComponentInChildren<EnemyController>().atk;
+        int enemyDmg = currentEnemyList[value].GetComponentInChildren<EnemyController>().atk;
         if (isCrystalize)
         {
             enemyDmg /= 2;
@@ -280,13 +309,13 @@ public class BattleManager : MonoBehaviour
 
         charCurrentHealth -= enemyDmg;
         enemyState = "Attack";
-        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-        Debug.Log("Enemy deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
+        currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+        Debug.Log(currentEnemyList[value].GetComponentInChildren<EnemyController>().eName + " deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
     }
 
     public bool Weakness()
     {
-        List<string> weakHolder = ePrefab.GetComponentInChildren<EnemyController>().weak;
+        List<string> weakHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().weak;
 
         if ((weakHolder.Contains(rune1) || (weakHolder.Contains(rune2))))
         {
@@ -298,7 +327,7 @@ public class BattleManager : MonoBehaviour
 
     public bool Resistant()
     {
-        List<string> resistHolder = ePrefab.GetComponentInChildren<EnemyController>().resist;
+        List<string> resistHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().resist;
 
         if ((resistHolder.Contains(rune1) || (resistHolder.Contains(rune2))))
         {
@@ -309,7 +338,7 @@ public class BattleManager : MonoBehaviour
     
     public bool Immunity()
     {
-        List<string> immuneHolder = ePrefab.GetComponentInChildren<EnemyController>().immune;
+        List<string> immuneHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().immune;
 
         if ((immuneHolder.Contains(rune1) || (immuneHolder.Contains(rune2))))
         {
@@ -446,8 +475,8 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyDamage(int damage)
     {
-        ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth -= damage;
-        Debug.Log("Enemy current health: " + ePrefab.GetComponentInChildren<EnemyController>().enemCurrentHealth);
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth -= damage;
+        Debug.Log("Enemy current health: " + currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth);
     }
 
     public bool ChanceStatusEffect(float chance)
@@ -457,6 +486,61 @@ public class BattleManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void CheckMultipleEnemies()
+    {
+        int cloudCount = 0;
+        int hellfireCount = 0;
+        int whaleCount = 0;
+
+        int cloudTag = 1;
+        int hellfireTag = 1;
+        int whaleTag = 1;
+
+        for (int i = 0; i < currentEnemyList.Count; i++)
+        {
+            if (currentEnemyList[i].tag == "Cloud")
+            {
+                cloudCount++;
+            }
+            else if (currentEnemyList[i].tag == "Hellfire")
+            {
+                hellfireCount++;
+            }
+            else if (currentEnemyList[i].tag == "Whale")
+            {
+                whaleCount++;
+            }
+        }
+
+        for (int i = 0; i < currentEnemyList.Count; i++)
+        {
+            if (currentEnemyList[i].tag == "Cloud")
+            {
+                if (cloudCount >= 2)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eName = "Cloud " + cloudTag.ToString();
+                    cloudTag++;
+                }
+            }
+            else if (currentEnemyList[i].tag == "Hellfire")
+            {
+                if (hellfireCount >= 2)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eName = "Hellfire " + hellfireTag.ToString();
+                    hellfireTag++;
+                }
+            }
+            else if (currentEnemyList[i].tag == "Whale")
+            {
+                if (whaleCount >= 2)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eName = "Whale " + whaleTag.ToString();
+                    whaleTag++;
+                }
+            }
+        }
     }
 
     /*IEnumerator FadeInOpponents(int steps = 10)

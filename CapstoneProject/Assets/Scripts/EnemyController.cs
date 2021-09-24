@@ -5,9 +5,12 @@ using Spine.Unity;
 
 public class EnemyController : MonoBehaviour
 {
+    public BattleManager bm;
     public EnemySO enemy;
     public int enemCurrentHealth;
     public int atk;
+    public int enemyId;
+    public string eName;
     public List<string> weak;
     public List<string> resist;
     public List<string> immune;
@@ -22,6 +25,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         enemCurrentHealth = enemy.maxHealth;
+        eName = enemy.enemyName;
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
@@ -34,6 +38,15 @@ public class EnemyController : MonoBehaviour
 
         currentState = "Idle";
         SetCharacterState(currentState);
+    }
+
+    public void SelectTarget()
+    {
+        if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
+        {
+            bm.targetEnemy = enemyId;
+            Debug.Log(eName + " selected");
+        }
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)

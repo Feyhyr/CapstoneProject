@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bm: {fileID: 0}
-  enemy: {fileID: 11400000, guid: edecbf53d7f557d4497bd971eee381fc, type: 2}
+  enemy: {fileID: 11400000, guid: 3010d35102fdd154c8ecd3835a1feb70, type: 2}
   enemCurrentHealth: 0
   atk: 0
   enemyId: 0
@@ -389,8 +389,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8285648919941634976}
   m_Layer: 6
-  m_Name: WhaleDemon
-  m_TagString: Whale
+  m_Name: HellFireDemon
+  m_TagString: Hellfire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

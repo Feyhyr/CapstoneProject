@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Button
+  - Cloud
+  - Hellfire
+  - Whale
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Sprite
   - 
   - 
   - 
@@ -56,4 +59,10 @@ TagManager:
     locked: 0
   - name: Ground_Front_2
     uniqueID: 351611705
+    locked: 0
+  - name: Background
+    uniqueID: 705271759
+    locked: 0
+  - name: Sprite
+    uniqueID: 3566854377
     locked: 0
