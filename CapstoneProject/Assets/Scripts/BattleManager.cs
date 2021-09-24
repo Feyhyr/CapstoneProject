@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour
     public Transform enemyLocation;
 
     GameObject ePrefab;
+    string enemyState;
 
     public bool playerAttacked = false;
 
@@ -75,6 +76,8 @@ public class BattleManager : MonoBehaviour
     IEnumerator BeginBattle()
     {
         ePrefab = Instantiate(enemyPrefab, enemyLocation);
+
+        enemyState = ePrefab.GetComponentInChildren<EnemyController>().currentState;
 
         //ePrefab.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
 
@@ -148,8 +151,8 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         EnemyAttack();
         yield return new WaitForSeconds(1);
-        ePrefab.GetComponentInChildren<EnemyController>().currentState = "Idle";
-        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(ePrefab.GetComponentInChildren<EnemyController>().currentState);
+        enemyState = "Idle";
+        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
 
         if (charCurrentHealth <= 0)
         {
@@ -255,8 +258,8 @@ public class BattleManager : MonoBehaviour
         
         Debug.Log("Player deals " + damage + " dmg");
         EnemyDamage(damage);
-        ePrefab.GetComponentInChildren<EnemyController>().currentState = "Damage";
-        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(ePrefab.GetComponentInChildren<EnemyController>().currentState);
+        enemyState = "Damage";
+        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         playerAttacked = true;
     }
 
@@ -274,8 +277,8 @@ public class BattleManager : MonoBehaviour
         }
 
         charCurrentHealth -= enemyDmg;
-        ePrefab.GetComponentInChildren<EnemyController>().currentState = "Attack";
-        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(ePrefab.GetComponentInChildren<EnemyController>().currentState);
+        enemyState = "Attack";
+        ePrefab.GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         Debug.Log("Enemy deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
     }
 
