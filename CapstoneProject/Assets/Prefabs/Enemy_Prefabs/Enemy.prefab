@@ -101,7 +101,6 @@ MonoBehaviour:
   weak: []
   resist: []
   immune: []
-  spriteRenderer: {fileID: 0}
   eIdle: {fileID: 0}
   eAttack: {fileID: 0}
   eDamage: {fileID: 0}
