@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runeName: Wind
   runeId: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a5a6b6ac39e500b44b8838b48d364bc2, type: 3}
   audioSFX: {fileID: 0}
