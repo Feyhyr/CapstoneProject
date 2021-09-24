@@ -7,6 +7,7 @@ public class RuneController : MonoBehaviour
 {
     public RuneSO rune;
     public Text nameText;
+    public Sprite runeIcon;
 
     public BattleManager bm;
 

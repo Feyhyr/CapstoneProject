@@ -66,6 +66,8 @@ public class BattleManager : MonoBehaviour
             rPrefab.GetComponent<RuneController>().bm = this;
             rPrefab.GetComponent<RuneController>().rune = runeList[i];
             rPrefab.GetComponent<RuneController>().nameText.text = runeList[i].runeName;
+            rPrefab.GetComponent<RuneController>().runeIcon = runeList[i].icon;
+            rPrefab.GetComponent<Button>().image.sprite = rPrefab.GetComponent<RuneController>().runeIcon;
         }
 
         buttonObjs = GameObject.FindGameObjectsWithTag("Button");
