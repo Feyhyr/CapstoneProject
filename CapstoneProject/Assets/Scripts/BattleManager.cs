@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -28,7 +28,8 @@ public class BattleManager : MonoBehaviour
     public GameObject[] buttonObjs;
 
     public int charMaxHealth;
-    public int charCurrentHealth;
+    //public int charCurrentHealth;
+    public Slider charHealthSlider;
 
     int randomEnemyCount;
     int randomEnemy;
@@ -65,7 +66,8 @@ public class BattleManager : MonoBehaviour
         Random.InitState((int)System.DateTime.Now.Ticks);
 
         battleState = BattleState.START;
-        charCurrentHealth = charMaxHealth;
+        //charCurrentHealth = charMaxHealth;
+        charHealthSlider.value = charMaxHealth;
         GameObject rPrefab;
 
         for (int i = 0; i < runeList.Count; i++)
@@ -149,19 +151,7 @@ public class BattleManager : MonoBehaviour
         rune1 = "";
         rune2 = "";
 
-        if (isFreeze && freezeTurnCount > 0)
-        {
-            Debug.Log("Enemy cannot move");
-            freezeTurnCount--;
-            if (freezeTurnCount == 0)
-            {
-                isFreeze = false;
-            }
-            battleState = BattleState.PLAYERTURN;
-            yield return PlayerTurn();
-        }
-
-        else if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
+        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
         {
             currentEnemyList[targetEnemy].SetActive(false);
             currentEnemyList.RemoveAt(targetEnemy);
@@ -179,11 +169,18 @@ public class BattleManager : MonoBehaviour
                 battleState = BattleState.WIN;
                 yield return EndBattle();
             }
-            else
+        }
+
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            Debug.Log("Enemy cannot move");
+            freezeTurnCount--;
+            if (freezeTurnCount == 0)
             {
-                battleState = BattleState.ENEMYTURN;
-                yield return EnemyTurn();
+                isFreeze = false;
             }
+            battleState = BattleState.PLAYERTURN;
+            yield return PlayerTurn();
         }
 
         else
@@ -198,23 +195,17 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
+            if (charHealthSlider.value <= 0)
+            {
+                battleState = BattleState.LOSE;
+                yield return EndBattle();
+            }
             EnemyAttack(i);
             yield return new WaitForSeconds(1);
             enemyState = "Idle";
             currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         }
         
-        if (charCurrentHealth <= 0)
-        {
-            battleState = BattleState.LOSE;
-            yield return EndBattle();
-        }
-        else
-        {
-            battleState = BattleState.PLAYERTURN;
-            yield return PlayerTurn();
-        }
-
         if (isPoisoned)
         {
             EnemyDamage(3);
@@ -245,7 +236,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
+        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
         {
             currentEnemyList[targetEnemy].SetActive(false);
             currentEnemyList.RemoveAt(targetEnemy);
@@ -269,6 +260,9 @@ public class BattleManager : MonoBehaviour
                 yield return PlayerTurn();
             }
         }
+
+        battleState = BattleState.PLAYERTURN;
+        yield return PlayerTurn();
     }
 
     IEnumerator EndBattle()
@@ -276,12 +270,14 @@ public class BattleManager : MonoBehaviour
         if (battleState == BattleState.WIN)
         {
             yield return new WaitForSeconds(1);
-            Debug.Log("YOU WIN");
+            SceneManager.LoadScene("GameWinScene");
+            //Debug.Log("YOU WIN");
         }
         else if (battleState == BattleState.LOSE)
         {
             yield return new WaitForSeconds(1);
-            Debug.Log("YOU LOSE");
+            SceneManager.LoadScene("GameOverScene");
+            //Debug.Log("YOU LOSE");
         }
     }
 
@@ -345,10 +341,10 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        charCurrentHealth -= enemyDmg;
+        charHealthSlider.value -= enemyDmg;
         enemyState = "Attack";
         currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-        Debug.Log(currentEnemyList[value].GetComponentInChildren<EnemyController>().eName + " deals " + enemyDmg + " dmg\n Player has " + charCurrentHealth + " health left");
+        Debug.Log(currentEnemyList[value].GetComponentInChildren<EnemyController>().eText.text + " deals " + enemyDmg + " dmg\n Player has " + charHealthSlider.value.ToString() + " health left");
     }
 
     public bool Weakness()
@@ -461,12 +457,12 @@ public class BattleManager : MonoBehaviour
         else if (rune1 == "Fire" && rune2 == "Water")
         {
             index = 9;
-            charCurrentHealth += 3;
-            if (charCurrentHealth > 50)
+            charHealthSlider.value += 3;
+            if (charHealthSlider.value > 50)
             {
-                charCurrentHealth = 50;
+                charHealthSlider.value = 50;
             }
-            Debug.Log("Character Health: " + charCurrentHealth);
+            Debug.Log("Character Health: " + charHealthSlider.value.ToString());
         }
         else if (rune1 == "Earth" && rune2 == "Water")
         {
@@ -513,8 +509,8 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyDamage(int damage)
     {
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth -= damage;
-        Debug.Log("Enemy current health: " + currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth);
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
+        Debug.Log("Enemy current health: " + currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value.ToString());
     }
 
     public bool ChanceStatusEffect(float chance)
@@ -558,7 +554,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (cloudCount >= 2)
                 {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eName = "Cloud " + cloudTag.ToString();
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Cloud " + cloudTag.ToString();
                     cloudTag++;
                 }
             }
@@ -566,7 +562,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (hellfireCount >= 2)
                 {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eName = "Hellfire " + hellfireTag.ToString();
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Hellfire " + hellfireTag.ToString();
                     hellfireTag++;
                 }
             }
@@ -574,7 +570,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (whaleCount >= 2)
                 {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eName = "Whale " + whaleTag.ToString();
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Whale " + whaleTag.ToString();
                     whaleTag++;
                 }
             }

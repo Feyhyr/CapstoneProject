@@ -1053,6 +1053,7 @@ MonoBehaviour:
   buttonObjs: []
   charMaxHealth: 500
   charCurrentHealth: 0
+  charHealthSlider: {fileID: 1424256421}
   enemyPrefab:
   - {fileID: 4143568629198492943, guid: 4783eda5a39a5ec44b8e626869418696, type: 3}
   - {fileID: 4143568629198492943, guid: 73dff31653d86044aaee2bc9afab6f62, type: 3}

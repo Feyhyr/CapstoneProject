@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Spine.Unity;
 
 public class EnemyController : MonoBehaviour
 {
     public BattleManager bm;
     public EnemySO enemy;
-    public int enemCurrentHealth;
+    //public int enemCurrentHealth;
+    public Slider enemyHealthSlider;
     public int atk;
     public int enemyId;
-    public string eName;
+    //public string eName;
+    public Text eText;
     public bool isDead;
     public List<string> weak;
     public List<string> resist;
@@ -25,8 +28,10 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        enemCurrentHealth = enemy.maxHealth;
-        eName = enemy.enemyName;
+        //enemCurrentHealth = enemy.maxHealth;
+        enemyHealthSlider.value = enemy.maxHealth;
+        //eName = enemy.enemyName;
+        eText.text = enemy.enemyName;
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
@@ -37,7 +42,6 @@ public class EnemyController : MonoBehaviour
         eAttack = enemy.attack;
         eDamage = enemy.damage;
 
-        isDead = false;
         currentState = "Idle";
         SetCharacterState(currentState);
     }
@@ -47,7 +51,7 @@ public class EnemyController : MonoBehaviour
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
             bm.targetEnemy = enemyId;
-            Debug.Log(eName + " selected");
+            Debug.Log(eText.text + " selected");
         }
     }
 

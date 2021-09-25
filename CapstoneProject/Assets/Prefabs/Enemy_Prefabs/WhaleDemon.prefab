@@ -369,10 +369,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bm: {fileID: 0}
   enemy: {fileID: 11400000, guid: edecbf53d7f557d4497bd971eee381fc, type: 2}
-  enemCurrentHealth: 0
+  enemyHealthSlider: {fileID: 6987536947702012384}
   atk: 0
   enemyId: 0
   eName: 
+  eText: {fileID: 4010756260636110268}
   isDead: 0
   weak: []
   resist: []
