@@ -205,7 +205,13 @@ public class BattleManager : MonoBehaviour
             enemyState = "Idle";
             currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         }
-        
+
+        if (charHealthSlider.value <= 0)
+        {
+            battleState = BattleState.LOSE;
+            yield return EndBattle();
+        }
+
         if (isPoisoned)
         {
             EnemyDamage(3);
