@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 353383650376159253}
   - component: {fileID: -8937270657135924598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crystalize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
+  spellName: 
+  damage: 0

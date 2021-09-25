@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     public Transform runeLocation;
 
     public List<GameObject> spellPrefab;
-    public Transform spellLocation;
+    //public Transform spellLocation;
 
     public List<RuneSO> runeList;
     public List<SpellSO> spellList;
@@ -163,8 +163,27 @@ public class BattleManager : MonoBehaviour
 
         else if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
         {
-            battleState = BattleState.WIN;
-            yield return EndBattle();
+            currentEnemyList[targetEnemy].SetActive(false);
+            currentEnemyList.RemoveAt(targetEnemy);
+            targetEnemy = 0;
+            enemyIndex = 0;
+
+            for (int i = 0; i < currentEnemyList.Count; i++)
+            {
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                enemyIndex++;
+            }
+
+            if (isAllEnemiesDead())
+            {
+                battleState = BattleState.WIN;
+                yield return EndBattle();
+            }
+            else
+            {
+                battleState = BattleState.ENEMYTURN;
+                yield return EnemyTurn();
+            }
         }
 
         else
@@ -228,8 +247,27 @@ public class BattleManager : MonoBehaviour
 
         if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemCurrentHealth <= 0)
         {
-            battleState = BattleState.WIN;
-            yield return EndBattle();
+            currentEnemyList[targetEnemy].SetActive(false);
+            currentEnemyList.RemoveAt(targetEnemy);
+            targetEnemy = 0;
+            enemyIndex = 0;
+
+            for (int i = 0; i < currentEnemyList.Count; i++)
+            {
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                enemyIndex++;
+            }
+
+            if (isAllEnemiesDead())
+            {
+                battleState = BattleState.WIN;
+                yield return EndBattle();
+            }
+            else
+            {
+                battleState = BattleState.PLAYERTURN;
+                yield return PlayerTurn();
+            }
         }
     }
 
@@ -444,7 +482,7 @@ public class BattleManager : MonoBehaviour
 
         GameObject sPrefab;
 
-        sPrefab = Instantiate(spellPrefab[index], spellLocation);
+        sPrefab = Instantiate(spellPrefab[index], currentEnemyList[targetEnemy].transform);
         sPrefab.GetComponent<SpellCreation>().spell = spellList[index];
         sPrefab.GetComponent<SpellCreation>().spellName = spellList[index].sName;
         sPrefab.GetComponent<SpellCreation>().damage = spellList[index].sDamage;
@@ -541,6 +579,15 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool isAllEnemiesDead()
+    {
+        if (currentEnemyList.Count.Equals(0))
+        {
+            return true;
+        }
+        return false;
     }
 
     /*IEnumerator FadeInOpponents(int steps = 10)

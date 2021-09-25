@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public int atk;
     public int enemyId;
     public string eName;
+    public bool isDead;
     public List<string> weak;
     public List<string> resist;
     public List<string> immune;
@@ -36,6 +37,7 @@ public class EnemyController : MonoBehaviour
         eAttack = enemy.attack;
         eDamage = enemy.damage;
 
+        isDead = false;
         currentState = "Idle";
         SetCharacterState(currentState);
     }
