@@ -503,7 +503,6 @@ public class BattleManager : MonoBehaviour
         {
             if (!Weakness() || CheckNeutral())
             {
-                Debug.Log("Wig");
                 sPrefab.GetComponent<SpellCreation>().damage *= 2;
             }
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = false;
