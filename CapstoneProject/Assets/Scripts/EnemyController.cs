@@ -29,6 +29,8 @@ public class EnemyController : MonoBehaviour
     public GameObject exposed;
     public GameObject melted;
 
+    public GameObject targetSelected;
+
     public bool isPoisoned;
     public int poisonTurnCount;
     public bool isExposed;
@@ -54,24 +56,15 @@ public class EnemyController : MonoBehaviour
 
         currentState = "Idle";
         SetCharacterState(currentState);
-
-        /*isPoisoned = false;
-        poisonTurnCount = 2;
-        isExposed = false;
-        exposedTurnCount = 1;
-        isMelt = false;
-        meltTurnCount = 3;
-        isFreeze = false;
-        freezeTurnCount = 2;
-        isBurn = false;
-        burnTurnCount = 3;*/
 }
 
     public void SelectTarget()
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
+            bm.ChangeTarget(bm.targetEnemy);
             bm.targetEnemy = enemyId;
+            targetSelected.SetActive(true);
             Debug.Log(eText.text + " selected");
         }
     }

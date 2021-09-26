@@ -46,10 +46,22 @@ public class BattleManager : MonoBehaviour
 
     public bool playerAttacked = false;
 
-    bool isReverb = false;
-    int reverbCount = 1;
+    public GameObject crystalize;
+    public GameObject reverb;
+    public GameObject seal;
+    public GameObject curse;
+    public GameObject playerPoison;
+
     bool isCrystalize = false;
     int crystalTurnCount = 2;
+    bool isReverb = false;
+    int reverbTurnCount = 1;
+    bool isCharSealed = false;
+    int charSealedTurnCount = 2;
+    bool isCharCursed = false;
+    int charCursedTurnCount = 2;
+    bool isCharPoisoned = false;
+    int charPoisonedTurnCount = 2;
 
     private void Start()
     {
@@ -98,7 +110,8 @@ public class BattleManager : MonoBehaviour
         }
 
         CheckMultipleEnemies();
-        
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
+
         //ePrefab = Instantiate(enemyPrefab[0], enemyLocation);
 
         enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
@@ -139,7 +152,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            reverbCount = 1;
+            reverbTurnCount = 1;
             buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
 
@@ -159,7 +172,7 @@ public class BattleManager : MonoBehaviour
                 enemyIndex++;
             }
 
-            if (isAllEnemiesDead())
+            if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
                 yield return EndBattle();
@@ -168,9 +181,24 @@ public class BattleManager : MonoBehaviour
 
         else
         {
-            battleState = BattleState.ENEMYTURN;
-            yield return EnemyTurn();
+            if (isCharCursed)
+            {
+                EnemyCurse();
+            }
+
+            if (isCharPoisoned)
+            {
+                EnemyPoison();
+            }
+
+            if (charHealthSlider.value <= 0)
+            {
+                battleState = BattleState.LOSE;
+                yield return EndBattle();
+            }
         }
+        battleState = BattleState.ENEMYTURN;
+        yield return EnemyTurn();
     }
 
     IEnumerator EnemyTurn()
@@ -199,11 +227,44 @@ public class BattleManager : MonoBehaviour
             else
             {
                 EnemyAttack(i);
+                if (currentEnemyList[i].tag == "Whale")
+                {
+                    if (ChanceStatusEffect(0.7f))
+                    {
+                        Debug.Log("Player is cursed");
+                        isCharCursed = true;
+                        charCursedTurnCount = 2;
+                        curse.SetActive(true);
+                    }
+                }
+                else if (currentEnemyList[i].tag == "Hellfire")
+                {
+                    if (ChanceStatusEffect(0.7f))
+                    {
+                        Debug.Log("Player is poisoned");
+                        isCharPoisoned = true;
+                        charPoisonedTurnCount = 2;
+                        playerPoison.SetActive(true);
+                    }
+                }
+                /*else if (currentEnemyList[i].tag == "Cloud")
+                {
+                    Debug.Log("Player is sealed");
+                    isCharSealed = true;
+                    charSealedTurnCount = 2;
+                    seal.SetActive(true);
+                }*/
             }
 
             yield return new WaitForSeconds(1);
             enemyState = "Idle";
             currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+
+            if (charHealthSlider.value <= 0)
+            {
+                battleState = BattleState.LOSE;
+                yield return EndBattle();
+            }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
             {
@@ -239,12 +300,6 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (charHealthSlider.value <= 0)
-        {
-            battleState = BattleState.LOSE;
-            yield return EndBattle();
-        }
-
         if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
         {
             currentEnemyList[targetEnemy].SetActive(false);
@@ -258,15 +313,10 @@ public class BattleManager : MonoBehaviour
                 enemyIndex++;
             }
 
-            if (isAllEnemiesDead())
+            if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
                 yield return EndBattle();
-            }
-            else
-            {
-                battleState = BattleState.PLAYERTURN;
-                yield return PlayerTurn();
             }
         }
 
@@ -325,8 +375,8 @@ public class BattleManager : MonoBehaviour
 
             if (isReverb)
             {
-                damage += reverbCount;
-                reverbCount++;
+                damage += reverbTurnCount;
+                reverbTurnCount++;
             }
         }
         
@@ -466,7 +516,7 @@ public class BattleManager : MonoBehaviour
         {
             index = 8;
             isReverb = true;
-            Debug.Log("Reverb effect " + reverbCount);
+            Debug.Log("Reverb effect " + reverbTurnCount);
         }
         else if (rune1 == "Fire" && rune2 == "Water")
         {
@@ -603,13 +653,47 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public bool isAllEnemiesDead()
+    public bool IsAllEnemiesDead()
     {
         if (currentEnemyList.Count.Equals(0))
         {
             return true;
         }
         return false;
+    }
+
+    public void EnemyPoison()
+    {
+        charHealthSlider.value -= 3;
+        Debug.Log("Player took dmg from poison. \nPlayer Health: " + charHealthSlider.value);
+        charPoisonedTurnCount--;
+        if (charPoisonedTurnCount <= 0)
+        {
+            isCharPoisoned = false;
+            playerPoison.SetActive(false);
+        }
+    }
+
+    public void EnemyCurse()
+    {
+        float damage = charHealthSlider.value * (1f / 8f);
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
+        charHealthSlider.value -= damage;
+        Debug.Log("Player took " + (int)damage + " dmg from curse. \nPlayer Health: " + charHealthSlider.value);
+        charCursedTurnCount--;
+        if (charCursedTurnCount <= 0)
+        {
+            isCharCursed = false;
+            curse.SetActive(false);
+        }
+    }
+
+    public void ChangeTarget(int index)
+    {
+        currentEnemyList[index].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
     }
 
     /*IEnumerator FadeInOpponents(int steps = 10)
