@@ -223,6 +223,7 @@ public class BattleManager : MonoBehaviour
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().meltTurnCount <= 0)
                 {
                     currentEnemyList[i].GetComponentInChildren<EnemyController>().isMelt = false;
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().melted.SetActive(false);
                 }
             }
 
@@ -420,7 +421,8 @@ public class BattleManager : MonoBehaviour
             if (!Resistant())
             {
                 currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = true;
-                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount = 1;
+                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount = 2;
+                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposed.SetActive(true);
                 Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has become vulnerable");
             }
         }
@@ -429,6 +431,7 @@ public class BattleManager : MonoBehaviour
             index = 3;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isMelt = true;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().meltTurnCount = 3;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().melted.SetActive(true);
             Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has melted");
         }
         else if (rune1 == "Water" && rune2 == "Earth")
@@ -496,13 +499,15 @@ public class BattleManager : MonoBehaviour
 
         spellText.text = "You created " + sPrefab.GetComponent<SpellCreation>().spellName;
 
-        if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount <= 0))
+        if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount == 1))
         {
-            if (!Weakness() && CheckNeutral())
+            if (!Weakness() || CheckNeutral())
             {
+                Debug.Log("Wig");
                 sPrefab.GetComponent<SpellCreation>().damage *= 2;
             }
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = false;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposed.SetActive(false);
         }
         else
         {
@@ -511,6 +516,11 @@ public class BattleManager : MonoBehaviour
                 if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
                 {
                     currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount--;
+                    if (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount <= 0)
+                    {
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed = false;
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed.SetActive(false);
+                    }
                 }
             }
         }

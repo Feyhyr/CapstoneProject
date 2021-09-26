@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
     public GameObject burned;
     public GameObject frozen;
     public GameObject poisoned;
+    public GameObject exposed;
+    public GameObject melted;
 
     public bool isPoisoned;
     public int poisonTurnCount;
