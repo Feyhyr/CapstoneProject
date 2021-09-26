@@ -8,6 +8,7 @@ public class BattleManager : MonoBehaviour
 {
     public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE }
     public BattleState battleState;
+    public Text turnPhaseText;
 
     public GameObject runePrefab;
     public Transform runeLocation;
@@ -41,21 +42,10 @@ public class BattleManager : MonoBehaviour
     //public GameObject enemyPrefab;
     public Transform enemyLocation;
 
-    GameObject ePrefab;
     string enemyState;
 
     public bool playerAttacked = false;
 
-    bool isPoisoned = false;
-    int poisonTurnCount = 2;
-    bool isExposed = false;
-    int exposedTurnCount = 1;
-    bool isMelt = false;
-    int meltTurnCount = 3;
-    bool isFreeze = false;
-    int freezeTurnCount = 2;
-    bool isBurn = false;
-    int burnTurnCount = 3;
     bool isReverb = false;
     int reverbCount = 1;
     bool isCrystalize = false;
@@ -88,13 +78,17 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator BeginBattle()
     {
+        turnPhaseText.text = "";
+
+        GameObject ePrefab;
+
         enemyIndex = 0;
         randomEnemyCount = Random.Range(1, 4);
         Debug.Log("Random enemy count: " + randomEnemyCount);
 
         for (int i = 0; i < randomEnemyCount; i++)
         {
-            randomEnemy = Random.Range(1, enemyList.Count);
+            randomEnemy = Random.Range(0, enemyList.Count);
             ePrefab = Instantiate(enemyPrefab[randomEnemy], enemyLocation);
 
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
@@ -128,6 +122,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         playerAttacked = false;
+        turnPhaseText.text = "Player Turn";
     }
 
     IEnumerator PAttackPhase()
@@ -171,18 +166,6 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (isFreeze && freezeTurnCount > 0)
-        {
-            Debug.Log("Enemy cannot move");
-            freezeTurnCount--;
-            if (freezeTurnCount == 0)
-            {
-                isFreeze = false;
-            }
-            battleState = BattleState.PLAYERTURN;
-            yield return PlayerTurn();
-        }
-
         else
         {
             battleState = BattleState.ENEMYTURN;
@@ -192,6 +175,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        turnPhaseText.text = "Enemy Turn";
         yield return new WaitForSeconds(1);
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
@@ -200,46 +184,64 @@ public class BattleManager : MonoBehaviour
                 battleState = BattleState.LOSE;
                 yield return EndBattle();
             }
-            EnemyAttack(i);
+
+            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
+            {
+                Debug.Log(currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text + " cannot move");
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount--;
+                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount == 0)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze = false;
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().frozen.SetActive(false);
+                }
+            }
+
+            else
+            {
+                EnemyAttack(i);
+            }
+
             yield return new WaitForSeconds(1);
             enemyState = "Idle";
             currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+
+            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
+            {
+                EnemyDamage(3);
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount--;
+                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount <= 0)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned = false;
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().poisoned.SetActive(false);
+                }
+            }
+
+            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isMelt)
+            {
+                EnemyDamage(1);
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().meltTurnCount--;
+                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().meltTurnCount <= 0)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isMelt = false;
+                }
+            }
+
+            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn)
+            {
+                EnemyDamage(1);
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount--;
+                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount <= 0)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn = false;
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().burned.SetActive(false);
+                }
+            }
         }
 
         if (charHealthSlider.value <= 0)
         {
             battleState = BattleState.LOSE;
             yield return EndBattle();
-        }
-
-        if (isPoisoned)
-        {
-            EnemyDamage(3);
-            poisonTurnCount--;
-            if (poisonTurnCount <= 0)
-            {
-                isPoisoned = false;
-            }
-        }
-
-        if (isMelt)
-        {
-            EnemyDamage(1);
-            meltTurnCount--;
-            if (meltTurnCount <= 0)
-            {
-                isMelt = false;
-            }
-        }
-
-        if (isBurn)
-        {
-            EnemyDamage(1);
-            burnTurnCount--;
-            if (burnTurnCount <= 0)
-            {
-                isBurn = false;
-            }
         }
 
         if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
@@ -310,12 +312,12 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Damage normal");
             }
 
-            if ((isMelt) && ((rune1 == "Fire") || (rune2 == "Fire")) && (meltTurnCount <= 2))
+            if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isMelt) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().meltTurnCount <= 2))
             {
                 damage += 2;
             }
 
-            if ((isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (burnTurnCount <= 2))
+            if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burnTurnCount <= 2))
             {
                 damage += 2;
             }
@@ -407,26 +409,27 @@ public class BattleManager : MonoBehaviour
         else if (rune1 == "Wind" && rune2 == "Fire")
         {
             index = 1;
-            isPoisoned = true;
-            poisonTurnCount = 2;
-            Debug.Log("Enemy has been poisoned");
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isPoisoned = true;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().poisonTurnCount = 2;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().poisoned.SetActive(true);
+            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been poisoned");
         }
         else if (rune1 == "Wind" && rune2 == "Earth")
         {
             index = 2;
             if (!Resistant())
             {
-                isExposed = true;
-                exposedTurnCount = 1;
-                Debug.Log("Enemy has become vulnerable");
+                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = true;
+                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount = 1;
+                Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has become vulnerable");
             }
         }
         else if (rune1 == "Water" && rune2 == "Fire")
         {
             index = 3;
-            isMelt = true;
-            meltTurnCount = 3;
-            Debug.Log("Enemy has melted");
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isMelt = true;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().meltTurnCount = 3;
+            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has melted");
         }
         else if (rune1 == "Water" && rune2 == "Earth")
         {
@@ -439,9 +442,10 @@ public class BattleManager : MonoBehaviour
         else if (rune1 == "Water" && rune2 == "Wind")
         {
             index = 6;
-            isFreeze = true;
-            freezeTurnCount = 2;
-            Debug.Log("Enemy is frozen");
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isFreeze = true;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().freezeTurnCount = 2;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().frozen.SetActive(true);
+            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " is frozen");
             //if (ChanceStatusEffect(0.7f))
             //{
 
@@ -450,9 +454,10 @@ public class BattleManager : MonoBehaviour
         else if (rune1 == "Fire" && rune2 == "Wind")
         {
             index = 7;
-            isBurn = true;
-            burnTurnCount = 3;
-            Debug.Log("Enemy has been burned");
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isBurn = true;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burnTurnCount = 3;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burned.SetActive(true);
+            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been burned");
         }
         else if (rune1 == "Earth" && rune2 == "Wind")
         {
@@ -491,17 +496,23 @@ public class BattleManager : MonoBehaviour
 
         spellText.text = "You created " + sPrefab.GetComponent<SpellCreation>().spellName;
 
-        if ((isExposed) && (exposedTurnCount <= 0))
+        if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount <= 0))
         {
             if (!Weakness() && CheckNeutral())
             {
                 sPrefab.GetComponent<SpellCreation>().damage *= 2;
             }
-            isExposed = false;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = false;
         }
-        else if ((isExposed) && (exposedTurnCount > 0))
+        else
         {
-            exposedTurnCount--;
+            for (int i = 0; i < currentEnemyList.Count; i++)
+            {
+                if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount--;
+                }
+            }
         }
 
         PlayerAttack(sPrefab.GetComponent<SpellCreation>().damage);
@@ -516,7 +527,7 @@ public class BattleManager : MonoBehaviour
     public void EnemyDamage(int damage)
     {
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
-        Debug.Log("Enemy current health: " + currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value.ToString());
+        Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " current health: " + currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value.ToString());
     }
 
     public bool ChanceStatusEffect(float chance)

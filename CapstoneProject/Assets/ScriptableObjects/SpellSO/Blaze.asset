@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sName: Blaze
   particleEffect: {fileID: 1705276595759794648, guid: 40ea558d73a1ad94985395858b0fd21f, type: 3}
+  icon: {fileID: 21300000, guid: b2d8b2ead759a744f97cd39b10071906, type: 3}
   sDamage: 5

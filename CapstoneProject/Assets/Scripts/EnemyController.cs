@@ -8,17 +8,14 @@ public class EnemyController : MonoBehaviour
 {
     public BattleManager bm;
     public EnemySO enemy;
-    //public int enemCurrentHealth;
     public Slider enemyHealthSlider;
     public int atk;
     public int enemyId;
-    //public string eName;
     public Text eText;
     public bool isDead;
     public List<string> weak;
     public List<string> resist;
     public List<string> immune;
-    //public SpriteRenderer spriteRenderer;
     public AnimationReferenceAsset eIdle;
     public AnimationReferenceAsset eAttack;
     public AnimationReferenceAsset eDamage;
@@ -26,25 +23,47 @@ public class EnemyController : MonoBehaviour
 
     public string currentState;
 
+    public GameObject burned;
+    public GameObject frozen;
+    public GameObject poisoned;
+
+    public bool isPoisoned;
+    public int poisonTurnCount;
+    public bool isExposed;
+    public int exposedTurnCount;
+    public bool isMelt;
+    public int meltTurnCount;
+    public bool isFreeze;
+    public int freezeTurnCount;
+    public bool isBurn;
+    public int burnTurnCount;
+
     private void Awake()
     {
-        //enemCurrentHealth = enemy.maxHealth;
         enemyHealthSlider.value = enemy.maxHealth;
-        //eName = enemy.enemyName;
         eText.text = enemy.enemyName;
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
         immune = enemy.immunity;
-        //spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = enemy.enemySprite;
         eIdle = enemy.idle;
         eAttack = enemy.attack;
         eDamage = enemy.damage;
 
         currentState = "Idle";
         SetCharacterState(currentState);
-    }
+
+        /*isPoisoned = false;
+        poisonTurnCount = 2;
+        isExposed = false;
+        exposedTurnCount = 1;
+        isMelt = false;
+        meltTurnCount = 3;
+        isFreeze = false;
+        freezeTurnCount = 2;
+        isBurn = false;
+        burnTurnCount = 3;*/
+}
 
     public void SelectTarget()
     {
