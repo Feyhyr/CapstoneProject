@@ -359,13 +359,11 @@ public class BattleManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             SceneManager.LoadScene("GameWinScene");
-            //Debug.Log("YOU WIN");
         }
         else if (battleState == BattleState.LOSE)
         {
             yield return new WaitForSeconds(1);
             SceneManager.LoadScene("GameOverScene");
-            //Debug.Log("YOU LOSE");
         }
     }
 
