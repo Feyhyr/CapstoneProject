@@ -153,6 +153,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             reverbTurnCount = 1;
+            reverb.SetActive(false);
             buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
 
@@ -161,9 +162,11 @@ public class BattleManager : MonoBehaviour
 
         if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
         {
+            yield return new WaitForSeconds(1);
             currentEnemyList[targetEnemy].SetActive(false);
             currentEnemyList.RemoveAt(targetEnemy);
             targetEnemy = 0;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
             enemyIndex = 0;
 
             for (int i = 0; i < currentEnemyList.Count; i++)
@@ -302,9 +305,11 @@ public class BattleManager : MonoBehaviour
 
         if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
         {
+            yield return new WaitForSeconds(1);
             currentEnemyList[targetEnemy].SetActive(false);
             currentEnemyList.RemoveAt(targetEnemy);
             targetEnemy = 0;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
             enemyIndex = 0;
 
             for (int i = 0; i < currentEnemyList.Count; i++)
@@ -397,6 +402,7 @@ public class BattleManager : MonoBehaviour
             if (crystalTurnCount <= 0)
             {
                 isCrystalize = false;
+                crystalize.SetActive(false);
             }
         }
 
@@ -516,6 +522,7 @@ public class BattleManager : MonoBehaviour
         {
             index = 8;
             isReverb = true;
+            reverb.SetActive(true);
             Debug.Log("Reverb effect " + reverbTurnCount);
         }
         else if (rune1 == "Fire" && rune2 == "Water")
@@ -536,6 +543,7 @@ public class BattleManager : MonoBehaviour
         {
             index = 11;
             isCrystalize = true;
+            crystalize.SetActive(true);
             crystalTurnCount = 2;
             Debug.Log("You crystalized");
         }
