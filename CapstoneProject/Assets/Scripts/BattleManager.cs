@@ -69,7 +69,6 @@ public class BattleManager : MonoBehaviour
         Random.InitState((int)System.DateTime.Now.Ticks);
 
         battleState = BattleState.START;
-        //charCurrentHealth = charMaxHealth;
         charHealthSlider.value = charMaxHealth;
         GameObject rPrefab;
 
@@ -112,8 +111,6 @@ public class BattleManager : MonoBehaviour
 
         CheckMultipleEnemies();
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
-
-        //ePrefab = Instantiate(enemyPrefab[0], enemyLocation);
 
         enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
 
