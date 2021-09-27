@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     public string rune1;
     public string rune2;
     public int runeIndex;
+    int sealedRuneIndex;
 
     public Text spellText;
 
@@ -157,6 +158,11 @@ public class BattleManager : MonoBehaviour
             buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
 
+        if (isCharSealed)
+        {
+            EnemySeal();
+        }
+
         rune1 = "";
         rune2 = "";
 
@@ -165,20 +171,24 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             currentEnemyList[targetEnemy].SetActive(false);
             currentEnemyList.RemoveAt(targetEnemy);
-            targetEnemy = 0;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
-            enemyIndex = 0;
-
-            for (int i = 0; i < currentEnemyList.Count; i++)
-            {
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
-                enemyIndex++;
-            }
 
             if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
                 yield return EndBattle();
+            }
+
+            else
+            {
+                targetEnemy = 0;
+                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
+                enemyIndex = 0;
+
+                for (int i = 0; i < currentEnemyList.Count; i++)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                    enemyIndex++;
+                }
             }
         }
 
@@ -250,13 +260,23 @@ public class BattleManager : MonoBehaviour
                         playerPoison.SetActive(true);
                     }
                 }
-                /*else if (currentEnemyList[i].tag == "Cloud")
+                else if (currentEnemyList[i].tag == "Cloud")
                 {
-                    Debug.Log("Player is sealed");
-                    isCharSealed = true;
-                    charSealedTurnCount = 2;
-                    seal.SetActive(true);
-                }*/
+                    if (!isCharSealed)
+                    {
+                        Debug.Log("Player is sealed");
+                        sealedRuneIndex = Random.Range(0, 4);
+                        while (sealedRuneIndex == runeIndex)
+                        {
+                            sealedRuneIndex = Random.Range(0, 4);
+                        }
+                        buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
+                        Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
+                        charSealedTurnCount = 2;
+                        seal.SetActive(true);
+                        isCharSealed = true;
+                    }
+                }
             }
 
             yield return new WaitForSeconds(1);
@@ -308,20 +328,24 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             currentEnemyList[targetEnemy].SetActive(false);
             currentEnemyList.RemoveAt(targetEnemy);
-            targetEnemy = 0;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
-            enemyIndex = 0;
-
-            for (int i = 0; i < currentEnemyList.Count; i++)
-            {
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
-                enemyIndex++;
-            }
 
             if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
                 yield return EndBattle();
+            }
+
+            else
+            {
+                targetEnemy = 0;
+                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
+                enemyIndex = 0;
+
+                for (int i = 0; i < currentEnemyList.Count; i++)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                    enemyIndex++;
+                }
             }
         }
 
@@ -696,6 +720,18 @@ public class BattleManager : MonoBehaviour
         {
             isCharCursed = false;
             curse.SetActive(false);
+        }
+    }
+
+    public void EnemySeal()
+    {
+        buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
+        charSealedTurnCount--;
+        if (charSealedTurnCount <= 0)
+        {
+            isCharSealed = false;
+            seal.SetActive(false);
+            buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = true;
         }
     }
 
