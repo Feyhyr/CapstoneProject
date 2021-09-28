@@ -112,7 +112,14 @@ public class BattleManager : MonoBehaviour
 
         buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
-        StartCoroutine(BeginNormalBattle());
+        if (waveCount > 5)
+        {
+            StartCoroutine(BeginBossBattle());
+        }
+        else
+        {
+            StartCoroutine(BeginNormalBattle());
+        }
     }
 
     IEnumerator BeginNormalBattle()
@@ -148,6 +155,21 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator BeginBossBattle()
     {
+        turnPhaseText.text = "";
+        GameObject ePrefab;
+
+        ePrefab = Instantiate(enemyPrefab[enemyPrefab.Count - 1], enemyLocation);
+
+        ePrefab.GetComponentInChildren<EnemyController>().bm = this;
+        ePrefab.GetComponentInChildren<EnemyController>().enemyId = 0;
+        currentEnemyList.Add(ePrefab);
+
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
+
+        enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
+
+        battleState = BattleState.PLAYERTURN;
+
         yield return PlayerTurn();
     }
 
