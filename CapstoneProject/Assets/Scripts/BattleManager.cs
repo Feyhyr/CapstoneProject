@@ -64,11 +64,29 @@ public class BattleManager : MonoBehaviour
     bool isCharPoisoned = false;
     int charPoisonedTurnCount = 2;
 
+    public const string prefWave = "prefWave";
+    public Text waveCounterText;
+    public int waveCount;
+
     private void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
 
         battleState = BattleState.START;
+
+        if (!(PlayerPrefs.HasKey(prefWave)))
+        {
+            PlayerPrefs.SetInt(prefWave, 1);
+        }
+        waveCount = PlayerPrefs.GetInt(prefWave);
+        if (waveCount > 5)
+        {
+            waveCount = 1;
+        }
+        waveCounterText.text = "Wave " + waveCount;
+        waveCount++;
+        PlayerPrefs.SetInt(prefWave, waveCount);
+
         charHealthSlider.value = charMaxHealth;
         GameObject rPrefab;
 
@@ -85,10 +103,10 @@ public class BattleManager : MonoBehaviour
 
         buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
-        StartCoroutine(BeginBattle());
+        StartCoroutine(BeginNormalBattle());
     }
 
-    IEnumerator BeginBattle()
+    IEnumerator BeginNormalBattle()
     {
         turnPhaseText.text = "";
 

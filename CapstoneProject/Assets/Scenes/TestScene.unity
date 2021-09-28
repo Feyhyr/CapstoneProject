@@ -1519,6 +1519,8 @@ MonoBehaviour:
   seal: {fileID: 1359865710}
   curse: {fileID: 405363303}
   playerPoison: {fileID: 646291658}
+  waveCounterText: {fileID: 1937568354}
+  waveCount: 0
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0
