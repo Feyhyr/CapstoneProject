@@ -82,8 +82,17 @@ public class BattleManager : MonoBehaviour
         if (waveCount > 5)
         {
             waveCount = 1;
+            waveCounterText.text = "Wave " + waveCount;
         }
-        waveCounterText.text = "Wave " + waveCount;
+        else if (waveCount == 5)
+        {
+            waveCounterText.text = "Boss Wave";
+        }
+        else
+        {
+            waveCounterText.text = "Wave " + waveCount;
+        }
+
         waveCount++;
         PlayerPrefs.SetInt(prefWave, waveCount);
 
@@ -132,17 +141,13 @@ public class BattleManager : MonoBehaviour
 
         enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
 
-        //ePrefab.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-
-        //yield return new WaitForSeconds(0.5f);
-
-        // fade in our characters sprites
-        //yield return FadeInOpponents();
-
-        //yield return new WaitForSeconds(2);
-
         battleState = BattleState.PLAYERTURN;
 
+        yield return PlayerTurn();
+    }
+
+    IEnumerator BeginBossBattle()
+    {
         yield return PlayerTurn();
     }
 
@@ -752,23 +757,4 @@ public class BattleManager : MonoBehaviour
     {
         currentEnemyList[index].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
     }
-
-    /*IEnumerator FadeInOpponents(int steps = 10)
-    {
-        float totalTransparencyPerStep = 1 / (float)steps;
-
-        for (int i = 0; i < steps; i++)
-        {
-            setSpriteOpacity(ePrefab, totalTransparencyPerStep);
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
-    private void setSpriteOpacity(GameObject ob, float transPerStep)
-    {
-        Color currColor = ob.GetComponent<SpriteRenderer>().color;
-        float alpha = currColor.a;
-        alpha += transPerStep;
-        ob.GetComponent<SpriteRenderer>().color = new Color(currColor.r, currColor.g, currColor.b, alpha);
-    }*/
 }
