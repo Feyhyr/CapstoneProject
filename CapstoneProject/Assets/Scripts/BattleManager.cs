@@ -82,8 +82,17 @@ public class BattleManager : MonoBehaviour
         if (waveCount > 5)
         {
             waveCount = 1;
+            waveCounterText.text = "Wave " + waveCount;
         }
-        waveCounterText.text = "Wave " + waveCount;
+        else if (waveCount == 5)
+        {
+            waveCounterText.text = "Boss Wave";
+        }
+        else
+        {
+            waveCounterText.text = "Wave " + waveCount;
+        }
+        
         waveCount++;
         PlayerPrefs.SetInt(prefWave, waveCount);
 
