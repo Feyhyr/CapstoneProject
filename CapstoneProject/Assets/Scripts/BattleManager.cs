@@ -306,17 +306,20 @@ public class BattleManager : MonoBehaviour
                 {
                     if (!isCharSealed)
                     {
-                        Debug.Log("Player is sealed");
-                        sealedRuneIndex = Random.Range(0, 4);
-                        while (sealedRuneIndex == runeIndex)
+                        if (ChanceStatusEffect(0.7f))
                         {
+                            Debug.Log("Player is sealed");
                             sealedRuneIndex = Random.Range(0, 4);
+                            while (sealedRuneIndex == runeIndex)
+                            {
+                                sealedRuneIndex = Random.Range(0, 4);
+                            }
+                            buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
+                            Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
+                            charSealedTurnCount = 2;
+                            seal.SetActive(true);
+                            isCharSealed = true;
                         }
-                        buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
-                        Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
-                        charSealedTurnCount = 2;
-                        seal.SetActive(true);
-                        isCharSealed = true;
                     }
                 }
             }
