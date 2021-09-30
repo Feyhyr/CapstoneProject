@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     public GameObject frozen;
     public GameObject poisoned;
     public GameObject exposed;
-    public GameObject melted;
+    public GameObject scalded;
 
     public GameObject targetSelected;
 
@@ -35,8 +35,8 @@ public class EnemyController : MonoBehaviour
     public int poisonTurnCount;
     public bool isExposed;
     public int exposedTurnCount;
-    public bool isMelt;
-    public int meltTurnCount;
+    public bool isScald;
+    public int scaldTurnCount;
     public bool isFreeze;
     public int freezeTurnCount;
     public bool isBurn;

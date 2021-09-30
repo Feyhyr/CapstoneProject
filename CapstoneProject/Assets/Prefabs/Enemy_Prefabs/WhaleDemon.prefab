@@ -538,14 +538,14 @@ MonoBehaviour:
   frozen: {fileID: 1773930381906851537}
   poisoned: {fileID: 8233151695237784382}
   exposed: {fileID: 6375052792984744950}
-  melted: {fileID: 9000182162246630011}
+  scalded: {fileID: 0}
   targetSelected: {fileID: 685297641216822}
   isPoisoned: 0
   poisonTurnCount: 0
   isExposed: 0
   exposedTurnCount: 0
-  isMelt: 0
-  meltTurnCount: 0
+  isScald: 0
+  scaldTurnCount: 0
   isFreeze: 0
   freezeTurnCount: 0
   isBurn: 0

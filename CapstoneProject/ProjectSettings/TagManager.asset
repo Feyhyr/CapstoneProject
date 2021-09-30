@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Button
-  - Cloud
   - Hellfire
   - Whale
   - Spell
   - Status
+  - Tree
+  - Cloud
+  - Human
+  - Boss
   layers:
   - Default
   - TransparentFX

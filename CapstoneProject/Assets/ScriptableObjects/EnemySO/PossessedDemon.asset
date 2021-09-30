@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
+  m_Name: PossessedDemon
+  m_EditorClassIdentifier: 
+  enemyName: Possessed
+  dmg: 2
+  maxHealth: 50
+  weakness: []
+  resistance: []
+  immunity: []
+  idle: {fileID: 11400000, guid: fcdda00e6012e3a41b9b3cca86567a3b, type: 2}
+  attack: {fileID: 11400000, guid: 6e02475fe030cd44dbf2a8d9fc521b46, type: 2}
+  damage: {fileID: 11400000, guid: 7658734422894dc46a046c45b8adccc1, type: 2}
