@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 823993379849303741}
   - component: {fileID: 823993379849303738}
   - component: {fileID: -386759113408988421}
+  - component: {fileID: -6649292229563750961}
   m_Layer: 5
   m_Name: RuneBTN
   m_TagString: Button
@@ -213,6 +214,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -6649292229563750961}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-386759113408988421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,3 +242,16 @@ MonoBehaviour:
   nameText: {fileID: 823993378017385688}
   runeIcon: {fileID: 0}
   bm: {fileID: 0}
+--- !u!114 &-6649292229563750961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823993379849303736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a84793f16137241aca2f99f3e30e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSFX: {fileID: 8300000, guid: e9378d1e53c37f74ab10e7b582066680, type: 3}

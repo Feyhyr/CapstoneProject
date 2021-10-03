@@ -659,9 +659,9 @@ public class BattleManager : MonoBehaviour
         {
             index = 9;
             charHealthSlider.value += 3;
-            if (charHealthSlider.value > 50)
+            if (charHealthSlider.value > 500)
             {
-                charHealthSlider.value = 50;
+                charHealthSlider.value = 500;
             }
             Debug.Log("Character Health: " + charHealthSlider.value.ToString());
         }
