@@ -17,7 +17,7 @@ public class NumberPopupController : MonoBehaviour
     public void Setup(int damage, bool criticalHit, bool heal)
     {
         textMesh.SetText(damage.ToString());
-        fadeTimer = 0.3f;
+        fadeTimer = 0.8f;
         if (!criticalHit)
         {
             textMesh.fontSize = 6;
