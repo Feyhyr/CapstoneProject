@@ -15,3 +15,4 @@ MonoBehaviour:
   sName: Steam
   particleEffect: {fileID: 5058625723356079543, guid: f73ed35e851082c4cbcacabfe85db722, type: 3}
   sDamage: 5
+  sfx: {fileID: 8300000, guid: 15b34a0dece3cbf4199d68171061cece, type: 3}

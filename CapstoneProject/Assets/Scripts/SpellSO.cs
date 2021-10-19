@@ -9,4 +9,5 @@ public class SpellSO : ScriptableObject
     public string sName;
     public GameObject particleEffect;
     public int sDamage;
+    public AudioClip sfx;
 }
