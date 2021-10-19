@@ -10,15 +10,15 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
     public Text turnPhaseText;
 
+    public Transform playerLocation;
+
     public GameObject runePrefab;
     public Transform runeLocation;
 
     public List<GameObject> spellPrefab;
-    //public Transform spellLocation;
 
     public List<RuneSO> runeList;
     public List<SpellSO> spellList;
-    //public List<EnemySO> enemyList;
 
     public string rune1;
     public string rune2;
@@ -30,7 +30,6 @@ public class BattleManager : MonoBehaviour
     public GameObject[] buttonObjs;
 
     public int charMaxHealth;
-    //public int charCurrentHealth;
     public Slider charHealthSlider;
 
     int randomEnemyCount;
@@ -40,12 +39,13 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> currentEnemyList;
     public GameObject targetEnemyPrefab;
     public int targetEnemy = 0;
-    //public GameObject enemyPrefab;
     public Transform enemyLocation;
 
     string enemyState;
 
     public bool playerAttacked = false;
+
+    public GameObject numberPopupObj;
 
     public GameObject crystalize;
     public GameObject reverb;
@@ -364,6 +364,7 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
             {
                 EnemyDamage(3);
+                DamagePopup(currentEnemyList[i].transform, 3, false, false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount <= 0)
                 {
@@ -375,6 +376,7 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald)
             {
                 EnemyDamage(1);
+                DamagePopup(currentEnemyList[i].transform, 1, false, false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount <= 0)
                 {
@@ -386,6 +388,7 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn)
             {
                 EnemyDamage(1);
+                DamagePopup(currentEnemyList[i].transform, 1, false, false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount <= 0)
                 {
@@ -451,6 +454,8 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerAttack(int damage)
     {
+        bool critical = false;
+
         if (Immunity())
         {
             damage = 0;
@@ -459,6 +464,7 @@ public class BattleManager : MonoBehaviour
         {
             if (Weakness() && !CheckNeutral())
             {
+                critical = true;
                 if (isDrowned)
                 {
                     Debug.Log("Damage triple");
@@ -495,7 +501,6 @@ public class BattleManager : MonoBehaviour
             {
                 int debrisDmg = Random.Range(2, 11);
                 damage += debrisDmg;
-                Debug.Log("Debris hit for " + debrisDmg + " dmg");
                 debrisHit = false;
             }
 
@@ -515,9 +520,8 @@ public class BattleManager : MonoBehaviour
                 reverbTurnCount++;
             }
         }
-        
-        Debug.Log("Player deals " + damage + " dmg");
         EnemyDamage(damage);
+        DamagePopup(currentEnemyList[targetEnemy].transform, damage, critical, false);
         enemyState = "Damage";
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         playerAttacked = true;
@@ -532,9 +536,9 @@ public class BattleManager : MonoBehaviour
         }
 
         charHealthSlider.value -= enemyDmg;
+        DamagePopup(playerLocation, enemyDmg, false, false);
         enemyState = "Attack";
         currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-        Debug.Log(currentEnemyList[value].GetComponentInChildren<EnemyController>().eText.text + " deals " + enemyDmg + " dmg\n Player has " + charHealthSlider.value.ToString() + " health left");
     }
 
     public bool Weakness()
@@ -663,7 +667,7 @@ public class BattleManager : MonoBehaviour
             {
                 charHealthSlider.value = 500;
             }
-            Debug.Log("Character Health: " + charHealthSlider.value.ToString());
+            DamagePopup(playerLocation, 3, false, true);
         }
         else if (rune1 == "Earth" && rune2 == "Water")
         {
@@ -725,7 +729,6 @@ public class BattleManager : MonoBehaviour
     public void EnemyDamage(int damage)
     {
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
-        Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " current health: " + currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value.ToString());
     }
 
     public bool ChanceStatusEffect(float chance)
@@ -801,7 +804,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (humanCount >= 2)
                 {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Tree " + humanTag.ToString();
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Human " + humanTag.ToString();
                     humanTag++;
                 }
             }
@@ -820,7 +823,7 @@ public class BattleManager : MonoBehaviour
     public void EnemyPoison()
     {
         charHealthSlider.value -= 3;
-        Debug.Log("Player took dmg from poison. \nPlayer Health: " + charHealthSlider.value);
+        DamagePopup(playerLocation, 3, false, false);
         charPoisonedTurnCount--;
         if (charPoisonedTurnCount <= 0)
         {
@@ -837,7 +840,7 @@ public class BattleManager : MonoBehaviour
             damage = 1;
         }
         charHealthSlider.value -= damage;
-        Debug.Log("Player took " + (int)damage + " dmg from curse. \nPlayer Health: " + charHealthSlider.value);
+        DamagePopup(playerLocation, (int)damage, false, false);
         charCursedTurnCount--;
         if (charCursedTurnCount <= 0)
         {
@@ -861,5 +864,11 @@ public class BattleManager : MonoBehaviour
     public void ChangeTarget(int index)
     {
         currentEnemyList[index].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
+    }
+
+    public void DamagePopup(Transform location, int damage, bool isCrit, bool isHeal)
+    {
+        GameObject damagePopup = Instantiate(numberPopupObj, location);
+        damagePopup.GetComponent<NumberPopupController>().Setup(damage, isCrit, isHeal);
     }
 }
