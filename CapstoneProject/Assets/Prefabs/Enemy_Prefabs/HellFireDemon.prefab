@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 6217585130165688041}
   - component: {fileID: 207860140119027663}
   - component: {fileID: 3058314924135688961}
+  - component: {fileID: 2399798071007861832}
   m_Layer: 6
   m_Name: TargetSelect
   m_TagString: Untagged
@@ -865,6 +866,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &2399798071007861832
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467578535836839742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db48d880976cc154693f285c119eed43, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3048150802340899533
 GameObject:
   m_ObjectHideFlags: 0
