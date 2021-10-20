@@ -40,8 +40,6 @@ public class NumberPopupController : MonoBehaviour
 
     private void Update()
     {
-        transform.position += new Vector3(3f, 5f) * Time.deltaTime;
-
         fadeTimer -= Time.deltaTime;
         if (fadeTimer < 0)
         {

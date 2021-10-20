@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
 
     public GameObject runePrefab;
     public Transform runeLocation;
+    public GameObject runeCover;
 
     public List<GameObject> spellPrefab;
 
@@ -24,8 +25,6 @@ public class BattleManager : MonoBehaviour
     public string rune2;
     public int runeIndex;
     int sealedRuneIndex;
-
-    public Text spellText;
 
     public GameObject[] buttonObjs;
 
@@ -179,6 +178,8 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayerTurn()
     {
+        runeCover.SetActive(false);
+
         if (extraTurn && isCrystalize)
         {
             crystalTurnCount--;
@@ -285,6 +286,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        runeCover.SetActive(true);
         turnPhaseText.text = "Enemy Turn";
         yield return new WaitForSeconds(1);
         for (int i = 0; i < currentEnemyList.Count; i++)
@@ -689,8 +691,6 @@ public class BattleManager : MonoBehaviour
         sPrefab.GetComponent<SpellCreation>().spell = spellList[index];
         sPrefab.GetComponent<SpellCreation>().spellName = spellList[index].sName;
         sPrefab.GetComponent<SpellCreation>().damage = spellList[index].sDamage;
-
-        spellText.text = "You created " + sPrefab.GetComponent<SpellCreation>().spellName;
 
         if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount == 1))
         {
