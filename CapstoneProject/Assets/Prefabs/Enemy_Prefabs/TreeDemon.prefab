@@ -368,8 +368,8 @@ RectTransform:
   - {fileID: 7369191460971758187}
   - {fileID: 4364243024909367148}
   - {fileID: 214094453315144275}
-  - {fileID: 7420230646581893522}
   - {fileID: 207522724325300926}
+  - {fileID: 7420230646581893522}
   - {fileID: 1265083803329440527}
   - {fileID: 2596611433845795210}
   m_Father: {fileID: 8285648919941634976}
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 4203196088695404946}
   - component: {fileID: 1581652129307464862}
   m_Layer: 6
-  m_Name: FreezeInfo
+  m_Name: PoisonInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1152,7 +1152,7 @@ RectTransform:
   m_Children:
   - {fileID: 6926445728874032456}
   m_Father: {fileID: 313914230293019065}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1951,7 +1951,7 @@ GameObject:
   - component: {fileID: 5680624204407439320}
   - component: {fileID: 6268992004444909960}
   m_Layer: 6
-  m_Name: PoisonInfo
+  m_Name: FreezeInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1970,7 +1970,7 @@ RectTransform:
   m_Children:
   - {fileID: 7471724579495638820}
   m_Father: {fileID: 313914230293019065}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0aeed4ef18f274eacb00097e900298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: {fileID: 7289707162041895613}
+  message: {fileID: 2608644951213415526}
 --- !u!1 &7847690151168961619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0aeed4ef18f274eacb00097e900298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: {fileID: 2608644951213415526}
+  message: {fileID: 7289707162041895613}
 --- !u!1 &8648736716504256851
 GameObject:
   m_ObjectHideFlags: 0

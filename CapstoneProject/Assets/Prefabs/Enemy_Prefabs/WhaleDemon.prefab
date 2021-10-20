@@ -376,7 +376,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Freeze: Cannot move for 2 turns'
+  m_Text: 'Poison: 3 damage every turn for 2 turns'
 --- !u!1 &868714279384474488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1962,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Poison: 3 damage every turn for 2 turns'
+  m_Text: 'Freeze: Cannot move for 2 turns'
 --- !u!1 &7649792573438089920
 GameObject:
   m_ObjectHideFlags: 0
