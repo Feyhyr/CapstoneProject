@@ -42,6 +42,8 @@ public class EnemyController : MonoBehaviour
     public bool isBurn;
     public int burnTurnCount;
 
+    public AudioClip uiClick;
+
     private void Awake()
     {
         enemyHealthSlider.value = enemy.maxHealth;
@@ -62,6 +64,7 @@ public class EnemyController : MonoBehaviour
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
+            AudioManager.Instance.Play(uiClick);
             bm.ChangeTarget(bm.targetEnemy);
             bm.targetEnemy = enemyId;
             targetSelected.SetActive(true);

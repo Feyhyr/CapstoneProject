@@ -4426,6 +4426,7 @@ MonoBehaviour:
   playerTurnUX: {fileID: 1234778494}
   enemyTurnUX: {fileID: 407409638}
   creationPrefab: {fileID: 8974257423291223309, guid: 4c27a9b87d1b73643966cf166252e9a5, type: 3}
+  freezePrefab: {fileID: 672203223211207016, guid: f94b9cea65e9e0341934c47598c6f00b, type: 3}
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0
@@ -5184,7 +5185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1403295132
 AudioSource:
   m_ObjectHideFlags: 0

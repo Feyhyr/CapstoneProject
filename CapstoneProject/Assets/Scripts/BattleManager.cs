@@ -85,6 +85,8 @@ public class BattleManager : MonoBehaviour
 
     public GameObject creationPrefab;
 
+    public GameObject freezePrefab;
+
     private void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
@@ -328,6 +330,9 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
             {
                 Debug.Log(currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text + " cannot move");
+                GameObject fPrefab = Instantiate(freezePrefab, currentEnemyList[i].transform);
+                yield return new WaitForSeconds(2);
+                Destroy(fPrefab);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount == 0)
                 {
