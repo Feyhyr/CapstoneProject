@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
 
     public Transform playerLocation;
 
+    public GameObject spellButtonPrefab;
     public GameObject runePrefab;
     public Transform runeLocation;
     public GameObject runeCover;
@@ -20,6 +21,11 @@ public class BattleManager : MonoBehaviour
 
     public List<RuneSO> runeList;
     public List<SpellSO> spellList;
+
+    public GameObject spellMaker;
+    public Image firstRune;
+    public Image secondRune;
+    public Transform spellButtonLocation;
 
     public string rune1;
     public string rune2;
@@ -76,6 +82,8 @@ public class BattleManager : MonoBehaviour
     public GameObject battleStartUX;
     public GameObject playerTurnUX;
     public GameObject enemyTurnUX;
+
+    public GameObject creationPrefab;
 
     private void Start()
     {
@@ -206,6 +214,9 @@ public class BattleManager : MonoBehaviour
         playerTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
         playerTurnUX.SetActive(false);
+        firstRune.color = Color.white;
+        secondRune.color = Color.white;
+        spellMaker.SetActive(true);
         turnPhaseText.text = "Player Turn";
         runeCover.SetActive(false);
     }
@@ -604,27 +615,98 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    public void CreateSpell()
+    public int ChooseSpell()
     {
         int index = 0;
 
         if (rune1 == "Wind" && rune2 == "Water")
         {
             index = 0;
-            Debug.Log("Player gains an extra turn");
-            extraTurn = true;
         }
         else if (rune1 == "Wind" && rune2 == "Fire")
         {
             index = 1;
+        }
+        else if (rune1 == "Wind" && rune2 == "Earth")
+        {
+            index = 2;
+        }
+        else if (rune1 == "Water" && rune2 == "Fire")
+        {
+            index = 3;
+        }
+        else if (rune1 == "Water" && rune2 == "Earth")
+        {
+            index = 4;
+        }
+        else if (rune1 == "Fire" && rune2 == "Earth")
+        {
+            index = 5;
+        }
+        else if (rune1 == "Water" && rune2 == "Wind")
+        {
+            index = 6;
+        }
+        else if (rune1 == "Fire" && rune2 == "Wind")
+        {
+            index = 7;
+        }
+        else if (rune1 == "Earth" && rune2 == "Wind")
+        {
+            index = 8;
+        }
+        else if (rune1 == "Fire" && rune2 == "Water")
+        {
+            index = 9;
+        }
+        else if (rune1 == "Earth" && rune2 == "Water")
+        {
+            index = 10;
+        }
+        else if (rune1 == "Earth" && rune2 == "Fire")
+        {
+            index = 11;
+        }
+
+        return index;
+    }
+
+    public IEnumerator SpellChosen()
+    {
+        GameObject createObj = Instantiate(creationPrefab, spellButtonLocation);
+        yield return new WaitForSeconds(1f);
+        Destroy(createObj);
+        spellMaker.SetActive(false);
+        GameObject sbPrefab = Instantiate(spellButtonPrefab, spellButtonLocation);
+        sbPrefab.GetComponent<SpellController>().bm = this;
+        sbPrefab.GetComponent<SpellController>().nameText.text = spellList[ChooseSpell()].sName;
+        sbPrefab.GetComponent<SpellController>().spellIcon = spellList[ChooseSpell()].icon;
+        sbPrefab.GetComponent<Button>().image.sprite = sbPrefab.GetComponent<SpellController>().spellIcon;
+        sbPrefab.GetComponent<SpellController>().spellDescription = spellList[ChooseSpell()].description;
+    }
+
+    IEnumerator PlayAnimation()
+    {
+        Instantiate(creationPrefab, spellButtonLocation);
+        yield return new WaitForSeconds(3);
+    }
+
+    public void CreateSpell()
+    {
+        if (ChooseSpell() == 0)
+        {
+            Debug.Log("Player gains an extra turn");
+            extraTurn = true;
+        }
+        else if (ChooseSpell() == 1)
+        {
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isPoisoned = true;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().poisonTurnCount = 2;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().poisoned.SetActive(true);
             Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been poisoned");
         }
-        else if (rune1 == "Wind" && rune2 == "Earth")
+        else if (ChooseSpell() == 2)
         {
-            index = 2;
             if (!Resistant())
             {
                 currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = true;
@@ -633,28 +715,24 @@ public class BattleManager : MonoBehaviour
                 Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has become vulnerable");
             }
         }
-        else if (rune1 == "Water" && rune2 == "Fire")
+        else if (ChooseSpell() == 3)
         {
-            index = 3;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isScald = true;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount = 3;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scalded.SetActive(true);
             Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been scalded");
         }
-        else if (rune1 == "Water" && rune2 == "Earth")
+        else if (ChooseSpell() == 4)
         {
-            index = 4;
             isDrowned = true;
             Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has drowned");
         }
-        else if (rune1 == "Fire" && rune2 == "Earth")
+        else if (ChooseSpell() == 5)
         {
-            index = 5;
             isMelt = true;
         }
-        else if (rune1 == "Water" && rune2 == "Wind")
+        else if (ChooseSpell() == 6)
         {
-            index = 6;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isFreeze = true;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().freezeTurnCount = 2;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().frozen.SetActive(true);
@@ -664,24 +742,21 @@ public class BattleManager : MonoBehaviour
 
             //}
         }
-        else if (rune1 == "Fire" && rune2 == "Wind")
+        else if (ChooseSpell() == 7)
         {
-            index = 7;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isBurn = true;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burnTurnCount = 3;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burned.SetActive(true);
             Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been burned");
         }
-        else if (rune1 == "Earth" && rune2 == "Wind")
+        else if (ChooseSpell() == 8)
         {
-            index = 8;
             isReverb = true;
             reverb.SetActive(true);
             Debug.Log("Reverb effect " + reverbTurnCount);
         }
-        else if (rune1 == "Fire" && rune2 == "Water")
+        else if (ChooseSpell() == 9)
         {
-            index = 9;
             charHealthSlider.value += 3;
             if (charHealthSlider.value > 500)
             {
@@ -689,14 +764,12 @@ public class BattleManager : MonoBehaviour
             }
             DamagePopup(playerLocation, 3, false, true);
         }
-        else if (rune1 == "Earth" && rune2 == "Water")
+        else if (ChooseSpell() == 10)
         {
-            index = 10;
             debrisHit = true;
         }
-        else if (rune1 == "Earth" && rune2 == "Fire")
+        else if (ChooseSpell() == 11)
         {
-            index = 11;
             isCrystalize = true;
             crystalize.SetActive(true);
             crystalTurnCount = 2;
@@ -705,10 +778,10 @@ public class BattleManager : MonoBehaviour
 
         GameObject sPrefab;
 
-        sPrefab = Instantiate(spellPrefab[index], currentEnemyList[targetEnemy].transform);
-        sPrefab.GetComponent<SpellCreation>().spell = spellList[index];
-        sPrefab.GetComponent<SpellCreation>().spellName = spellList[index].sName;
-        sPrefab.GetComponent<SpellCreation>().damage = spellList[index].sDamage;
+        sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+        sPrefab.GetComponent<SpellCreation>().spell = spellList[ChooseSpell()];
+        sPrefab.GetComponent<SpellCreation>().spellName = spellList[ChooseSpell()].sName;
+        sPrefab.GetComponent<SpellCreation>().damage = spellList[ChooseSpell()].sDamage;
 
         if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount == 1))
         {
