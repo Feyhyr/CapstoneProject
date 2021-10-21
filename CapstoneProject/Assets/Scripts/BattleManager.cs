@@ -71,6 +71,12 @@ public class BattleManager : MonoBehaviour
     public Text waveCounterText;
     public int waveCount;
 
+    public GameObject gameWinScreen;
+    public GameObject gameLoseScreen;
+    public GameObject battleStartUX;
+    public GameObject playerTurnUX;
+    public GameObject enemyTurnUX;
+
     private void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
@@ -96,9 +102,6 @@ public class BattleManager : MonoBehaviour
             waveCounterText.text = "Wave " + waveCount;
         }
 
-        waveCount++;
-        PlayerPrefs.SetInt(prefWave, waveCount);
-
         charHealthSlider.value = charMaxHealth;
         GameObject rPrefab;
 
@@ -115,7 +118,7 @@ public class BattleManager : MonoBehaviour
 
         buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
-        if (waveCount > 5)
+        if (waveCount >= 5)
         {
             StartCoroutine(BeginBossBattle());
         }
@@ -128,6 +131,10 @@ public class BattleManager : MonoBehaviour
     IEnumerator BeginNormalBattle()
     {
         turnPhaseText.text = "";
+
+        battleStartUX.SetActive(true);
+        yield return new WaitForSeconds(1.8f);
+        battleStartUX.SetActive(false);
 
         GameObject ePrefab;
 
@@ -159,6 +166,11 @@ public class BattleManager : MonoBehaviour
     IEnumerator BeginBossBattle()
     {
         turnPhaseText.text = "";
+
+        battleStartUX.SetActive(true);
+        yield return new WaitForSeconds(1.8f);
+        battleStartUX.SetActive(false);
+
         GameObject ePrefab;
 
         ePrefab = Instantiate(enemyPrefab[enemyPrefab.Count - 1], enemyLocation);
@@ -178,8 +190,6 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayerTurn()
     {
-        runeCover.SetActive(false);
-
         if (extraTurn && isCrystalize)
         {
             crystalTurnCount--;
@@ -193,7 +203,11 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         playerAttacked = false;
+        playerTurnUX.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        playerTurnUX.SetActive(false);
         turnPhaseText.text = "Player Turn";
+        runeCover.SetActive(false);
     }
 
     IEnumerator PAttackPhase()
@@ -236,7 +250,7 @@ public class BattleManager : MonoBehaviour
             if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
-                yield return EndBattle();
+                EndNormalBattle();
             }
 
             else
@@ -268,7 +282,7 @@ public class BattleManager : MonoBehaviour
             if (charHealthSlider.value <= 0)
             {
                 battleState = BattleState.LOSE;
-                yield return EndBattle();
+                EndNormalBattle();
             }
         }
 
@@ -287,6 +301,9 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         runeCover.SetActive(true);
+        enemyTurnUX.SetActive(true);
+        yield return new WaitForSeconds(0.7f);
+        enemyTurnUX.SetActive(false);
         turnPhaseText.text = "Enemy Turn";
         yield return new WaitForSeconds(1);
         for (int i = 0; i < currentEnemyList.Count; i++)
@@ -294,7 +311,7 @@ public class BattleManager : MonoBehaviour
             if (charHealthSlider.value <= 0)
             {
                 battleState = BattleState.LOSE;
-                yield return EndBattle();
+                EndNormalBattle();
             }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
@@ -360,7 +377,7 @@ public class BattleManager : MonoBehaviour
             if (charHealthSlider.value <= 0)
             {
                 battleState = BattleState.LOSE;
-                yield return EndBattle();
+                EndNormalBattle();
             }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
@@ -409,7 +426,7 @@ public class BattleManager : MonoBehaviour
             if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
-                yield return EndBattle();
+                EndNormalBattle();
             }
 
             else
@@ -440,17 +457,18 @@ public class BattleManager : MonoBehaviour
         yield return PlayerTurn();
     }
 
-    IEnumerator EndBattle()
+    private void EndNormalBattle()
     {
+        StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            yield return new WaitForSeconds(1);
-            SceneManager.LoadScene("GameWinScene");
+            gameWinScreen.SetActive(true);
+            waveCount++;
+            PlayerPrefs.SetInt(prefWave, waveCount);
         }
         else if (battleState == BattleState.LOSE)
         {
-            yield return new WaitForSeconds(1);
-            SceneManager.LoadScene("GameOverScene");
+            gameLoseScreen.SetActive(true);
         }
     }
 
