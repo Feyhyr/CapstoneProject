@@ -43,6 +43,8 @@ public class EnemyController : MonoBehaviour
     public int burnTurnCount;
 
     public AudioClip uiClick;
+    public GameObject enemyCover;
+    public bool enemyAttacking;
 
     private void Awake()
     {
@@ -58,7 +60,28 @@ public class EnemyController : MonoBehaviour
 
         currentState = "Idle";
         SetCharacterState(currentState);
-}
+
+        StartCoroutine(FadeIn());
+    }
+
+    private void Update()
+    {
+        if (bm.battleState == BattleManager.BattleState.ENEMYTURN)
+        {
+            if (enemyAttacking)
+            {
+                enemyCover.SetActive(true);
+            }
+            else
+            {
+                enemyCover.SetActive(false);
+            }
+        }
+        else
+        {
+            enemyCover.SetActive(false);
+        }
+    }
 
     public void SelectTarget()
     {
@@ -91,5 +114,23 @@ public class EnemyController : MonoBehaviour
         {
             SetAnimation(eDamage, false, 1f);
         }
+    }
+
+    IEnumerator FadeIn(int steps = 10)
+    {
+        float totalTransparencyPerStep = 1 / (float)steps;
+
+        for (int i = 0; i < steps; i++)
+        {
+            ChangeOpacity(totalTransparencyPerStep);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public void ChangeOpacity(float opacityStep)
+    {
+        float alpha = eSkeletonAnimation.skeleton.A;
+        alpha += opacityStep;
+        eSkeletonAnimation.skeleton.A = alpha;
     }
 }

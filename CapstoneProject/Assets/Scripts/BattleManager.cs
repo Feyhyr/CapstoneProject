@@ -73,6 +73,8 @@ public class BattleManager : MonoBehaviour
     bool isMelt = false;
     bool debrisHit = false;
 
+    bool bossBattle;
+
     public const string prefWave = "prefWave";
     public Text waveCounterText;
     public int waveCount;
@@ -105,6 +107,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (waveCount == 5)
         {
+            bossBattle = true;
             waveCounterText.text = "Boss Wave";
         }
         else
@@ -128,7 +131,7 @@ public class BattleManager : MonoBehaviour
 
         buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
-        if (waveCount >= 5)
+        if (bossBattle)
         {
             StartCoroutine(BeginBossBattle());
         }
@@ -269,7 +272,14 @@ public class BattleManager : MonoBehaviour
             if (IsAllEnemiesDead())
             {
                 battleState = BattleState.WIN;
-                EndNormalBattle();
+                if (bossBattle)
+                {
+                    EndBossBattle();
+                }
+                else
+                {
+                    EndNormalBattle();
+                }
             }
 
             else
@@ -301,7 +311,14 @@ public class BattleManager : MonoBehaviour
             if (charHealthSlider.value <= 0)
             {
                 battleState = BattleState.LOSE;
-                EndNormalBattle();
+                if (bossBattle)
+                {
+                    EndBossBattle();
+                }
+                else
+                {
+                    EndNormalBattle();
+                }
             }
         }
 
@@ -332,7 +349,14 @@ public class BattleManager : MonoBehaviour
             if (charHealthSlider.value <= 0)
             {
                 battleState = BattleState.LOSE;
-                EndNormalBattle();
+                if (bossBattle)
+                {
+                    EndBossBattle();
+                }
+                else
+                {
+                    EndNormalBattle();
+                }
             }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
@@ -351,6 +375,7 @@ public class BattleManager : MonoBehaviour
 
             else
             {
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = true;
                 EnemyAttack(i);
                 if (currentEnemyList[i].tag == "Human" || currentEnemyList[i].tag == "Boss")
                 {
@@ -401,12 +426,19 @@ public class BattleManager : MonoBehaviour
             if (charHealthSlider.value <= 0)
             {
                 battleState = BattleState.LOSE;
-                EndNormalBattle();
+                if (bossBattle)
+                {
+                    EndBossBattle();
+                }
+                else
+                {
+                    EndNormalBattle();
+                }
             }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
             {
-                EnemyDamage(3);
+                EnemyDamage(3, i);
                 DamagePopup(currentEnemyList[i].transform, 3, false, false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount <= 0)
@@ -418,7 +450,7 @@ public class BattleManager : MonoBehaviour
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald)
             {
-                EnemyDamage(1);
+                EnemyDamage(1, i);
                 DamagePopup(currentEnemyList[i].transform, 1, false, false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount <= 0)
@@ -430,7 +462,7 @@ public class BattleManager : MonoBehaviour
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn)
             {
-                EnemyDamage(1);
+                EnemyDamage(1, i);
                 DamagePopup(currentEnemyList[i].transform, 1, false, false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount <= 0)
@@ -439,30 +471,39 @@ public class BattleManager : MonoBehaviour
                     currentEnemyList[i].GetComponentInChildren<EnemyController>().burned.SetActive(false);
                 }
             }
-        }
 
-        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
-        {
-            yield return new WaitForSeconds(1);
-            currentEnemyList[targetEnemy].SetActive(false);
-            currentEnemyList.RemoveAt(targetEnemy);
+            currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = false;
 
-            if (IsAllEnemiesDead())
+            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
             {
-                battleState = BattleState.WIN;
-                EndNormalBattle();
-            }
+                yield return new WaitForSeconds(1);
+                currentEnemyList[i].SetActive(false);
+                currentEnemyList.RemoveAt(i);
 
-            else
-            {
-                targetEnemy = 0;
-                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
-                enemyIndex = 0;
-
-                for (int i = 0; i < currentEnemyList.Count; i++)
+                if (IsAllEnemiesDead())
                 {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
-                    enemyIndex++;
+                    battleState = BattleState.WIN;
+                    if (bossBattle)
+                    {
+                        EndBossBattle();
+                    }
+                    else
+                    {
+                        EndNormalBattle();
+                    }
+                }
+
+                else
+                {
+                    targetEnemy = 0;
+                    currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
+                    enemyIndex = 0;
+
+                    for (int j = 0; j < currentEnemyList.Count; j++)
+                    {
+                        currentEnemyList[j].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                        enemyIndex++;
+                    }
                 }
             }
         }
@@ -489,6 +530,21 @@ public class BattleManager : MonoBehaviour
             gameWinScreen.SetActive(true);
             waveCount++;
             PlayerPrefs.SetInt(prefWave, waveCount);
+        }
+        else if (battleState == BattleState.LOSE)
+        {
+            gameLoseScreen.SetActive(true);
+        }
+    }
+
+    private void EndBossBattle()
+    {
+        StopAllCoroutines();
+        if (battleState == BattleState.WIN)
+        {
+            waveCount++;
+            PlayerPrefs.SetInt(prefWave, waveCount);
+            SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
         {
@@ -564,7 +620,7 @@ public class BattleManager : MonoBehaviour
                 reverbTurnCount++;
             }
         }
-        EnemyDamage(damage);
+        EnemyDamage(damage, targetEnemy);
         DamagePopup(currentEnemyList[targetEnemy].transform, damage, critical, false);
         enemyState = "Damage";
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
@@ -698,12 +754,6 @@ public class BattleManager : MonoBehaviour
         sbPrefab.GetComponent<SpellController>().spellDescription = spellList[ChooseSpell()].description;
     }
 
-    IEnumerator PlayAnimation()
-    {
-        Instantiate(creationPrefab, spellButtonLocation);
-        yield return new WaitForSeconds(3);
-    }
-
     public void CreateSpell()
     {
         if (ChooseSpell() == 0)
@@ -830,9 +880,9 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PAttackPhase());
     }
 
-    public void EnemyDamage(int damage)
+    public void EnemyDamage(int damage, int target)
     {
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
+        currentEnemyList[target].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
     }
 
     public bool ChanceStatusEffect(float chance)
