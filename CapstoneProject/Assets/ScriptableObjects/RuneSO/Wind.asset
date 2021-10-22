@@ -15,4 +15,4 @@ MonoBehaviour:
   runeName: Wind
   runeId: 3
   icon: {fileID: 21300000, guid: a5a6b6ac39e500b44b8838b48d364bc2, type: 3}
-  audioSFX: {fileID: 0}
+  audioSFX: {fileID: 8300000, guid: 1a47431d8fe1ba546823c919539d2d89, type: 3}

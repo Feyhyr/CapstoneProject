@@ -15,4 +15,4 @@ MonoBehaviour:
   runeName: Earth
   runeId: 1
   icon: {fileID: 21300000, guid: fbad56afa6eb5a24290645a74748234b, type: 3}
-  audioSFX: {fileID: 0}
+  audioSFX: {fileID: 8300000, guid: 1a47431d8fe1ba546823c919539d2d89, type: 3}
