@@ -142,6 +142,8 @@ public class BattleManager : MonoBehaviour
     {
         turnPhaseText.text = "";
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
         yield return new WaitForSeconds(1.8f);
         battleStartUX.SetActive(false);
@@ -177,6 +179,8 @@ public class BattleManager : MonoBehaviour
     {
         turnPhaseText.text = "";
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
         yield return new WaitForSeconds(1.8f);
         battleStartUX.SetActive(false);
@@ -216,6 +220,8 @@ public class BattleManager : MonoBehaviour
         playerTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
         playerTurnUX.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         firstRune.color = Color.white;
         secondRune.color = Color.white;
         spellMaker.SetActive(true);
@@ -314,6 +320,8 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         runeCover.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         enemyTurnUX.SetActive(true);
         yield return new WaitForSeconds(0.7f);
         enemyTurnUX.SetActive(false);
