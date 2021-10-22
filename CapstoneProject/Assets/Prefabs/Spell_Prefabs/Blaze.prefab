@@ -47,6 +47,7 @@ MonoBehaviour:
   spell: {fileID: 0}
   spellName: 
   damage: 0
+  sfx: {fileID: 0}
 --- !u!1001 &2861804972866167311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3248501025812708982, guid: 83a81e0241c13f44b964addee3769c0e, type: 3}
       propertyPath: m_Name
-      value: Blaze Particle
+      value: Particle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83a81e0241c13f44b964addee3769c0e, type: 3}

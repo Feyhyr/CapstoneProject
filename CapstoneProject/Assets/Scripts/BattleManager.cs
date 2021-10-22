@@ -169,7 +169,6 @@ public class BattleManager : MonoBehaviour
         }
 
         CheckMultipleEnemies();
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
 
         enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
 
@@ -195,8 +194,6 @@ public class BattleManager : MonoBehaviour
         ePrefab.GetComponentInChildren<EnemyController>().bm = this;
         ePrefab.GetComponentInChildren<EnemyController>().enemyId = 0;
         currentEnemyList.Add(ePrefab);
-
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
 
         enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
 
@@ -230,6 +227,7 @@ public class BattleManager : MonoBehaviour
         spellMaker.SetActive(true);
         turnPhaseText.text = "Player Turn";
         runeCover.SetActive(false);
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
     }
 
     IEnumerator PAttackPhase()
@@ -336,6 +334,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
         runeCover.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -439,7 +438,7 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
             {
                 EnemyDamage(3, i);
-                DamagePopup(currentEnemyList[i].transform, 3, false, false);
+                DamagePopup(currentEnemyList[i].transform, 3, "normal", false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount <= 0)
                 {
@@ -451,7 +450,7 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald)
             {
                 EnemyDamage(1, i);
-                DamagePopup(currentEnemyList[i].transform, 1, false, false);
+                DamagePopup(currentEnemyList[i].transform, 1, "normal", false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount <= 0)
                 {
@@ -463,7 +462,7 @@ public class BattleManager : MonoBehaviour
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn)
             {
                 EnemyDamage(1, i);
-                DamagePopup(currentEnemyList[i].transform, 1, false, false);
+                DamagePopup(currentEnemyList[i].transform, 1, "normal", false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount <= 0)
                 {
@@ -554,7 +553,7 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerAttack(int damage)
     {
-        bool critical = false;
+        string state = "normal";
 
         if (Immunity())
         {
@@ -564,7 +563,7 @@ public class BattleManager : MonoBehaviour
         {
             if (Weakness() && !CheckNeutral())
             {
-                critical = true;
+                state = "critical";
                 if (isDrowned)
                 {
                     Debug.Log("Damage triple");
@@ -579,6 +578,7 @@ public class BattleManager : MonoBehaviour
             }
             else if (Resistant() && !CheckNeutral())
             {
+                state = "weak";
                 Debug.Log("Damage half");
                 damage /= 2;
             }
@@ -621,7 +621,7 @@ public class BattleManager : MonoBehaviour
             }
         }
         EnemyDamage(damage, targetEnemy);
-        DamagePopup(currentEnemyList[targetEnemy].transform, damage, critical, false);
+        DamagePopup(currentEnemyList[targetEnemy].transform, damage, state, false);
         enemyState = "Damage";
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
         playerAttacked = true;
@@ -636,7 +636,7 @@ public class BattleManager : MonoBehaviour
         }
 
         charHealthSlider.value -= enemyDmg;
-        DamagePopup(playerLocation, enemyDmg, false, false);
+        DamagePopup(playerLocation, enemyDmg, "normal", false);
         enemyState = "Attack";
         currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
     }
@@ -825,7 +825,7 @@ public class BattleManager : MonoBehaviour
             {
                 charHealthSlider.value = 500;
             }
-            DamagePopup(playerLocation, 3, false, true);
+            DamagePopup(playerLocation, 3, "normal", true);
         }
         else if (ChooseSpell() == 10)
         {
@@ -977,7 +977,7 @@ public class BattleManager : MonoBehaviour
     public void EnemyPoison()
     {
         charHealthSlider.value -= 3;
-        DamagePopup(playerLocation, 3, false, false);
+        DamagePopup(playerLocation, 3, "normal", false);
         charPoisonedTurnCount--;
         if (charPoisonedTurnCount <= 0)
         {
@@ -994,7 +994,7 @@ public class BattleManager : MonoBehaviour
             damage = 1;
         }
         charHealthSlider.value -= damage;
-        DamagePopup(playerLocation, (int)damage, false, false);
+        DamagePopup(playerLocation, (int)damage, "normal", false);
         charCursedTurnCount--;
         if (charCursedTurnCount <= 0)
         {
@@ -1020,9 +1020,9 @@ public class BattleManager : MonoBehaviour
         currentEnemyList[index].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
     }
 
-    public void DamagePopup(Transform location, int damage, bool isCrit, bool isHeal)
+    public void DamagePopup(Transform location, int damage, string state, bool isHeal)
     {
         GameObject damagePopup = Instantiate(numberPopupObj, location);
-        damagePopup.GetComponent<NumberPopupController>().Setup(damage, isCrit, isHeal);
+        damagePopup.GetComponent<NumberPopupController>().Setup(damage, state, isHeal);
     }
 }

@@ -14,11 +14,11 @@ public class NumberPopupController : MonoBehaviour
         textMesh = transform.GetComponent<TextMeshPro>();
     }
 
-    public void Setup(int damage, bool criticalHit, bool heal)
+    public void Setup(int damage, string state, bool heal)
     {
         textMesh.SetText(damage.ToString());
         fadeTimer = 0.8f;
-        if (!criticalHit)
+        if (state == "normal")
         {
             textMesh.fontSize = 6;
             if (heal)
@@ -30,10 +30,15 @@ public class NumberPopupController : MonoBehaviour
                 textColor = new Color32(244, 244, 244, 255);
             }
         }
-        else
+        else if (state == "critical")
         {
             textMesh.fontSize = 10;
             textColor = new Color32(253, 87, 87, 255);
+        }
+        else if (state == "weak")
+        {
+            textMesh.fontSize = 4;
+            textColor = new Color32(185, 188, 188, 255);
         }
         textMesh.color = textColor;
     }
