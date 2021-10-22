@@ -340,7 +340,7 @@ public class BattleManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         enemyTurnUX.SetActive(true);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1.2f);
         enemyTurnUX.SetActive(false);
         turnPhaseText.text = "Enemy Turn";
         yield return new WaitForSeconds(1);
