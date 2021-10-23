@@ -16,5 +16,5 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: 3719c534352af624e8161f6abba6fc3d, type: 3}
   sDamage: 5
   sfx: {fileID: 8300000, guid: ce8e82b7d68d6f34dbfed0bde421c49a, type: 3}
-  icon: {fileID: 21300000, guid: a5a6b6ac39e500b44b8838b48d364bc2, type: 3}
+  icon: {fileID: 21300000, guid: 092554912092b0948ba17a186689c28e, type: 3}
   description: Description goes here
