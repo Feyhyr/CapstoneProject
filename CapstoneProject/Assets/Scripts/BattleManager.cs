@@ -141,6 +141,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
         turnPhaseText.text = "";
@@ -520,7 +521,9 @@ public class BattleManager : MonoBehaviour
         battleState = BattleState.PLAYERTURN;
         yield return PlayerTurn();
     }
+    #endregion
 
+    #region End Battles
     private void EndNormalBattle()
     {
         StopAllCoroutines();
@@ -550,7 +553,9 @@ public class BattleManager : MonoBehaviour
             gameLoseScreen.SetActive(true);
         }
     }
+    #endregion
 
+    #region Attack Functions
     public void PlayerAttack(int damage)
     {
         string state = "normal";
@@ -641,6 +646,13 @@ public class BattleManager : MonoBehaviour
         currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
     }
 
+    public void ChangeTarget(int index)
+    {
+        currentEnemyList[index].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
+    }
+    #endregion
+
+    #region Weakness Check
     public bool Weakness()
     {
         List<string> weakHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().weak;
@@ -683,7 +695,9 @@ public class BattleManager : MonoBehaviour
         }
         return false;
     }
+    #endregion
 
+    #region Spell Creation
     public int ChooseSpell()
     {
         int index = 0;
@@ -879,19 +893,12 @@ public class BattleManager : MonoBehaviour
         CreateSpell();
         StartCoroutine(PAttackPhase());
     }
+    #endregion
 
+    #region Enemy Status
     public void EnemyDamage(int damage, int target)
     {
         currentEnemyList[target].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
-    }
-
-    public bool ChanceStatusEffect(float chance)
-    {
-        if (Random.value >= chance)
-        {
-            return true;
-        }
-        return false;
     }
 
     public void CheckMultipleEnemies()
@@ -1014,10 +1021,15 @@ public class BattleManager : MonoBehaviour
             buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = true;
         }
     }
+    #endregion
 
-    public void ChangeTarget(int index)
+    public bool ChanceStatusEffect(float chance)
     {
-        currentEnemyList[index].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
+        if (Random.value >= chance)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void DamagePopup(Transform location, int damage, string state, bool isHeal)
