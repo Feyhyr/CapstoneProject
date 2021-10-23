@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
     public int burnTurnCount;
 
     public AudioClip uiClick;
+    public AudioClip attackSFX;
     public GameObject enemyCover;
     public bool enemyAttacking;
 
@@ -57,6 +58,7 @@ public class EnemyController : MonoBehaviour
         eIdle = enemy.idle;
         eAttack = enemy.attack;
         eDamage = enemy.damage;
+        attackSFX = enemy.attackSFX;
 
         currentState = "Idle";
         SetCharacterState(currentState);

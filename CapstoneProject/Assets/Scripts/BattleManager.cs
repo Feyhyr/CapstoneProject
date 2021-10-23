@@ -634,6 +634,7 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyAttack(int value)
     {
+        AudioManager.Instance.Play(currentEnemyList[value].GetComponentInChildren<EnemyController>().attackSFX);
         int enemyDmg = currentEnemyList[value].GetComponentInChildren<EnemyController>().atk;
         if (isCrystalize)
         {
