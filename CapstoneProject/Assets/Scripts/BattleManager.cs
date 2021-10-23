@@ -8,7 +8,6 @@ public class BattleManager : MonoBehaviour
 {
     public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE }
     public BattleState battleState;
-    public Text turnPhaseText;
 
     public Transform playerLocation;
 
@@ -144,8 +143,6 @@ public class BattleManager : MonoBehaviour
     #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
-        turnPhaseText.text = "";
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
@@ -180,8 +177,6 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator BeginBossBattle()
     {
-        turnPhaseText.text = "";
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
@@ -226,7 +221,6 @@ public class BattleManager : MonoBehaviour
         firstRune.color = Color.white;
         secondRune.color = Color.white;
         spellMaker.SetActive(true);
-        turnPhaseText.text = "Player Turn";
         runeCover.SetActive(false);
         currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
     }
@@ -342,7 +336,6 @@ public class BattleManager : MonoBehaviour
         enemyTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
         enemyTurnUX.SetActive(false);
-        turnPhaseText.text = "Enemy Turn";
         yield return new WaitForSeconds(1);
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
