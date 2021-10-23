@@ -448,8 +448,8 @@ public class BattleManager : MonoBehaviour
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald)
             {
-                EnemyDamage(1, i);
-                DamagePopup(currentEnemyList[i].transform, 1, "normal", false);
+                //EnemyDamage(1, i);
+                //DamagePopup(currentEnemyList[i].transform, 1, "normal", false);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount--;
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount <= 0)
                 {
@@ -607,7 +607,7 @@ public class BattleManager : MonoBehaviour
                 debrisHit = false;
             }
 
-            if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount <= 2))
+            if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount <= 3))
             {
                 damage += 2;
             }
@@ -794,7 +794,7 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 3)
         {
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isScald = true;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount = 3;
+            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount = 4;
             currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scalded.SetActive(true);
             Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been scalded");
         }

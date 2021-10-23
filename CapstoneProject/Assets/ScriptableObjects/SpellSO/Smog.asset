@@ -17,4 +17,4 @@ MonoBehaviour:
   sDamage: 5
   sfx: {fileID: 8300000, guid: 7c21179558f35b04196539efca259b94, type: 3}
   icon: {fileID: 21300000, guid: 092554912092b0948ba17a186689c28e, type: 3}
-  description: Description goes here
+  description: Casting Smog has a chance to inflict the Poisoned status effect.

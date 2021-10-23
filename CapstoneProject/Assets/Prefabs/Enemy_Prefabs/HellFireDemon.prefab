@@ -508,7 +508,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Scald: If it is hit with an attack that includes fire in its combo, damage
-    is increased by 2'
+    is increased by 2.'
 --- !u!1 &1996663620433495976
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +780,7 @@ MonoBehaviour:
   isBurn: 0
   burnTurnCount: 0
   uiClick: {fileID: 8300000, guid: e9378d1e53c37f74ab10e7b582066680, type: 3}
+  attackSFX: {fileID: 0}
   enemyCover: {fileID: 5605752425479084184}
   enemyAttacking: 0
 --- !u!1 &2467578535836839742
@@ -1449,7 +1450,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Poison: 3 damage every turn for 2 turns'
+  m_Text: 'Poison: Does 3 damage every turn for 2 turns.'
 --- !u!1 &4780420071388460323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,7 +2031,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Expose: The next attack hits for double if the enemy is not resistant'
+  m_Text: 'Expose: The next attack hits for double if the enemy is not resistant.'
 --- !u!1 &5706806153311926071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2146,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Burn: Takes 1 damage every turn for 3 turns'
+  m_Text: 'Burn: Does 1 damage every turn for 3 turns.'
 --- !u!1 &6915807728869112393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,4 +2482,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Freeze: Cannot move for 2 turns'
+  m_Text: 'Freeze: Cannot move for 2 turns.'
