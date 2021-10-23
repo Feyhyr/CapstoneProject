@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
+    #region Variables
     public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE }
     public BattleState battleState;
 
@@ -87,6 +88,9 @@ public class BattleManager : MonoBehaviour
     public GameObject creationPrefab;
 
     public GameObject freezePrefab;
+
+    public GameObject cameraObject;
+    #endregion
 
     private void Start()
     {
@@ -369,6 +373,7 @@ public class BattleManager : MonoBehaviour
             else
             {
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = true;
+                cameraObject.GetComponent<ScreenShake>().TriggerShake();
                 EnemyAttack(i);
                 if (currentEnemyList[i].tag == "Human" || currentEnemyList[i].tag == "Boss")
                 {

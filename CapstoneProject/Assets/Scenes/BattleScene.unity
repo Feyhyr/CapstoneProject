@@ -2030,6 +2030,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2045,6 +2046,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a887d38a103b0d24e992f291707851a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -4199,7 +4212,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 18, y: 10}
+  m_SizeDelta: {x: 20, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1188835439
 MonoBehaviour:
@@ -4342,6 +4355,7 @@ MonoBehaviour:
   enemyTurnUX: {fileID: 407409638}
   creationPrefab: {fileID: 8974257423291223309, guid: 4c27a9b87d1b73643966cf166252e9a5, type: 3}
   freezePrefab: {fileID: 672203223211207016, guid: f94b9cea65e9e0341934c47598c6f00b, type: 3}
+  cameraObject: {fileID: 519420028}
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0
@@ -10821,7 +10835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1658155019
 RectTransform:
   m_ObjectHideFlags: 0
