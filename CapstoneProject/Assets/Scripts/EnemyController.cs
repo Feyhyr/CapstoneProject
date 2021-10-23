@@ -93,7 +93,6 @@ public class EnemyController : MonoBehaviour
             bm.ChangeTarget(bm.targetEnemy);
             bm.targetEnemy = enemyId;
             targetSelected.SetActive(true);
-            Debug.Log(eText.text + " selected");
         }
     }
 

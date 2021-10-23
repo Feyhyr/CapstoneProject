@@ -90,6 +90,9 @@ public class BattleManager : MonoBehaviour
     public GameObject freezePrefab;
 
     public GameObject cameraObject;
+
+    EnemyController enemy;
+    bool startCheckEnemy;
     #endregion
 
     private void Start()
@@ -143,7 +146,7 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(BeginNormalBattle());
         }
     }
-
+    
     #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
@@ -172,13 +175,15 @@ public class BattleManager : MonoBehaviour
 
         CheckMultipleEnemies();
 
-        enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
+        startCheckEnemy = true;
+        yield return new WaitForSeconds(0.1f);
+        enemyState = enemy.currentState;
 
         battleState = BattleState.PLAYERTURN;
 
         yield return PlayerTurn();
     }
-
+    
     IEnumerator BeginBossBattle()
     {
         Cursor.visible = false;
@@ -195,7 +200,9 @@ public class BattleManager : MonoBehaviour
         ePrefab.GetComponentInChildren<EnemyController>().enemyId = 0;
         currentEnemyList.Add(ePrefab);
 
-        enemyState = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().currentState;
+        startCheckEnemy = true;
+        yield return new WaitForSeconds(0.1f);
+        enemyState = enemy.currentState;
 
         battleState = BattleState.PLAYERTURN;
 
@@ -226,14 +233,14 @@ public class BattleManager : MonoBehaviour
         secondRune.color = Color.white;
         spellMaker.SetActive(true);
         runeCover.SetActive(false);
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
+        enemy.targetSelected.SetActive(true);
     }
 
     IEnumerator PAttackPhase()
     {
         yield return new WaitForSeconds(0.5f);
         enemyState = "Idle";
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+        enemy.SetCharacterState(enemyState);
 
         foreach (GameObject Button in buttonObjs)
         {
@@ -260,64 +267,20 @@ public class BattleManager : MonoBehaviour
         rune1 = "";
         rune2 = "";
 
-        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
+        yield return new WaitForSeconds(1);
+        CheckEnemyDeath(targetEnemy);
+
+        if (isCharCursed)
         {
-            yield return new WaitForSeconds(1);
-            currentEnemyList[targetEnemy].SetActive(false);
-            currentEnemyList.RemoveAt(targetEnemy);
-
-            if (IsAllEnemiesDead())
-            {
-                battleState = BattleState.WIN;
-                if (bossBattle)
-                {
-                    EndBossBattle();
-                }
-                else
-                {
-                    EndNormalBattle();
-                }
-            }
-
-            else
-            {
-                targetEnemy = 0;
-                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
-                enemyIndex = 0;
-
-                for (int i = 0; i < currentEnemyList.Count; i++)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
-                    enemyIndex++;
-                }
-            }
+            EnemyCurse();
         }
 
-        else
+        if (isCharPoisoned)
         {
-            if (isCharCursed)
-            {
-                EnemyCurse();
-            }
-
-            if (isCharPoisoned)
-            {
-                EnemyPoison();
-            }
-
-            if (charHealthSlider.value <= 0)
-            {
-                battleState = BattleState.LOSE;
-                if (bossBattle)
-                {
-                    EndBossBattle();
-                }
-                else
-                {
-                    EndNormalBattle();
-                }
-            }
+            EnemyPoison();
         }
+
+        CheckPlayerDeath();
 
         if (extraTurn)
         {
@@ -333,7 +296,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(false);
+        enemy.targetSelected.SetActive(false);
         runeCover.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -343,18 +306,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
-            if (charHealthSlider.value <= 0)
-            {
-                battleState = BattleState.LOSE;
-                if (bossBattle)
-                {
-                    EndBossBattle();
-                }
-                else
-                {
-                    EndNormalBattle();
-                }
-            }
+            CheckPlayerDeath();
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
             {
@@ -421,89 +373,27 @@ public class BattleManager : MonoBehaviour
             enemyState = "Idle";
             currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
 
-            if (charHealthSlider.value <= 0)
-            {
-                battleState = BattleState.LOSE;
-                if (bossBattle)
-                {
-                    EndBossBattle();
-                }
-                else
-                {
-                    EndNormalBattle();
-                }
-            }
+            CheckPlayerDeath();
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
             {
-                EnemyDamage(3, i);
-                DamagePopup(currentEnemyList[i].transform, 3, "normal", false);
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount--;
-                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount <= 0)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned = false;
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().poisoned.SetActive(false);
-                }
+                StatusTurnChange(3, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned, currentEnemyList[i].GetComponentInChildren<EnemyController>().poisoned);
             }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald)
             {
-                //EnemyDamage(1, i);
-                //DamagePopup(currentEnemyList[i].transform, 1, "normal", false);
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount--;
-                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount <= 0)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald = false;
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().scalded.SetActive(false);
-                }
+                StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald, currentEnemyList[i].GetComponentInChildren<EnemyController>().scalded);
             }
 
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn)
             {
-                EnemyDamage(1, i);
-                DamagePopup(currentEnemyList[i].transform, 1, "normal", false);
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount--;
-                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount <= 0)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn = false;
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().burned.SetActive(false);
-                }
+                StatusTurnChange(1, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn, currentEnemyList[i].GetComponentInChildren<EnemyController>().burned);
             }
 
             currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = false;
 
-            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
-            {
-                yield return new WaitForSeconds(1);
-                currentEnemyList[i].SetActive(false);
-                currentEnemyList.RemoveAt(i);
-
-                if (IsAllEnemiesDead())
-                {
-                    battleState = BattleState.WIN;
-                    if (bossBattle)
-                    {
-                        EndBossBattle();
-                    }
-                    else
-                    {
-                        EndNormalBattle();
-                    }
-                }
-
-                else
-                {
-                    targetEnemy = 0;
-                    currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().targetSelected.SetActive(true);
-                    enemyIndex = 0;
-
-                    for (int j = 0; j < currentEnemyList.Count; j++)
-                    {
-                        currentEnemyList[j].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
-                        enemyIndex++;
-                    }
-                }
-            }
+            yield return new WaitForSeconds(1);
+            CheckEnemyDeath(i);
         }
 
         if (isCrystalize)
@@ -558,43 +448,35 @@ public class BattleManager : MonoBehaviour
     {
         string state = "normal";
 
-        if (Immunity())
+        if (CheckWeakness(enemy.immune))
         {
             damage = 0;
         }
         else
         {
-            if (Weakness() && !CheckNeutral())
+            if (CheckWeakness(enemy.weak) && !CheckNeutral())
             {
                 state = "critical";
                 if (isDrowned)
                 {
-                    Debug.Log("Damage triple");
                     damage *= 3;
                     isDrowned = false;
                 }
                 else
                 {
-                    Debug.Log("Damage double");
                     damage *= 2;
                 }
             }
-            else if (Resistant() && !CheckNeutral())
+            else if (CheckWeakness(enemy.resist) && !CheckNeutral())
             {
                 state = "weak";
-                Debug.Log("Damage half");
                 damage /= 2;
-            }
-            else
-            {
-                Debug.Log("Damage normal");
             }
 
             if (isMelt)
             {
                 if ((charHealthSlider.value / charMaxHealth) <= 0.1)
                 {
-                    Debug.Log("Attack is doubled from melting point");
                     damage *= 2;
                 }
                 isMelt = false;
@@ -607,12 +489,12 @@ public class BattleManager : MonoBehaviour
                 debrisHit = false;
             }
 
-            if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount <= 3))
+            if ((enemy.isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (enemy.scaldTurnCount <= 3))
             {
                 damage += 2;
             }
 
-            if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burnTurnCount <= 2))
+            if ((enemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (enemy.burnTurnCount <= 2))
             {
                 damage += 2;
             }
@@ -626,7 +508,7 @@ public class BattleManager : MonoBehaviour
         EnemyDamage(damage, targetEnemy);
         DamagePopup(currentEnemyList[targetEnemy].transform, damage, state, false);
         enemyState = "Damage";
-        currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
+        enemy.SetCharacterState(enemyState);
         playerAttacked = true;
     }
 
@@ -651,35 +533,12 @@ public class BattleManager : MonoBehaviour
     }
     #endregion
 
-    #region Weakness Check
-    public bool Weakness()
+    #region State Check
+    public bool CheckWeakness(List<string> type)
     {
-        List<string> weakHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().weak;
+        List<string> statusHolder = type;
 
-        if ((weakHolder.Contains(rune1) || (weakHolder.Contains(rune2))))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool Resistant()
-    {
-        List<string> resistHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().resist;
-
-        if ((resistHolder.Contains(rune1) || (resistHolder.Contains(rune2))))
-        {
-            return true;
-        }
-        return false;
-    }
-    
-    public bool Immunity()
-    {
-        List<string> immuneHolder = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().immune;
-
-        if ((immuneHolder.Contains(rune1) || (immuneHolder.Contains(rune2))))
+        if ((statusHolder.Contains(rune1) || (statusHolder.Contains(rune2))))
         {
             return true;
         }
@@ -688,11 +547,87 @@ public class BattleManager : MonoBehaviour
 
     public bool CheckNeutral()
     {
-        if (Weakness() && Resistant())
+        if (CheckWeakness(enemy.weak) && CheckWeakness(enemy.resist))
         {
             return true;
         }
         return false;
+    }
+
+    public bool ChanceStatusEffect(float chance)
+    {
+        if (Random.value >= chance)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void StatusTurnChange(int dmg, int index, ref int count, ref bool status, GameObject obj)
+    {
+        if (dmg > 0)
+        {
+            EnemyDamage(dmg, index);
+            DamagePopup(currentEnemyList[index].transform, dmg, "normal", false);
+        }
+        count--;
+        if (count <= 0)
+        {
+            status = false;
+            obj.SetActive(false);
+        }
+    }
+
+    public void CheckPlayerDeath()
+    {
+        if (charHealthSlider.value <= 0)
+        {
+            battleState = BattleState.LOSE;
+            startCheckEnemy = false;
+            if (bossBattle)
+            {
+                EndBossBattle();
+            }
+            else
+            {
+                EndNormalBattle();
+            }
+        }
+    }
+
+    public void CheckEnemyDeath(int index)
+    {
+        if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
+        {
+            currentEnemyList[index].SetActive(false);
+            currentEnemyList.RemoveAt(index);
+
+            if (IsAllEnemiesDead())
+            {
+                battleState = BattleState.WIN;
+                startCheckEnemy = false;
+                if (bossBattle)
+                {
+                    EndBossBattle();
+                }
+                else
+                {
+                    EndNormalBattle();
+                }
+            }
+            else
+            {
+                targetEnemy = 0;
+                enemy.targetSelected.SetActive(true);
+                enemyIndex = 0;
+
+                for (int i = 0; i < currentEnemyList.Count; i++)
+                {
+                    currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                    enemyIndex++;
+                }
+            }
+        }
     }
     #endregion
 
@@ -771,37 +706,32 @@ public class BattleManager : MonoBehaviour
     {
         if (ChooseSpell() == 0)
         {
-            Debug.Log("Player gains an extra turn");
             extraTurn = true;
         }
         else if (ChooseSpell() == 1)
         {
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isPoisoned = true;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().poisonTurnCount = 2;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().poisoned.SetActive(true);
-            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been poisoned");
+            enemy.isPoisoned = true;
+            enemy.poisonTurnCount = 2;
+            enemy.poisoned.SetActive(true);
         }
         else if (ChooseSpell() == 2)
         {
-            if (!Resistant())
+            if (!CheckWeakness(enemy.resist))
             {
-                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = true;
-                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount = 2;
-                currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposed.SetActive(true);
-                Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has become vulnerable");
+                enemy.isExposed = true;
+                enemy.exposedTurnCount = 2;
+                enemy.exposed.SetActive(true);
             }
         }
         else if (ChooseSpell() == 3)
         {
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isScald = true;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scaldTurnCount = 4;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().scalded.SetActive(true);
-            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been scalded");
+            enemy.isScald = true;
+            enemy.scaldTurnCount = 4;
+            enemy.scalded.SetActive(true);
         }
         else if (ChooseSpell() == 4)
         {
             isDrowned = true;
-            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has drowned");
         }
         else if (ChooseSpell() == 5)
         {
@@ -809,27 +739,26 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 6)
         {
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isFreeze = true;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().freezeTurnCount = 2;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().frozen.SetActive(true);
-            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " is frozen");
-            //if (ChanceStatusEffect(0.7f))
-            //{
-
-            //}
+            if (ChanceStatusEffect(0.8f))
+            {
+                enemy.isFreeze = true;
+                enemy.freezeTurnCount = 2;
+                enemy.frozen.SetActive(true);
+            }
         }
         else if (ChooseSpell() == 7)
         {
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isBurn = true;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burnTurnCount = 3;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().burned.SetActive(true);
-            Debug.Log(currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().eText.text + " has been burned");
+            if (ChanceStatusEffect(0.7f))
+            {
+                enemy.isBurn = true;
+                enemy.burnTurnCount = 3;
+                enemy.burned.SetActive(true);
+            }
         }
         else if (ChooseSpell() == 8)
         {
             isReverb = true;
             reverb.SetActive(true);
-            Debug.Log("Reverb effect " + reverbTurnCount);
         }
         else if (ChooseSpell() == 9)
         {
@@ -839,6 +768,12 @@ public class BattleManager : MonoBehaviour
                 charHealthSlider.value = 500;
             }
             DamagePopup(playerLocation, 3, "normal", true);
+            isCharSealed = false;
+            isCharCursed = false;
+            isCharPoisoned = false;
+            seal.SetActive(false);
+            curse.SetActive(false);
+            playerPoison.SetActive(false);
         }
         else if (ChooseSpell() == 10)
         {
@@ -849,7 +784,6 @@ public class BattleManager : MonoBehaviour
             isCrystalize = true;
             crystalize.SetActive(true);
             crystalTurnCount = 2;
-            Debug.Log("You crystalized");
         }
 
         GameObject sPrefab;
@@ -859,14 +793,14 @@ public class BattleManager : MonoBehaviour
         sPrefab.GetComponent<SpellCreation>().spellName = spellList[ChooseSpell()].sName;
         sPrefab.GetComponent<SpellCreation>().damage = spellList[ChooseSpell()].sDamage;
 
-        if ((currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposedTurnCount == 1))
+        if ((enemy.isExposed) && (enemy.exposedTurnCount == 1))
         {
-            if (!Weakness() || CheckNeutral())
+            if (!CheckWeakness(enemy.weak) || CheckNeutral())
             {
                 sPrefab.GetComponent<SpellCreation>().damage *= 2;
             }
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().isExposed = false;
-            currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().exposed.SetActive(false);
+            enemy.isExposed = false;
+            enemy.exposed.SetActive(false);
         }
         else
         {
@@ -874,12 +808,7 @@ public class BattleManager : MonoBehaviour
             {
                 if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
                 {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount--;
-                    if (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount <= 0)
-                    {
-                        currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed = false;
-                        currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed.SetActive(false);
-                    }
+                    StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
                 }
             }
         }
@@ -906,7 +835,6 @@ public class BattleManager : MonoBehaviour
         int hellfireCount = 0;
         int treeCount = 0;
         int humanCount = 0;
-
 
         int whaleTag = 1;
         int hellfireTag = 1;
@@ -938,36 +866,29 @@ public class BattleManager : MonoBehaviour
         {
             if (currentEnemyList[i].tag == "Whale")
             {
-                if (whaleCount >= 2)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Whale " + whaleTag.ToString();
-                    whaleTag++;
-                }
+                CheckEnemyCount(ref whaleCount, ref whaleTag, i, "Whale");
             }
             else if (currentEnemyList[i].tag == "Hellfire")
             {
-                if (hellfireCount >= 2)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Hellfire " + hellfireTag.ToString();
-                    hellfireTag++;
-                }
+                CheckEnemyCount(ref hellfireCount, ref hellfireTag, i, "Hellfire");
             }
             else if (currentEnemyList[i].tag == "Tree")
             {
-                if (treeCount >= 2)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Tree " + treeTag.ToString();
-                    treeTag++;
-                }
+                CheckEnemyCount(ref treeCount, ref treeTag, i, "Tree");
             }
             else if (currentEnemyList[i].tag == "Human")
             {
-                if (humanCount >= 2)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text = "Human " + humanTag.ToString();
-                    humanTag++;
-                }
+                CheckEnemyCount(ref humanCount, ref humanTag, i, "Human");
             }
+        }
+    }
+
+    public void CheckEnemyCount(ref int count, ref int tag, int index, string name)
+    {
+        if (count >= 2)
+        {
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().eText.text = name + " " + tag.ToString();
+            tag++;
         }
     }
 
@@ -1022,18 +943,19 @@ public class BattleManager : MonoBehaviour
     }
     #endregion
 
-    public bool ChanceStatusEffect(float chance)
-    {
-        if (Random.value >= chance)
-        {
-            return true;
-        }
-        return false;
-    }
-
+    #region Visuals
     public void DamagePopup(Transform location, int damage, string state, bool isHeal)
     {
         GameObject damagePopup = Instantiate(numberPopupObj, location);
         damagePopup.GetComponent<NumberPopupController>().Setup(damage, state, isHeal);
+    }
+    #endregion
+
+    private void Update()
+    {
+        if (startCheckEnemy)
+        {
+            enemy = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>();
+        }
     }
 }
