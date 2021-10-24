@@ -418,12 +418,16 @@ public class BattleManager : MonoBehaviour
         if (battleState == BattleState.WIN)
         {
             gameWinScreen.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             waveCount++;
             PlayerPrefs.SetInt(prefWave, waveCount);
         }
         else if (battleState == BattleState.LOSE)
         {
             gameLoseScreen.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
