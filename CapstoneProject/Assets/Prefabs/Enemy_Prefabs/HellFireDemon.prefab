@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 276756736682388239}
   - component: {fileID: 5063236300005951352}
   m_Layer: 6
-  m_Name: WhaleSkeleton
+  m_Name: FireSkeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -888,7 +888,7 @@ public class BattleManager : MonoBehaviour
             }
             else if (currentEnemyList[i].tag == "Human")
             {
-                CheckEnemyCount(ref humanCount, ref humanTag, i, "Human");
+                CheckEnemyCount(ref humanCount, ref humanTag, i, "Possessed");
             }
         }
     }
