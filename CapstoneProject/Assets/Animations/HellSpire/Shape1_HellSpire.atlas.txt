@@ -1,0 +1,6 @@
+Shape1_HellSpire.png
+size:515,515
+filter:Linear,Linear
+pma:true
+Shape 1
+bounds:2,2,511,511

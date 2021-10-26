@@ -1,0 +1,6 @@
+Enemies.png
+size:448,448
+filter:Linear,Linear
+pma:true
+Ellipse 1
+bounds:2,2,444,444

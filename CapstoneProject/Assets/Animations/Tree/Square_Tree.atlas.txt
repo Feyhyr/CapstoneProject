@@ -1,0 +1,6 @@
+Square_Tree.png
+size:416,416
+filter:Linear,Linear
+pma:true
+Rounded Rectangle 1
+bounds:2,2,412,412

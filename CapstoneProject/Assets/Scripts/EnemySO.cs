@@ -13,6 +13,7 @@ public class EnemySO : ScriptableObject
     public List<string> weakness;
     public List<string> resistance;
     public List<string> immunity;
+    public Sprite enemySprite;
     public AnimationReferenceAsset idle;
     public AnimationReferenceAsset attack;
     public AnimationReferenceAsset damage;
