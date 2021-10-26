@@ -11,6 +11,7 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
 
     public Transform playerLocation;
+    Vector3 originalPosition;
 
     public GameObject spellButtonPrefab;
     public GameObject runePrefab;
@@ -98,6 +99,8 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
+
+        originalPosition = playerLocation.position;
 
         battleState = BattleState.START;
 
@@ -269,6 +272,8 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         CheckEnemyDeath(targetEnemy);
+
+        playerLocation.position = originalPosition;
 
         if (isCharCursed)
         {
@@ -766,6 +771,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 9)
         {
+            playerLocation.position += new Vector3(0, 1, 0);
             charHealthSlider.value += 3;
             if (charHealthSlider.value > 500)
             {
