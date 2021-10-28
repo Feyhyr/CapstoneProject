@@ -5,13 +5,21 @@ using UnityEngine;
 public class PauseGame : MonoBehaviour
 {
     public GameObject pauseCanvas;
-    private static bool gamePaused;
+    public bool gamePaused;
+    public SpellBookMngr spellUnlock;
+
+    private void Start()
+    {
+        spellUnlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ChangeState();
+            spellUnlock.spellBookCanvas.SetActive(false);
+            spellUnlock.spellBookState = false;
         }
     }
 

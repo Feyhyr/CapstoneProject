@@ -43,7 +43,6 @@ public class BattleManager : MonoBehaviour
     int enemyIndex = 0;
     public List<GameObject> enemyPrefab;
     public List<GameObject> currentEnemyList;
-    public GameObject targetEnemyPrefab;
     public int targetEnemy = 0;
     public Transform enemyLocation;
 
@@ -94,11 +93,15 @@ public class BattleManager : MonoBehaviour
 
     EnemyController enemy;
     bool startCheckEnemy;
+
+    public SpellBookMngr unlock;
     #endregion
 
     private void Start()
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
+
+        unlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
 
         originalPosition = playerLocation.position;
 
@@ -693,7 +696,8 @@ public class BattleManager : MonoBehaviour
         {
             index = 11;
         }
-
+        unlock.SetSpellKey(unlock.keys, ref unlock.unlockList, index, true);
+        unlock.CheckSpellBook();
         return index;
     }
 
