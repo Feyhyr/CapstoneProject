@@ -30,6 +30,10 @@ public class SpellBookMngr : MonoBehaviour
         {
             pause = GameObject.Find("OverlayCanvas").GetComponent<PauseGame>();
         }
+        else if (scene.name == "MainGameScene")
+        {
+            pause = GameObject.Find("MainGameCanvas").GetComponent<PauseGame>();
+        }
         else if (scene.name == "MainMenuScene")
         {
             Destroy(gameObject);
