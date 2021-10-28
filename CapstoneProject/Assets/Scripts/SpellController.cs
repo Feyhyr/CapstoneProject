@@ -14,14 +14,22 @@ public class SpellController : MonoBehaviour
     public BattleManager bm;
 
     public GameObject message;
+    public GameObject selectedState;
 
     private void Start()
     {
+        bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        nameText.text = spell.sName;
+        spellIcon = spell.icon;
+        gameObject.GetComponent<Image>().sprite = spellIcon;
+        spellDescription = spell.description;
         infoText.text = spellDescription;
     }
 
     public void SpellSelect()
     {
+        gameObject.GetComponent<Button>().interactable = false;
+        selectedState.SetActive(false);
         bm.TriggerAttack();
     }
 

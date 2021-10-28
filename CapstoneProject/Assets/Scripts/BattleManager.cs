@@ -21,9 +21,10 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> spellPrefab;
 
     public List<RuneSO> runeList;
-    public List<SpellSO> spellList;
+    //public List<SpellSO> spellList;
+    public List<GameObject> spellBTNList;
 
-    public GameObject spellMaker;
+    //public GameObject spellMaker;
     public Image firstRune;
     public Image secondRune;
     public Transform spellButtonLocation;
@@ -33,7 +34,7 @@ public class BattleManager : MonoBehaviour
     public int runeIndex;
     int sealedRuneIndex;
 
-    public GameObject[] buttonObjs;
+    public GameObject[] runeObjs;
 
     public int charMaxHealth;
     public Slider charHealthSlider;
@@ -86,10 +87,9 @@ public class BattleManager : MonoBehaviour
     public GameObject enemyTurnUX;
 
     public GameObject creationPrefab;
-
     public GameObject freezePrefab;
-
     public GameObject cameraObject;
+    public GameObject cancelBTN;
 
     EnemyController enemy;
     bool startCheckEnemy;
@@ -128,7 +128,7 @@ public class BattleManager : MonoBehaviour
         }
 
         charHealthSlider.value = charMaxHealth;
-        GameObject rPrefab;
+        /*GameObject rPrefab;
 
         for (int i = 0; i < runeList.Count; i++)
         {
@@ -139,9 +139,9 @@ public class BattleManager : MonoBehaviour
             rPrefab.GetComponent<RuneController>().nameText.text = runeList[i].runeName;
             rPrefab.GetComponent<RuneController>().runeIcon = runeList[i].icon;
             rPrefab.GetComponent<Button>().image.sprite = rPrefab.GetComponent<RuneController>().runeIcon;
-        }
+        }*/
 
-        buttonObjs = GameObject.FindGameObjectsWithTag("Button");
+        //buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
         if (bossBattle)
         {
@@ -166,7 +166,6 @@ public class BattleManager : MonoBehaviour
 
         enemyIndex = 0;
         randomEnemyCount = Random.Range(1, 4);
-        Debug.Log("Random enemy count: " + randomEnemyCount);
 
         for (int i = 0; i < randomEnemyCount; i++)
         {
@@ -237,32 +236,36 @@ public class BattleManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         firstRune.color = Color.white;
         secondRune.color = Color.white;
-        spellMaker.SetActive(true);
+        //spellMaker.SetActive(true);
         runeCover.SetActive(false);
         enemy.targetSelected.SetActive(true);
     }
 
     IEnumerator PAttackPhase()
     {
+        //rune1 = "";
+        //rune2 = "";
         yield return new WaitForSeconds(0.5f);
         enemyState = "Idle";
         enemy.SetCharacterState(enemyState);
 
-        foreach (GameObject Button in buttonObjs)
+        for (int i = 0; i < runeObjs.Length; i++)
         {
-            Button.GetComponent<Button>().interactable = true;
+            runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
+            runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
         }
 
         if (isReverb)
         {
-            buttonObjs[runeIndex].GetComponent<Button>().interactable = true;
+            //buttonObjs[runeIndex].GetComponent<Button>().interactable = true;
             isReverb = false;
         }
         else
         {
             reverbTurnCount = 1;
             reverb.SetActive(false);
-            buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
+            //buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
 
         if (isCharSealed)
@@ -363,12 +366,12 @@ public class BattleManager : MonoBehaviour
                         {
                             Debug.Log("Player is sealed");
                             sealedRuneIndex = Random.Range(0, 4);
-                            while (sealedRuneIndex == runeIndex)
+                            /*while (sealedRuneIndex == runeIndex)
                             {
                                 sealedRuneIndex = Random.Range(0, 4);
-                            }
-                            buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
-                            Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
+                            }*/
+                            runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
+                            //Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
                             charSealedTurnCount = 2;
                             seal.SetActive(true);
                             isCharSealed = true;
@@ -641,9 +644,36 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    public void ResetSpell()
+    {
+        spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = false;
+        spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
+
+        for (int i = 0; i < runeObjs.Length; i++)
+        {
+            runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
+            runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+        }
+
+        rune1 = "";
+        rune2 = "";
+    }
     #endregion
 
     #region Spell Creation
+    public void CheckSpell()
+    {
+        cancelBTN.SetActive(true);
+        for (int i = 0; i < runeObjs.Length; i++)
+        {
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = false;
+        }
+        ChooseSpell();
+        SpellChosen();
+    }
+
     public int ChooseSpell()
     {
         int index = 0;
@@ -701,18 +731,20 @@ public class BattleManager : MonoBehaviour
         return index;
     }
 
-    public IEnumerator SpellChosen()
+    public void SpellChosen()
     {
-        GameObject createObj = Instantiate(creationPrefab, spellButtonLocation);
-        yield return new WaitForSeconds(1f);
-        Destroy(createObj);
-        spellMaker.SetActive(false);
-        GameObject sbPrefab = Instantiate(spellButtonPrefab, spellButtonLocation);
-        sbPrefab.GetComponent<SpellController>().bm = this;
-        sbPrefab.GetComponent<SpellController>().nameText.text = spellList[ChooseSpell()].sName;
-        sbPrefab.GetComponent<SpellController>().spellIcon = spellList[ChooseSpell()].icon;
-        sbPrefab.GetComponent<Button>().image.sprite = sbPrefab.GetComponent<SpellController>().spellIcon;
-        sbPrefab.GetComponent<SpellController>().spellDescription = spellList[ChooseSpell()].description;
+        //GameObject createObj = Instantiate(creationPrefab, spellButtonLocation);
+        //yield return new WaitForSeconds(1f);
+        //Destroy(createObj);
+        //spellMaker.SetActive(false);
+        spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = true;
+        spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(true);
+        //GameObject sbPrefab = Instantiate(spellButtonPrefab, spellButtonLocation);
+        //sbPrefab.GetComponent<SpellController>().bm = this;
+        //sbPrefab.GetComponent<SpellController>().nameText.text = spellList[ChooseSpell()].sName;
+        //sbPrefab.GetComponent<SpellController>().spellIcon = spellList[ChooseSpell()].icon;
+        //sbPrefab.GetComponent<Button>().image.sprite = sbPrefab.GetComponent<SpellController>().spellIcon;
+        //sbPrefab.GetComponent<SpellController>().spellDescription = spellList[ChooseSpell()].description;
     }
 
     public void CreateSpell()
@@ -803,9 +835,8 @@ public class BattleManager : MonoBehaviour
         GameObject sPrefab;
 
         sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
-        sPrefab.GetComponent<SpellCreation>().spell = spellList[ChooseSpell()];
-        sPrefab.GetComponent<SpellCreation>().spellName = spellList[ChooseSpell()].sName;
-        sPrefab.GetComponent<SpellCreation>().damage = spellList[ChooseSpell()].sDamage;
+        sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
+        sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
 
         if ((enemy.isExposed) && (enemy.exposedTurnCount == 1))
         {
@@ -946,13 +977,13 @@ public class BattleManager : MonoBehaviour
 
     public void EnemySeal()
     {
-        buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
+        runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
         charSealedTurnCount--;
         if (charSealedTurnCount <= 0)
         {
             isCharSealed = false;
             seal.SetActive(false);
-            buttonObjs[sealedRuneIndex].GetComponent<Button>().interactable = true;
+            runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = true;
         }
     }
     #endregion
@@ -970,6 +1001,14 @@ public class BattleManager : MonoBehaviour
         if (startCheckEnemy)
         {
             enemy = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>();
+        }
+
+        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked))
+        {
+            if (rune1 != "" && rune2 != "")
+            {
+                CheckSpell();
+            }
         }
     }
 }
