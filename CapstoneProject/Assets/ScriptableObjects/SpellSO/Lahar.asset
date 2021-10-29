@@ -16,6 +16,6 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: 1ffe8f16bb0759b44b8e5a0db72177ba, type: 3}
   sDamage: 5
   sfx: {fileID: 8300000, guid: dade1a2f75f01854daba0644d419fa8a, type: 3}
-  icon: {fileID: 21300000, guid: 092554912092b0948ba17a186689c28e, type: 3}
+  icon: {fileID: 21300000, guid: 52894aec51dc6584bbf94e47bc143040, type: 3}
   description: Casting Lahar will deal an additional 2-10 damage to the enemy upon
     casting.

@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a5a6b6ac39e500b44b8838b48d364bc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 390a419736403904b801360442125257, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -332,6 +332,11 @@ MonoBehaviour:
   bm: {fileID: 0}
   message: {fileID: 4276002842474702791}
   selectedState: {fileID: 2034827214}
+  onCD: 0
+  maxCD: 0
+  currentCD: 0
+  counterCDText: {fileID: 0}
+  CDCover: {fileID: 0}
 --- !u!1 &4276002842474702791
 GameObject:
   m_ObjectHideFlags: 0
