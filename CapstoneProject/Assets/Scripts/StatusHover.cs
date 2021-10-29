@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class StatusHover : MonoBehaviour
+public class StatusHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject message;
 
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         message.SetActive(true);
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         message.SetActive(false);
     }

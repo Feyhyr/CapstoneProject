@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1349680768}
   - component: {fileID: 1349680769}
+  - component: {fileID: 1447864333831467912}
   m_Layer: 5
   m_Name: Selected
   m_TagString: Untagged
@@ -34,20 +35,42 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!122 &1349680769
-Halo:
+--- !u!222 &1349680769
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349680767}
+  m_CullTransparentMesh: 1
+--- !u!114 &1447864333831467912
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349680767}
   m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_Size: 0.7
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c073c73f4f3870a4799ba19af1c611bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: d28187814a1aaa24f806ccefac877cd1, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: dcde5894ceb8add4e825259e6520dd70, type: 3}
+  _outlineWidth: 43
+  _cornerRadius: 50
+  _cornerSegments: 20
+  _mappingBias: 0
+  _fillCenter: 0
 --- !u!1 &823993378017385686
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &823993378017385689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -141,7 +164,6 @@ GameObject:
   - component: {fileID: 823993379849303738}
   - component: {fileID: -6649292229563750961}
   - component: {fileID: -1494543377291452843}
-  - component: {fileID: 7736557261505445954}
   m_Layer: 5
   m_Name: BoilBTN
   m_TagString: Button
@@ -310,22 +332,6 @@ MonoBehaviour:
   bm: {fileID: 0}
   message: {fileID: 4276002842474702791}
   selectedState: {fileID: 1349680767}
---- !u!58 &7736557261505445954
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823993379849303736}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 21
 --- !u!1 &4276002842474702791
 GameObject:
   m_ObjectHideFlags: 0

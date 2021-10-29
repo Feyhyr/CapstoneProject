@@ -766,7 +766,6 @@ GameObject:
   - component: {fileID: 771050531115960330}
   - component: {fileID: 5393004978939907660}
   - component: {fileID: 7607083953667822829}
-  - component: {fileID: 1910676025339030312}
   - component: {fileID: 1587138018973014346}
   m_Layer: 6
   m_Name: Burn
@@ -832,22 +831,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!58 &1910676025339030312
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077468060699176620}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!114 &1587138018973014346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,7 +855,6 @@ GameObject:
   - component: {fileID: 4954557909680971106}
   - component: {fileID: 6591238993268747900}
   - component: {fileID: 1326905753454545698}
-  - component: {fileID: 5650168375872812669}
   - component: {fileID: 987194303133842354}
   m_Layer: 6
   m_Name: Scald
@@ -938,22 +920,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!58 &5650168375872812669
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2174255201801788679}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!114 &987194303133842354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,7 +1911,6 @@ GameObject:
   - component: {fileID: 7764428659354726116}
   - component: {fileID: 3226643881311977423}
   - component: {fileID: 6282846001740031850}
-  - component: {fileID: 7735295503381275867}
   - component: {fileID: 7294977467505559291}
   m_Layer: 6
   m_Name: Expose
@@ -2011,22 +1976,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!58 &7735295503381275867
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6949633423282666785}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!114 &7294977467505559291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,7 +2152,6 @@ GameObject:
   - component: {fileID: 4428582299698736480}
   - component: {fileID: 9181719636421692714}
   - component: {fileID: 6495920095862999520}
-  - component: {fileID: 6863161749267136667}
   - component: {fileID: 3679923843410953500}
   m_Layer: 6
   m_Name: Poison
@@ -2269,22 +2217,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!58 &6863161749267136667
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721572715049387175}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!114 &3679923843410953500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2309,7 +2241,6 @@ GameObject:
   - component: {fileID: 7190792715990991134}
   - component: {fileID: 6528059678509998020}
   - component: {fileID: 8629743183129340580}
-  - component: {fileID: 2030071046403336679}
   - component: {fileID: 4285796828136917733}
   m_Layer: 6
   m_Name: Freeze
@@ -2375,22 +2306,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!58 &2030071046403336679
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847690151168961619}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!114 &4285796828136917733
 MonoBehaviour:
   m_ObjectHideFlags: 0

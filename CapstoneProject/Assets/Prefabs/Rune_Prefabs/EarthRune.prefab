@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 823993379849303738}
   - component: {fileID: -386759113408988421}
   - component: {fileID: -6649292229563750961}
+  - component: {fileID: 511785065}
   m_Layer: 5
   m_Name: EarthRune
   m_TagString: Button
@@ -165,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823993379849303736}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -242,7 +243,12 @@ MonoBehaviour:
   nameText: {fileID: 823993378017385688}
   runeIcon: {fileID: 0}
   bm: {fileID: 0}
+  defaultPos: {x: 0, y: 0, z: 0}
+  droppedOnSlot: 0
   canvas: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  onFirstSlot: 0
+  onSecondSlot: 0
 --- !u!114 &-6649292229563750961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +262,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSFX: {fileID: 8300000, guid: 5ae39b2b3529ae54b8607557b261ebce, type: 3}
+--- !u!225 &511785065
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823993379849303736}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

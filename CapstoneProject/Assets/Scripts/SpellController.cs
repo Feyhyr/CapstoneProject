@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SpellController : MonoBehaviour
+public class SpellController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public SpellSO spell;
     public Text nameText;
     public Sprite spellIcon;
     public string spellDescription;
     public Text infoText;
-
     public BattleManager bm;
-
     public GameObject message;
     public GameObject selectedState;
+
+    public bool onCD;
+    public int maxCD;
+    public int currentCD;
+    public GameObject counterCDText;
+    public GameObject CDCover;
 
     private void Start()
     {
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        maxCD = 2;
+        currentCD = 0;
         nameText.text = spell.sName;
         spellIcon = spell.icon;
         gameObject.GetComponent<Image>().sprite = spellIcon;
@@ -28,8 +35,15 @@ public class SpellController : MonoBehaviour
 
     public void SpellSelect()
     {
+        bm.cancelBTN.SetActive(false);
         gameObject.GetComponent<Button>().interactable = false;
         selectedState.SetActive(false);
+        message.SetActive(false);
+        onCD = true;
+        CDCover.SetActive(true);
+        currentCD = maxCD;
+        counterCDText.GetComponent<Text>().text = maxCD.ToString();
+        counterCDText.SetActive(true);
         bm.TriggerAttack();
     }
 
@@ -38,12 +52,15 @@ public class SpellController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        message.SetActive(true);
+        if (gameObject.GetComponent<Button>().interactable)
+        {
+            message.SetActive(true);
+        }
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         message.SetActive(false);
     }

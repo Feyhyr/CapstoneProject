@@ -25,8 +25,8 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> spellBTNList;
 
     //public GameObject spellMaker;
-    public Image firstRune;
-    public Image secondRune;
+    //public Image firstRune;
+    //public Image secondRune;
     public Transform spellButtonLocation;
 
     public string rune1;
@@ -232,10 +232,24 @@ public class BattleManager : MonoBehaviour
         playerTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
         playerTurnUX.SetActive(false);
+        for (int i = 0; i < spellBTNList.Count; i++)
+        {
+            if (spellBTNList[i].GetComponent<SpellController>().onCD)
+            {
+                spellBTNList[i].GetComponent<SpellController>().currentCD--;
+                spellBTNList[i].GetComponent<SpellController>().counterCDText.GetComponent<Text>().text = spellBTNList[i].GetComponent<SpellController>().currentCD.ToString();
+                if (spellBTNList[i].GetComponent<SpellController>().currentCD <= 0)
+                {
+                    spellBTNList[i].GetComponent<SpellController>().counterCDText.SetActive(false);
+                    spellBTNList[i].GetComponent<SpellController>().onCD = false;
+                    spellBTNList[i].GetComponent<SpellController>().CDCover.SetActive(false);
+                }
+            }
+        }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        firstRune.color = Color.white;
-        secondRune.color = Color.white;
+        //firstRune.color = Color.white;
+        //secondRune.color = Color.white;
         //spellMaker.SetActive(true);
         runeCover.SetActive(false);
         enemy.targetSelected.SetActive(true);
@@ -253,6 +267,8 @@ public class BattleManager : MonoBehaviour
         {
             runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
             runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
+            runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
+            runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
         }
 
@@ -654,6 +670,8 @@ public class BattleManager : MonoBehaviour
         {
             runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
             runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
+            runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
+            runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
         }
 
@@ -737,8 +755,11 @@ public class BattleManager : MonoBehaviour
         //yield return new WaitForSeconds(1f);
         //Destroy(createObj);
         //spellMaker.SetActive(false);
-        spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = true;
-        spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(true);
+        if (!spellBTNList[ChooseSpell()].GetComponent<SpellController>().onCD)
+        {
+            spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = true;
+            spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(true);
+        }
         //GameObject sbPrefab = Instantiate(spellButtonPrefab, spellButtonLocation);
         //sbPrefab.GetComponent<SpellController>().bm = this;
         //sbPrefab.GetComponent<SpellController>().nameText.text = spellList[ChooseSpell()].sName;
