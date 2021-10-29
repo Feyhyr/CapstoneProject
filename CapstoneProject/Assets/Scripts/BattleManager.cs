@@ -51,7 +51,8 @@ public class BattleManager : MonoBehaviour
 
     public bool playerAttacked = false;
 
-    public GameObject numberPopupObj;
+    public GameObject enemyNumPopupObj;
+    public GameObject playerNumPopupObj;
 
     public GameObject crystalize;
     public GameObject reverb;
@@ -90,6 +91,7 @@ public class BattleManager : MonoBehaviour
     public GameObject freezePrefab;
     public GameObject cameraObject;
     public GameObject cancelBTN;
+    public GameObject spellOnCDObj;
 
     EnemyController enemy;
     bool startCheckEnemy;
@@ -219,6 +221,7 @@ public class BattleManager : MonoBehaviour
         if (extraTurn && isCrystalize)
         {
             crystalTurnCount--;
+            crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
             if (crystalTurnCount <= 0)
             {
                 isCrystalize = false;
@@ -280,6 +283,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             reverbTurnCount = 1;
+            reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
             reverb.SetActive(false);
             //buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
@@ -342,6 +346,7 @@ public class BattleManager : MonoBehaviour
                 yield return new WaitForSeconds(2);
                 Destroy(fPrefab);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount--;
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().frozen.GetComponentInChildren<Text>().text = enemy.freezeTurnCount.ToString();
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount == 0)
                 {
                     currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze = false;
@@ -361,6 +366,7 @@ public class BattleManager : MonoBehaviour
                         Debug.Log("Player is cursed");
                         isCharCursed = true;
                         charCursedTurnCount = 2;
+                        curse.GetComponentInChildren<Text>().text = charCursedTurnCount.ToString();
                         curse.SetActive(true);
                     }
                 }
@@ -371,6 +377,7 @@ public class BattleManager : MonoBehaviour
                         Debug.Log("Player is poisoned");
                         isCharPoisoned = true;
                         charPoisonedTurnCount = 2;
+                        playerPoison.GetComponentInChildren<Text>().text = charPoisonedTurnCount.ToString();
                         playerPoison.SetActive(true);
                     }
                 }
@@ -389,6 +396,7 @@ public class BattleManager : MonoBehaviour
                             runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
                             //Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
                             charSealedTurnCount = 2;
+                            seal.GetComponentInChildren<Text>().text = charSealedTurnCount.ToString();
                             seal.SetActive(true);
                             isCharSealed = true;
                         }
@@ -426,6 +434,7 @@ public class BattleManager : MonoBehaviour
         if (isCrystalize)
         {
             crystalTurnCount--;
+            crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
             if (crystalTurnCount <= 0)
             {
                 isCrystalize = false;
@@ -477,7 +486,7 @@ public class BattleManager : MonoBehaviour
     #region Attack Functions
     public void PlayerAttack(int damage)
     {
-        string state = "normal";
+        string state = "normalEnemy";
 
         if (CheckWeakness(enemy.immune))
         {
@@ -487,7 +496,7 @@ public class BattleManager : MonoBehaviour
         {
             if (CheckWeakness(enemy.weak) && !CheckNeutral())
             {
-                state = "critical";
+                state = "criticalEnemy";
                 if (isDrowned)
                 {
                     damage *= 3;
@@ -500,7 +509,7 @@ public class BattleManager : MonoBehaviour
             }
             else if (CheckWeakness(enemy.resist) && !CheckNeutral())
             {
-                state = "weak";
+                state = "weakEnemy";
                 damage /= 2;
             }
 
@@ -534,10 +543,11 @@ public class BattleManager : MonoBehaviour
             {
                 damage += reverbTurnCount;
                 reverbTurnCount++;
+                reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
             }
         }
         EnemyDamage(damage, targetEnemy);
-        DamagePopup(currentEnemyList[targetEnemy].transform, damage, state, false);
+        EDamagePopup(currentEnemyList[targetEnemy].transform, damage, state, false, enemyNumPopupObj);
         enemyState = "Damage";
         enemy.SetCharacterState(enemyState);
         playerAttacked = true;
@@ -553,7 +563,7 @@ public class BattleManager : MonoBehaviour
         }
 
         charHealthSlider.value -= enemyDmg;
-        DamagePopup(playerLocation, enemyDmg, "normal", false);
+        PDamagePopup(playerLocation, enemyDmg, "normalPlayer", false, playerNumPopupObj);
         enemyState = "Attack";
         currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
     }
@@ -599,9 +609,10 @@ public class BattleManager : MonoBehaviour
         if (dmg > 0)
         {
             EnemyDamage(dmg, index);
-            DamagePopup(currentEnemyList[index].transform, dmg, "normal", false);
+            EDamagePopup(currentEnemyList[index].transform, dmg, "normalEnemy", false, enemyNumPopupObj);
         }
         count--;
+        obj.GetComponentInChildren<Text>().text = count.ToString();
         if (count <= 0)
         {
             status = false;
@@ -760,6 +771,10 @@ public class BattleManager : MonoBehaviour
             spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = true;
             spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(true);
         }
+        else
+        {
+            spellOnCDObj.SetActive(true);
+        }
         //GameObject sbPrefab = Instantiate(spellButtonPrefab, spellButtonLocation);
         //sbPrefab.GetComponent<SpellController>().bm = this;
         //sbPrefab.GetComponent<SpellController>().nameText.text = spellList[ChooseSpell()].sName;
@@ -778,6 +793,7 @@ public class BattleManager : MonoBehaviour
         {
             enemy.isPoisoned = true;
             enemy.poisonTurnCount = 2;
+            enemy.poisoned.GetComponentInChildren<Text>().text = enemy.poisonTurnCount.ToString();
             enemy.poisoned.SetActive(true);
         }
         else if (ChooseSpell() == 2)
@@ -786,6 +802,7 @@ public class BattleManager : MonoBehaviour
             {
                 enemy.isExposed = true;
                 enemy.exposedTurnCount = 2;
+                enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
                 enemy.exposed.SetActive(true);
             }
         }
@@ -793,6 +810,7 @@ public class BattleManager : MonoBehaviour
         {
             enemy.isScald = true;
             enemy.scaldTurnCount = 4;
+            enemy.scalded.GetComponentInChildren<Text>().text = enemy.scaldTurnCount.ToString();
             enemy.scalded.SetActive(true);
         }
         else if (ChooseSpell() == 4)
@@ -809,6 +827,7 @@ public class BattleManager : MonoBehaviour
             {
                 enemy.isFreeze = true;
                 enemy.freezeTurnCount = 2;
+                enemy.frozen.GetComponentInChildren<Text>().text = enemy.freezeTurnCount.ToString();
                 enemy.frozen.SetActive(true);
             }
         }
@@ -818,6 +837,7 @@ public class BattleManager : MonoBehaviour
             {
                 enemy.isBurn = true;
                 enemy.burnTurnCount = 3;
+                enemy.burned.GetComponentInChildren<Text>().text = enemy.burnTurnCount.ToString();
                 enemy.burned.SetActive(true);
             }
         }
@@ -828,13 +848,13 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 9)
         {
-            playerLocation.position += new Vector3(0, 1, 0);
+            playerLocation.position += new Vector3(0, 50, 0);
             charHealthSlider.value += 3;
             if (charHealthSlider.value > 500)
             {
                 charHealthSlider.value = 500;
             }
-            DamagePopup(playerLocation, 3, "normal", true);
+            PDamagePopup(playerLocation, 3, "normalPlayer", true, playerNumPopupObj);
             isCharSealed = false;
             isCharCursed = false;
             isCharPoisoned = false;
@@ -851,6 +871,7 @@ public class BattleManager : MonoBehaviour
             isCrystalize = true;
             crystalize.SetActive(true);
             crystalTurnCount = 2;
+            crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
         }
 
         GameObject sPrefab;
@@ -970,8 +991,9 @@ public class BattleManager : MonoBehaviour
     public void EnemyPoison()
     {
         charHealthSlider.value -= 3;
-        DamagePopup(playerLocation, 3, "normal", false);
+        PDamagePopup(playerLocation, 3, "normalPlayer", false, playerNumPopupObj);
         charPoisonedTurnCount--;
+        playerPoison.GetComponentInChildren<Text>().text = charPoisonedTurnCount.ToString();
         if (charPoisonedTurnCount <= 0)
         {
             isCharPoisoned = false;
@@ -987,8 +1009,9 @@ public class BattleManager : MonoBehaviour
             damage = 1;
         }
         charHealthSlider.value -= damage;
-        DamagePopup(playerLocation, (int)damage, "normal", false);
+        PDamagePopup(playerLocation, (int)damage, "normalPlayer", false, playerNumPopupObj);
         charCursedTurnCount--;
+        curse.GetComponentInChildren<Text>().text = charCursedTurnCount.ToString();
         if (charCursedTurnCount <= 0)
         {
             isCharCursed = false;
@@ -1000,6 +1023,7 @@ public class BattleManager : MonoBehaviour
     {
         runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
         charSealedTurnCount--;
+        seal.GetComponentInChildren<Text>().text = charSealedTurnCount.ToString();
         if (charSealedTurnCount <= 0)
         {
             isCharSealed = false;
@@ -1010,10 +1034,15 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region Visuals
-    public void DamagePopup(Transform location, int damage, string state, bool isHeal)
+    public void PDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
     {
-        GameObject damagePopup = Instantiate(numberPopupObj, location);
-        damagePopup.GetComponent<NumberPopupController>().Setup(damage, state, isHeal);
+        GameObject damagePopup = Instantiate(popup, location);
+        damagePopup.GetComponent<PlayerNumberPopup>().Setup(damage, state, isHeal);
+    }
+    public void EDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
+    {
+        GameObject damagePopup = Instantiate(popup, location);
+        damagePopup.GetComponent<EnemyNumberPopup>().Setup(damage, state, isHeal);
     }
     #endregion
 

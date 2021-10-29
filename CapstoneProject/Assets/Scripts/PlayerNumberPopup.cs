@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NumberPopupController : MonoBehaviour
+public class PlayerNumberPopup : MonoBehaviour
 {
-    private TextMeshPro textMesh;
+    private TextMeshProUGUI textMesh;
     private float fadeTimer;
     private Color textColor;
 
     private void Awake()
     {
-        textMesh = transform.GetComponent<TextMeshPro>();
+        textMesh = transform.GetComponent<TextMeshProUGUI>();
     }
 
     public void Setup(int damage, string state, bool heal)
     {
         textMesh.SetText(damage.ToString());
         fadeTimer = 0.8f;
-        if (state == "normal")
+        if (state == "normalPlayer")
         {
-            textMesh.fontSize = 6;
+            textMesh.fontSize = 70;
+            textColor = new Color32(244, 244, 244, 255);
             if (heal)
             {
                 textColor = new Color32(166, 243, 130, 255);
@@ -30,14 +31,14 @@ public class NumberPopupController : MonoBehaviour
                 textColor = new Color32(244, 244, 244, 255);
             }
         }
-        else if (state == "critical")
+        else if (state == "criticalPlayer")
         {
-            textMesh.fontSize = 10;
+            textMesh.fontSize = 80;
             textColor = new Color32(253, 87, 87, 255);
         }
-        else if (state == "weak")
+        else if (state == "weakPlayer")
         {
-            textMesh.fontSize = 4;
+            textMesh.fontSize = 60;
             textColor = new Color32(185, 188, 188, 255);
         }
         textMesh.color = textColor;

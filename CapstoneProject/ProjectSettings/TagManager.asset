@@ -14,6 +14,7 @@ TagManager:
   - Human
   - Boss
   - FirstSlot
+  - Reverb
   layers:
   - Default
   - TransparentFX
