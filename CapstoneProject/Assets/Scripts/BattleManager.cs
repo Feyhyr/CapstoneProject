@@ -88,8 +88,9 @@ public class BattleManager : MonoBehaviour
     EnemyController enemy;
     bool startCheckEnemy;
 
-    public SpellBookMngr unlock;
-    public FloorManager floor;
+    private SpellBookMngr unlock;
+    private FloorManager floor;
+    public Image floorBackground;
     #endregion
 
     private void Start()
@@ -425,6 +426,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (battleState == BattleState.LOSE)
         {
+            PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -436,12 +438,17 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            floor.AddCount(ref floor.waveCount, floor.prefWave);
+            PlayerPrefs.SetInt(floor.prefWave, 1);
             floor.AddCount(ref floor.floorCount, floor.prefFloor);
+            floor.AddCount(ref floor.floorsUnlocked, floor.prefFloorUnlock);
+
+            PlayerPrefs.SetInt(floor.prefFloorUnlock, floor.floorsUnlocked);
+            PlayerPrefs.SetInt("floorReached", floor.floorsUnlocked);
             SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
         {
+            PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
         }
     }

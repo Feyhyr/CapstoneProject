@@ -47,6 +47,6 @@ public class PauseGame : MonoBehaviour
 
     public void TimeScaleNormal()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
     }
 }

@@ -9,10 +9,18 @@ public class FloorManager : Singleton<FloorManager>
     public string prefFloor = "prefFloor";
     public Text floorCounterText;
     public int floorCount;
+    public string prefFloorUnlock = "floorsUnlocked";
+    public int floorsUnlocked;
 
     public string prefWave = "prefWave";
     public Text waveCounterText;
     public int waveCount;
+
+    public List<Sprite> floorBackgrounds;
+    private BattleManager bm;
+
+    public List<Button> floorButtons;
+    private GameObject entrancePanel;
 
     private new void Awake()
     {
@@ -22,22 +30,43 @@ public class FloorManager : Singleton<FloorManager>
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainGameScene" || scene.name == "BattleScene" || scene.name == "GameWinScene" || scene.name == "GameOverScene")
+        if (scene.name == "MainGameScene")
+        {
+            entrancePanel = GameObject.Find("Entrance Panel");
+            for (int i = 0; i < floorButtons.Count; i++)
+            {
+                floorButtons[i] = GameObject.Find("Floor" + (i + 1)).GetComponent<Button>();
+            }
+            entrancePanel.SetActive(false);
+        }
+        if (scene.name == "BattleScene")
+        {
+            bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+            bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
+        }
+        if (scene.name == "MainGameScene" || scene.name == "BattleScene")
         {
             floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
             waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
             CheckCount(prefFloor, ref floorCount, ref floorCounterText, "Floor", "Floor 5");
             CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
+
+            floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
+
+            if (floorsUnlocked > 5)
+            {
+                floorsUnlocked = 5;
+            }
+        }
+        else if (scene.name == "GameWinScene" || scene.name == "GameOverScene")
+        {
+            waveCount = PlayerPrefs.GetInt(prefWave, 1);
         }
     }
 
     private void CheckCount(string key, ref int count, ref Text text, string prefix, string specPrefix)
     {
-        if (!PlayerPrefs.HasKey(key))
-        {
-            PlayerPrefs.SetInt(key, 1);
-        }
-        count = PlayerPrefs.GetInt(key);
+        count = PlayerPrefs.GetInt(key, 1);
         if (count > 5)
         {
             count = 1;
@@ -56,6 +85,10 @@ public class FloorManager : Singleton<FloorManager>
     public void AddCount(ref int count, string key)
     {
         count++;
+        if (count > 5)
+        {
+            count = 1;
+        }
         PlayerPrefs.SetInt(key, count);
     }
 }

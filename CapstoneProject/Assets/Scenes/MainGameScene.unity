@@ -267,6 +267,148 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3630046}
   m_CullTransparentMesh: 1
+--- !u!1 &10751180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 10751183}
+  - component: {fileID: 10751182}
+  - component: {fileID: 10751181}
+  m_Layer: 0
+  m_Name: AudioTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!82 &10751181
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10751180}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &10751182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10751180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2608270ef07a6c44bb6aac74507290a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistOnSceneLoad: 1
+  audio: {fileID: 10751181}
+--- !u!4 &10751183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10751180}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88905550
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +491,55 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 88905553}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1285865759}
+        m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
+        m_MethodName: TimeScaleNormal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BattlScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935323689}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BattlScene
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1285865760}
+        m_TargetAssemblyTypeName: FloorSelect, Assembly-CSharp
+        m_MethodName: SaveFloorCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BattleScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285865757}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: SwitchToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BattleScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &88905553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1434,7 @@ GameObject:
   - component: {fileID: 414149043}
   - component: {fileID: 414149042}
   m_Layer: 5
-  m_Name: Floor2_BTN
+  m_Name: Floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1294,7 +1484,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6037736, g: 0.4460132, b: 0.24207903, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1337,6 +1527,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285865760}
+        m_TargetAssemblyTypeName: FloorSelect, Assembly-CSharp
+        m_MethodName: ChangeFloor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &414149043
 MonoBehaviour:
@@ -1522,7 +1724,7 @@ GameObject:
   - component: {fileID: 469380746}
   - component: {fileID: 469380745}
   m_Layer: 5
-  m_Name: Floor5_BTN
+  m_Name: Floor5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1572,7 +1774,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6037736, g: 0.4460132, b: 0.24207903, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1615,6 +1817,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285865760}
+        m_TargetAssemblyTypeName: FloorSelect, Assembly-CSharp
+        m_MethodName: ChangeFloor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &469380746
 MonoBehaviour:
@@ -2570,7 +2784,7 @@ GameObject:
   - component: {fileID: 877277916}
   - component: {fileID: 877277915}
   m_Layer: 5
-  m_Name: Floor3_BTN
+  m_Name: Floor3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2620,7 +2834,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6037736, g: 0.4460132, b: 0.24207903, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2663,6 +2877,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285865760}
+        m_TargetAssemblyTypeName: FloorSelect, Assembly-CSharp
+        m_MethodName: ChangeFloor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &877277916
 MonoBehaviour:
@@ -3622,6 +3848,7 @@ GameObject:
   - component: {fileID: 1285865757}
   - component: {fileID: 1285865758}
   - component: {fileID: 1285865759}
+  - component: {fileID: 1285865760}
   m_Layer: 5
   m_Name: MainGameCanvas
   m_TagString: Untagged
@@ -3756,6 +3983,20 @@ MonoBehaviour:
   pauseCanvas: {fileID: 1246642236}
   gamePaused: 0
   spellUnlock: {fileID: 0}
+--- !u!114 &1285865760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285865752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545503f68ff6a7946aaef95d4dc25833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefFloorSelect: floorReached
+  floorReached: 0
 --- !u!1 &1324045875
 GameObject:
   m_ObjectHideFlags: 0
@@ -4299,6 +4540,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: MainMenuScene
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935323689}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScene
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1285865757}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
@@ -5080,7 +5333,7 @@ GameObject:
   - component: {fileID: 1858206423}
   - component: {fileID: 1858206422}
   m_Layer: 5
-  m_Name: Floor4_BTN
+  m_Name: Floor4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5130,7 +5383,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6037736, g: 0.4460132, b: 0.24207903, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5173,6 +5426,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285865760}
+        m_TargetAssemblyTypeName: FloorSelect, Assembly-CSharp
+        m_MethodName: ChangeFloor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1858206423
 MonoBehaviour:
@@ -5308,7 +5573,7 @@ GameObject:
   - component: {fileID: 1884776265}
   - component: {fileID: 1884776264}
   m_Layer: 5
-  m_Name: Floor1_BTN
+  m_Name: Floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5358,7 +5623,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6037736, g: 0.4460132, b: 0.24207903, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5401,6 +5666,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285865760}
+        m_TargetAssemblyTypeName: FloorSelect, Assembly-CSharp
+        m_MethodName: ChangeFloor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1884776265
 MonoBehaviour:
@@ -5457,7 +5734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1935323690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6024,9 +6301,23 @@ MonoBehaviour:
   prefFloor: prefFloor
   floorCounterText: {fileID: 8210270255657300752}
   floorCount: 0
+  prefFloorUnlock: floorsUnlocked
+  floorsUnlocked: 0
   prefWave: prefWave
   waveCounterText: {fileID: 8210270256641961594}
   waveCount: 0
+  floorBackgrounds:
+  - {fileID: 21300000, guid: 5a3ffbfb75259204588bfcc17c321c44, type: 3}
+  - {fileID: 21300000, guid: 7712d9bbbd3856f4aa1baa404e6d38fa, type: 3}
+  - {fileID: 21300000, guid: f20ca92a250c9854992bf11624c112e4, type: 3}
+  - {fileID: 21300000, guid: b0d0db07f81b7364d8918f30eb2a3923, type: 3}
+  - {fileID: 21300000, guid: a6fce53d12880b6429a6f26a6addb4ce, type: 3}
+  floorButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3770522804608111906
 GameObject:
   m_ObjectHideFlags: 0
