@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public RuneSO rune;
-    public Text nameText;
+    //public Text nameText;
     public Sprite runeIcon;
     public BattleManager bm;
 
@@ -25,7 +25,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        nameText.text = rune.name;
+        //nameText.text = rune.name;
         runeIcon = rune.icon;
         gameObject.GetComponent<Image>().sprite = runeIcon;
     }
