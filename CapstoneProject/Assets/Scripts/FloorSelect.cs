@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FloorSelect : MonoBehaviour
 {
     private FloorManager floor;
     public string prefFloorSelect = "floorReached";
     public int floorReached;
+    public List<Button> floorButtons;
 
     private void Start()
     {
@@ -14,11 +16,11 @@ public class FloorSelect : MonoBehaviour
 
         floorReached = PlayerPrefs.GetInt(prefFloorSelect, 1);
 
-        for (int i = 0; i < floor.floorButtons.Count; i++)
+        for (int i = 0; i < floorButtons.Count; i++)
         {
             if (i + 1 > floorReached)
             {
-                floor.floorButtons[i].interactable = false;
+                floorButtons[i].interactable = false;
             }
         }
     }

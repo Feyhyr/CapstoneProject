@@ -19,9 +19,6 @@ public class FloorManager : Singleton<FloorManager>
     public List<Sprite> floorBackgrounds;
     private BattleManager bm;
 
-    public List<Button> floorButtons;
-    private GameObject entrancePanel;
-
     private new void Awake()
     {
         base.Awake();
@@ -30,15 +27,6 @@ public class FloorManager : Singleton<FloorManager>
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainGameScene")
-        {
-            entrancePanel = GameObject.Find("Entrance Panel");
-            for (int i = 0; i < floorButtons.Count; i++)
-            {
-                floorButtons[i] = GameObject.Find("Floor" + (i + 1)).GetComponent<Button>();
-            }
-            entrancePanel.SetActive(false);
-        }
         if (scene.name == "BattleScene")
         {
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();

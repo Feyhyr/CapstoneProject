@@ -3997,6 +3997,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefFloorSelect: floorReached
   floorReached: 0
+  floorButtons:
+  - {fileID: 1884776264}
+  - {fileID: 414149042}
+  - {fileID: 877277915}
+  - {fileID: 1858206422}
+  - {fileID: 469380745}
 --- !u!1 &1324045875
 GameObject:
   m_ObjectHideFlags: 0
@@ -5734,7 +5740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1935323690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6312,12 +6318,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f20ca92a250c9854992bf11624c112e4, type: 3}
   - {fileID: 21300000, guid: b0d0db07f81b7364d8918f30eb2a3923, type: 3}
   - {fileID: 21300000, guid: a6fce53d12880b6429a6f26a6addb4ce, type: 3}
-  floorButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &3770522804608111906
 GameObject:
   m_ObjectHideFlags: 0
