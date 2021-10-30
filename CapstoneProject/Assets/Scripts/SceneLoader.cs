@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public void NewGame(string sceneName)
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void SwitchToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

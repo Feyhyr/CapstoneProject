@@ -16972,6 +16972,10 @@ PrefabInstance:
       propertyPath: counterCDText
       value: 
       objectReference: {fileID: 2103588866}
+    - target: {fileID: 3506070, guid: fce172f83696bb144b56d31de48a940a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 823993379849303736, guid: fce172f83696bb144b56d31de48a940a, type: 3}
       propertyPath: m_Name
       value: CrystalizeBTN
