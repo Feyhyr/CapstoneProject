@@ -21,12 +21,8 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> spellPrefab;
 
     public List<RuneSO> runeList;
-    //public List<SpellSO> spellList;
     public List<GameObject> spellBTNList;
 
-    //public GameObject spellMaker;
-    //public Image firstRune;
-    //public Image secondRune;
     public Transform spellButtonLocation;
 
     public string rune1;
@@ -77,10 +73,6 @@ public class BattleManager : MonoBehaviour
 
     bool bossBattle;
 
-    public const string prefWave = "prefWave";
-    public Text waveCounterText;
-    public int waveCount;
-
     public GameObject gameWinScreen;
     public GameObject gameLoseScreen;
     public GameObject battleStartUX;
@@ -97,6 +89,7 @@ public class BattleManager : MonoBehaviour
     bool startCheckEnemy;
 
     public SpellBookMngr unlock;
+    public FloorManager floor;
     #endregion
 
     private void Start()
@@ -104,46 +97,17 @@ public class BattleManager : MonoBehaviour
         Random.InitState((int)System.DateTime.Now.Ticks);
 
         unlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
+        floor = GameObject.Find("FloorManager").GetComponent<FloorManager>();
 
         originalPosition = playerLocation.position;
 
         battleState = BattleState.START;
 
-        if (!(PlayerPrefs.HasKey(prefWave)))
-        {
-            PlayerPrefs.SetInt(prefWave, 1);
-        }
-        waveCount = PlayerPrefs.GetInt(prefWave);
-        if (waveCount > 5)
-        {
-            waveCount = 1;
-            waveCounterText.text = "Wave " + waveCount;
-        }
-        else if (waveCount == 5)
+        if (floor.waveCount == 5)
         {
             bossBattle = true;
-            waveCounterText.text = "Boss Wave";
         }
-        else
-        {
-            waveCounterText.text = "Wave " + waveCount;
-        }
-
         charHealthSlider.value = charMaxHealth;
-        /*GameObject rPrefab;
-
-        for (int i = 0; i < runeList.Count; i++)
-        {
-            rPrefab = Instantiate(runePrefab, runeLocation);
-
-            rPrefab.GetComponent<RuneController>().bm = this;
-            rPrefab.GetComponent<RuneController>().rune = runeList[i];
-            rPrefab.GetComponent<RuneController>().nameText.text = runeList[i].runeName;
-            rPrefab.GetComponent<RuneController>().runeIcon = runeList[i].icon;
-            rPrefab.GetComponent<Button>().image.sprite = rPrefab.GetComponent<RuneController>().runeIcon;
-        }*/
-
-        //buttonObjs = GameObject.FindGameObjectsWithTag("Button");
 
         if (bossBattle)
         {
@@ -155,6 +119,19 @@ public class BattleManager : MonoBehaviour
         }
     }
     
+    /*TO BE DELETED*/
+    public void WinNormalBattle()
+    {
+        battleState = BattleState.WIN;
+        EndNormalBattle();
+    }
+    /*TO BE DELETED*/
+    public void WinBossBattle()
+    {
+        battleState = BattleState.WIN;
+        EndBossBattle();
+    }
+
     #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
@@ -251,17 +228,12 @@ public class BattleManager : MonoBehaviour
         }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        //firstRune.color = Color.white;
-        //secondRune.color = Color.white;
-        //spellMaker.SetActive(true);
         runeCover.SetActive(false);
         enemy.targetSelected.SetActive(true);
     }
 
     IEnumerator PAttackPhase()
     {
-        //rune1 = "";
-        //rune2 = "";
         yield return new WaitForSeconds(0.5f);
         enemyState = "Idle";
         enemy.SetCharacterState(enemyState);
@@ -277,7 +249,6 @@ public class BattleManager : MonoBehaviour
 
         if (isReverb)
         {
-            //buttonObjs[runeIndex].GetComponent<Button>().interactable = true;
             isReverb = false;
         }
         else
@@ -285,7 +256,6 @@ public class BattleManager : MonoBehaviour
             reverbTurnCount = 1;
             reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
             reverb.SetActive(false);
-            //buttonObjs[runeIndex].GetComponent<Button>().interactable = false;
         }
 
         if (isCharSealed)
@@ -389,12 +359,7 @@ public class BattleManager : MonoBehaviour
                         {
                             Debug.Log("Player is sealed");
                             sealedRuneIndex = Random.Range(0, 4);
-                            /*while (sealedRuneIndex == runeIndex)
-                            {
-                                sealedRuneIndex = Random.Range(0, 4);
-                            }*/
                             runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
-                            //Debug.Log(buttonObjs[sealedRuneIndex].GetComponent<RuneController>().nameText.text + " rune has been sealed");
                             charSealedTurnCount = 2;
                             seal.GetComponentInChildren<Text>().text = charSealedTurnCount.ToString();
                             seal.SetActive(true);
@@ -456,8 +421,7 @@ public class BattleManager : MonoBehaviour
             gameWinScreen.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            waveCount++;
-            PlayerPrefs.SetInt(prefWave, waveCount);
+            floor.AddCount(ref floor.waveCount, floor.prefWave);
         }
         else if (battleState == BattleState.LOSE)
         {
@@ -472,8 +436,8 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            waveCount++;
-            PlayerPrefs.SetInt(prefWave, waveCount);
+            floor.AddCount(ref floor.waveCount, floor.prefWave);
+            floor.AddCount(ref floor.floorCount, floor.prefFloor);
             SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
@@ -762,10 +726,6 @@ public class BattleManager : MonoBehaviour
 
     public void SpellChosen()
     {
-        //GameObject createObj = Instantiate(creationPrefab, spellButtonLocation);
-        //yield return new WaitForSeconds(1f);
-        //Destroy(createObj);
-        //spellMaker.SetActive(false);
         if (!spellBTNList[ChooseSpell()].GetComponent<SpellController>().onCD)
         {
             spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = true;
@@ -775,12 +735,6 @@ public class BattleManager : MonoBehaviour
         {
             spellOnCDObj.SetActive(true);
         }
-        //GameObject sbPrefab = Instantiate(spellButtonPrefab, spellButtonLocation);
-        //sbPrefab.GetComponent<SpellController>().bm = this;
-        //sbPrefab.GetComponent<SpellController>().nameText.text = spellList[ChooseSpell()].sName;
-        //sbPrefab.GetComponent<SpellController>().spellIcon = spellList[ChooseSpell()].icon;
-        //sbPrefab.GetComponent<Button>().image.sprite = sbPrefab.GetComponent<SpellController>().spellIcon;
-        //sbPrefab.GetComponent<SpellController>().spellDescription = spellList[ChooseSpell()].description;
     }
 
     public void CreateSpell()

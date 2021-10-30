@@ -8,7 +8,6 @@ public class AudioManager : Singleton<AudioManager>
 {
     public new AudioSource audio;
 
-
     public void Play(AudioClip sfxToPlay)
     {
         if (audio.isPlaying)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SpellBookMngr : MonoBehaviour
+public class SpellBookMngr : Singleton<SpellBookMngr>
 {
     public string[] keys = { "cyclone", "smog", "sandblast", "boil", "tsunami", "erupt", "ice storm", "blaze", "reverb", "steam", "lahar", "crystalize" };
     public List<bool> unlockList;
@@ -13,13 +13,14 @@ public class SpellBookMngr : MonoBehaviour
     public Sprite unknownIcon;
     public GameObject spellBookCanvas;
     public bool spellBookState;
-    private PauseGame pause;
+    public PauseGame pause;
     public GameObject textbox;
     public Transform container;
+    public bool canOpen;
 
-    private void Awake()
+    private new void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
         SceneManager.sceneLoaded += OnLevelLoaded;
         CheckSpellBook();
     }
@@ -28,34 +29,39 @@ public class SpellBookMngr : MonoBehaviour
     {
         if (scene.name == "BattleScene")
         {
+            canOpen = true;
             pause = GameObject.Find("OverlayCanvas").GetComponent<PauseGame>();
         }
         else if (scene.name == "MainGameScene")
         {
+            canOpen = true;
             pause = GameObject.Find("MainGameCanvas").GetComponent<PauseGame>();
         }
-        else if (scene.name == "MainMenuScene")
+        else if (scene.name == "MainGameScene")
         {
-            Destroy(gameObject);
+            canOpen = false;
         }
     }
 
     private void Update()
     {
-        if (pause == null)
+        if (canOpen)
         {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                ChangeState();
-            }
-        }
-        else
-        {
-            if (!pause.gamePaused)
+            if (pause == null)
             {
                 if (Input.GetKeyDown(KeyCode.S))
                 {
                     ChangeState();
+                }
+            }
+            else
+            {
+                if (!pause.gamePaused)
+                {
+                    if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        ChangeState();
+                    }
                 }
             }
         }

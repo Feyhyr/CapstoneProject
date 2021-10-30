@@ -33,6 +33,8 @@ public class PauseGame : MonoBehaviour
     {
         if (gamePaused)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
             pauseCanvas.SetActive(true);
         }
@@ -41,5 +43,10 @@ public class PauseGame : MonoBehaviour
             Time.timeScale = 1;
             pauseCanvas.SetActive(false);
         }
+    }
+
+    public void TimeScaleNormal()
+    {
+        Time.timeScale = 1f;
     }
 }
