@@ -2291,7 +2291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -887, y: -90}
+  m_AnchoredPosition: {x: -483, y: -90}
   m_SizeDelta: {x: 202.729, y: 63.144}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &605664143
@@ -2327,7 +2327,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Current Floor:'
+  m_Text: 'Highest Floor:'
 --- !u!222 &605664144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8464,7 +8464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 72, y: -90}
+  m_AnchoredPosition: {x: 520, y: -90}
   m_SizeDelta: {x: 163.04, y: 63.144}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &8210270255834025472
@@ -8486,8 +8486,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1254.0256, y: -9}
-  m_SizeDelta: {x: 3394.6038, y: 512}
+  m_AnchoredPosition: {x: 1451, y: -9}
+  m_SizeDelta: {x: 2352.0823, y: 512}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8210270255834025473
 MonoBehaviour:
@@ -8562,7 +8562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8210270256641961593
 RectTransform:
   m_ObjectHideFlags: 0

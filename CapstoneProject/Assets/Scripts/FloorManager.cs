@@ -32,7 +32,19 @@ public class FloorManager : Singleton<FloorManager>
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
         }
-        if (scene.name == "MainGameScene" || scene.name == "BattleScene")
+        if (scene.name == "MainGameScene")
+        {
+            floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
+
+            if (floorsUnlocked > 5)
+            {
+                floorsUnlocked = 5;
+            }
+
+            floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
+            floorCounterText.text = "Floor " + floorsUnlocked.ToString();
+        }
+        if (scene.name == "BattleScene")
         {
             floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
             waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
