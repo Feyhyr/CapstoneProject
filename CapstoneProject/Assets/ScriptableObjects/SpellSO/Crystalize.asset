@@ -17,4 +17,4 @@ MonoBehaviour:
   sDamage: 5
   sfx: {fileID: 8300000, guid: ce8e82b7d68d6f34dbfed0bde421c49a, type: 3}
   icon: {fileID: 21300000, guid: 9ab7fc2f3b059334e8b603f83d297fdd, type: 3}
-  description: 'All damage you recieve for the next 2 turns is halved. '
+  description: 'All damage you recieve for the next 3 turns is halved. '

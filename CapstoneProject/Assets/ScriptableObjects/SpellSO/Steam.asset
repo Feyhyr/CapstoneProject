@@ -17,4 +17,5 @@ MonoBehaviour:
   sDamage: 5
   sfx: {fileID: 8300000, guid: 15b34a0dece3cbf4199d68171061cece, type: 3}
   icon: {fileID: 21300000, guid: bafa959c8ebb65444bd6e40f495cd032, type: 3}
-  description: Casting Steam will heal 3 HP and remove all status effects.
+  description: Casting Steam will remove all debuffs and heal 15% of max HP. If you
+    have no debuffs the healing will be increased to 20% of max HP.
