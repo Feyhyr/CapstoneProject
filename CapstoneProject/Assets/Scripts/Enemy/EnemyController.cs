@@ -16,9 +16,9 @@ public class EnemyController : MonoBehaviour
     public List<string> weak;
     public List<string> resist;
     public List<string> immune;
-    public AnimationReferenceAsset eIdle;
-    public AnimationReferenceAsset eAttack;
-    public AnimationReferenceAsset eDamage;
+    private AnimationReferenceAsset eIdle;
+    private AnimationReferenceAsset eAttack;
+    private AnimationReferenceAsset eDamage;
     public SkeletonAnimation eSkeletonAnimation;
 
     public string currentState;
@@ -47,8 +47,13 @@ public class EnemyController : MonoBehaviour
     public GameObject enemyCover;
     public bool enemyAttacking;
 
-    private void Awake()
+    public GameObject freezePrefab;
+
+    private void Start()
     {
+        GetComponent<SkeletonAnimation>().skeletonDataAsset = enemy.skeletonData;
+        GetComponent<SkeletonAnimation>().Initialize(true);
+        eSkeletonAnimation = GetComponent<SkeletonAnimation>();
         enemyHealthSlider.value = enemy.maxHealth;
         eText.text = enemy.enemyName;
         atk = enemy.dmg;
@@ -83,6 +88,47 @@ public class EnemyController : MonoBehaviour
         {
             enemyCover.SetActive(false);
         }
+    }
+
+    public virtual void AttackPattern()
+    {
+
+    }
+
+    public void StatusTurnChange(int dmg, ref int count, ref bool status, GameObject obj)
+    {
+        if (dmg > 0)
+        {
+            EnemyDamage(dmg);
+            bm.EDamagePopup(transform, dmg, "normalEnemy", false, bm.enemyNumPopupObj);
+        }
+        count--;
+        obj.GetComponentInChildren<Text>().text = count.ToString();
+        if (count <= 0)
+        {
+            status = false;
+            obj.SetActive(false);
+        }
+    }
+
+    public void EnemyDamage(int damage)
+    {
+        enemyHealthSlider.value -= damage;
+    }
+
+    public void EnemyAttack()
+    {
+        AudioManager.Instance.Play(attackSFX);
+        int enemyDmg = atk;
+        if (bm.isCrystalize)
+        {
+            enemyDmg /= 2;
+        }
+
+        bm.charHealthSlider.value -= enemyDmg;
+        bm.PDamagePopup(bm.playerLocation, enemyDmg, "normalPlayer", false, bm.playerNumPopupObj);
+        currentState = "Attack";
+        SetCharacterState(currentState);
     }
 
     public void SelectTarget()

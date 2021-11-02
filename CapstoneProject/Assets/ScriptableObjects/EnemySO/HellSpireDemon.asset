@@ -18,8 +18,8 @@ MonoBehaviour:
   weakness: []
   resistance: []
   immunity: []
-  enemySprite: {fileID: 0}
   idle: {fileID: 11400000, guid: ed017f3e05ab5d844bf2f736257361a5, type: 2}
   attack: {fileID: 11400000, guid: e23c2ec1ce57b77439ac03f7d5e181e5, type: 2}
   damage: {fileID: 11400000, guid: 0efa51c10cb86184ca121c7e1666c238, type: 2}
+  skeletonData: {fileID: 11400000, guid: efc8f8d14a0cf134cb7d8fca515bcc8e, type: 2}
   attackSFX: {fileID: 8300000, guid: 0c06912225797f244986ac33b09b48b4, type: 3}

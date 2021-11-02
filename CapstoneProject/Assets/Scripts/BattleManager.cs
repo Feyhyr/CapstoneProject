@@ -28,7 +28,7 @@ public class BattleManager : MonoBehaviour
     public string rune1;
     public string rune2;
     public int runeIndex;
-    int sealedRuneIndex;
+    public int sealedRuneIndex;
 
     public GameObject[] runeObjs;
 
@@ -38,7 +38,8 @@ public class BattleManager : MonoBehaviour
     int randomEnemyCount;
     int randomEnemy;
     int enemyIndex = 0;
-    public List<GameObject> enemyPrefab;
+    public List<EnemySO> enemyScriptables;
+    public GameObject enemyPrefab;
     public List<GameObject> currentEnemyList;
     public int targetEnemy = 0;
     public Transform enemyLocation;
@@ -56,16 +57,16 @@ public class BattleManager : MonoBehaviour
     public GameObject curse;
     public GameObject playerPoison;
 
-    bool isCrystalize = false;
+    public bool isCrystalize = false;
     int crystalTurnCount = 2;
     bool isReverb = false;
     int reverbTurnCount = 1;
-    bool isCharSealed = false;
-    int charSealedTurnCount = 2;
-    bool isCharCursed = false;
-    int charCursedTurnCount = 2;
-    bool isCharPoisoned = false;
-    int charPoisonedTurnCount = 2;
+    public bool isCharSealed = false;
+    public int charSealedTurnCount = 2;
+    public bool isCharCursed = false;
+    public int charCursedTurnCount = 2;
+    public bool isCharPoisoned = false;
+    public int charPoisonedTurnCount = 2;
     bool extraTurn = false;
     bool isDrowned = false;
     bool isMelt = false;
@@ -149,10 +150,11 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < randomEnemyCount; i++)
         {
-            randomEnemy = Random.Range(0, enemyPrefab.Count - 1);
-            ePrefab = Instantiate(enemyPrefab[randomEnemy], enemyLocation);
+            randomEnemy = Random.Range(0, enemyScriptables.Count - 1);
+            ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
+            ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[randomEnemy];
             ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
             enemyIndex++;
             currentEnemyList.Add(ePrefab);
@@ -179,9 +181,10 @@ public class BattleManager : MonoBehaviour
 
         GameObject ePrefab;
 
-        ePrefab = Instantiate(enemyPrefab[enemyPrefab.Count - 1], enemyLocation);
+        ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
         ePrefab.GetComponentInChildren<EnemyController>().bm = this;
+        ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[enemyScriptables.Count - 1];
         ePrefab.GetComponentInChildren<EnemyController>().enemyId = 0;
         currentEnemyList.Add(ePrefab);
 
@@ -309,15 +312,16 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
             CheckPlayerDeath();
-
-            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
+            currentEnemyList[i].GetComponentInChildren<EnemyController>().AttackPattern();
+            yield return new WaitForSeconds(2);
+            /*if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
             {
                 Debug.Log(currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text + " cannot move");
                 GameObject fPrefab = Instantiate(freezePrefab, currentEnemyList[i].transform);
                 yield return new WaitForSeconds(2);
                 Destroy(fPrefab);
                 currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount--;
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().frozen.GetComponentInChildren<Text>().text = enemy.freezeTurnCount.ToString();
+                currentEnemyList[i].GetComponentInChildren<EnemyController>().frozen.GetComponentInChildren<Text>().text = currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount.ToString();
                 if (currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount == 0)
                 {
                     currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze = false;
@@ -394,7 +398,7 @@ public class BattleManager : MonoBehaviour
             currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = false;
 
             yield return new WaitForSeconds(1);
-            CheckEnemyDeath(i);
+            CheckEnemyDeath(i);*/
         }
 
         if (isCrystalize)

@@ -27,11 +27,6 @@ public class FloorManager : Singleton<FloorManager>
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "BattleScene")
-        {
-            bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-            bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
-        }
         if (scene.name == "MainGameScene")
         {
             floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
@@ -46,17 +41,19 @@ public class FloorManager : Singleton<FloorManager>
         }
         if (scene.name == "BattleScene")
         {
-            floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
-            waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
-            CheckCount(prefFloor, ref floorCount, ref floorCounterText, "Floor", "Floor 5");
-            CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
-
             floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
 
             if (floorsUnlocked > 5)
             {
                 floorsUnlocked = 5;
             }
+
+            floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
+            waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
+            CheckCount(prefFloor, ref floorCount, ref floorCounterText, "Floor", "Floor 5");
+            CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
+            bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+            bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
         }
         else if (scene.name == "GameWinScene" || scene.name == "GameOverScene")
         {
