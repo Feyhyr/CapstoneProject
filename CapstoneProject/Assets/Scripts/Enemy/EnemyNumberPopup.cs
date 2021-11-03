@@ -21,7 +21,14 @@ public class EnemyNumberPopup : MonoBehaviour
         if (state == "normalEnemy")
         {
             textMesh.fontSize = 6;
-            textColor = new Color32(244, 244, 244, 255);
+            if (heal)
+            {
+                textColor = new Color32(166, 243, 130, 255);
+            }
+            else
+            {
+                textColor = new Color32(244, 244, 244, 255);
+            }
         }
         else if (state == "criticalEnemy")
         {

@@ -9,7 +9,14 @@ public class Basic : EnemyController
     {
         base.AttackPattern();
 
-        StartCoroutine(Attack());
+        if (tag == "Summon")
+        {
+            StartCoroutine(Attack());
+        }
+        else
+        {
+            StartCoroutine(Summoner());
+        }
     }
 
     private IEnumerator Attack()
@@ -100,6 +107,144 @@ public class Basic : EnemyController
 
     private IEnumerator Healer()
     {
-        yield return new WaitForSeconds(1f);
+        bool ishealing = false;
+
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            yield return new WaitForSeconds(2);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            enemyAttacking = true;
+
+            for (int i = 0; i < bm.currentEnemyList.Count; i++)
+            {
+                if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value < bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth)
+                {
+                    ishealing = true;
+                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += 10;
+                    bm.EDamagePopup(bm.currentEnemyList[i].transform, 10, "normalEnemy", true, bm.enemyNumPopupObj);
+                    currentState = "Attack";
+                    SetCharacterState(currentState);
+                }
+            }
+
+            if (!ishealing)
+            {
+                bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+                EnemyAttack();
+            }
+        }
+
+        yield return new WaitForSeconds(1);
+        currentState = "Idle";
+        SetCharacterState(currentState);
+
+        bm.CheckPlayerDeath();
+
+        if (isPoisoned)
+        {
+            StatusTurnChange(3, ref poisonTurnCount, ref isPoisoned, poisoned);
+        }
+
+        if (isScald)
+        {
+            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded);
+        }
+
+        if (isBurn)
+        {
+            StatusTurnChange(1, ref burnTurnCount, ref isBurn, burned);
+        }
+
+        enemyAttacking = false;
+
+        yield return new WaitForSeconds(1);
+        bm.CheckEnemyDeath(enemyId);
+    }
+
+    private IEnumerator Summoner()
+    {
+        bool isSummoning = false;
+
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            yield return new WaitForSeconds(2);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            enemyAttacking = true;
+
+            if (bm.currentEnemyList.Count < 3)
+            {
+                isSummoning = true;
+                GameObject ePrefab;
+                int enemyIndex = bm.currentEnemyList.Count;
+                int index = bm.floor.floorCount - 1;
+                ePrefab = Instantiate(bm.enemyPrefab, bm.enemyLocation);
+
+                ePrefab.GetComponentInChildren<EnemyController>().bm = bm;
+                ePrefab.GetComponentInChildren<EnemyController>().enemy = bm.enemySummonScriptables[index];
+                ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
+                foreach (Transform t in ePrefab.transform)
+                {
+                    t.gameObject.tag = ePrefab.tag;
+                }
+                ePrefab.GetComponentInChildren<EnemyController>().eText.text = ePrefab.GetComponentInChildren<EnemyController>().enemy.enemyName;
+                bm.currentEnemyList.Add(ePrefab);
+            }
+            if (!isSummoning)
+            {
+                bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+                EnemyAttack();
+            }
+        }
+
+        yield return new WaitForSeconds(1);
+        currentState = "Idle";
+        SetCharacterState(currentState);
+
+        bm.CheckPlayerDeath();
+
+        if (isPoisoned)
+        {
+            StatusTurnChange(3, ref poisonTurnCount, ref isPoisoned, poisoned);
+        }
+
+        if (isScald)
+        {
+            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded);
+        }
+
+        if (isBurn)
+        {
+            StatusTurnChange(1, ref burnTurnCount, ref isBurn, burned);
+        }
+
+        enemyAttacking = false;
+
+        yield return new WaitForSeconds(1);
+        bm.CheckEnemyDeath(enemyId);
     }
 }

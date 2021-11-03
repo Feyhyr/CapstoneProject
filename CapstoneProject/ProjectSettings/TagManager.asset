@@ -15,6 +15,7 @@ TagManager:
   - Boss
   - FirstSlot
   - Reverb
+  - Summon
   layers:
   - Default
   - TransparentFX

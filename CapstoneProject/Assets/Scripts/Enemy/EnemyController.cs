@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
         if (dmg > 0)
         {
             EnemyDamage(dmg);
-            bm.EDamagePopup(transform, dmg, "normalEnemy", false, bm.enemyNumPopupObj);
+            bm.EDamagePopup(transform.parent, dmg, "normalEnemy", false, bm.enemyNumPopupObj);
         }
         count--;
         obj.GetComponentInChildren<Text>().text = count.ToString();

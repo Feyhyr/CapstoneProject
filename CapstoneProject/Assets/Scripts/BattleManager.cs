@@ -12,7 +12,7 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
 
     public Transform playerLocation;
-    Vector3 originalPosition;
+    //Vector3 originalPosition;
 
     public GameObject spellButtonPrefab;
     public GameObject runePrefab;
@@ -40,6 +40,7 @@ public class BattleManager : MonoBehaviour
     int randomEnemy;
     int enemyIndex = 0;
     public List<EnemySO> enemyScriptables;
+    public List<EnemySO> enemySummonScriptables;
     public GameObject enemyPrefab;
     public List<GameObject> currentEnemyList;
     public int targetEnemy = 0;
@@ -94,7 +95,7 @@ public class BattleManager : MonoBehaviour
     bool startCheckEnemy;
 
     private SpellBookMngr unlock;
-    private FloorManager floor;
+    public FloorManager floor;
     public Image floorBackground;
     #endregion
 
@@ -105,7 +106,7 @@ public class BattleManager : MonoBehaviour
         unlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
         floor = GameObject.Find("FloorManager").GetComponent<FloorManager>();
 
-        originalPosition = playerLocation.position;
+        //originalPosition = playerLocation.position;
 
         battleState = BattleState.START;
 
@@ -283,7 +284,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         CheckEnemyDeath(targetEnemy);
 
-        playerLocation.position = originalPosition;
+        //playerLocation.position = originalPosition;
 
         if (isCharCursed)
         {
@@ -823,7 +824,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 9)
         {
-            playerLocation.position += new Vector3(0, 50, 0);
+            //playerLocation.position += new Vector3(0, 50, 0);
             charHealthSlider.value += 3;
             if (charHealthSlider.value > 500)
             {
@@ -1012,11 +1013,19 @@ public class BattleManager : MonoBehaviour
     public void PDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
     {
         GameObject damagePopup = Instantiate(popup, location);
+        if (isHeal)
+        {
+            damagePopup.transform.localPosition += new Vector3(0, 80, 0);
+        }
         damagePopup.GetComponent<PlayerNumberPopup>().Setup(damage, state, isHeal);
     }
     public void EDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
     {
         GameObject damagePopup = Instantiate(popup, location);
+        if (isHeal)
+        {
+            damagePopup.transform.localPosition -= new Vector3(0, 1, 0);
+        }
         damagePopup.GetComponent<EnemyNumberPopup>().Setup(damage, state, isHeal);
     }
     #endregion

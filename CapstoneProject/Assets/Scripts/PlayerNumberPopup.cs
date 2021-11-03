@@ -21,7 +21,6 @@ public class PlayerNumberPopup : MonoBehaviour
         if (state == "normalPlayer")
         {
             textMesh.fontSize = 70;
-            textColor = new Color32(244, 244, 244, 255);
             if (heal)
             {
                 textColor = new Color32(166, 243, 130, 255);
