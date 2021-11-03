@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Spine.Unity;
 
 public class BattleManager : MonoBehaviour
 {
@@ -86,6 +87,9 @@ public class BattleManager : MonoBehaviour
     public GameObject cancelBTN;
     public GameObject spellOnCDObj;
 
+    public GameObject debuffCanvas;
+    public GameObject buffCanvas;
+
     EnemyController enemy;
     bool startCheckEnemy;
 
@@ -156,6 +160,12 @@ public class BattleManager : MonoBehaviour
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
             ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[randomEnemy];
             ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+            ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
+            foreach (Transform t in ePrefab.transform)
+            {
+                t.gameObject.tag = ePrefab.tag;
+            }
+            ePrefab.GetComponentInChildren<EnemyController>().eText.text = ePrefab.GetComponentInChildren<EnemyController>().enemy.enemyName;
             enemyIndex++;
             currentEnemyList.Add(ePrefab);
         }

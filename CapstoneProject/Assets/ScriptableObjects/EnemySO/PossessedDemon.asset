@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PossessedDemon
   m_EditorClassIdentifier: 
   enemyName: Possessed
+  tagName: Human
   dmg: 2
   maxHealth: 50
   weakness: []

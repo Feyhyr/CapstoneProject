@@ -1288,7 +1288,7 @@ GameObject:
   - component: {fileID: 8285648919941634976}
   m_Layer: 6
   m_Name: Enemy
-  m_TagString: Human
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

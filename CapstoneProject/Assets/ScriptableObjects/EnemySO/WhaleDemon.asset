@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WhaleDemon
   m_EditorClassIdentifier: 
   enemyName: Whale
+  tagName: Whale
   dmg: 5
   maxHealth: 50
   weakness:

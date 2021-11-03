@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TreeDemon
   m_EditorClassIdentifier: 
   enemyName: Tree
+  tagName: Tree
   dmg: 3
   maxHealth: 50
   weakness:

@@ -1293,7 +1293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780716070515618421, guid: dec6bf2d6e6ace04991ec5b706243c06, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1780716070515618423, guid: dec6bf2d6e6ace04991ec5b706243c06, type: 3}
       propertyPath: m_RootOrder
@@ -7542,6 +7542,8 @@ MonoBehaviour:
   cameraObject: {fileID: 519420028}
   cancelBTN: {fileID: 1993691032}
   spellOnCDObj: {fileID: 31895318}
+  debuffCanvas: {fileID: 2094057219}
+  buffCanvas: {fileID: 1477042091}
   floorBackground: {fileID: 1188835439}
 --- !u!4 &1220174979
 Transform:
@@ -8541,7 +8543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1403295132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13953,10 +13955,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -17319,10 +17321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -17598,7 +17600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1850480258047291368, guid: 4e94b040bf31b2049a310f524c0a1d4a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1850480258047291374, guid: 4e94b040bf31b2049a310f524c0a1d4a, type: 3}
       propertyPath: m_RootOrder

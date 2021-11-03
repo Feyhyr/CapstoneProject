@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HellfireDemon
   m_EditorClassIdentifier: 
   enemyName: Hellfire
+  tagName: Hellfire
   dmg: 10
   maxHealth: 50
   weakness:

@@ -37,7 +37,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             canOpen = true;
             pause = GameObject.Find("MainGameCanvas").GetComponent<PauseGame>();
         }
-        else if (scene.name == "MainGameScene")
+        else if (scene.name == "MainMenuScene")
         {
             canOpen = false;
         }

@@ -30,7 +30,6 @@ public class Basic : EnemyController
 
         else
         {
-            Debug.Log("Starting");
             enemyAttacking = true;
             bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
             EnemyAttack();
@@ -38,6 +37,9 @@ public class Basic : EnemyController
             {
                 if (bm.ChanceStatusEffect(0.7f))
                 {
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(2f);
+                    bm.debuffCanvas.SetActive(false);
                     bm.isCharCursed = true;
                     bm.charCursedTurnCount = 2;
                     bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
@@ -94,5 +96,10 @@ public class Basic : EnemyController
 
         yield return new WaitForSeconds(1);
         bm.CheckEnemyDeath(enemyId);
+    }
+
+    private IEnumerator Healer()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

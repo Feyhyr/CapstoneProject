@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HellSpireDemon
   m_EditorClassIdentifier: 
   enemyName: Hell Spire
+  tagName: Boss
   dmg: 12
   maxHealth: 50
   weakness: []

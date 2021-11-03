@@ -55,7 +55,6 @@ public class EnemyController : MonoBehaviour
         GetComponent<SkeletonAnimation>().Initialize(true);
         eSkeletonAnimation = GetComponent<SkeletonAnimation>();
         enemyHealthSlider.value = enemy.maxHealth;
-        eText.text = enemy.enemyName;
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
