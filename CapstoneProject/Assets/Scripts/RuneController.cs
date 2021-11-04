@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 {
     public RuneSO rune;
     public Sprite runeIcon;
@@ -37,6 +37,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if (canvasGroup.interactable)
         {
+            
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = false;
@@ -89,6 +90,12 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         {
             bm.rune2 = rune.runeName;
             onSecondSlot = true;
+            bm.isAudioPlaying = true;
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        AudioManager.Instance.Play(rune.audioSFX);
     }
 }

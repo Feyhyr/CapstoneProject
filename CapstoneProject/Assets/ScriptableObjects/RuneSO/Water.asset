@@ -15,4 +15,4 @@ MonoBehaviour:
   runeName: Water
   runeId: 2
   icon: {fileID: 21300000, guid: bb5daeb9dac9d5d439b69c7d27dbb8e3, type: 3}
-  audioSFX: {fileID: 8300000, guid: 1a47431d8fe1ba546823c919539d2d89, type: 3}
+  audioSFX: {fileID: 8300000, guid: 0fda5bf02c80920459d090fc9d60e722, type: 3}

@@ -97,6 +97,9 @@ public class BattleManager : MonoBehaviour
     private SpellBookMngr unlock;
     public FloorManager floor;
     public Image floorBackground;
+
+    public AudioClip spellConfirm;
+    public bool isAudioPlaying;
     #endregion
 
     private void Start()
@@ -210,6 +213,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayerTurn()
     {
+        isAudioPlaying = false;
         if (extraTurn && isCrystalize)
         {
             crystalTurnCount--;
@@ -680,6 +684,7 @@ public class BattleManager : MonoBehaviour
     #region Spell Creation
     public void CheckSpell()
     {
+        
         cancelBTN.SetActive(true);
         for (int i = 0; i < runeObjs.Length; i++)
         {
@@ -750,12 +755,18 @@ public class BattleManager : MonoBehaviour
     {
         if (!spellBTNList[ChooseSpell()].GetComponent<SpellController>().onCD)
         {
+            if (isAudioPlaying)
+            {
+                AudioManager.Instance.Play(spellConfirm);
+                isAudioPlaying = false;
+            }
             spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = true;
             spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(true);
         }
         else
         {
             spellOnCDObj.SetActive(true);
+            
         }
     }
 
@@ -1041,6 +1052,8 @@ public class BattleManager : MonoBehaviour
         {
             if (rune1 != "" && rune2 != "")
             {
+                
+               
                 CheckSpell();
             }
         }

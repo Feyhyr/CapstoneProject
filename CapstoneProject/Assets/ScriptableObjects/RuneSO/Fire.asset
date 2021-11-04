@@ -15,4 +15,4 @@ MonoBehaviour:
   runeName: Fire
   runeId: 0
   icon: {fileID: 21300000, guid: 872fc358e881a7f458cae21b145fe46c, type: 3}
-  audioSFX: {fileID: 8300000, guid: 1a47431d8fe1ba546823c919539d2d89, type: 3}
+  audioSFX: {fileID: 8300000, guid: 0fda5bf02c80920459d090fc9d60e722, type: 3}
