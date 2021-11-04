@@ -9,16 +9,16 @@ public class Basic : EnemyController
     {
         //base.AttackPattern();
 
-        if (tag == "Summon")
-        {
+        //if (tag == "Summon")
+        //{
             //StartCoroutine(Attack());
             yield return Attack();
-        }
-        else
-        {
+        //}
+        //else
+        //{
             //StartCoroutine(Debuffer());
-            yield return Debuffer();
-        }
+            //yield return Debuffer();
+        //}
     }
 
     private IEnumerator Attack()
