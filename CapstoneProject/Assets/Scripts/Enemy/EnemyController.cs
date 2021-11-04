@@ -55,6 +55,10 @@ public class EnemyController : MonoBehaviour
         GetComponent<SkeletonAnimation>().Initialize(true);
         eSkeletonAnimation = GetComponent<SkeletonAnimation>();
         enemyHealthSlider.value = enemy.maxHealth;
+        if (tag == "Summon")
+        {
+            enemyHealthSlider.maxValue = enemyHealthSlider.value;
+        }
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
@@ -89,9 +93,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public virtual void AttackPattern()
+    public virtual IEnumerator AttackPattern()
     {
-
+        yield return new WaitForSeconds(0.1f);
     }
 
     public void StatusTurnChange(int dmg, ref int count, ref bool status, GameObject obj)
@@ -115,7 +119,7 @@ public class EnemyController : MonoBehaviour
         enemyHealthSlider.value -= damage;
     }
 
-    public void EnemyAttack()
+    public IEnumerator EnemyAttack()
     {
         AudioManager.Instance.Play(attackSFX);
         int enemyDmg = atk;
@@ -125,9 +129,18 @@ public class EnemyController : MonoBehaviour
         }
 
         bm.charHealthSlider.value -= enemyDmg;
-        bm.PDamagePopup(bm.playerLocation, enemyDmg, "normalPlayer", false, bm.playerNumPopupObj);
         currentState = "Attack";
         SetCharacterState(currentState);
+        yield return new WaitForSeconds(1);
+        bm.PDamagePopup(bm.playerLocation, enemyDmg, "normalPlayer", false, bm.playerNumPopupObj);
+
+        if (tag == "Vampire")
+        {
+            int healAmount = enemyDmg / 2;
+            enemyHealthSlider.value += healAmount;
+            yield return new WaitForSeconds(1);
+            bm.EDamagePopup(transform.parent, healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
+        }
     }
 
     public void SelectTarget()

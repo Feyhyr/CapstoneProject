@@ -12,7 +12,6 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
 
     public Transform playerLocation;
-    //Vector3 originalPosition;
 
     public GameObject spellButtonPrefab;
     public GameObject runePrefab;
@@ -108,8 +107,6 @@ public class BattleManager : MonoBehaviour
 
         unlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
         floor = GameObject.Find("FloorManager").GetComponent<FloorManager>();
-
-        //originalPosition = playerLocation.position;
 
         battleState = BattleState.START;
 
@@ -288,8 +285,6 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         CheckEnemyDeath(targetEnemy);
 
-        //playerLocation.position = originalPosition;
-
         if (isCharCursed)
         {
             EnemyCurse();
@@ -327,93 +322,8 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
             CheckPlayerDeath();
-            currentEnemyList[i].GetComponentInChildren<EnemyController>().AttackPattern();
-            yield return new WaitForSeconds(2);
-            /*if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze && currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount > 0)
-            {
-                Debug.Log(currentEnemyList[i].GetComponentInChildren<EnemyController>().eText.text + " cannot move");
-                GameObject fPrefab = Instantiate(freezePrefab, currentEnemyList[i].transform);
-                yield return new WaitForSeconds(2);
-                Destroy(fPrefab);
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount--;
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().frozen.GetComponentInChildren<Text>().text = currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount.ToString();
-                if (currentEnemyList[i].GetComponentInChildren<EnemyController>().freezeTurnCount == 0)
-                {
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().isFreeze = false;
-                    currentEnemyList[i].GetComponentInChildren<EnemyController>().frozen.SetActive(false);
-                }
-            }
-
-            else
-            {
-                currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = true;
-                cameraObject.GetComponent<ScreenShake>().TriggerShake();
-                EnemyAttack(i);
-                if (currentEnemyList[i].tag == "Human" || currentEnemyList[i].tag == "Boss")
-                {
-                    if (ChanceStatusEffect(0.7f))
-                    {
-                        Debug.Log("Player is cursed");
-                        isCharCursed = true;
-                        charCursedTurnCount = 2;
-                        curse.GetComponentInChildren<Text>().text = charCursedTurnCount.ToString();
-                        curse.SetActive(true);
-                    }
-                }
-                else if (currentEnemyList[i].tag == "Tree")
-                {
-                    if (ChanceStatusEffect(0.7f))
-                    {
-                        Debug.Log("Player is poisoned");
-                        isCharPoisoned = true;
-                        charPoisonedTurnCount = 2;
-                        playerPoison.GetComponentInChildren<Text>().text = charPoisonedTurnCount.ToString();
-                        playerPoison.SetActive(true);
-                    }
-                }
-                else if (currentEnemyList[i].tag == "Human" || currentEnemyList[i].tag == "Boss")
-                {
-                    if (!isCharSealed)
-                    {
-                        if (ChanceStatusEffect(0.7f))
-                        {
-                            Debug.Log("Player is sealed");
-                            sealedRuneIndex = Random.Range(0, 4);
-                            runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
-                            charSealedTurnCount = 2;
-                            seal.GetComponentInChildren<Text>().text = charSealedTurnCount.ToString();
-                            seal.SetActive(true);
-                            isCharSealed = true;
-                        }
-                    }
-                }
-            }
-
-            yield return new WaitForSeconds(1);
-            enemyState = "Idle";
-            currentEnemyList[i].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-
-            CheckPlayerDeath();
-
-            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned)
-            {
-                StatusTurnChange(3, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().poisonTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isPoisoned, currentEnemyList[i].GetComponentInChildren<EnemyController>().poisoned);
-            }
-
-            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald)
-            {
-                StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().scaldTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isScald, currentEnemyList[i].GetComponentInChildren<EnemyController>().scalded);
-            }
-
-            if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn)
-            {
-                StatusTurnChange(1, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().burnTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isBurn, currentEnemyList[i].GetComponentInChildren<EnemyController>().burned);
-            }
-
-            currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyAttacking = false;
-
-            yield return new WaitForSeconds(1);
-            CheckEnemyDeath(i);*/
+            yield return currentEnemyList[i].GetComponentInChildren<EnemyController>().AttackPattern();
+            //yield return new WaitForSeconds(4);
         }
 
         if (isCrystalize)
@@ -676,6 +586,11 @@ public class BattleManager : MonoBehaviour
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
         }
 
+        if (isCharSealed)
+        {
+            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+        }
+
         rune1 = "";
         rune2 = "";
     }
@@ -684,7 +599,6 @@ public class BattleManager : MonoBehaviour
     #region Spell Creation
     public void CheckSpell()
     {
-        
         cancelBTN.SetActive(true);
         for (int i = 0; i < runeObjs.Length; i++)
         {
@@ -766,7 +680,6 @@ public class BattleManager : MonoBehaviour
         else
         {
             spellOnCDObj.SetActive(true);
-            
         }
     }
 
@@ -835,7 +748,6 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 9)
         {
-            //playerLocation.position += new Vector3(0, 50, 0);
             charHealthSlider.value += 3;
             if (charHealthSlider.value > 500)
             {
@@ -1008,14 +920,14 @@ public class BattleManager : MonoBehaviour
 
     public void EnemySeal()
     {
-        runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = false;
+        runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
         charSealedTurnCount--;
         seal.GetComponentInChildren<Text>().text = charSealedTurnCount.ToString();
         if (charSealedTurnCount <= 0)
         {
             isCharSealed = false;
             seal.SetActive(false);
-            runeObjs[sealedRuneIndex].GetComponent<Button>().interactable = true;
+            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = true;
         }
     }
     #endregion
@@ -1052,8 +964,6 @@ public class BattleManager : MonoBehaviour
         {
             if (rune1 != "" && rune2 != "")
             {
-                
-               
                 CheckSpell();
             }
         }

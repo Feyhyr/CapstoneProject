@@ -37,7 +37,6 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if (canvasGroup.interactable)
         {
-            
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = false;
@@ -96,6 +95,9 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        AudioManager.Instance.Play(rune.audioSFX);
+        if (canvasGroup.interactable)
+        {
+            AudioManager.Instance.Play(rune.audioSFX);
+        }
     }
 }

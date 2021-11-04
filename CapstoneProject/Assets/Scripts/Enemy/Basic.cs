@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class Basic : EnemyController
 {
-    public override void AttackPattern()
+    public override IEnumerator AttackPattern()
     {
-        base.AttackPattern();
+        //base.AttackPattern();
 
         if (tag == "Summon")
         {
-            StartCoroutine(Attack());
+            //StartCoroutine(Attack());
+            yield return Attack();
         }
         else
         {
-            StartCoroutine(Summoner());
+            //StartCoroutine(Debuffer());
+            yield return Debuffer();
         }
     }
 
@@ -24,7 +26,7 @@ public class Basic : EnemyController
         if (isFreeze && freezeTurnCount > 0)
         {
             GameObject fPrefab = Instantiate(freezePrefab, transform);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
             frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
@@ -39,70 +41,10 @@ public class Basic : EnemyController
         {
             enemyAttacking = true;
             bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
-            EnemyAttack();
-            if (tag == "Human" || tag == "Boss")
-            {
-                if (bm.ChanceStatusEffect(0.7f))
-                {
-                    bm.debuffCanvas.SetActive(true);
-                    yield return new WaitForSeconds(2f);
-                    bm.debuffCanvas.SetActive(false);
-                    bm.isCharCursed = true;
-                    bm.charCursedTurnCount = 2;
-                    bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
-                    bm.curse.SetActive(true);
-                }
-
-                if (!bm.isCharSealed)
-                {
-                    if (bm.ChanceStatusEffect(0.7f))
-                    {
-                        bm.sealedRuneIndex = Random.Range(0, 4);
-                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<Button>().interactable = false;
-                        bm.charSealedTurnCount = 2;
-                        bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
-                        bm.seal.SetActive(true);
-                        bm.isCharSealed = true;
-                    }
-                }
-            }
-            else if (tag == "Tree")
-            {
-                if (bm.ChanceStatusEffect(0.7f))
-                {
-                    bm.isCharPoisoned = true;
-                    bm.charPoisonedTurnCount = 2;
-                    bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
-                    bm.playerPoison.SetActive(true);
-                }
-            }
+            yield return EnemyAttack();
         }
 
-        yield return new WaitForSeconds(1);
-        currentState = "Idle";
-        SetCharacterState(currentState);
-
-        bm.CheckPlayerDeath();
-
-        if (isPoisoned)
-        {
-            StatusTurnChange(3, ref poisonTurnCount, ref isPoisoned, poisoned);
-        }
-
-        if (isScald)
-        {
-            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded);
-        }
-
-        if (isBurn)
-        {
-            StatusTurnChange(1, ref burnTurnCount, ref isBurn, burned);
-        }
-
-        enemyAttacking = false;
-
-        yield return new WaitForSeconds(1);
-        bm.CheckEnemyDeath(enemyId);
+        yield return CheckEnemyStatus();
     }
 
     private IEnumerator Healer()
@@ -112,7 +54,7 @@ public class Basic : EnemyController
         if (isFreeze && freezeTurnCount > 0)
         {
             GameObject fPrefab = Instantiate(freezePrefab, transform);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
             frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
@@ -142,35 +84,11 @@ public class Basic : EnemyController
             if (!ishealing)
             {
                 bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
-                EnemyAttack();
+                yield return EnemyAttack();
             }
         }
 
-        yield return new WaitForSeconds(1);
-        currentState = "Idle";
-        SetCharacterState(currentState);
-
-        bm.CheckPlayerDeath();
-
-        if (isPoisoned)
-        {
-            StatusTurnChange(3, ref poisonTurnCount, ref isPoisoned, poisoned);
-        }
-
-        if (isScald)
-        {
-            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded);
-        }
-
-        if (isBurn)
-        {
-            StatusTurnChange(1, ref burnTurnCount, ref isBurn, burned);
-        }
-
-        enemyAttacking = false;
-
-        yield return new WaitForSeconds(1);
-        bm.CheckEnemyDeath(enemyId);
+        yield return CheckEnemyStatus();
     }
 
     private IEnumerator Summoner()
@@ -180,7 +98,7 @@ public class Basic : EnemyController
         if (isFreeze && freezeTurnCount > 0)
         {
             GameObject fPrefab = Instantiate(freezePrefab, transform);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
             frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
@@ -213,15 +131,94 @@ public class Basic : EnemyController
                 }
                 ePrefab.GetComponentInChildren<EnemyController>().eText.text = ePrefab.GetComponentInChildren<EnemyController>().enemy.enemyName;
                 bm.currentEnemyList.Add(ePrefab);
+                yield return new WaitForSeconds(0.5f);
             }
+
             if (!isSummoning)
             {
                 bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
-                EnemyAttack();
+                yield return EnemyAttack();
             }
         }
 
-        yield return new WaitForSeconds(1);
+        yield return CheckEnemyStatus();
+    }
+
+    private IEnumerator Debuffer()
+    {
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            yield return new WaitForSeconds(1);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            enemyAttacking = true;
+            bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+            yield return EnemyAttack();
+
+            if (tag == "Human" || tag == "Boss")
+            {
+                if (bm.ChanceStatusEffect(0.7f))
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.debuffCanvas.SetActive(false);
+                    bm.isCharCursed = true;
+                    bm.charCursedTurnCount = 2;
+                    bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
+                    bm.curse.SetActive(true);
+                }
+
+                if (!bm.isCharSealed)
+                {
+                    if (bm.ChanceStatusEffect(0.7f))
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        bm.debuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        bm.debuffCanvas.SetActive(false);
+                        bm.sealedRuneIndex = Random.Range(0, 4);
+                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+                        bm.charSealedTurnCount = 2;
+                        bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
+                        bm.seal.SetActive(true);
+                        bm.isCharSealed = true;
+                    }
+                }
+            }
+            else if (tag == "Tree")
+            {
+                if (bm.ChanceStatusEffect(0.7f))
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.debuffCanvas.SetActive(false);
+                    bm.isCharPoisoned = true;
+                    bm.charPoisonedTurnCount = 2;
+                    bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
+                    bm.playerPoison.SetActive(true);
+                }
+            }
+        }
+
+        yield return CheckEnemyStatus();
+    }
+
+    private IEnumerator CheckEnemyStatus()
+    {
+        yield return new WaitForSeconds(0.5f);
         currentState = "Idle";
         SetCharacterState(currentState);
 
@@ -244,7 +241,7 @@ public class Basic : EnemyController
 
         enemyAttacking = false;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         bm.CheckEnemyDeath(enemyId);
     }
 }

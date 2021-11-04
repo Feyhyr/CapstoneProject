@@ -16,6 +16,7 @@ TagManager:
   - FirstSlot
   - Reverb
   - Summon
+  - Vampire
   layers:
   - Default
   - TransparentFX
