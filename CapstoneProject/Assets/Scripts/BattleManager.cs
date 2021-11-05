@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
 
     public Transform playerLocation;
+    public GameObject playerShakeObject;
 
     public GameObject spellButtonPrefab;
     public GameObject runePrefab;
@@ -48,6 +49,8 @@ public class BattleManager : MonoBehaviour
     string enemyState;
 
     public bool playerAttacked = false;
+    GameObject sPrefab;
+    bool debuffing = false;
 
     public GameObject enemyNumPopupObj;
     public GameObject playerNumPopupObj;
@@ -61,7 +64,7 @@ public class BattleManager : MonoBehaviour
     public bool isCrystalize = false;
     int crystalTurnCount = 2;
     bool isReverb = false;
-    int reverbTurnCount = 1;
+    int reverbTurnCount = 2;
     public bool isCharSealed = false;
     public int charSealedTurnCount = 2;
     public bool isCharCursed = false;
@@ -72,6 +75,9 @@ public class BattleManager : MonoBehaviour
     bool isDrowned = false;
     bool isMelt = false;
     bool debrisHit = false;
+    bool isAOE = false;
+    bool isCreatingSpell = false;
+    public bool pCannotHeal = false;
 
     bool bossBattle;
 
@@ -83,7 +89,6 @@ public class BattleManager : MonoBehaviour
 
     public GameObject creationPrefab;
     public GameObject freezePrefab;
-    public GameObject cameraObject;
     public GameObject cancelBTN;
     public GameObject spellOnCDObj;
 
@@ -171,7 +176,7 @@ public class BattleManager : MonoBehaviour
             currentEnemyList.Add(ePrefab);
         }
 
-        CheckMultipleEnemies();
+        //CheckMultipleEnemies();
 
         startCheckEnemy = true;
         yield return new WaitForSeconds(0.1f);
@@ -224,6 +229,7 @@ public class BattleManager : MonoBehaviour
         extraTurn = false;
         yield return new WaitForSeconds(1);
 
+        isCreatingSpell = false;
         playerAttacked = false;
         playerTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
@@ -250,10 +256,6 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PAttackPhase()
     {
-        yield return new WaitForSeconds(0.5f);
-        enemyState = "Idle";
-        enemy.SetCharacterState(enemyState);
-
         for (int i = 0; i < runeObjs.Length; i++)
         {
             runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
@@ -269,7 +271,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            reverbTurnCount = 1;
+            reverbTurnCount = 2;
             reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
             reverb.SetActive(false);
         }
@@ -336,7 +338,15 @@ public class BattleManager : MonoBehaviour
                 crystalize.SetActive(false);
             }
         }
-        
+
+        for (int i = 0; i < currentEnemyList.Count; i++)
+        {
+            if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
+            {
+                StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
+            }
+        }
+
         battleState = BattleState.PLAYERTURN;
         yield return PlayerTurn();
     }
@@ -384,7 +394,21 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region Attack Functions
-    public void PlayerAttack(int damage)
+    public IEnumerator PlayerAttack(float damage)
+    {
+        if (isAOE)
+        {
+            yield return DamageCheckAOE(damage);
+            isAOE = false;
+        }
+        else
+        {
+            yield return DamageCheckSingle(damage);
+        }
+        yield return PAttackPhase();
+    }
+
+    public IEnumerator DamageCheckSingle(float damage)
     {
         string state = "normalEnemy";
 
@@ -394,32 +418,22 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            if (CheckWeakness(enemy.weak) && !CheckNeutral())
+            if ((enemy.isExposed) && (enemy.exposedTurnCount == 1))
+            {
+                damage *= 2;
+                enemy.isExposed = false;
+                enemy.exposed.SetActive(false);
+            }
+
+            if (CheckWeakness(enemy.weak) && !CheckNeutral(enemy.weak, enemy.resist))
             {
                 state = "criticalEnemy";
-                if (isDrowned)
-                {
-                    damage *= 3;
-                    isDrowned = false;
-                }
-                else
-                {
-                    damage *= 2;
-                }
+                damage *= 2;
             }
-            else if (CheckWeakness(enemy.resist) && !CheckNeutral())
+            else if (CheckWeakness(enemy.resist) && !CheckNeutral(enemy.weak, enemy.resist))
             {
                 state = "weakEnemy";
                 damage /= 2;
-            }
-
-            if (isMelt)
-            {
-                if ((charHealthSlider.value / charMaxHealth) <= 0.1)
-                {
-                    damage *= 2;
-                }
-                isMelt = false;
             }
 
             if (debrisHit)
@@ -431,7 +445,7 @@ public class BattleManager : MonoBehaviour
 
             if ((enemy.isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (enemy.scaldTurnCount <= 3))
             {
-                damage += 2;
+                damage *= 1.5f;
             }
 
             if ((enemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (enemy.burnTurnCount <= 2))
@@ -441,15 +455,145 @@ public class BattleManager : MonoBehaviour
 
             if (isReverb)
             {
-                damage += reverbTurnCount;
-                reverbTurnCount++;
+                damage *= reverbTurnCount;
+                reverbTurnCount *= 2;
                 reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
             }
         }
-        EnemyDamage(damage, targetEnemy);
-        EDamagePopup(currentEnemyList[targetEnemy].transform, damage, state, false, enemyNumPopupObj);
+
+        AudioManager.Instance.Play(enemy.attackSFX);
         enemyState = "Damage";
         enemy.SetCharacterState(enemyState);
+        currentEnemyList[targetEnemy].GetComponentInChildren<ScreenShake>().TriggerShake();
+        yield return new WaitForSeconds(0.5f);
+        EDamagePopup(currentEnemyList[targetEnemy].transform, (int)damage, state, false, enemyNumPopupObj);
+        EnemyDamage((int)damage, targetEnemy);
+        yield return new WaitForSeconds(1f);
+
+        enemyState = "Idle";
+        enemy.SetCharacterState(enemyState);
+
+        playerAttacked = true;
+    }
+
+    public IEnumerator DamageCheckAOE(float damage)
+    {
+        EnemyController currentEnemy;
+
+        for (int i = 0; i < currentEnemyList.Count; i++)
+        {
+            string state = "normalEnemy";
+            currentEnemy = currentEnemyList[i].GetComponentInChildren<EnemyController>();
+
+            if (CheckWeakness(currentEnemy.immune))
+            {
+                damage = 0;
+            }
+            else
+            {
+                if ((currentEnemy.isExposed) && (currentEnemy.exposedTurnCount == 1))
+                {
+                    damage *= 2;
+                    currentEnemy.isExposed = false;
+                    currentEnemy.exposed.SetActive(false);
+                }
+
+                if (CheckWeakness(currentEnemy.weak) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist))
+                {
+                    state = "criticalEnemy";
+                    if (isDrowned)
+                    {
+                        damage *= 3;
+                    }
+                    else
+                    {
+                        damage *= 2;
+                    }
+                }
+                else if (CheckWeakness(currentEnemy.resist) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist))
+                {
+                    state = "weakEnemy";
+                    damage /= 2;
+                }
+
+                if (isMelt)
+                {
+                    if ((charHealthSlider.value / charMaxHealth) <= 0.25)
+                    {
+                        damage *= 2;
+                    }
+                }
+
+                if ((currentEnemy.isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemy.scaldTurnCount <= 3))
+                {
+                    damage *= 1.5f;
+                }
+
+                if ((currentEnemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemy.burnTurnCount <= 2))
+                {
+                    damage += 2;
+                }
+
+                if (isReverb)
+                {
+                    damage += reverbTurnCount;
+                    reverbTurnCount++;
+                    reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
+                }
+
+                if (debrisHit)
+                {
+                    float debrisDmg = Random.Range(0.6f, 2.5f);
+                    damage *= debrisDmg;
+                    debrisHit = false;
+                }
+            }
+
+            AudioManager.Instance.Play(currentEnemy.attackSFX);
+            enemyState = "Damage";
+            currentEnemy.SetCharacterState(enemyState);
+            currentEnemyList[i].GetComponentInChildren<ScreenShake>().TriggerShake();
+            yield return new WaitForSeconds(0.5f);
+            EDamagePopup(currentEnemyList[i].transform, (int)damage, state, false, enemyNumPopupObj);
+            EnemyDamage((int)damage, i);
+            yield return new WaitForSeconds(1f);
+
+            enemyState = "Idle";
+            currentEnemy.SetCharacterState(enemyState);
+
+            if (ChooseSpell() == 1)
+            {
+                if (ChanceStatusEffect(0.7f))
+                {
+                    currentEnemy.eDebuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    currentEnemy.eDebuffCanvas.SetActive(false);
+                    currentEnemy.isPoisoned = true;
+                    currentEnemy.poisonTurnCount = 2;
+                    currentEnemy.poisoned.GetComponentInChildren<Text>().text = currentEnemy.poisonTurnCount.ToString();
+                    currentEnemy.poisoned.SetActive(true);
+                    currentEnemy.eCannotHeal = true;
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+            else if (ChooseSpell() == 6)
+            {
+                if (ChanceStatusEffect(0.7f))
+                {
+                    currentEnemy.eDebuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    currentEnemy.eDebuffCanvas.SetActive(false);
+                    currentEnemy.isFreeze = true;
+                    currentEnemy.freezeTurnCount = 2;
+                    currentEnemy.frozen.GetComponentInChildren<Text>().text = currentEnemy.freezeTurnCount.ToString();
+                    currentEnemy.frozen.SetActive(true);
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+        }
+
+        isDrowned = false;
+        isMelt = false;
         playerAttacked = true;
     }
 
@@ -486,9 +630,9 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    public bool CheckNeutral()
+    public bool CheckNeutral(List<string> weak, List<string> resist)
     {
-        if (CheckWeakness(enemy.weak) && CheckWeakness(enemy.resist))
+        if (CheckWeakness(weak) && CheckWeakness(resist))
         {
             return true;
         }
@@ -593,12 +737,14 @@ public class BattleManager : MonoBehaviour
 
         rune1 = "";
         rune2 = "";
+        isCreatingSpell = false;
     }
     #endregion
 
     #region Spell Creation
     public void CheckSpell()
     {
+        isCreatingSpell = true;
         cancelBTN.SetActive(true);
         for (int i = 0; i < runeObjs.Length; i++)
         {
@@ -683,28 +829,30 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void CreateSpell()
+    public IEnumerator CreateSpell()
     {
+        debuffing = false;
+
         if (ChooseSpell() == 0)
         {
             extraTurn = true;
         }
         else if (ChooseSpell() == 1)
         {
-            enemy.isPoisoned = true;
-            enemy.poisonTurnCount = 2;
-            enemy.poisoned.GetComponentInChildren<Text>().text = enemy.poisonTurnCount.ToString();
-            enemy.poisoned.SetActive(true);
+            debuffing = true;
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+
+            yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+            isAOE = true;
         }
         else if (ChooseSpell() == 2)
         {
-            if (!CheckWeakness(enemy.resist))
-            {
-                enemy.isExposed = true;
-                enemy.exposedTurnCount = 2;
-                enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
-                enemy.exposed.SetActive(true);
-            }
+             enemy.isExposed = true;
+             enemy.exposedTurnCount = 2;
+             enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
+             enemy.exposed.SetActive(true);
         }
         else if (ChooseSpell() == 3)
         {
@@ -716,20 +864,22 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 4)
         {
             isDrowned = true;
+            isAOE = true;
         }
         else if (ChooseSpell() == 5)
         {
             isMelt = true;
+            isAOE = true;
         }
         else if (ChooseSpell() == 6)
         {
-            if (ChanceStatusEffect(0.8f))
-            {
-                enemy.isFreeze = true;
-                enemy.freezeTurnCount = 2;
-                enemy.frozen.GetComponentInChildren<Text>().text = enemy.freezeTurnCount.ToString();
-                enemy.frozen.SetActive(true);
-            }
+            debuffing = true;
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+
+            yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+            isAOE = true;
         }
         else if (ChooseSpell() == 7)
         {
@@ -748,12 +898,18 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 9)
         {
-            charHealthSlider.value += 3;
-            if (charHealthSlider.value > 500)
+            float healAmount = charMaxHealth * 0.2f;
+            if (!pCannotHeal)
             {
-                charHealthSlider.value = 500;
+                charHealthSlider.value += healAmount;
+                PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
             }
-            PDamagePopup(playerLocation, 3, "normalPlayer", true, playerNumPopupObj);
+            else if (pCannotHeal)
+            {
+                healAmount = charMaxHealth * 0.15f;
+                charHealthSlider.value += healAmount;
+                PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
+            }
             isCharSealed = false;
             isCharCursed = false;
             isCharPoisoned = false;
@@ -773,39 +929,39 @@ public class BattleManager : MonoBehaviour
             crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
         }
 
-        GameObject sPrefab;
-
-        sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
-        sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
-        sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
-
-        if ((enemy.isExposed) && (enemy.exposedTurnCount == 1))
+        if (!debuffing)
         {
-            if (!CheckWeakness(enemy.weak) || CheckNeutral())
-            {
-                sPrefab.GetComponent<SpellCreation>().damage *= 2;
-            }
-            enemy.isExposed = false;
-            enemy.exposed.SetActive(false);
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+
+            yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+        }
+
+        if (sPrefab.GetComponent<SpellCreation>().damage != 0)
+        {
+            yield return PlayerAttack(sPrefab.GetComponent<SpellCreation>().damage);
+        }
+        else if (enemy.isExposed)
+        {
+            enemyState = "Damage";
+            enemy.SetCharacterState(enemyState);
+            yield return new WaitForSeconds(0.5f);
+            enemyState = "Idle";
+            enemy.SetCharacterState(enemyState);
+            playerAttacked = true;
+            yield return PAttackPhase();
         }
         else
         {
-            for (int i = 0; i < currentEnemyList.Count; i++)
-            {
-                if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
-                {
-                    StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
-                }
-            }
+            playerAttacked = true;
+            yield return PAttackPhase();
         }
-
-        PlayerAttack(sPrefab.GetComponent<SpellCreation>().damage);
     }
 
     public void TriggerAttack()
     {
-        CreateSpell();
-        StartCoroutine(PAttackPhase());
+        StartCoroutine(CreateSpell());
     }
     #endregion
 
@@ -813,69 +969,6 @@ public class BattleManager : MonoBehaviour
     public void EnemyDamage(int damage, int target)
     {
         currentEnemyList[target].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
-    }
-
-    public void CheckMultipleEnemies()
-    {
-        int whaleCount = 0;
-        int hellfireCount = 0;
-        int treeCount = 0;
-        int humanCount = 0;
-
-        int whaleTag = 1;
-        int hellfireTag = 1;
-        int treeTag = 1;
-        int humanTag = 1;
-
-
-        for (int i = 0; i < currentEnemyList.Count; i++)
-        {
-            if (currentEnemyList[i].tag == "Whale")
-            {
-                whaleCount++;
-            }
-            else if (currentEnemyList[i].tag == "Hellfire")
-            {
-                hellfireCount++;
-            }
-            else if (currentEnemyList[i].tag == "Tree")
-            {
-                treeCount++;
-            }
-            else if (currentEnemyList[i].tag == "Human")
-            {
-                humanCount++;
-            }
-        }
-
-        for (int i = 0; i < currentEnemyList.Count; i++)
-        {
-            if (currentEnemyList[i].tag == "Whale")
-            {
-                CheckEnemyCount(ref whaleCount, ref whaleTag, i, "Whale");
-            }
-            else if (currentEnemyList[i].tag == "Hellfire")
-            {
-                CheckEnemyCount(ref hellfireCount, ref hellfireTag, i, "Hellfire");
-            }
-            else if (currentEnemyList[i].tag == "Tree")
-            {
-                CheckEnemyCount(ref treeCount, ref treeTag, i, "Tree");
-            }
-            else if (currentEnemyList[i].tag == "Human")
-            {
-                CheckEnemyCount(ref humanCount, ref humanTag, i, "Possessed");
-            }
-        }
-    }
-
-    public void CheckEnemyCount(ref int count, ref int tag, int index, string name)
-    {
-        if (count >= 2)
-        {
-            currentEnemyList[index].GetComponentInChildren<EnemyController>().eText.text = name + " " + tag.ToString();
-            tag++;
-        }
     }
 
     public bool IsAllEnemiesDead()
@@ -889,20 +982,22 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyPoison()
     {
-        charHealthSlider.value -= 3;
-        PDamagePopup(playerLocation, 3, "normalPlayer", false, playerNumPopupObj);
+        float damage = charMaxHealth * 0.08f;
+        charHealthSlider.value -= damage;
+        PDamagePopup(playerLocation, (int)damage, "normalPlayer", false, playerNumPopupObj);
         charPoisonedTurnCount--;
         playerPoison.GetComponentInChildren<Text>().text = charPoisonedTurnCount.ToString();
         if (charPoisonedTurnCount <= 0)
         {
             isCharPoisoned = false;
             playerPoison.SetActive(false);
+            pCannotHeal = false;
         }
     }
 
     public void EnemyCurse()
     {
-        float damage = charHealthSlider.value * (1f / 8f);
+        float damage = charHealthSlider.value * (1f / 12f);
         if (damage <= 0)
         {
             damage = 1;
@@ -960,7 +1055,7 @@ public class BattleManager : MonoBehaviour
             enemy = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>();
         }
 
-        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked))
+        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked) && !isCreatingSpell)
         {
             if (rune1 != "" && rune2 != "")
             {

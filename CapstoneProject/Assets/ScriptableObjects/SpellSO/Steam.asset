@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sName: Steam
   particleEffect: {fileID: 5058625723356079543, guid: f73ed35e851082c4cbcacabfe85db722, type: 3}
-  sDamage: 5
+  sDamage: 0
   sfx: {fileID: 8300000, guid: 15b34a0dece3cbf4199d68171061cece, type: 3}
   icon: {fileID: 21300000, guid: bafa959c8ebb65444bd6e40f495cd032, type: 3}
   description: Casting Steam will remove all debuffs and heal 15% of max HP. If you

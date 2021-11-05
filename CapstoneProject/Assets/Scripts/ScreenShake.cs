@@ -6,7 +6,7 @@ public class ScreenShake : MonoBehaviour
 {
     private new Transform transform;
     private float shakeDuration = 0f;
-    private float shakeMagnitude = 0.5f;
+    public float shakeMagnitude;
     private float dampingSpeed = 1.0f;
 
     Vector3 initialPosition;

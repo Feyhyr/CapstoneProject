@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     private AnimationReferenceAsset eAttack;
     private AnimationReferenceAsset eDamage;
     public SkeletonAnimation eSkeletonAnimation;
+    public GameObject enemyShake;
 
     public string currentState;
 
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour
 
     public GameObject targetSelected;
 
+    public bool eCannotHeal;
     public bool isPoisoned;
     public int poisonTurnCount;
     public bool isExposed;
@@ -48,6 +50,7 @@ public class EnemyController : MonoBehaviour
     public bool enemyAttacking;
 
     public GameObject freezePrefab;
+    public GameObject eDebuffCanvas;
 
     private void Start()
     {
@@ -98,7 +101,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
     }
 
-    public void StatusTurnChange(int dmg, ref int count, ref bool status, GameObject obj)
+    public void StatusTurnChange(int dmg, ref int count, ref bool status, GameObject obj, string statusName)
     {
         if (dmg > 0)
         {
@@ -111,6 +114,10 @@ public class EnemyController : MonoBehaviour
         {
             status = false;
             obj.SetActive(false);
+            if (statusName == "Poison")
+            {
+                eCannotHeal = false;
+            }
         }
     }
 

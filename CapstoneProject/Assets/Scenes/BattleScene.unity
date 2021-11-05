@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 26067946}
   - component: {fileID: 26067948}
   - component: {fileID: 26067947}
+  - component: {fileID: 26067949}
   m_Layer: 5
   m_Name: PlayerInfo
   m_TagString: Untagged
@@ -680,6 +681,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26067945}
   m_CullTransparentMesh: 1
+--- !u!114 &26067949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26067945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a887d38a103b0d24e992f291707851a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeMagnitude: 50
 --- !u!1 &31895318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1457,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 2
 --- !u!222 &122964831
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3454,6 +3468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a887d38a103b0d24e992f291707851a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeMagnitude: 50
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -7794,6 +7809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleState: 0
   playerLocation: {fileID: 1768747362}
+  playerShakeObject: {fileID: 26067945}
   spellButtonPrefab: {fileID: 823993379849303736, guid: 8fa04c7e359d6894ea8a0b9b9858bbb7, type: 3}
   runePrefab: {fileID: 823993379849303736, guid: ccc101b3f889fbc41851a140793158fe, type: 3}
   runeLocation: {fileID: 1157296911}
@@ -7869,6 +7885,7 @@ MonoBehaviour:
   charCursedTurnCount: 2
   isCharPoisoned: 0
   charPoisonedTurnCount: 2
+  pCannotHeal: 0
   gameWinScreen: {fileID: 1817146947}
   gameLoseScreen: {fileID: 248642689}
   battleStartUX: {fileID: 674936144}
@@ -7876,7 +7893,6 @@ MonoBehaviour:
   enemyTurnUX: {fileID: 407409638}
   creationPrefab: {fileID: 8974257423291223309, guid: 4c27a9b87d1b73643966cf166252e9a5, type: 3}
   freezePrefab: {fileID: 672203223211207016, guid: f94b9cea65e9e0341934c47598c6f00b, type: 3}
-  cameraObject: {fileID: 519420028}
   cancelBTN: {fileID: 1993691032}
   spellOnCDObj: {fileID: 31895318}
   debuffCanvas: {fileID: 2094057219}
@@ -8958,7 +8974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1403295132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17974,7 +17990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2060669932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19867,7 +19883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1780716070467569605
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Basic : EnemyController
         //if (tag == "Summon")
         //{
             //StartCoroutine(Attack());
-            yield return Attack();
+            yield return Debuffer();
         //}
         //else
         //{
@@ -40,7 +40,7 @@ public class Basic : EnemyController
         else
         {
             enemyAttacking = true;
-            bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
             yield return EnemyAttack();
         }
 
@@ -50,6 +50,7 @@ public class Basic : EnemyController
     private IEnumerator Healer()
     {
         bool ishealing = false;
+        int healAmount = 10;
 
         if (isFreeze && freezeTurnCount > 0)
         {
@@ -74,7 +75,11 @@ public class Basic : EnemyController
                 if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value < bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth)
                 {
                     ishealing = true;
-                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += 10;
+                    if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eCannotHeal)
+                    {
+                        healAmount = 0;
+                    }
+                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount;
                     bm.EDamagePopup(bm.currentEnemyList[i].transform, 10, "normalEnemy", true, bm.enemyNumPopupObj);
                     currentState = "Attack";
                     SetCharacterState(currentState);
@@ -83,7 +88,7 @@ public class Basic : EnemyController
 
             if (!ishealing)
             {
-                bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+                bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
                 yield return EnemyAttack();
             }
         }
@@ -136,7 +141,7 @@ public class Basic : EnemyController
 
             if (!isSummoning)
             {
-                bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+                bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
                 yield return EnemyAttack();
             }
         }
@@ -163,7 +168,7 @@ public class Basic : EnemyController
         else
         {
             enemyAttacking = true;
-            bm.cameraObject.GetComponent<ScreenShake>().TriggerShake();
+            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
             yield return EnemyAttack();
 
             if (tag == "Human" || tag == "Boss")
@@ -209,6 +214,7 @@ public class Basic : EnemyController
                     bm.charPoisonedTurnCount = 2;
                     bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
                     bm.playerPoison.SetActive(true);
+                    bm.pCannotHeal = true;
                 }
             }
         }
@@ -226,17 +232,19 @@ public class Basic : EnemyController
 
         if (isPoisoned)
         {
-            StatusTurnChange(3, ref poisonTurnCount, ref isPoisoned, poisoned);
+            float poisonDmg = enemyHealthSlider.maxValue * 0.08f;
+            StatusTurnChange((int)poisonDmg, ref poisonTurnCount, ref isPoisoned, poisoned, "Poison");
         }
 
         if (isScald)
         {
-            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded);
+            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded, "Scald");
         }
 
         if (isBurn)
         {
-            StatusTurnChange(1, ref burnTurnCount, ref isBurn, burned);
+            float burnDmg = enemyHealthSlider.maxValue * 0.06f;
+            StatusTurnChange((int)burnDmg, ref burnTurnCount, ref isBurn, burned, "Burn");
         }
 
         enemyAttacking = false;

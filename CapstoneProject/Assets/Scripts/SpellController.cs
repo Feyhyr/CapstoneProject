@@ -41,11 +41,11 @@ public class SpellController : MonoBehaviour, IPointerEnterHandler, IPointerExit
         message.SetActive(false);
         if (gameObject.tag != "Reverb")
         {
-            onCD = true;
             CDCover.SetActive(true);
             currentCD = maxCD;
             counterCDText.GetComponent<Text>().text = maxCD.ToString();
             counterCDText.SetActive(true);
+            onCD = true;
         }
         bm.TriggerAttack();
     }

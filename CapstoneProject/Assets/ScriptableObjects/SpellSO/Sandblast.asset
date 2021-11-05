@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sName: Sandblast
   particleEffect: {fileID: 1705276595759794648, guid: 6c7bc2f10c4fa6d448fc6cab71925f2e, type: 3}
-  sDamage: 5
+  sDamage: 0
   sfx: {fileID: 8300000, guid: b15d8a5aa01fa5140be10caa391fb7d9, type: 3}
   icon: {fileID: 21300000, guid: fc654259a1f6028468f3315a1a65e8ae, type: 3}
   description: Casting Sandblast induces the Exposed status effect.
