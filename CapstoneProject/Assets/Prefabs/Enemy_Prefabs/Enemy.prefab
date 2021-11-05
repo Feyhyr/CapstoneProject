@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 503e5388e0e62dd4db2c78779254deee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59b8bb207a28d514b9e888611f2a36a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1562,6 +1562,7 @@ MonoBehaviour:
   exposed: {fileID: 6375052792984744950}
   scalded: {fileID: 8662253438971384856}
   targetSelected: {fileID: 685297641216822}
+  eCannotHeal: 0
   isPoisoned: 0
   poisonTurnCount: 0
   isExposed: 0
@@ -2224,7 +2225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b9cf7b97b7dc01428e5effcdb4608b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0f6e795b9017594c9b565a6e95f724f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3313,7 +3314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 79e19e97d37bb0643b3a319377254f84, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c93855fc648a834785b929b842232b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4003,7 +4004,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f1f0b69c678870409320b8f6120e313, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d01abae1623e6b64082400175fb50f16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4262,7 +4263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 95c2c621a5f0cfd4bad149a21a5ad023, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdcf620d48c15b94eb403d3d4287f11f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
