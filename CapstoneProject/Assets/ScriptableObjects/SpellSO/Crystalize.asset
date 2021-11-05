@@ -16,5 +16,5 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: 3719c534352af624e8161f6abba6fc3d, type: 3}
   sDamage: 5
   sfx: {fileID: 8300000, guid: ce8e82b7d68d6f34dbfed0bde421c49a, type: 3}
-  icon: {fileID: 21300000, guid: 9ab7fc2f3b059334e8b603f83d297fdd, type: 3}
+  icon: {fileID: 21300000, guid: a79e9701fe4fa994cac26e7bab083b29, type: 3}
   description: 'All damage you recieve for the next 3 turns is halved. '

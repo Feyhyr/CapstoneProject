@@ -16,6 +16,6 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: a56d4b057fd1d844191559f9a14b8b67, type: 3}
   sDamage: 5
   sfx: {fileID: 8300000, guid: 2e98f0d09c03e7d40837fa53f5182715, type: 3}
-  icon: {fileID: 21300000, guid: 85f13cc387251a341b5058dcc57d06e9, type: 3}
+  icon: {fileID: 21300000, guid: 3853efc941e655f4686a2fa4cd6e367c, type: 3}
   description: 'AOE: Casting Tsunami on enemies that are weak to water combos will
     do triple damage.'

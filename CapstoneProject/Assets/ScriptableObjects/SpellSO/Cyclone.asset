@@ -16,6 +16,6 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: 00a6450eed64bd04f8c9b10ac21b61ff, type: 3}
   sDamage: 5
   sfx: {fileID: 8300000, guid: c0c35e36c803057429f92a7b7bef43b1, type: 3}
-  icon: {fileID: 21300000, guid: 390a419736403904b801360442125257, type: 3}
+  icon: {fileID: 21300000, guid: 3a1405eeb9e27c34891bc148e250a749, type: 3}
   description: Casting Cyclone allows you to cast another spell immediately after
     using Cyclone.

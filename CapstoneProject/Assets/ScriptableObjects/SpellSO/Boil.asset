@@ -16,5 +16,5 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: 918eacf574c751d4c88d8592dd429290, type: 3}
   sDamage: 5
   sfx: {fileID: 8300000, guid: 885304bb5631697478b4cf4bb74201fa, type: 3}
-  icon: {fileID: 21300000, guid: 76552dd525311954daa3a670f8df3cdb, type: 3}
+  icon: {fileID: 21300000, guid: 83479701d47b66340bf90611e39f6365, type: 3}
   description: Casting Boil induces the Scald effect.
