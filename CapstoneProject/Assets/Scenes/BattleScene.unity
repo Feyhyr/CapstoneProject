@@ -636,7 +636,7 @@ RectTransform:
   - {fileID: 1424256420}
   - {fileID: 18743085}
   m_Father: {fileID: 873148015}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2839,7 +2839,7 @@ GameObject:
   - component: {fileID: 405363307}
   m_Layer: 5
   m_Name: Curse
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3638,7 +3638,7 @@ RectTransform:
   - {fileID: 739061511}
   - {fileID: 1937568353}
   m_Father: {fileID: 873148015}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4099,7 +4099,7 @@ GameObject:
   - component: {fileID: 646291662}
   m_Layer: 5
   m_Name: Poison
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4530,7 +4530,7 @@ GameObject:
   - component: {fileID: 667024825}
   m_Layer: 5
   m_Name: Crystalize
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5705,11 +5705,11 @@ RectTransform:
   m_Children:
   - {fileID: 989903692}
   - {fileID: 1047142242}
-  - {fileID: 1157296911}
   - {fileID: 1808710073}
   - {fileID: 26067946}
   - {fileID: 1729878571}
   - {fileID: 580178456}
+  - {fileID: 1157296911}
   - {fileID: 1993691033}
   - {fileID: 1658155019}
   - {fileID: 1825175890}
@@ -6216,7 +6216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3359129241241107819, guid: 1846a49d3d5714c47a797cf8f393b023, type: 3}
       propertyPath: m_Name
-      value: IceStorm
+      value: Ice Storm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1846a49d3d5714c47a797cf8f393b023, type: 3}
@@ -7483,7 +7483,7 @@ RectTransform:
   - {fileID: 1993286541}
   - {fileID: 1142550830}
   m_Father: {fileID: 873148015}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -8707,7 +8707,7 @@ GameObject:
   - component: {fileID: 1359865714}
   m_Layer: 5
   m_Name: Seal
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15944,7 +15944,7 @@ RectTransform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 873148015}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16695,7 +16695,7 @@ RectTransform:
   - {fileID: 312921938}
   - {fileID: 2054548735}
   m_Father: {fileID: 873148015}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17443,7 +17443,7 @@ GameObject:
   - component: {fileID: 1969610509}
   m_Layer: 5
   m_Name: Reverb
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17605,6 +17605,14 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 873148014}
+    - target: {fileID: 1993286542, guid: b0727d7766047ed48a21b715d2de894b, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993286542, guid: b0727d7766047ed48a21b715d2de894b, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 823993379849303736, guid: b0727d7766047ed48a21b715d2de894b, type: 3}
       propertyPath: m_Name
       value: WaterRune

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
-  m_Name: HellSpireDemon
+  m_Name: HellSpire
   m_EditorClassIdentifier: 
   enemyName: Hell Spire
-  tagName: Boss
+  tagName: HellSpire
   dmg: 12
   maxHealth: 50
   weakness: []

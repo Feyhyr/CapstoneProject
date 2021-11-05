@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1660688016375923481}
   m_Layer: 5
   m_Name: Smog
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 2112465728214087530}
   m_Layer: 5
   m_Name: SmogBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

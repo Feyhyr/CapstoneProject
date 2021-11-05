@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
+  m_Name: Wendigo
+  m_EditorClassIdentifier: 
+  enemyName: Wendigo
+  tagName: Wendigo
+  dmg: 3
+  maxHealth: 50
+  weakness:
+  - Fire
+  resistance:
+  - Water
+  - Earth
+  immunity: []
+  idle: {fileID: 11400000, guid: be9e755f073c3734fba22387c3512a2a, type: 2}
+  attack: {fileID: 11400000, guid: e40c0d5a24e172645be7f364ab897479, type: 2}
+  damage: {fileID: 11400000, guid: 6445bfef9d6dd65439989c8852f3f0e1, type: 2}
+  skeletonData: {fileID: 11400000, guid: 7977b402bbbd83244ac184777c534b9f, type: 2}
+  attackSFX: {fileID: 8300000, guid: 0ad81f8afe8437d4c88acc43fc8c901d, type: 3}

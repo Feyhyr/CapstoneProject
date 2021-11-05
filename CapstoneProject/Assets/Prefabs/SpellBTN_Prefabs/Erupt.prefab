@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3101634656346473523}
   m_Layer: 5
   m_Name: EruptBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 8810401433819584482}
   m_Layer: 5
   m_Name: Erupt
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

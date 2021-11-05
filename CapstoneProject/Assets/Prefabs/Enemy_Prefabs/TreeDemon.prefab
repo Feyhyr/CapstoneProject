@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: 3075308726563269423}
   m_Layer: 6
   m_Name: TreeDemon
-  m_TagString: Tree
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

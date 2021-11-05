@@ -466,8 +466,8 @@ GameObject:
   - component: {fileID: 3359129241241107816}
   - component: {fileID: 3359129241241107823}
   m_Layer: 5
-  m_Name: IceStorm
-  m_TagString: Button
+  m_Name: Ice Storm
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 4070146171415820638}
   m_Layer: 5
   m_Name: IceStormBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

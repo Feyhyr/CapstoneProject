@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: -8937270657135924598}
   m_Layer: 7
   m_Name: Ice Storm
-  m_TagString: Spell
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

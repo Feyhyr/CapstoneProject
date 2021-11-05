@@ -171,7 +171,7 @@ public class Basic : EnemyController
             bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
             yield return EnemyAttack();
 
-            if (tag == "Human" || tag == "Boss")
+            if (tag == "Human")
             {
                 if (bm.ChanceStatusEffect(0.7f))
                 {
@@ -195,6 +195,7 @@ public class Basic : EnemyController
                         bm.debuffCanvas.SetActive(false);
                         bm.sealedRuneIndex = Random.Range(0, 4);
                         bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;
                         bm.charSealedTurnCount = 2;
                         bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
                         bm.seal.SetActive(true);

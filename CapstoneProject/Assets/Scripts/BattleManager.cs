@@ -314,7 +314,6 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         enemy.targetSelected.SetActive(false);
-        runeCover.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         enemyTurnUX.SetActive(true);
@@ -914,8 +913,11 @@ public class BattleManager : MonoBehaviour
             isCharCursed = false;
             isCharPoisoned = false;
             seal.SetActive(false);
+            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = true;
+            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 1;
             curse.SetActive(false);
             playerPoison.SetActive(false);
+            pCannotHeal = false;
         }
         else if (ChooseSpell() == 10)
         {
@@ -935,8 +937,13 @@ public class BattleManager : MonoBehaviour
             sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
             sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
 
-            yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+            if (ChooseSpell() != 2)
+            { 
+                yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+            }
         }
+
+        runeCover.SetActive(true);
 
         if (sPrefab.GetComponent<SpellCreation>().damage != 0)
         {
@@ -1023,6 +1030,7 @@ public class BattleManager : MonoBehaviour
             isCharSealed = false;
             seal.SetActive(false);
             runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = true;
+            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 1;
         }
     }
     #endregion

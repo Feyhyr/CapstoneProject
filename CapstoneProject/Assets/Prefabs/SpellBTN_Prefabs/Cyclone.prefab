@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 6795740918563335508}
   m_Layer: 5
   m_Name: Cyclone
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 1540682998985794206}
   m_Layer: 5
   m_Name: CycloneBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: -2375375778809429811}
   m_Layer: 6
   m_Name: HellSpireDemon
-  m_TagString: Boss
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

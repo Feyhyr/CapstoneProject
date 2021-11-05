@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7736557261505445954}
   m_Layer: 5
   m_Name: SpellBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -272,6 +272,12 @@ MonoBehaviour:
   infoText: {fileID: 5559285741290991107}
   bm: {fileID: 0}
   message: {fileID: 4276002842474702791}
+  selectedState: {fileID: 0}
+  onCD: 0
+  maxCD: 0
+  currentCD: 0
+  counterCDText: {fileID: 0}
+  CDCover: {fileID: 0}
 --- !u!58 &7736557261505445954
 CircleCollider2D:
   m_ObjectHideFlags: 0

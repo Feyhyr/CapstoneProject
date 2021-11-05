@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1291180337283048668}
   m_Layer: 5
   m_Name: Sandblast
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 6793760268281036199}
   m_Layer: 5
   m_Name: SandblastBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

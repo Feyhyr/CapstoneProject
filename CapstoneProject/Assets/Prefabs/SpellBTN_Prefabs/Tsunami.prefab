@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1611699872225697996}
   m_Layer: 5
   m_Name: Tsunami
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8951693739331339180}
   m_Layer: 5
   m_Name: TsunamiBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

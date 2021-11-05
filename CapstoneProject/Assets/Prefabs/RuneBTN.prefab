@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -6649292229563750961}
   m_Layer: 5
   m_Name: RuneBTN
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,9 +239,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rune: {fileID: 0}
-  nameText: {fileID: 823993378017385688}
   runeIcon: {fileID: 0}
   bm: {fileID: 0}
+  defaultPos: {x: 0, y: 0, z: 0}
+  droppedOnSlot: 0
+  canvas: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  onFirstSlot: 0
+  onSecondSlot: 0
 --- !u!114 &-6649292229563750961
 MonoBehaviour:
   m_ObjectHideFlags: 0

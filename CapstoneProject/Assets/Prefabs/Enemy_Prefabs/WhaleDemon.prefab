@@ -1466,7 +1466,7 @@ GameObject:
   - component: {fileID: 9162602167365667367}
   m_Layer: 6
   m_Name: WhaleDemon
-  m_TagString: Whale
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

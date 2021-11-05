@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 790375498932850451}
   m_Layer: 7
   m_Name: Smog
-  m_TagString: Spell
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
