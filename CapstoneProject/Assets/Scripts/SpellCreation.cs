@@ -7,8 +7,8 @@ public class SpellCreation : MonoBehaviour
     public SpellSO spell;
     public int damage;
 
-    private void Start()
+    public void DestroySpell()
     {
-        Destroy(gameObject, 5.0f);
+        Destroy(gameObject);
     }
 }

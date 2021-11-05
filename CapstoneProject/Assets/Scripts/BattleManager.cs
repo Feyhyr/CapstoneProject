@@ -256,6 +256,8 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PAttackPhase()
     {
+        sPrefab.GetComponent<SpellCreation>().DestroySpell();
+
         for (int i = 0; i < runeObjs.Length; i++)
         {
             runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
@@ -395,6 +397,7 @@ public class BattleManager : MonoBehaviour
     #region Attack Functions
     public IEnumerator PlayerAttack(float damage)
     {
+        enemy.targetSelected.SetActive(false);
         if (isAOE)
         {
             yield return DamageCheckAOE(damage);
@@ -940,6 +943,13 @@ public class BattleManager : MonoBehaviour
             if (ChooseSpell() != 2)
             { 
                 yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+                if (ChooseSpell() == 11)
+                {
+                    buffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(0.8f);
+                    buffCanvas.SetActive(false);
+                }
             }
         }
 
