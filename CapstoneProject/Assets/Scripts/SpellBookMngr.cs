@@ -97,6 +97,8 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         }
         else
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
             textbox.SetActive(false);
             spellBookCanvas.SetActive(false);

@@ -56,7 +56,7 @@ public class Basic : EnemyController
     private IEnumerator Healer()
     {
         bool ishealing = false;
-        int healAmount = 10;
+        int healAmount = 5;
 
         if (isFreeze && freezeTurnCount > 0)
         {

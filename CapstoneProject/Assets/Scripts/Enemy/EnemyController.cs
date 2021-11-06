@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public int atk;
     public int enemyId;
     public Text eText;
+    public Text eHPText;
     public bool isDead;
     public string enemyType;
     public List<string> weak;
@@ -81,6 +82,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        eHPText.text = enemyHealthSlider.value.ToString() + "/" + enemy.maxHealth;
         if (bm.battleState == BattleManager.BattleState.ENEMYTURN)
         {
             if (enemyAttacking)

@@ -17,7 +17,7 @@ public class BattleManager : MonoBehaviour
     public GameObject spellButtonPrefab;
     public GameObject runePrefab;
     public Transform runeLocation;
-    public GameObject runeCover;
+    //public GameObject runeCover;
 
     public List<GameObject> spellPrefab;
 
@@ -35,6 +35,7 @@ public class BattleManager : MonoBehaviour
 
     public int charMaxHealth;
     public Slider charHealthSlider;
+    public Text charHealthText;
 
     int randomEnemyCount;
     int randomEnemy;
@@ -248,9 +249,9 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        runeCover.SetActive(false);
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //runeCover.SetActive(false);
         enemy.targetSelected.SetActive(true);
     }
 
@@ -955,7 +956,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        runeCover.SetActive(true);
+        //runeCover.SetActive(true);
 
         if (sPrefab.GetComponent<SpellCreation>().damage != 0)
         {
@@ -1072,6 +1073,12 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
+        if (battleState == BattleState.PLAYERTURN)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        charHealthText.text = charHealthSlider.value.ToString();
         if (startCheckEnemy)
         {
             enemy = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>();
