@@ -9,16 +9,22 @@ public class Basic : EnemyController
     {
         //base.AttackPattern();
 
-        //if (tag == "Summon")
-        //{
-            //StartCoroutine(Attack());
+        if (enemyType == "Attack")
+        {
+            yield return Attack();
+        }
+        else if (enemyType == "Healer")
+        {
+            yield return Healer();
+        }
+        else if (enemyType == "Summoner")
+        {
+            yield return Summoner();
+        }
+        else if (enemyType == "Debuffer")
+        {
             yield return Debuffer();
-        //}
-        //else
-        //{
-            //StartCoroutine(Debuffer());
-            //yield return Debuffer();
-        //}
+        }
     }
 
     private IEnumerator Attack()

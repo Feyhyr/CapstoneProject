@@ -20,7 +20,7 @@ public class PlayerNumberPopup : MonoBehaviour
         fadeTimer = 0.8f;
         if (state == "normalPlayer")
         {
-            textMesh.fontSize = 70;
+            textMesh.fontSize = 45;
             if (heal)
             {
                 textColor = new Color32(166, 243, 130, 255);
@@ -32,12 +32,12 @@ public class PlayerNumberPopup : MonoBehaviour
         }
         else if (state == "criticalPlayer")
         {
-            textMesh.fontSize = 80;
+            textMesh.fontSize = 55;
             textColor = new Color32(253, 87, 87, 255);
         }
         else if (state == "weakPlayer")
         {
-            textMesh.fontSize = 60;
+            textMesh.fontSize = 35;
             textColor = new Color32(185, 188, 188, 255);
         }
         textMesh.color = textColor;

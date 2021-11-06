@@ -24,3 +24,4 @@ MonoBehaviour:
   damage: {fileID: 11400000, guid: 0d317988045c2844b9561492b0642d71, type: 2}
   skeletonData: {fileID: 11400000, guid: 29d8a7e4cdebe084c8469769f8c4af07, type: 2}
   attackSFX: {fileID: 8300000, guid: b02a078bf4d67ca47998a41295ed47fe, type: 3}
+  attackType: Debuffer

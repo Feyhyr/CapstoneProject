@@ -291,11 +291,13 @@ public class BattleManager : MonoBehaviour
 
         if (isCharCursed)
         {
+            yield return new WaitForSeconds(1);
             EnemyCurse();
         }
 
         if (isCharPoisoned)
         {
+            yield return new WaitForSeconds(1);
             EnemyPoison();
         }
 
@@ -1000,6 +1002,7 @@ public class BattleManager : MonoBehaviour
     public void EnemyPoison()
     {
         float damage = charMaxHealth * 0.08f;
+        playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
         charHealthSlider.value -= damage;
         PDamagePopup(playerLocation, (int)damage, "normalPlayer", false, playerNumPopupObj);
         charPoisonedTurnCount--;
@@ -1019,6 +1022,7 @@ public class BattleManager : MonoBehaviour
         {
             damage = 1;
         }
+        playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
         charHealthSlider.value -= damage;
         PDamagePopup(playerLocation, (int)damage, "normalPlayer", false, playerNumPopupObj);
         charCursedTurnCount--;
@@ -1049,10 +1053,10 @@ public class BattleManager : MonoBehaviour
     public void PDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
     {
         GameObject damagePopup = Instantiate(popup, location);
-        if (isHeal)
+        /*if (isHeal)
         {
             damagePopup.transform.localPosition += new Vector3(0, 80, 0);
-        }
+        }*/
         damagePopup.GetComponent<PlayerNumberPopup>().Setup(damage, state, isHeal);
     }
     public void EDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)

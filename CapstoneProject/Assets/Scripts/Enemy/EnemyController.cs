@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public int enemyId;
     public Text eText;
     public bool isDead;
+    public string enemyType;
     public List<string> weak;
     public List<string> resist;
     public List<string> immune;
@@ -70,6 +71,7 @@ public class EnemyController : MonoBehaviour
         eAttack = enemy.attack;
         eDamage = enemy.damage;
         attackSFX = enemy.attackSFX;
+        enemyType = enemy.attackType;
 
         currentState = "Idle";
         SetCharacterState(currentState);
