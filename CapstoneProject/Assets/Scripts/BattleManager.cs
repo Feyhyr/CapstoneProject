@@ -395,7 +395,7 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            if (floor.floorsUnlocked < floor.floorCount)
+            if (floor.floorsUnlocked <= floor.floorCount)
             {
                 PlayerPrefs.SetInt(floor.prefWave, 1);
                 floor.AddCount(ref floor.floorCount, floor.prefFloor);
