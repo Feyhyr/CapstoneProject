@@ -1,0 +1,18 @@
+Character_Test_2.png
+size:712,313
+filter:Linear,Linear
+pma:true
+Back Volcano
+bounds:474,179,132,146
+rotate:90
+Bottom Body
+bounds:2,2,470,309
+Bottom Teeth
+bounds:622,203,66,108
+Eye
+bounds:474,48,129,129
+Smoke
+bounds:622,93,108,62
+rotate:90
+Smoke 2
+bounds:605,35,105,56
