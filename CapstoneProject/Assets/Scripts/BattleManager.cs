@@ -232,7 +232,10 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < runeObjs.Length; i++)
         {
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
+        }
+        if (isCharSealed)
+        {
+            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
         }
         isCreatingSpell = false;
         playerAttacked = false;
@@ -269,7 +272,6 @@ public class BattleManager : MonoBehaviour
             runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
             runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
             runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
             runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
         }
 
@@ -923,15 +925,22 @@ public class BattleManager : MonoBehaviour
                 charHealthSlider.value += healAmount;
                 PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
             }
-            isCharSealed = false;
-            isCharCursed = false;
-            isCharPoisoned = false;
-            seal.SetActive(false);
-            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = true;
-            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 1;
-            curse.SetActive(false);
-            playerPoison.SetActive(false);
-            pCannotHeal = false;
+            if (isCharSealed)
+            {
+                isCharSealed = false;
+                seal.SetActive(false);
+            }
+            if (isCharCursed)
+            {
+                isCharCursed = false;
+                curse.SetActive(false);
+            }
+            if (isCharPoisoned)
+            {
+                isCharPoisoned = false;
+                playerPoison.SetActive(false);
+                pCannotHeal = false;
+            }
         }
         else if (ChooseSpell() == 10)
         {
@@ -1046,6 +1055,7 @@ public class BattleManager : MonoBehaviour
     public void EnemySeal()
     {
         runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+        runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;
         charSealedTurnCount--;
         seal.GetComponentInChildren<Text>().text = charSealedTurnCount.ToString();
         if (charSealedTurnCount <= 0)
