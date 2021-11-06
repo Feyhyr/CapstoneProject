@@ -6431,8 +6431,8 @@ MonoBehaviour:
   audioSource: {fileID: 12409676635353803}
   floorBGM:
   - {fileID: 8300000, guid: ca50b232eaa0476489d47ca4a4e21d73, type: 3}
-  - {fileID: 8300000, guid: 49a76c4eaa9f7e74d82edfd562efb5be, type: 3}
-  - {fileID: 8300000, guid: 28f76e166fa5a31459dc99405b272541, type: 3}
+  - {fileID: 8300000, guid: e297398c67ed8634c98c202c085d69ce, type: 3}
+  - {fileID: 8300000, guid: dc6ff82254279a447aff90f0f7fd58ce, type: 3}
   - {fileID: 8300000, guid: 31735ba089a01c149b56cfb5d3a5c3b2, type: 3}
   - {fileID: 8300000, guid: f3ba1ea3cba77ae4c8ebdbd42775ee94, type: 3}
 --- !u!82 &12409676635353803
