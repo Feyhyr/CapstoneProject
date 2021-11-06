@@ -112,6 +112,7 @@ public class EnemyController : MonoBehaviour
     {
         if (dmg > 0)
         {
+            GetComponent<ScreenShake>().TriggerShake();
             EnemyDamage(dmg);
             bm.EDamagePopup(transform.parent, dmg, "normalEnemy", false, bm.enemyNumPopupObj);
         }

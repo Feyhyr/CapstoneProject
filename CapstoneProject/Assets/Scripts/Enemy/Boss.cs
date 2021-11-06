@@ -103,6 +103,13 @@ public class Boss : EnemyController
             }
         }
 
+        else
+        {
+            enemyAttacking = true;
+            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+            yield return EnemyAttack();
+        }
+
         yield return CheckEnemyStatus();
     }
 
@@ -122,6 +129,13 @@ public class Boss : EnemyController
             }
         }
 
+        else
+        {
+            enemyAttacking = true;
+            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+            yield return EnemyAttack();
+        }
+
         yield return CheckEnemyStatus();
     }
 
@@ -139,6 +153,13 @@ public class Boss : EnemyController
                 isFreeze = false;
                 frozen.SetActive(false);
             }
+        }
+
+        else
+        {
+            enemyAttacking = true;
+            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+            yield return EnemyAttack();
         }
 
         yield return CheckEnemyStatus();
@@ -171,7 +192,6 @@ public class Boss : EnemyController
                 isSummoning = true;
                 GameObject ePrefab;
                 int enemyIndex = bm.currentEnemyList.Count;
-                int index = bm.floor.floorCount - 1;
                 ePrefab = Instantiate(bm.enemyPrefab, bm.enemyLocation);
 
                 ePrefab.GetComponentInChildren<EnemyController>().bm = bm;
