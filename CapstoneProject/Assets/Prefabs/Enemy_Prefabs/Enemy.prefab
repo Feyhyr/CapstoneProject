@@ -205,8 +205,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -2, y: -0.29999998}
+  m_AnchoredPosition: {x: 0, y: -0.0788}
+  m_SizeDelta: {x: -2, y: -1.3504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1498211464222034773
 CanvasRenderer:
@@ -1438,8 +1438,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327178587643501043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.31, z: 0}
-  m_LocalScale: {x: 0.58, y: 0.58, z: 0.58}
+  m_LocalPosition: {x: 0, y: -0.6199816, z: 0}
+  m_LocalScale: {x: 0.88, y: 0.88, z: 0.88}
   m_Children: []
   m_Father: {fileID: 8285648919941634976}
   m_RootOrder: 3
@@ -1471,7 +1471,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b583b2b279fee342a9eb6a8ff3f3f19, type: 2}
+  - {fileID: 2100000, guid: 81529fafd5dd9444389e81cad6f23bec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 29d8a7e4cdebe084c8469769f8c4af07, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 871b359850eee62468cf05ba3689bdda, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0

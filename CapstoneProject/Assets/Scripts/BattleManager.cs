@@ -229,7 +229,11 @@ public class BattleManager : MonoBehaviour
         }
         extraTurn = false;
         yield return new WaitForSeconds(1);
-
+        for (int i = 0; i < runeObjs.Length; i++)
+        {
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
+        }
         isCreatingSpell = false;
         playerAttacked = false;
         playerTurnUX.SetActive(true);
@@ -266,6 +270,7 @@ public class BattleManager : MonoBehaviour
             runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
             runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
         }
 
         if (isReverb)
@@ -733,11 +738,13 @@ public class BattleManager : MonoBehaviour
             runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
             runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
         }
 
         if (isCharSealed)
         {
             runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
         }
 
         rune1 = "";
@@ -754,6 +761,7 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < runeObjs.Length; i++)
         {
             runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = false;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
         }
         ChooseSpell();
         SpellChosen();

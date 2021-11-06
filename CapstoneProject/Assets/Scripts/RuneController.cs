@@ -57,7 +57,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if (canvasGroup.interactable)
         {
-            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor / 0.663834f;
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor / 0.5111522f;
         }
     }
 
