@@ -18,5 +18,6 @@ public class EnemySO : ScriptableObject
     public AnimationReferenceAsset damage;
     public SkeletonDataAsset skeletonData;
     public AudioClip attackSFX;
+    public AudioClip damageSFX;
     public string attackType;
 }

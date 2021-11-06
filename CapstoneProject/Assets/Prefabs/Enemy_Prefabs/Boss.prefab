@@ -290,7 +290,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4323328169955578252}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
         m_MethodName: SelectTarget
         m_Mode: 1
@@ -1421,7 +1421,7 @@ GameObject:
   - component: {fileID: 4732916783808271930}
   - component: {fileID: 8381808788534483925}
   - component: {fileID: 276756736682388239}
-  - component: {fileID: 4323328169955578252}
+  - component: {fileID: 8940010907017424829}
   - component: {fileID: 2264063263338638585}
   m_Layer: 6
   m_Name: PossessSkeleton
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   _animationName: 
   loop: 1
   timeScale: 1
---- !u!114 &4323328169955578252
+--- !u!114 &8940010907017424829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2327178587643501043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 310c03ec990d5ae49b748ec23034f19e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0919f1c9dda380d4681bcaee19d11773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bm: {fileID: 0}
@@ -1583,6 +1583,7 @@ MonoBehaviour:
   freezePrefab: {fileID: 672203223211207016, guid: f94b9cea65e9e0341934c47598c6f00b, type: 3}
   eDebuffCanvas: {fileID: 5191017551068701521}
   eBuffCanvas: {fileID: 6828719515879775832}
+  hellSpireSummon: {fileID: 11400000, guid: fcb353712b120c8449e80f1b8235f1bf, type: 2}
 --- !u!114 &2264063263338638585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,7 +2212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8285648919941634976}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

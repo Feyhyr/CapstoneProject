@@ -7,8 +7,6 @@ public class Basic : EnemyController
 {
     public override IEnumerator AttackPattern()
     {
-        //base.AttackPattern();
-
         if (enemyType == "Attack")
         {
             yield return Attack();
@@ -75,6 +73,8 @@ public class Basic : EnemyController
         else
         {
             enemyAttacking = true;
+            currentState = "Attack";
+            SetCharacterState(currentState);
 
             for (int i = 0; i < bm.currentEnemyList.Count; i++)
             {
@@ -85,10 +85,12 @@ public class Basic : EnemyController
                     {
                         healAmount = 0;
                     }
+                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(false);
+                    //yield return new WaitForSeconds(0.5f);
                     bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount;
-                    bm.EDamagePopup(bm.currentEnemyList[i].transform, 10, "normalEnemy", true, bm.enemyNumPopupObj);
-                    currentState = "Attack";
-                    SetCharacterState(currentState);
+                    bm.EDamagePopup(bm.currentEnemyList[i].transform, healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
                 }
             }
 
@@ -177,7 +179,19 @@ public class Basic : EnemyController
             bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
             yield return EnemyAttack();
 
-            if (tag == "Human")
+            if (bm.ChanceStatusEffect(0.7f))
+            {
+                yield return new WaitForSeconds(0.5f);
+                bm.debuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                bm.debuffCanvas.SetActive(false);
+                bm.isCharCursed = true;
+                bm.charCursedTurnCount = 2;
+                bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
+                bm.curse.SetActive(true);
+            }
+
+            if (!bm.isCharSealed)
             {
                 if (bm.ChanceStatusEffect(0.7f))
                 {
@@ -185,44 +199,27 @@ public class Basic : EnemyController
                     bm.debuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
                     bm.debuffCanvas.SetActive(false);
-                    bm.isCharCursed = true;
-                    bm.charCursedTurnCount = 2;
-                    bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
-                    bm.curse.SetActive(true);
-                }
-
-                if (!bm.isCharSealed)
-                {
-                    if (bm.ChanceStatusEffect(0.7f))
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                        bm.debuffCanvas.SetActive(true);
-                        yield return new WaitForSeconds(1f);
-                        bm.debuffCanvas.SetActive(false);
-                        bm.sealedRuneIndex = Random.Range(0, 4);
-                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
-                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;
-                        bm.charSealedTurnCount = 2;
-                        bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
-                        bm.seal.SetActive(true);
-                        bm.isCharSealed = true;
-                    }
+                    bm.sealedRuneIndex = Random.Range(0, 4);
+                    bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+                    bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;
+                    bm.charSealedTurnCount = 2;
+                    bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
+                    bm.seal.SetActive(true);
+                    bm.isCharSealed = true;
                 }
             }
-            else if (tag == "Tree")
+
+            if (bm.ChanceStatusEffect(0.7f))
             {
-                if (bm.ChanceStatusEffect(0.7f))
-                {
-                    yield return new WaitForSeconds(0.5f);
-                    bm.debuffCanvas.SetActive(true);
-                    yield return new WaitForSeconds(1f);
-                    bm.debuffCanvas.SetActive(false);
-                    bm.isCharPoisoned = true;
-                    bm.charPoisonedTurnCount = 2;
-                    bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
-                    bm.playerPoison.SetActive(true);
-                    bm.pCannotHeal = true;
-                }
+                yield return new WaitForSeconds(0.5f);
+                bm.debuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                bm.debuffCanvas.SetActive(false);
+                bm.isCharPoisoned = true;
+                bm.charPoisonedTurnCount = 2;
+                bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
+                bm.playerPoison.SetActive(true);
+                bm.pCannotHeal = true;
             }
         }
 

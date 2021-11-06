@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 5516757370685579657}
   m_Layer: 6
   m_Name: Freeze
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 6227010484898924045}
   m_Layer: 6
   m_Name: Scald
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1045,7 +1045,9 @@ MonoBehaviour:
   atk: 0
   enemyId: 0
   eText: {fileID: 4010756260636110268}
+  eHPText: {fileID: 0}
   isDead: 0
+  enemyType: 
   weak: []
   resist: []
   immune: []
@@ -1071,10 +1073,12 @@ MonoBehaviour:
   burnTurnCount: 0
   uiClick: {fileID: 8300000, guid: e9378d1e53c37f74ab10e7b582066680, type: 3}
   attackSFX: {fileID: 0}
+  damageSFX: {fileID: 0}
   enemyCover: {fileID: 7913781298017840928}
   enemyAttacking: 0
   freezePrefab: {fileID: 0}
   eDebuffCanvas: {fileID: 0}
+  eBuffCanvas: {fileID: 0}
 --- !u!1 &2964090800663495307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1599,7 @@ GameObject:
   - component: {fileID: 4410367721303517441}
   m_Layer: 6
   m_Name: Burn
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1839,7 +1843,7 @@ GameObject:
   - component: {fileID: 3979469813485036273}
   m_Layer: 6
   m_Name: Expose
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2554,7 +2558,7 @@ GameObject:
   - component: {fileID: 7251978693632685191}
   m_Layer: 6
   m_Name: Poison
-  m_TagString: Status
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

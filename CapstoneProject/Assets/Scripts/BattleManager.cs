@@ -40,9 +40,12 @@ public class BattleManager : MonoBehaviour
     int randomEnemyCount;
     int randomEnemy;
     int enemyIndex = 0;
-    public List<EnemySO> enemyScriptables;
+    public List<BasicEnemyList> enemyScriptables = new List<BasicEnemyList>();
+    //public List<List<EnemySO>> enemyScriptables;
+    public List<EnemySO> bossScriptables;
     public List<EnemySO> enemySummonScriptables;
     public GameObject enemyPrefab;
+    public GameObject bossPrefab;
     public List<GameObject> currentEnemyList;
     public int targetEnemy = 0;
     public Transform enemyLocation;
@@ -161,11 +164,11 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < randomEnemyCount; i++)
         {
-            randomEnemy = Random.Range(0, enemyScriptables.Count - 1);
+            randomEnemy = Random.Range(0, enemyScriptables[floor.floorCount - 1].enemyList.Count - 1);
             ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
-            ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[randomEnemy];
+            ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[floor.floorCount - 1].enemyList[randomEnemy];
             ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
             ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
             foreach (Transform t in ePrefab.transform)
@@ -176,8 +179,6 @@ public class BattleManager : MonoBehaviour
             enemyIndex++;
             currentEnemyList.Add(ePrefab);
         }
-
-        //CheckMultipleEnemies();
 
         startCheckEnemy = true;
         yield return new WaitForSeconds(0.1f);
@@ -198,11 +199,13 @@ public class BattleManager : MonoBehaviour
 
         GameObject ePrefab;
 
-        ePrefab = Instantiate(enemyPrefab, enemyLocation);
+        ePrefab = Instantiate(bossPrefab, enemyLocation);
 
         ePrefab.GetComponentInChildren<EnemyController>().bm = this;
-        ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[enemyScriptables.Count - 1];
+        ePrefab.GetComponentInChildren<EnemyController>().enemy = bossScriptables[floor.floorCount - 1];
         ePrefab.GetComponentInChildren<EnemyController>().enemyId = 0;
+        ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
+        ePrefab.GetComponentInChildren<EnemyController>().eText.text = ePrefab.GetComponentInChildren<EnemyController>().enemy.enemyName;
         currentEnemyList.Add(ePrefab);
 
         startCheckEnemy = true;
@@ -228,20 +231,25 @@ public class BattleManager : MonoBehaviour
             }
         }
         extraTurn = false;
-        yield return new WaitForSeconds(1);
-        for (int i = 0; i < runeObjs.Length; i++)
-        {
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
-        }
-        if (isCharSealed)
-        {
-            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
-        }
         isCreatingSpell = false;
         playerAttacked = false;
         playerTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
         playerTurnUX.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        for (int i = 0; i < runeObjs.Length; i++)
+        {
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
+        }
+        if (isCharSealed)
+        {
+            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
+            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
+        }
+
         for (int i = 0; i < spellBTNList.Count; i++)
         {
             if (spellBTNList[i].GetComponent<SpellController>().onCD)
@@ -272,7 +280,6 @@ public class BattleManager : MonoBehaviour
             runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
             runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
             runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
         }
 
         if (isReverb)
@@ -326,17 +333,17 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         enemy.targetSelected.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         enemyTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
         enemyTurnUX.SetActive(false);
         yield return new WaitForSeconds(1);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
             CheckPlayerDeath();
             yield return currentEnemyList[i].GetComponentInChildren<EnemyController>().AttackPattern();
-            //yield return new WaitForSeconds(4);
         }
 
         if (isCrystalize)
@@ -388,12 +395,16 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            PlayerPrefs.SetInt(floor.prefWave, 1);
-            floor.AddCount(ref floor.floorCount, floor.prefFloor);
-            floor.AddCount(ref floor.floorsUnlocked, floor.prefFloorUnlock);
+            if (floor.floorsUnlocked < floor.floorCount)
+            {
+                PlayerPrefs.SetInt(floor.prefWave, 1);
+                floor.AddCount(ref floor.floorCount, floor.prefFloor);
+                floor.AddCount(ref floor.floorsUnlocked, floor.prefFloorUnlock);
 
-            PlayerPrefs.SetInt(floor.prefFloorUnlock, floor.floorsUnlocked);
-            PlayerPrefs.SetInt("floorReached", floor.floorsUnlocked);
+                PlayerPrefs.SetInt(floor.prefFloorUnlock, floor.floorsUnlocked);
+                PlayerPrefs.SetInt("floorReached", floor.floorsUnlocked);
+            }
+            
             SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
@@ -473,7 +484,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        AudioManager.Instance.Play(enemy.attackSFX);
+        AudioManager.Instance.Play(enemy.damageSFX);
         enemyState = "Damage";
         enemy.SetCharacterState(enemyState);
         currentEnemyList[targetEnemy].GetComponentInChildren<ScreenShake>().TriggerShake();
@@ -491,21 +502,23 @@ public class BattleManager : MonoBehaviour
     public IEnumerator DamageCheckAOE(float damage)
     {
         EnemyController currentEnemy;
+        float originalDmg = damage;
 
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
+            float targetDmg = originalDmg;
             string state = "normalEnemy";
             currentEnemy = currentEnemyList[i].GetComponentInChildren<EnemyController>();
 
             if (CheckWeakness(currentEnemy.immune))
             {
-                damage = 0;
+                targetDmg = 0;
             }
             else
             {
                 if ((currentEnemy.isExposed) && (currentEnemy.exposedTurnCount == 1))
                 {
-                    damage *= 2;
+                    targetDmg *= 2;
                     currentEnemy.isExposed = false;
                     currentEnemy.exposed.SetActive(false);
                 }
@@ -515,40 +528,40 @@ public class BattleManager : MonoBehaviour
                     state = "criticalEnemy";
                     if (isDrowned)
                     {
-                        damage *= 3;
+                        targetDmg *= 3;
                     }
                     else
                     {
-                        damage *= 2;
+                        targetDmg *= 2;
                     }
                 }
                 else if (CheckWeakness(currentEnemy.resist) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist))
                 {
                     state = "weakEnemy";
-                    damage /= 2;
+                    targetDmg /= 2;
                 }
 
                 if (isMelt)
                 {
                     if ((charHealthSlider.value / charMaxHealth) <= 0.25)
                     {
-                        damage *= 2;
+                        targetDmg *= 2;
                     }
                 }
 
                 if ((currentEnemy.isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemy.scaldTurnCount <= 3))
                 {
-                    damage *= 1.5f;
+                    targetDmg *= 1.5f;
                 }
 
                 if ((currentEnemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemy.burnTurnCount <= 2))
                 {
-                    damage += 2;
+                    targetDmg += 2;
                 }
 
                 if (isReverb)
                 {
-                    damage += reverbTurnCount;
+                    targetDmg += reverbTurnCount;
                     reverbTurnCount++;
                     reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
                 }
@@ -556,18 +569,18 @@ public class BattleManager : MonoBehaviour
                 if (debrisHit)
                 {
                     float debrisDmg = Random.Range(0.6f, 2.5f);
-                    damage *= debrisDmg;
+                    targetDmg *= debrisDmg;
                     debrisHit = false;
                 }
             }
 
-            AudioManager.Instance.Play(currentEnemy.attackSFX);
+            AudioManager.Instance.Play(currentEnemy.damageSFX);
             enemyState = "Damage";
             currentEnemy.SetCharacterState(enemyState);
             currentEnemyList[i].GetComponentInChildren<ScreenShake>().TriggerShake();
             yield return new WaitForSeconds(0.5f);
-            EDamagePopup(currentEnemyList[i].transform, (int)damage, state, false, enemyNumPopupObj);
-            EnemyDamage((int)damage, i);
+            EDamagePopup(currentEnemyList[i].transform, (int)targetDmg, state, false, enemyNumPopupObj);
+            EnemyDamage((int)targetDmg, i);
             yield return new WaitForSeconds(1f);
 
             enemyState = "Idle";
@@ -914,6 +927,13 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 9)
         {
             float healAmount = charMaxHealth * 0.2f;
+
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+
+            yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+
             if (!pCannotHeal)
             {
                 charHealthSlider.value += healAmount;
@@ -956,11 +976,14 @@ public class BattleManager : MonoBehaviour
 
         if (!debuffing)
         {
-            sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
-            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
-            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+            if (ChooseSpell() != 9)
+            {
+                sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+                sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
+                sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+            }
 
-            if (ChooseSpell() != 2)
+            if (ChooseSpell() != 2 || ChooseSpell() != 9)
             { 
                 yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
@@ -1091,11 +1114,6 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        if (battleState == BattleState.PLAYERTURN)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
         charHealthText.text = charHealthSlider.value.ToString();
         if (startCheckEnemy)
         {

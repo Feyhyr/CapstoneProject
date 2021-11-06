@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
-  m_Name: AnglerFish
+  m_Name: TentacleSummon
   m_EditorClassIdentifier: 
-  enemyName: Angler Fish
-  tagName: Boss
-  dmg: 5
-  maxHealth: 50
-  weakness:
-  - Fire
-  resistance:
-  - Water
+  enemyName: Tentacle Summon
+  tagName: Summon
+  dmg: 2
+  maxHealth: 10
+  weakness: []
+  resistance: []
   immunity: []
   idle: {fileID: 11400000, guid: fcdda00e6012e3a41b9b3cca86567a3b, type: 2}
   attack: {fileID: 11400000, guid: 6e02475fe030cd44dbf2a8d9fc521b46, type: 2}
@@ -27,4 +25,4 @@ MonoBehaviour:
   skeletonData: {fileID: 11400000, guid: 871b359850eee62468cf05ba3689bdda, type: 2}
   attackSFX: {fileID: 8300000, guid: 6d2440a5c7007ed4ea850e4386fd0381, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
-  attackType: AnglerFish
+  attackType: Attack

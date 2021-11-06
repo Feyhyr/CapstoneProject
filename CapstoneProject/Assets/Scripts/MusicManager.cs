@@ -7,11 +7,6 @@ public class MusicManager : Singleton<MusicManager>
 {
     public new AudioSource audio;
 
-    public AudioClip menuMusic;
-    public AudioClip gameMusic;
-    public AudioClip gameOverMusic;
-    public AudioClip gameWinMusic;
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnLevelLoaded;
@@ -30,21 +25,13 @@ public class MusicManager : Singleton<MusicManager>
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainMenuScene")
+        if (scene.name == "BattleScene")
         {
-            Play(menuMusic);
-        }
-        else if (scene.name == "GameOverScene")
-        {
-            Play(gameOverMusic);
-        }
-        else if (scene.name == "GameWinScene")
-        {
-            Play(gameWinMusic);
+            //Play(menuMusic);
         }
         else
         {
-            Play(gameMusic);
+            //Play(gameMusic);
         }
     }
 }

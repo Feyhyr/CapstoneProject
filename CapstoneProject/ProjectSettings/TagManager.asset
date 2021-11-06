@@ -8,24 +8,8 @@ TagManager:
   - Reverb
   - Summon
   - Vampire
-  - Bog
-  - PoisonOak
-  - Tree
-  - Wendigo
-  - Hellfire
-  - Hellhound
-  - Cloud
-  - LavaGolem
-  - Whale
-  - Jellyfish
-  - Octopus
-  - Barnacle
-  - AnglerFish
-  - Human
-  - Chimera
-  - Phoenix
-  - Harpy
-  - Spider
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX

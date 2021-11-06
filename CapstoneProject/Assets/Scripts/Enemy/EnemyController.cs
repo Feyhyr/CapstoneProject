@@ -48,11 +48,13 @@ public class EnemyController : MonoBehaviour
 
     public AudioClip uiClick;
     public AudioClip attackSFX;
+    public AudioClip damageSFX;
     public GameObject enemyCover;
     public bool enemyAttacking;
 
     public GameObject freezePrefab;
     public GameObject eDebuffCanvas;
+    public GameObject eBuffCanvas;
 
     private void Start()
     {
@@ -72,6 +74,7 @@ public class EnemyController : MonoBehaviour
         eAttack = enemy.attack;
         eDamage = enemy.damage;
         attackSFX = enemy.attackSFX;
+        damageSFX = enemy.damageSFX;
         enemyType = enemy.attackType;
 
         currentState = "Idle";

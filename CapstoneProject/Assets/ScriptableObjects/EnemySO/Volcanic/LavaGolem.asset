@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LavaGolem
   m_EditorClassIdentifier: 
   enemyName: Lava Golem
-  tagName: LavaGolem
+  tagName: Boss
   dmg: 10
   maxHealth: 50
   weakness:
@@ -28,3 +28,5 @@ MonoBehaviour:
   damage: {fileID: 11400000, guid: 7658734422894dc46a046c45b8adccc1, type: 2}
   skeletonData: {fileID: 11400000, guid: 871b359850eee62468cf05ba3689bdda, type: 2}
   attackSFX: {fileID: 8300000, guid: ef6ccb5bccac81d4db451aa3a782bd0e, type: 3}
+  damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
+  attackType: LavaGolem

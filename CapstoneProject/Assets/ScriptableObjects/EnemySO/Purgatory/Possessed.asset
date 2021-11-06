@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Possessed
   m_EditorClassIdentifier: 
   enemyName: Possessed
-  tagName: Human
+  tagName: Enemy
   dmg: 2
   maxHealth: 50
   weakness: []
@@ -24,4 +24,5 @@ MonoBehaviour:
   damage: {fileID: 11400000, guid: 7658734422894dc46a046c45b8adccc1, type: 2}
   skeletonData: {fileID: 11400000, guid: 871b359850eee62468cf05ba3689bdda, type: 2}
   attackSFX: {fileID: 8300000, guid: b02a078bf4d67ca47998a41295ed47fe, type: 3}
+  damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Debuffer
