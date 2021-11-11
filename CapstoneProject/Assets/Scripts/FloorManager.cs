@@ -25,19 +25,20 @@ public class FloorManager : Singleton<FloorManager>
     private new void Awake()
     {
         base.Awake();
-        //SceneManager.sceneLoaded += OnLevelLoaded;
+        SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnLevelLoaded;
+        //SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "MainGameScene")
         {
-            audioSource.mute = true;
+            //audioSource.mute = true;
+            audioSource.Stop();
             floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
 
             if (floorsUnlocked > 5)
@@ -63,18 +64,20 @@ public class FloorManager : Singleton<FloorManager>
             CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
-            audioSource.mute = false;
+            //audioSource.mute = false;
             audioSource.clip = floorBGM[floorCount - 1];
             audioSource.Play();
         }
         else if (scene.name == "GameWinScene" || scene.name == "GameOverScene")
         {
-            audioSource.mute = true;
+            //audioSource.mute = true;
+            audioSource.Stop();
             waveCount = PlayerPrefs.GetInt(prefWave, 1);
         }
         else
         {
-            audioSource.mute = true;
+            //audioSource.mute = true;
+            audioSource.Stop();
         }
     }
 

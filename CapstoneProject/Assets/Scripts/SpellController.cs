@@ -57,7 +57,7 @@ public class SpellController : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (gameObject.GetComponent<Button>().interactable)
+        if (gameObject.GetComponent<Button>().colors.disabledColor == Color.white)
         {
             message.SetActive(true);
         }

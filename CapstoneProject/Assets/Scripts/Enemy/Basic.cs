@@ -5,6 +5,34 @@ using UnityEngine.UI;
 
 public class Basic : EnemyController
 {
+    public Text TypeText;
+    public Image TypeIcon;
+
+    public List<Sprite> TypeList;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        if (enemyType == "Attack")
+        {
+            TypeIcon.sprite = TypeList[0];
+        }
+        else if (enemyType == "Healer")
+        {
+            TypeIcon.sprite = TypeList[1];
+        }
+        else if (enemyType == "Summoner")
+        {
+            TypeIcon.sprite = TypeList[2];
+        }
+        else if (enemyType == "Debuffer")
+        {
+            TypeIcon.sprite = TypeList[3];
+        }
+        TypeText.text = enemyType;
+    }
+
     public override IEnumerator AttackPattern()
     {
         if (enemyType == "Attack")
@@ -135,7 +163,7 @@ public class Basic : EnemyController
                 ePrefab = Instantiate(bm.enemyPrefab, bm.enemyLocation);
 
                 ePrefab.GetComponentInChildren<EnemyController>().bm = bm;
-                ePrefab.GetComponentInChildren<EnemyController>().enemy = bm.enemySummonScriptables[index];
+                ePrefab.GetComponentInChildren<EnemyController>().enemy = bm.enemySummonScriptables[1/*index*/];
                 ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
                 ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
                 foreach (Transform t in ePrefab.transform)

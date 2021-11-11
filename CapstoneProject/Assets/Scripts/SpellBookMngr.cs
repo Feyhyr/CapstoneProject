@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class SpellBookMngr : Singleton<SpellBookMngr>
 {
@@ -69,7 +70,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
 
     public void OpenDescription(string info)
     {
-        if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite == unknownIcon)
+        if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite == unknownIcon)
         {
             textbox.GetComponent<Text>().text = "You have no unlocked this spell yet.";
         }

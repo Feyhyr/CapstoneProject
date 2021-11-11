@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
     public GameObject eDebuffCanvas;
     public GameObject eBuffCanvas;
 
-    private void Start()
+    protected virtual void Start()
     {
         GetComponent<SkeletonAnimation>().skeletonDataAsset = enemy.skeletonData;
         GetComponent<SkeletonAnimation>().Initialize(true);

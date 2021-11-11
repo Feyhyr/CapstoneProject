@@ -40,8 +40,6 @@ public class PauseGame : MonoBehaviour
         }
         else
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
             pauseCanvas.SetActive(false);
         }

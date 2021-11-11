@@ -98,6 +98,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         if (canvasGroup.interactable)
         {
             AudioManager.Instance.Play(rune.audioSFX);
+            rectTransform.SetAsLastSibling();
         }
     }
 }

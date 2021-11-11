@@ -125,6 +125,8 @@ public class BattleManager : MonoBehaviour
         }
         charHealthSlider.value = charMaxHealth;
 
+        ChangeSpellDisabled();
+
         if (bossBattle)
         {
             StartCoroutine(BeginBossBattle());
@@ -836,6 +838,7 @@ public class BattleManager : MonoBehaviour
         }
         unlock.SetSpellKey(unlock.keys, ref unlock.unlockList, index, true);
         unlock.CheckSpellBook();
+        ChangeSpellDisabled();
         return index;
     }
 
@@ -1109,6 +1112,19 @@ public class BattleManager : MonoBehaviour
             damagePopup.transform.localPosition -= new Vector3(0, 1, 0);
         }
         damagePopup.GetComponent<EnemyNumberPopup>().Setup(damage, state, isHeal);
+    }
+
+    public void ChangeSpellDisabled()
+    {
+        for (int i = 0; i < spellBTNList.Count; i++)
+        {
+            if (unlock.unlockList[i])
+            {
+                ColorBlock cb = spellBTNList[i].GetComponent<Button>().colors;
+                cb.disabledColor = Color.white;
+                spellBTNList[i].GetComponent<Button>().colors = cb;
+            }
+        }
     }
     #endregion
 
