@@ -1,0 +1,6 @@
+Circle.png
+size:658,658
+filter:Linear,Linear
+pma:true
+Ellipse 1
+bounds:2,2,654,654

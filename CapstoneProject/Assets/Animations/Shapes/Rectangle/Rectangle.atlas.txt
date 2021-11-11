@@ -1,0 +1,6 @@
+Rectangle.png
+size:809,372
+filter:Linear,Linear
+pma:true
+Rectangle 1
+bounds:2,2,805,368

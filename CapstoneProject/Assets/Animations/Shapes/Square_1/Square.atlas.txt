@@ -1,0 +1,6 @@
+Square.png
+size:626,664
+filter:Linear,Linear
+pma:true
+Rounded Rectangle 1
+bounds:2,2,622,660

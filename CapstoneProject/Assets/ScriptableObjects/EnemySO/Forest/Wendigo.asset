@@ -22,9 +22,9 @@ MonoBehaviour:
   - Water
   - Earth
   immunity: []
-  idle: {fileID: 11400000, guid: 433bfd3bb7e278d44be5d19a680e659c, type: 2}
-  attack: {fileID: 11400000, guid: bb8f2cb278bf57a4d9a815620f084a56, type: 2}
-  damage: {fileID: 11400000, guid: 0e9185b855a5d28479ce25729ecf1462, type: 2}
+  idle: {fileID: 11400000, guid: 4d6a2912f971b7142b32e9a96ab4ebd3, type: 2}
+  attack: {fileID: 11400000, guid: f7d45314dfb566a4a9afe7ef3841f500, type: 2}
+  damage: {fileID: 11400000, guid: 5e7ae9bd182ca6a419b9520b3aa1e427, type: 2}
   skeletonData: {fileID: 11400000, guid: b3f00732a04c8b740ba0e8969b441f59, type: 2}
   attackSFX: {fileID: 8300000, guid: 0ad81f8afe8437d4c88acc43fc8c901d, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}

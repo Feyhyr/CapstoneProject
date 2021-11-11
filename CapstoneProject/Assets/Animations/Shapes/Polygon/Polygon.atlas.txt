@@ -1,0 +1,6 @@
+Polygon.png
+size:587,560
+filter:Linear,Linear
+pma:true
+Polygon 1
+bounds:2,2,583,556
