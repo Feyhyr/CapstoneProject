@@ -12,12 +12,12 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
 
     public Transform playerLocation;
+    public Transform playerLocation2;
     public GameObject playerShakeObject;
 
     public GameObject spellButtonPrefab;
     public GameObject runePrefab;
     public Transform runeLocation;
-    //public GameObject runeCover;
 
     public List<GameObject> spellPrefab;
 
@@ -41,7 +41,6 @@ public class BattleManager : MonoBehaviour
     int randomEnemy;
     int enemyIndex = 0;
     public List<BasicEnemyList> enemyScriptables = new List<BasicEnemyList>();
-    //public List<List<EnemySO>> enemyScriptables;
     public List<EnemySO> bossScriptables;
     public List<EnemySO> enemySummonScriptables;
     public GameObject enemyPrefab;
@@ -64,6 +63,7 @@ public class BattleManager : MonoBehaviour
     public GameObject seal;
     public GameObject curse;
     public GameObject playerPoison;
+    public GameObject charStuck;
 
     public bool isCrystalize = false;
     int crystalTurnCount = 2;
@@ -82,6 +82,8 @@ public class BattleManager : MonoBehaviour
     bool isAOE = false;
     bool isCreatingSpell = false;
     public bool pCannotHeal = false;
+    public int charStuckTurnCount = 1;
+    public bool isCharStuck = false;
 
     bool bossBattle;
 
@@ -93,6 +95,7 @@ public class BattleManager : MonoBehaviour
 
     public GameObject creationPrefab;
     public GameObject freezePrefab;
+    public GameObject stuckPrefab;
     public GameObject cancelBTN;
     public GameObject spellOnCDObj;
 
@@ -222,7 +225,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator PlayerTurn()
     {
         isAudioPlaying = false;
-        if (extraTurn && isCrystalize)
+        if (isCrystalize)
         {
             crystalTurnCount--;
             crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
@@ -232,24 +235,13 @@ public class BattleManager : MonoBehaviour
                 crystalize.SetActive(false);
             }
         }
-        extraTurn = false;
-        isCreatingSpell = false;
-        playerAttacked = false;
-        playerTurnUX.SetActive(true);
-        yield return new WaitForSeconds(1.2f);
-        playerTurnUX.SetActive(false);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
 
-        for (int i = 0; i < runeObjs.Length; i++)
+        for (int i = 0; i < currentEnemyList.Count; i++)
         {
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
-        }
-        if (isCharSealed)
-        {
-            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
-            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
+            if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
+            {
+                StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
+            }
         }
 
         for (int i = 0; i < spellBTNList.Count; i++)
@@ -266,10 +258,45 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.None;
-        //runeCover.SetActive(false);
         enemy.targetSelected.SetActive(true);
+        extraTurn = false;
+        isCreatingSpell = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+        if (isCharStuck)
+        {
+            GameObject fPrefab = Instantiate(stuckPrefab, playerLocation2);
+            yield return new WaitForSeconds(1);
+            Destroy(fPrefab);
+
+            if (isCharPoisoned)
+            {
+                yield return new WaitForSeconds(1);
+                EnemyPoison();
+            }
+
+            CheckPlayerDeath();
+
+            battleState = BattleState.ENEMYTURN;
+            yield return EnemyTurn();
+        }
+
+        for (int i = 0; i < runeObjs.Length; i++)
+        {
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
+        }
+        if (isCharSealed)
+        {
+            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
+            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
+        }
+
+        playerAttacked = false;
+        playerTurnUX.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        playerTurnUX.SetActive(false);
     }
 
     IEnumerator PAttackPhase()
@@ -334,6 +361,8 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        isCharStuck = false;
+        charStuck.SetActive(false);
         enemy.targetSelected.SetActive(false);
         enemyTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.2f);
@@ -346,25 +375,6 @@ public class BattleManager : MonoBehaviour
         {
             CheckPlayerDeath();
             yield return currentEnemyList[i].GetComponentInChildren<EnemyController>().AttackPattern();
-        }
-
-        if (isCrystalize)
-        {
-            crystalTurnCount--;
-            crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
-            if (crystalTurnCount <= 0)
-            {
-                isCrystalize = false;
-                crystalize.SetActive(false);
-            }
-        }
-
-        for (int i = 0; i < currentEnemyList.Count; i++)
-        {
-            if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
-            {
-                StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
-            }
         }
 
         battleState = BattleState.PLAYERTURN;
@@ -397,16 +407,18 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
+            PlayerPrefs.SetInt(floor.prefWave, 1);
             if (floor.floorsUnlocked <= floor.floorCount)
             {
-                PlayerPrefs.SetInt(floor.prefWave, 1);
-                floor.AddCount(ref floor.floorCount, floor.prefFloor);
-                floor.AddCount(ref floor.floorsUnlocked, floor.prefFloorUnlock);
-
+                floor.floorsUnlocked++;
+                if (floor.floorsUnlocked > 5)
+                {
+                    floor.floorsUnlocked = 5;
+                }
                 PlayerPrefs.SetInt(floor.prefFloorUnlock, floor.floorsUnlocked);
                 PlayerPrefs.SetInt("floorReached", floor.floorsUnlocked);
             }
-            
+            floor.AddCount(ref floor.floorCount, floor.prefFloor);
             SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
@@ -590,7 +602,7 @@ public class BattleManager : MonoBehaviour
 
             if (ChooseSpell() == 1)
             {
-                if (ChanceStatusEffect(0.7f))
+                if (ChanceStatusEffect(0.7f) && currentEnemy.enemyType != "LavaGolem")
                 {
                     currentEnemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
@@ -998,8 +1010,6 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
-
-        //runeCover.SetActive(true);
 
         if (sPrefab.GetComponent<SpellCreation>().damage != 0)
         {

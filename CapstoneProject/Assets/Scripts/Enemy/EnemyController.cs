@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
         GetComponent<SkeletonAnimation>().Initialize(true);
         eSkeletonAnimation = GetComponent<SkeletonAnimation>();
         enemyHealthSlider.value = enemy.maxHealth;
-        if (tag == "Summon")
+        if (tag == "Summon" || tag == "Vampire")
         {
             enemyHealthSlider.maxValue = enemyHealthSlider.value;
         }
@@ -149,11 +149,13 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
         bm.PDamagePopup(bm.playerLocation, enemyDmg, "normalPlayer", false, bm.playerNumPopupObj);
 
-        if (tag == "Vampire" || enemyType == "Wendigo")
+        if ((tag == "Vampire" || enemyType == "Wendigo") && !isPoisoned)
         {
             int healAmount = enemyDmg / 2;
+            eBuffCanvas.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            eBuffCanvas.SetActive(false);
             enemyHealthSlider.value += healAmount;
-            yield return new WaitForSeconds(1);
             bm.EDamagePopup(transform.parent, healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
         }
     }

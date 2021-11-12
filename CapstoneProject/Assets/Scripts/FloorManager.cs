@@ -37,7 +37,6 @@ public class FloorManager : Singleton<FloorManager>
     {
         if (scene.name == "MainGameScene")
         {
-            //audioSource.mute = true;
             audioSource.Stop();
             floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
 
@@ -58,25 +57,20 @@ public class FloorManager : Singleton<FloorManager>
                 floorsUnlocked = 5;
             }
 
-            //floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
             waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
-            //CheckCount(prefFloor, ref floorCount, ref floorCounterText, "Floor", "Floor 5");
             CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
-            //audioSource.mute = false;
             audioSource.clip = floorBGM[floorCount - 1];
             audioSource.Play();
         }
         else if (scene.name == "GameWinScene" || scene.name == "GameOverScene")
         {
-            //audioSource.mute = true;
             audioSource.Stop();
             waveCount = PlayerPrefs.GetInt(prefWave, 1);
         }
         else
         {
-            //audioSource.mute = true;
             audioSource.Stop();
         }
     }

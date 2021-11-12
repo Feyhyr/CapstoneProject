@@ -116,7 +116,6 @@ public class Basic : EnemyController
                     bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
                     bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(false);
-                    //yield return new WaitForSeconds(0.5f);
                     bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount;
                     bm.EDamagePopup(bm.currentEnemyList[i].transform, healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
                 }
