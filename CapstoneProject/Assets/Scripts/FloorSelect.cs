@@ -9,6 +9,7 @@ public class FloorSelect : MonoBehaviour
     public string prefFloorSelect = "floorReached";
     public int floorReached;
     public List<Button> floorButtons;
+    public List<GameObject> lockSymbol;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class FloorSelect : MonoBehaviour
             if (i + 1 > floorReached)
             {
                 floorButtons[i].interactable = false;
+                lockSymbol[i].SetActive(true);
             }
         }
     }
