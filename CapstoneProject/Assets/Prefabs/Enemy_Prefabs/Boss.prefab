@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 2882004991893297794}
   - component: {fileID: 6149935003803428155}
   - component: {fileID: 962936928391571179}
-  - component: {fileID: 5801432552562437606}
+  - component: {fileID: 7829647000508574946}
   m_Layer: 6
   m_Name: TargetSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2882004991893297794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.42}
+  m_AnchoredPosition: {x: 0, y: 3.46}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6149935003803428155
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &5801432552562437606
+--- !u!95 &7829647000508574946
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ Animator:
   m_GameObject: {fileID: 685297641216822}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: db48d880976cc154693f285c119eed43, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0ae04f6ff74a0734c9e9f80009d14ace, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
