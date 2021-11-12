@@ -22,6 +22,8 @@ public class FloorManager : Singleton<FloorManager>
     public List<AudioClip> floorBGM;
     private BattleManager bm;
 
+    private AudioClip previousClip;
+
     private new void Awake()
     {
         base.Awake();
@@ -50,6 +52,7 @@ public class FloorManager : Singleton<FloorManager>
         }
         if (scene.name == "BattleScene")
         {
+            previousClip = audioSource.clip;
             floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
 
             if (floorsUnlocked > 5)
@@ -62,7 +65,10 @@ public class FloorManager : Singleton<FloorManager>
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
             audioSource.clip = floorBGM[floorCount - 1];
-            audioSource.Play();
+            if (previousClip != audioSource.clip)
+            {
+                audioSource.Play();
+            }
         }
         else if (scene.name == "GameWinScene" || scene.name == "GameOverScene")
         {

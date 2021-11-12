@@ -113,8 +113,14 @@ public class BattleManager : MonoBehaviour
     public AudioClip spellConfirm;
     public bool isAudioPlaying;
 
-    public GameObject blackoutCanvas;
+    public GameObject fadeInCanvas;
+    public GameObject endWaveCanvas;
     #endregion
+
+    private void Awake()
+    {
+        StartCoroutine(WaveStart());
+    }
 
     private void Start()
     {
@@ -393,7 +399,7 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            StartCoroutine(Blackout());
+            StartCoroutine(EndWave());
             /*gameWinScreen.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -408,9 +414,16 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator Blackout()
+    IEnumerator WaveStart()
     {
-        blackoutCanvas.SetActive(true);
+        fadeInCanvas.SetActive(true);
+        yield return new WaitForSeconds(1.8f);
+        fadeInCanvas.SetActive(false);
+    }
+
+    IEnumerator EndWave()
+    {
+        endWaveCanvas.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         floor.AddCount(ref floor.waveCount, floor.prefWave);
@@ -1149,6 +1162,14 @@ public class BattleManager : MonoBehaviour
                 ColorBlock cb = spellBTNList[i].GetComponent<Button>().colors;
                 cb.disabledColor = Color.white;
                 spellBTNList[i].GetComponent<Button>().colors = cb;
+                //spellBTNList[i].Find("Lock");
+                //foreach (GameObject child in s)
+                //{
+                //    if (child.name == "Lock")
+                //    {
+                //        child.SetActive(false);
+                //    }
+                //}
             }
         }
     }
