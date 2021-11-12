@@ -1162,7 +1162,13 @@ public class BattleManager : MonoBehaviour
                 ColorBlock cb = spellBTNList[i].GetComponent<Button>().colors;
                 cb.disabledColor = Color.white;
                 spellBTNList[i].GetComponent<Button>().colors = cb;
-                //spellBTNList[i].Find("Lock");
+                foreach (Transform child in spellBTNList[i].transform.parent)
+                {
+                    if (child.tag == "Lock")
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
                 //foreach (GameObject child in s)
                 //{
                 //    if (child.name == "Lock")

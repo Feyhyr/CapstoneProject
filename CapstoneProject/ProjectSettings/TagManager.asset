@@ -10,6 +10,7 @@ TagManager:
   - Vampire
   - Enemy
   - Boss
+  - Lock
   layers:
   - Default
   - TransparentFX
