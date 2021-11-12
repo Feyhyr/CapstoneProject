@@ -149,7 +149,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
         bm.PDamagePopup(bm.playerLocation, enemyDmg, "normalPlayer", false, bm.playerNumPopupObj);
 
-        if (tag == "Vampire")
+        if (tag == "Vampire" || enemyType == "Wendigo")
         {
             int healAmount = enemyDmg / 2;
             enemyHealthSlider.value += healAmount;

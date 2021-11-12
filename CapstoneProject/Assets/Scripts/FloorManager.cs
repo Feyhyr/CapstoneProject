@@ -25,12 +25,12 @@ public class FloorManager : Singleton<FloorManager>
     private new void Awake()
     {
         base.Awake();
-        SceneManager.sceneLoaded += OnLevelLoaded;
+        //SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void Start()
     {
-        //SceneManager.sceneLoaded += OnLevelLoaded;
+        SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
@@ -58,9 +58,9 @@ public class FloorManager : Singleton<FloorManager>
                 floorsUnlocked = 5;
             }
 
-            floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
+            //floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
             waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
-            CheckCount(prefFloor, ref floorCount, ref floorCounterText, "Floor", "Floor 5");
+            //CheckCount(prefFloor, ref floorCount, ref floorCounterText, "Floor", "Floor 5");
             CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];

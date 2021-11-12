@@ -19,10 +19,10 @@ MonoBehaviour:
   weakness: []
   resistance: []
   immunity: []
-  idle: {fileID: 11400000, guid: 8360be8f9ff54b34f95f4db97b516012, type: 2}
-  attack: {fileID: 11400000, guid: 05c84e724bc688d4bb2b2a6a581a294a, type: 2}
-  damage: {fileID: 11400000, guid: 9c0b2cfb19c0dd047942a6b6f7273490, type: 2}
-  skeletonData: {fileID: 11400000, guid: 871b359850eee62468cf05ba3689bdda, type: 2}
+  idle: {fileID: 11400000, guid: 4d6a2912f971b7142b32e9a96ab4ebd3, type: 2}
+  attack: {fileID: 11400000, guid: f7d45314dfb566a4a9afe7ef3841f500, type: 2}
+  damage: {fileID: 11400000, guid: 5e7ae9bd182ca6a419b9520b3aa1e427, type: 2}
+  skeletonData: {fileID: 11400000, guid: d772d2f214e2af54fbdb6c952434039f, type: 2}
   attackSFX: {fileID: 8300000, guid: 0c06912225797f244986ac33b09b48b4, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Summoner

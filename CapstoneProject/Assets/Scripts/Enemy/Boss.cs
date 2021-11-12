@@ -9,11 +9,7 @@ public class Boss : EnemyController
 
     public override IEnumerator AttackPattern()
     {
-        if (enemyType == "Attack")
-        {
-            yield return Attack();
-        }
-        else if (enemyType == "Wendigo")
+        if (enemyType == "Wendigo")
         {
             yield return Wendigo();
         }
@@ -33,32 +29,6 @@ public class Boss : EnemyController
         {
             yield return HellSpire();
         }
-    }
-
-    private IEnumerator Attack()
-    {
-        if (isFreeze && freezeTurnCount > 0)
-        {
-            GameObject fPrefab = Instantiate(freezePrefab, transform);
-            yield return new WaitForSeconds(1);
-            Destroy(fPrefab);
-            freezeTurnCount--;
-            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
-            if (freezeTurnCount == 0)
-            {
-                isFreeze = false;
-                frozen.SetActive(false);
-            }
-        }
-
-        else
-        {
-            enemyAttacking = true;
-            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
-            yield return EnemyAttack();
-        }
-
-        yield return CheckEnemyStatus();
     }
 
     private IEnumerator Wendigo()
