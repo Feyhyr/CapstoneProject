@@ -468,9 +468,6 @@ MonoBehaviour:
   currentCD: 0
   counterCDText: {fileID: 4086417731940273322}
   CDCover: {fileID: 4086417732099472368}
-  alpha:
-    serializedVersion: 2
-    rgba: 2160642248
 --- !u!1 &4086417731528921821
 GameObject:
   m_ObjectHideFlags: 0
