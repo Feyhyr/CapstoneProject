@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class Basic : EnemyController
 {
-    public Text TypeText;
-    public Image TypeIcon;
-
     public List<Sprite> TypeList;
 
     protected override void Start()

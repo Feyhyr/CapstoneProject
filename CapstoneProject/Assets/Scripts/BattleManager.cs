@@ -90,6 +90,7 @@ public class BattleManager : MonoBehaviour
     public GameObject gameWinScreen;
     public GameObject gameLoseScreen;
     public GameObject battleStartUX;
+    public Text battleStartUXText;
     public GameObject playerTurnUX;
     public GameObject enemyTurnUX;
 
@@ -129,6 +130,8 @@ public class BattleManager : MonoBehaviour
         charHealthSlider.value = charMaxHealth;
 
         ChangeSpellDisabled();
+
+        battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/5";
 
         if (bossBattle)
         {

@@ -8,6 +8,16 @@ public class Boss : EnemyController
     public EnemySO hellSpireSummon;
     private int summonCount = 0;
 
+    public Sprite TypeImage;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        TypeIcon.sprite = TypeImage;
+        TypeText.text = "Boss";
+    }
+
     public override IEnumerator AttackPattern()
     {
         if (enemyType == "Wendigo")

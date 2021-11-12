@@ -58,7 +58,7 @@ public class FloorManager : Singleton<FloorManager>
             }
 
             waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
-            CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave", "Boss Wave");
+            CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave");
             bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
             audioSource.clip = floorBGM[floorCount - 1];
@@ -75,21 +75,17 @@ public class FloorManager : Singleton<FloorManager>
         }
     }
 
-    private void CheckCount(string key, ref int count, ref Text text, string prefix, string specPrefix)
+    private void CheckCount(string key, ref int count, ref Text text, string prefix)
     {
         count = PlayerPrefs.GetInt(key, 1);
         if (count > 5)
         {
             count = 1;
-            text.text = prefix + " " + count;
-        }
-        else if (count == 5)
-        {
-            text.text = specPrefix;
+            text.text = prefix + " " + count + "/5";
         }
         else
         {
-            text.text = prefix + " " + count;
+            text.text = prefix + " " + count + "/5";
         }
     }
 
