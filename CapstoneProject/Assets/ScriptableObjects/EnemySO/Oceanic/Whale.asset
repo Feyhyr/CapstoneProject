@@ -18,9 +18,14 @@ MonoBehaviour:
   maxHealth: 50
   weakness:
   - Fire
+  weakImages:
+  - {fileID: 21300000, guid: d3fc8b619665f434d89419e6c560c759, type: 3}
   resistance:
   - Water
+  resistImages:
+  - {fileID: 21300000, guid: 2007b9a641db52b45a2b2375094f02a4, type: 3}
   immunity: []
+  immuneImages: []
   idle: {fileID: 11400000, guid: dda261ca6726d9e42ad6fc42a33b8b86, type: 2}
   attack: {fileID: 11400000, guid: e5dd34ac5430a81469b4d05547ca1e9c, type: 2}
   damage: {fileID: 11400000, guid: 248e1aad869c2b740be615900158b090, type: 2}

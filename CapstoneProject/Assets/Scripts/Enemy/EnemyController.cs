@@ -59,6 +59,11 @@ public class EnemyController : MonoBehaviour
     public Image TypeIcon;
     public Text TypeText;
 
+    public GameObject enemyResistance;
+    public Transform enemyWeakLocation;
+    public Transform enemyResistLocation;
+    public Transform enemyImmuneLocation;
+
     protected virtual void Start()
     {
         GetComponent<SkeletonAnimation>().skeletonDataAsset = enemy.skeletonData;
@@ -82,6 +87,24 @@ public class EnemyController : MonoBehaviour
 
         currentState = "Idle";
         SetCharacterState(currentState);
+
+        for (int i = 0; i < enemy.weakImages.Count; i++)
+        {
+            GameObject r = Instantiate(enemyResistance, enemyWeakLocation);
+            r.GetComponent<Image>().sprite = enemy.weakImages[i];
+        }
+
+        for (int i = 0; i < enemy.resistImages.Count; i++)
+        {
+            GameObject r = Instantiate(enemyResistance, enemyResistLocation);
+            r.GetComponent<Image>().sprite = enemy.resistImages[i];
+        }
+
+        for (int i = 0; i < enemy.immuneImages.Count; i++)
+        {
+            GameObject r = Instantiate(enemyResistance, enemyImmuneLocation);
+            r.GetComponent<Image>().sprite = enemy.immuneImages[i];
+        }
 
         StartCoroutine(FadeIn());
     }

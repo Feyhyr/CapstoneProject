@@ -112,6 +112,8 @@ public class BattleManager : MonoBehaviour
 
     public AudioClip spellConfirm;
     public bool isAudioPlaying;
+
+    public GameObject blackoutCanvas;
     #endregion
 
     private void Start()
@@ -162,7 +164,7 @@ public class BattleManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(2.3f);
         battleStartUX.SetActive(false);
 
         GameObject ePrefab;
@@ -202,7 +204,7 @@ public class BattleManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(2.3f);
         battleStartUX.SetActive(false);
 
         GameObject ePrefab;
@@ -298,7 +300,7 @@ public class BattleManager : MonoBehaviour
 
         playerAttacked = false;
         playerTurnUX.SetActive(true);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.6f);
         playerTurnUX.SetActive(false);
     }
 
@@ -368,7 +370,7 @@ public class BattleManager : MonoBehaviour
         charStuck.SetActive(false);
         enemy.targetSelected.SetActive(false);
         enemyTurnUX.SetActive(true);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.6f);
         enemyTurnUX.SetActive(false);
         yield return new WaitForSeconds(1);
         Cursor.visible = false;
@@ -391,10 +393,11 @@ public class BattleManager : MonoBehaviour
         StopAllCoroutines();
         if (battleState == BattleState.WIN)
         {
-            gameWinScreen.SetActive(true);
+            StartCoroutine(Blackout());
+            /*gameWinScreen.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            floor.AddCount(ref floor.waveCount, floor.prefWave);
+            floor.AddCount(ref floor.waveCount, floor.prefWave);*/
         }
         else if (battleState == BattleState.LOSE)
         {
@@ -403,6 +406,16 @@ public class BattleManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    IEnumerator Blackout()
+    {
+        blackoutCanvas.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        floor.AddCount(ref floor.waveCount, floor.prefWave);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("BattleScene");
     }
 
     private void EndBossBattle()
