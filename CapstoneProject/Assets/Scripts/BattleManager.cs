@@ -414,23 +414,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator WaveStart()
-    {
-        fadeInCanvas.SetActive(true);
-        yield return new WaitForSeconds(1.8f);
-        fadeInCanvas.SetActive(false);
-    }
-
-    IEnumerator EndWave()
-    {
-        endWaveCanvas.SetActive(true);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        floor.AddCount(ref floor.waveCount, floor.prefWave);
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("BattleScene");
-    }
-
     private void EndBossBattle()
     {
         StopAllCoroutines();
@@ -448,13 +431,35 @@ public class BattleManager : MonoBehaviour
                 PlayerPrefs.SetInt("floorReached", floor.floorsUnlocked);
             }
             floor.AddCount(ref floor.floorCount, floor.prefFloor);
-            SceneManager.LoadScene("GameWinScene");
+            gameWinScreen.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            //SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
         {
             PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    IEnumerator WaveStart()
+    {
+        fadeInCanvas.SetActive(true);
+        yield return new WaitForSeconds(1.8f);
+        fadeInCanvas.SetActive(false);
+    }
+
+    IEnumerator EndWave()
+    {
+        endWaveCanvas.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        floor.AddCount(ref floor.waveCount, floor.prefWave);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("BattleScene");
     }
     #endregion
 
