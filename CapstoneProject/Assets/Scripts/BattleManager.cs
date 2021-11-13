@@ -504,8 +504,8 @@ public class BattleManager : MonoBehaviour
 
             if (debrisHit)
             {
-                int debrisDmg = Random.Range(2, 11);
-                damage += debrisDmg;
+                float debrisDmg = Random.Range(1f, 2.5f);
+                damage *= debrisDmg;
                 debrisHit = false;
             }
 
@@ -608,13 +608,6 @@ public class BattleManager : MonoBehaviour
                     reverbTurnCount++;
                     reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
                 }
-
-                if (debrisHit)
-                {
-                    float debrisDmg = Random.Range(0.6f, 2.5f);
-                    targetDmg *= debrisDmg;
-                    debrisHit = false;
-                }
             }
 
             AudioManager.Instance.Play(currentEnemy.damageSFX);
@@ -631,7 +624,7 @@ public class BattleManager : MonoBehaviour
 
             if (ChooseSpell() == 1)
             {
-                if (ChanceStatusEffect(0.7f) && currentEnemy.enemyType != "LavaGolem")
+                if (ChanceStatusEffect(0.5f) && currentEnemy.enemyType != "LavaGolem")
                 {
                     currentEnemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);

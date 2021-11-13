@@ -8229,8 +8229,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Cyclone allows you to cast another spell immediately
-            after using Cyclone.
+          m_StringArgument: WIND + WATER                              Casting Cyclone
+            allows you to cast another spell immediately after using Cyclone.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522804608111908
@@ -8362,8 +8362,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Blaze has a chance to induce the Burn status
-            effect.
+          m_StringArgument: FIRE + WIND                              Casting Blaze
+            has a 30% chance to induce the Burn status effect.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522804881881360
@@ -8495,9 +8495,9 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Reverb does not seal the Wind Rune, and if used
-            consecutively will deal an additional 1 damage per consectuive use each
-            time.
+          m_StringArgument: EARTH + WIND                              The Reverb
+            spell does not have a cooldown, additionally the damage done from Reverb
+            is doubled with each consecutive use.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522804943052686
@@ -8686,7 +8686,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: All damage you recieve for the next 2 turns is halved.
+          m_StringArgument: 'EARTH + FIRE                              All damage
+            you recieve for the next 3 turns is halved. '
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!224 &3770522805169985346
@@ -8955,8 +8956,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Lahar will deal an additional 2-10 damage to
-            the enemy upon casting.
+          m_StringArgument: EARTH + WATER                              Casting Lahar
+            will deal 1x-2.5x  damage to the enemy upon casting.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522805350657468
@@ -9232,7 +9233,9 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Steam will heal 3 HP and remove all status effects.
+          m_StringArgument: FIRE + WATER                              Casting Steam
+            will remove all debuffs and heal 15% of max HP. If you have no debuffs
+            the healing will be increased to 20% of max HP.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3770522805579122272
@@ -9307,7 +9310,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Boil induces the Scald effect.
+          m_StringArgument: WATER + FIRE                              Casting Boil
+            induces the Scald effect.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522805579122274
@@ -9439,7 +9443,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Sandblast induces the Exposed status effect.
+          m_StringArgument: WIND + EARTH                              Casting Sandblast
+            induces the Exposed status effect.
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522805608439896
@@ -9628,8 +9633,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Smog has a chance to inflict the Poisoned status
-            effect.
+          m_StringArgument: 'WIND + FIRE                              AOE: Casting
+            Smog has a 50% chance to inflict the Poisoned status effect.'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3770522805692158602
@@ -9825,8 +9830,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Erupt will do double damage if your  HP is 10%
-            or less.
+          m_StringArgument: 'FIRE + EARTH                              AOE: Casting
+            Erupt will do double damage if your  HP is 25% or less.'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522805977844074
@@ -10033,8 +10038,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Tsunami on enemies that are weak to water combos
-            will do triple damage.
+          m_StringArgument: 'WATER + EARTH                              AOE: Casting
+            Tsunami on enemies that are weak to water combos will do triple damage.'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522806360781672
@@ -10166,8 +10171,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Casting Ice Storm has a chance to  induce the Freeze
-            status effect.
+          m_StringArgument: 'WATER + WIND                              AOE: Casting
+            Ice Storm has a 30% chance to  induce the Freeze status effect.'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3770522806451887924
