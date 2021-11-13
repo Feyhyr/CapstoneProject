@@ -272,8 +272,6 @@ public class BattleManager : MonoBehaviour
         enemy.targetSelected.SetActive(true);
         extraTurn = false;
         isCreatingSpell = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         
         if (isCharStuck)
         {
@@ -308,6 +306,8 @@ public class BattleManager : MonoBehaviour
         playerTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.6f);
         playerTurnUX.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     IEnumerator PAttackPhase()
@@ -965,7 +965,7 @@ public class BattleManager : MonoBehaviour
         {
             float healAmount = charMaxHealth * 0.2f;
 
-            sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], playerLocation2);
             sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
             sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
 
@@ -1015,7 +1015,14 @@ public class BattleManager : MonoBehaviour
         {
             if (ChooseSpell() != 9)
             {
-                sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+                if (ChooseSpell() == 11)
+                {
+                    sPrefab = Instantiate(spellPrefab[ChooseSpell()], playerLocation2);
+                }
+                else
+                {
+                    sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+                }
                 sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
                 sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
             }
