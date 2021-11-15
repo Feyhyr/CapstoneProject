@@ -69,11 +69,8 @@ public class EnemyController : MonoBehaviour
         GetComponent<SkeletonAnimation>().skeletonDataAsset = enemy.skeletonData;
         GetComponent<SkeletonAnimation>().Initialize(true);
         eSkeletonAnimation = GetComponent<SkeletonAnimation>();
+        enemyHealthSlider.maxValue = enemy.maxHealth;
         enemyHealthSlider.value = enemy.maxHealth;
-        if (tag == "Summon" || tag == "Vampire")
-        {
-            enemyHealthSlider.maxValue = enemyHealthSlider.value;
-        }
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
@@ -88,22 +85,25 @@ public class EnemyController : MonoBehaviour
         currentState = "Idle";
         SetCharacterState(currentState);
 
-        for (int i = 0; i < enemy.weakImages.Count; i++)
+        if (tag != "Lantern")
         {
-            GameObject r = Instantiate(enemyResistance, enemyWeakLocation);
-            r.GetComponent<Image>().sprite = enemy.weakImages[i];
-        }
+            for (int i = 0; i < enemy.weakImages.Count; i++)
+            {
+                GameObject r = Instantiate(enemyResistance, enemyWeakLocation);
+                r.GetComponent<Image>().sprite = enemy.weakImages[i];
+            }
 
-        for (int i = 0; i < enemy.resistImages.Count; i++)
-        {
-            GameObject r = Instantiate(enemyResistance, enemyResistLocation);
-            r.GetComponent<Image>().sprite = enemy.resistImages[i];
-        }
+            for (int i = 0; i < enemy.resistImages.Count; i++)
+            {
+                GameObject r = Instantiate(enemyResistance, enemyResistLocation);
+                r.GetComponent<Image>().sprite = enemy.resistImages[i];
+            }
 
-        for (int i = 0; i < enemy.immuneImages.Count; i++)
-        {
-            GameObject r = Instantiate(enemyResistance, enemyImmuneLocation);
-            r.GetComponent<Image>().sprite = enemy.immuneImages[i];
+            for (int i = 0; i < enemy.immuneImages.Count; i++)
+            {
+                GameObject r = Instantiate(enemyResistance, enemyImmuneLocation);
+                r.GetComponent<Image>().sprite = enemy.immuneImages[i];
+            }
         }
 
         StartCoroutine(FadeIn());
@@ -112,20 +112,23 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         eHPText.text = enemyHealthSlider.value.ToString() + "/" + enemy.maxHealth;
-        if (bm.battleState == BattleManager.BattleState.ENEMYTURN)
+        if (tag != "Lantern")
         {
-            if (enemyAttacking)
+            if (bm.battleState == BattleManager.BattleState.ENEMYTURN)
             {
-                enemyCover.SetActive(true);
+                if (enemyAttacking)
+                {
+                    enemyCover.SetActive(true);
+                }
+                else
+                {
+                    enemyCover.SetActive(false);
+                }
             }
             else
             {
                 enemyCover.SetActive(false);
             }
-        }
-        else
-        {
-            enemyCover.SetActive(false);
         }
     }
 

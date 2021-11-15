@@ -115,6 +115,8 @@ public class BattleManager : MonoBehaviour
 
     public GameObject fadeInCanvas;
     public GameObject endWaveCanvas;
+
+    public GameObject fishCover;
     #endregion
 
     private void Awake()
@@ -1182,6 +1184,27 @@ public class BattleManager : MonoBehaviour
                 //    }
                 //}
             }
+        }
+    }
+
+    public IEnumerator FadeOutFishCover(Image image)
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        while (image.color.a > 0.0f)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - Time.deltaTime);
+            yield return null;
+        }
+
+    }
+
+    public IEnumerator FadeInFishCover(Image image)
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+        while (image.color.a < 1.0f)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + Time.deltaTime);
+            yield return null;
         }
     }
     #endregion

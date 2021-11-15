@@ -1607,6 +1607,7 @@ MonoBehaviour:
   enemyImmuneLocation: {fileID: 5264935008845650114}
   hellSpireSummon: {fileID: 11400000, guid: fcb353712b120c8449e80f1b8235f1bf, type: 2}
   TypeImage: {fileID: 21300000, guid: 2885c3d16c5d77c4ebacda4c054a2d7f, type: 3}
+  lanternPrefab: {fileID: 4143568629198492943, guid: bacf045edc456b64e81fc413193f238f, type: 3}
 --- !u!114 &2264063263338638585
 MonoBehaviour:
   m_ObjectHideFlags: 0
