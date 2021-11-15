@@ -631,7 +631,7 @@ public class BattleManager : MonoBehaviour
 
             if (ChooseSpell() == 1)
             {
-                if (ChanceStatusEffect(0.5f) && currentEnemy.enemyType != "LavaGolem")
+                if (ChanceStatusEffect(0f) && currentEnemy.enemyType != "LavaGolem")
                 {
                     currentEnemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
@@ -646,7 +646,7 @@ public class BattleManager : MonoBehaviour
             }
             else if (ChooseSpell() == 6)
             {
-                if (ChanceStatusEffect(0.7f))
+                if (ChanceStatusEffect(0f))
                 {
                     currentEnemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
@@ -955,7 +955,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 7)
         {
-            if (ChanceStatusEffect(0.7f))
+            if (ChanceStatusEffect(0f))
             {
                 enemy.isBurn = true;
                 enemy.burnTurnCount = 3;
