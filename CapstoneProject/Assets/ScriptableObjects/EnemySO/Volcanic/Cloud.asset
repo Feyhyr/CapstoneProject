@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Cloud
   tagName: Enemy
-  dmg: 10
-  maxHealth: 50
+  dmg: 5
+  maxHealth: 40
   weakness:
   - Water
   - Wind

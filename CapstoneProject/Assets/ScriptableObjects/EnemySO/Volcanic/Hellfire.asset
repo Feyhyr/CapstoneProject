@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Hellfire
   tagName: Enemy
-  dmg: 10
-  maxHealth: 50
+  dmg: 15
+  maxHealth: 25
   weakness:
   - Water
   - Wind

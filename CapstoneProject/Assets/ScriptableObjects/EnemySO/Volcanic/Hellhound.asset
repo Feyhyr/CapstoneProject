@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Hellhound
   tagName: Enemy
-  dmg: 10
-  maxHealth: 50
+  dmg: 7
+  maxHealth: 35
   weakness:
   - Water
   - Wind
