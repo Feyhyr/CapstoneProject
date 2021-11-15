@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
-  m_Name: BarnacleSummon
+  m_Name: StarfishSummon
   m_EditorClassIdentifier: 
-  enemyName: Barnacle Summon
+  enemyName: Starfish Summon
   tagName: Summon
   dmg: 8
   maxHealth: 40
