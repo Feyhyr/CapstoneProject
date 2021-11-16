@@ -7898,7 +7898,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Sealed: One random rune type is blocked from usage for 2 turns'
+  m_Text: 'Sealed: One random rune type is blocked from usage for 2 turns.'
 --- !u!222 &976237065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10184,7 +10184,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cursed: HP is decreased by 1/8 at the end of every turn for 2 turns'
+  m_Text: 'Cursed: HP is decreased by 1/8th at the end of every turn for 2 turns.'
 --- !u!222 &1234616908
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16895,7 +16895,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reverb increases your damage by the number of stacks
+  m_Text: Reverb increases your damage by the number of stacks. With each stack there
+    is a greater chance to miss.
 --- !u!222 &1470112417
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17353,7 +17354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Crystallized: Halves the damage of the next enemy attack within 2 turns'
+  m_Text: 'Crystallized: Halves the damage inflicted by enemy attacks for 2 turns.'
 --- !u!222 &1503615605
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19205,7 +19206,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Poisoned: HP is decreased by 3 at the end of every turn for 2 turns'
+  m_Text: 'Poisoned: HP is decreased by 8% at the end of every turn for 2 turns.
+    While poisoned you cannot regain HP.'
 --- !u!222 &1779782707
 CanvasRenderer:
   m_ObjectHideFlags: 0
