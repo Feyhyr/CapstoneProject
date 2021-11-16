@@ -11,6 +11,7 @@ public class Boss : EnemyController
     public Sprite TypeImage;
 
     public GameObject lanternPrefab;
+    public int hiddenFishTurnCount = 0;
 
     protected override void Start()
     {
@@ -18,18 +19,6 @@ public class Boss : EnemyController
 
         TypeIcon.sprite = TypeImage;
         TypeText.text = "Boss";
-
-        if (enemyType == "AnglerFish")
-        {
-            StartCoroutine(bm.FadeInFishCover(bm.fishCover.GetComponent<Image>()));
-            GameObject lantern = Instantiate(lanternPrefab, bm.fishCover.transform);
-            lantern.GetComponentInChildren<EnemyController>().bm = bm;
-            lantern.GetComponentInChildren<EnemyController>().enemyId = 1;
-            lantern.tag = lantern.GetComponentInChildren<EnemyController>().enemy.tagName;
-            lantern.GetComponentInChildren<EnemyController>().eText.text = lantern.GetComponentInChildren<EnemyController>().enemy.enemyName;
-            bm.currentEnemyList.Add(lantern);
-            bm.targetEnemy = 1;
-        }
     }
 
     public override IEnumerator AttackPattern()
@@ -138,6 +127,7 @@ public class Boss : EnemyController
             yield return EnemyAttack();
         }
 
+        hiddenFishTurnCount++;
         yield return CheckEnemyStatus();
     }
 
@@ -297,5 +287,17 @@ public class Boss : EnemyController
 
         yield return new WaitForSeconds(0.5f);
         bm.CheckEnemyDeath(enemyId);
+    }
+
+    public IEnumerator SpawnLantern()
+    {
+        yield return bm.FadeInFishCover(bm.fishCover.GetComponent<Image>());
+        GameObject lantern = Instantiate(lanternPrefab, bm.fishCover.transform);
+        lantern.GetComponentInChildren<EnemyController>().bm = bm;
+        lantern.GetComponentInChildren<EnemyController>().enemyId = 1;
+        lantern.tag = lantern.GetComponentInChildren<EnemyController>().enemy.tagName;
+        lantern.GetComponentInChildren<EnemyController>().eText.text = lantern.GetComponentInChildren<EnemyController>().enemy.enemyName;
+        bm.currentEnemyList.Add(lantern);
+        bm.targetEnemy = 1;
     }
 }
