@@ -24,7 +24,7 @@ public class SpellController : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void Start()
     {
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        maxCD = 2;
+        maxCD = spell.maxCooldown;
         currentCD = 0;
         nameText.text = spell.sName;
         spellIcon = spell.icon;

@@ -65,6 +65,7 @@ public class BattleManager : MonoBehaviour
     public GameObject curse;
     public GameObject playerPoison;
     public GameObject charStuck;
+    public GameObject charExposed;
 
     public bool isCrystalize = false;
     int crystalTurnCount = 2;
@@ -85,6 +86,8 @@ public class BattleManager : MonoBehaviour
     public bool pCannotHeal = false;
     public int charStuckTurnCount = 1;
     public bool isCharStuck = false;
+    public bool isCharExposed = false;
+    public int charExposedTurnCount = 2;
 
     bool bossBattle;
 
@@ -120,6 +123,7 @@ public class BattleManager : MonoBehaviour
     public GameObject fishCover;
     public GameObject lanternPrefab;
     public GameObject noEffectText;
+    GameObject tempEnemyObject;
     #endregion
 
     private void Awake()
@@ -185,7 +189,7 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < randomEnemyCount; i++)
         {
-            randomEnemy = Random.Range(0, enemyScriptables[floor.floorCount - 1].enemyList.Count - 1);
+            randomEnemy = Random.Range(0, enemyScriptables[floor.floorCount - 1].enemyList.Count);
             ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
@@ -267,6 +271,17 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        if (isCharExposed)
+        {
+            charExposedTurnCount--;
+            charExposed.GetComponentInChildren<Text>().text = charExposedTurnCount.ToString();
+            if (charPoisonedTurnCount <= 0)
+            {
+                isCharExposed = false;
+                charExposed.SetActive(false);
+            }
+        }
+
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
             if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
@@ -302,7 +317,7 @@ public class BattleManager : MonoBehaviour
             if (isCharPoisoned)
             {
                 yield return new WaitForSeconds(1);
-                EnemyPoison();
+                PlayerPoison();
             }
 
             CheckPlayerDeath();
@@ -332,8 +347,6 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PAttackPhase()
     {
-        sPrefab.GetComponent<SpellCreation>().DestroySpell();
-
         for (int i = 0; i < runeObjs.Length; i++)
         {
             runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
@@ -355,7 +368,7 @@ public class BattleManager : MonoBehaviour
 
         if (isCharSealed)
         {
-            EnemySeal();
+            PlayerSeal();
         }
 
         rune1 = "";
@@ -364,13 +377,13 @@ public class BattleManager : MonoBehaviour
         if (isCharCursed)
         {
             yield return new WaitForSeconds(1);
-            EnemyCurse();
+            PlayerCurse();
         }
 
         if (isCharPoisoned)
         {
             yield return new WaitForSeconds(1);
-            EnemyPoison();
+            PlayerPoison();
         }
 
         CheckPlayerDeath();
@@ -496,6 +509,10 @@ public class BattleManager : MonoBehaviour
         {
             yield return DamageCheckSingle(damage);
         }
+        if (sPrefab != null)
+        {
+            sPrefab.GetComponent<SpellCreation>().DestroySpell();
+        }
         yield return PAttackPhase();
     }
 
@@ -563,7 +580,11 @@ public class BattleManager : MonoBehaviour
 
         enemyState = "Idle";
         enemy.SetCharacterState(enemyState);
-        CheckEnemyDeath(targetEnemy);
+        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
+        {
+            currentEnemyList[targetEnemy].SetActive(false);
+        }
+        yield return CheckEnemyDeath(targetEnemy);
         playerAttacked = true;
     }
 
@@ -572,7 +593,7 @@ public class BattleManager : MonoBehaviour
         EnemyController currentEnemy;
         float originalDmg = damage;
 
-        for (int i = 0; i < currentEnemyList.Count; i++)
+        for (int i = currentEnemyList.Count - 1; i >= 0; i--)
         {
             float targetDmg = originalDmg;
             string state = "normalEnemy";
@@ -647,38 +668,40 @@ public class BattleManager : MonoBehaviour
             enemyState = "Idle";
             currentEnemy.SetCharacterState(enemyState);
 
-            if (ChooseSpell() == 1)
+            if (currentEnemy.enemyHealthSlider.value > 0 && currentEnemy.enemyType != "Lantern")
             {
-                if (ChanceStatusEffect(0f) && currentEnemy.enemyType != "LavaGolem" && currentEnemy.enemyType != "Lantern")
+                if (ChooseSpell() == 1)
                 {
-                    currentEnemy.eDebuffCanvas.SetActive(true);
-                    yield return new WaitForSeconds(1f);
-                    currentEnemy.eDebuffCanvas.SetActive(false);
-                    currentEnemy.isPoisoned = true;
-                    currentEnemy.poisonTurnCount = 2;
-                    currentEnemy.poisoned.GetComponentInChildren<Text>().text = currentEnemy.poisonTurnCount.ToString();
-                    currentEnemy.poisoned.SetActive(true);
-                    currentEnemy.eCannotHeal = true;
-                    yield return new WaitForSeconds(0.5f);
+                    if (ChanceStatusEffect(0f) && currentEnemy.enemyType != "LavaGolem")
+                    {
+                        currentEnemy.eDebuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        currentEnemy.eDebuffCanvas.SetActive(false);
+                        currentEnemy.isPoisoned = true;
+                        currentEnemy.poisonTurnCount = 2;
+                        currentEnemy.poisoned.GetComponentInChildren<Text>().text = currentEnemy.poisonTurnCount.ToString();
+                        currentEnemy.poisoned.SetActive(true);
+                        currentEnemy.eCannotHeal = true;
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                }
+                else if (ChooseSpell() == 6)
+                {
+                    if (ChanceStatusEffect(0f))
+                    {
+                        currentEnemy.eDebuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        currentEnemy.eDebuffCanvas.SetActive(false);
+                        currentEnemy.isFreeze = true;
+                        currentEnemy.freezeTurnCount = 2;
+                        currentEnemy.frozen.GetComponentInChildren<Text>().text = currentEnemy.freezeTurnCount.ToString();
+                        currentEnemy.frozen.SetActive(true);
+                        yield return new WaitForSeconds(0.5f);
+                    }
                 }
             }
-            else if (ChooseSpell() == 6)
-            {
-                if (ChanceStatusEffect(0f) && currentEnemy.enemyType != "Lantern")
-                {
-                    currentEnemy.eDebuffCanvas.SetActive(true);
-                    yield return new WaitForSeconds(1f);
-                    currentEnemy.eDebuffCanvas.SetActive(false);
-                    currentEnemy.isFreeze = true;
-                    currentEnemy.freezeTurnCount = 2;
-                    currentEnemy.frozen.GetComponentInChildren<Text>().text = currentEnemy.freezeTurnCount.ToString();
-                    currentEnemy.frozen.SetActive(true);
-                    yield return new WaitForSeconds(0.5f);
-                }
-            }
-            CheckEnemyDeath(i);
+            yield return CheckEnemyDeath(i);
         }
-
         isDrowned = false;
         isMelt = false;
         playerAttacked = true;
@@ -768,18 +791,24 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void CheckEnemyDeath(int index)
+    public IEnumerator CheckEnemyDeath(int index)
     {
         if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
         {
-            GameObject tempHolder = currentEnemyList[index];
+            tempEnemyObject = currentEnemyList[index];
             currentEnemyList[index].SetActive(false);
+            if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyType == "AnglerFish")
+            {
+                battleState = BattleState.WIN;
+                startCheckEnemy = false;
+                EndBossBattle();
+            }
             if (currentEnemyList[index].tag == "Lantern")
             {
-                StartCoroutine(FadeOutFishCover(fishCover.GetComponent<Image>()));
+                yield return FadeOutFishCover(fishCover.GetComponent<Image>());
             }
             currentEnemyList.RemoveAt(index);
-            Destroy(tempHolder);
+            Destroy(tempEnemyObject);
 
             if (IsAllEnemiesDead())
             {
@@ -797,7 +826,6 @@ public class BattleManager : MonoBehaviour
             else
             {
                 targetEnemy = 0;
-                enemy.targetSelected.SetActive(true);
                 enemyIndex = 0;
 
                 for (int i = 0; i < currentEnemyList.Count; i++)
@@ -937,14 +965,7 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 1)
         {
             debuffing = true;
-            if (enemy.tag == "Lantern")
-            {
-                sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
-            }
-            else
-            {
-                sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
-            }
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
             sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
             sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
 
@@ -956,17 +977,16 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 2 && enemy.tag != "Lantern")
         {
-             enemy.isExposed = true;
-             enemy.exposedTurnCount = 2;
-             enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
-             enemy.exposed.SetActive(true);
+            enemy.isExposed = true;
+            enemy.exposedTurnCount = 2;
+            enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
         }
         else if (ChooseSpell() == 3 && enemy.tag != "Lantern")
         {
             enemy.isScald = true;
             enemy.scaldTurnCount = 4;
             enemy.scalded.GetComponentInChildren<Text>().text = enemy.scaldTurnCount.ToString();
-            enemy.scalded.SetActive(true);
+            
         }
         else if (ChooseSpell() == 4 && enemy.tag != "Lantern")
         {
@@ -981,14 +1001,7 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 6)
         {
             debuffing = true;
-            if (enemy.tag == "Lantern")
-            {
-                sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
-            }
-            else
-            {
-                sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
-            }
+            sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
             sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
             sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
 
@@ -1005,7 +1018,6 @@ public class BattleManager : MonoBehaviour
                 enemy.isBurn = true;
                 enemy.burnTurnCount = 3;
                 enemy.burned.GetComponentInChildren<Text>().text = enemy.burnTurnCount.ToString();
-                enemy.burned.SetActive(true);
             }
         }
         else if (ChooseSpell() == 8)
@@ -1071,7 +1083,7 @@ public class BattleManager : MonoBehaviour
                 {
                     sPrefab = Instantiate(spellPrefab[ChooseSpell()], playerLocation2);
                 }
-                else if ((ChooseSpell() == 4 || ChooseSpell() == 5) && enemy.tag == "Lantern")
+                else if ((ChooseSpell() == 4 || ChooseSpell() == 5))
                 {
                     sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
                 }
@@ -1086,6 +1098,21 @@ public class BattleManager : MonoBehaviour
             if (ChooseSpell() != 2 || ChooseSpell() != 9)
             { 
                 yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+                if (ChooseSpell() == 3 || ChooseSpell() == 7)
+                {
+                    enemy.eDebuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    enemy.eDebuffCanvas.SetActive(false);
+                    if (enemy.isScald)
+                    {
+                        enemy.scalded.SetActive(true);
+                    }
+                    if (enemy.isBurn)
+                    {
+                        enemy.burned.SetActive(true);
+                    }
+                }
 
                 if (ChooseSpell() == 11)
                 {
@@ -1102,6 +1129,13 @@ public class BattleManager : MonoBehaviour
         }
         else if (enemy.isExposed || enemy.tag == "Lantern")
         {
+            if (enemy.tag != "Lantern" && ChooseSpell() == 2)
+            {
+                enemy.eDebuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                enemy.eDebuffCanvas.SetActive(false);
+                enemy.exposed.SetActive(true);
+            }
             enemyState = "Damage";
             enemy.SetCharacterState(enemyState);
             yield return new WaitForSeconds(0.5f);
@@ -1129,7 +1163,7 @@ public class BattleManager : MonoBehaviour
     }
     #endregion
 
-    #region Enemy Status
+    #region Statuses
     public void EnemyDamage(int damage, int target)
     {
         currentEnemyList[target].GetComponentInChildren<EnemyController>().enemyHealthSlider.value -= damage;
@@ -1144,7 +1178,7 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    public void EnemyPoison()
+    public void PlayerPoison()
     {
         float damage = charMaxHealth * 0.08f;
         playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
@@ -1160,7 +1194,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void EnemyCurse()
+    public void PlayerCurse()
     {
         float damage = charHealthSlider.value * (1f / 12f);
         if (damage <= 0)
@@ -1179,7 +1213,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void EnemySeal()
+    public void PlayerSeal()
     {
         runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
         runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;

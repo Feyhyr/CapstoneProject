@@ -19,3 +19,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3a1405eeb9e27c34891bc148e250a749, type: 3}
   description: Casting Cyclone allows you to cast another spell immediately after
     using Cyclone.
+  maxCooldown: 2

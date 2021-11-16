@@ -18,3 +18,4 @@ MonoBehaviour:
   sfx: {fileID: 8300000, guid: 71adb1b855628a940af174e7b97e6831, type: 3}
   icon: {fileID: 21300000, guid: 9e385e0f57b42344586e67adbe55aad6, type: 3}
   description: 'AOE: Casting Erupt will do double damage if your  HP is 25% or less.'
+  maxCooldown: 3

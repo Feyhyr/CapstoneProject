@@ -19,3 +19,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3853efc941e655f4686a2fa4cd6e367c, type: 3}
   description: 'AOE: Casting Tsunami on enemies that are weak to water combos will
     do triple damage.'
+  maxCooldown: 3

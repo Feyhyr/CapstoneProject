@@ -19,3 +19,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9c92882a25ace01439d6455a742c4ef5, type: 3}
   description: 'AOE: Casting Ice Storm has a 30% chance to  induce the Freeze status
     effect.'
+  maxCooldown: 3

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Black Spiral
   tagName: Enemy
-  dmg: 12
+  dmg: 10
   maxHealth: 40
   weakness: []
   weakImages: []

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Wendigo
   tagName: Boss
-  dmg: 7
+  dmg: 8
   maxHealth: 60
   weakness:
   - Fire

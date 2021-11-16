@@ -167,6 +167,10 @@ public class EnemyController : MonoBehaviour
     {
         AudioManager.Instance.Play(attackSFX);
         int enemyDmg = atk;
+        if (bm.isCharExposed)
+        {
+            enemyDmg *= 2;
+        }
         if (bm.isCrystalize)
         {
             enemyDmg /= 2;

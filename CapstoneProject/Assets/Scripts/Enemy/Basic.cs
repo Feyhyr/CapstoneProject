@@ -78,8 +78,8 @@ public class Basic : EnemyController
 
     private IEnumerator Healer()
     {
-        bool ishealing = false;
-        int healAmount = 5;
+        bool isHealing = false;
+        float healAmount = 0;
 
         if (isFreeze && freezeTurnCount > 0)
         {
@@ -100,25 +100,41 @@ public class Basic : EnemyController
             enemyAttacking = true;
             currentState = "Attack";
             SetCharacterState(currentState);
+            int healTarget = 0;
+            float lowestHealth = 0;
 
             for (int i = 0; i < bm.currentEnemyList.Count; i++)
             {
                 if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value < bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth)
                 {
-                    ishealing = true;
-                    if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eCannotHeal)
+                    if (!bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eCannotHeal)
                     {
-                        healAmount = 0;
+                        if (lowestHealth == 0)
+                        {
+                            lowestHealth = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value;
+                            healAmount = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * 0.1f;
+                            healTarget = i;
+                        }
+                        else if (lowestHealth > bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value)
+                        {
+                            lowestHealth = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value;
+                            healAmount = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * 0.1f;
+                            healTarget = i;
+                        }
+                        isHealing = true;
                     }
-                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(true);
-                    yield return new WaitForSeconds(1f);
-                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(false);
-                    bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount;
-                    bm.EDamagePopup(bm.currentEnemyList[i].transform, healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
                 }
             }
 
-            if (!ishealing)
+            if (isHealing)
+            {
+                bm.currentEnemyList[healTarget].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                bm.currentEnemyList[healTarget].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(false);
+                bm.currentEnemyList[healTarget].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount;
+                bm.EDamagePopup(bm.currentEnemyList[healTarget].transform, (int)healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
+            }
+            else if (!isHealing)
             {
                 bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
                 yield return EnemyAttack();
@@ -203,19 +219,21 @@ public class Basic : EnemyController
             bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
             yield return EnemyAttack();
 
-            if (bm.ChanceStatusEffect(0.7f))
+            if (tag == "Hellhound")
             {
-                yield return new WaitForSeconds(0.5f);
-                bm.debuffCanvas.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                bm.debuffCanvas.SetActive(false);
-                bm.isCharCursed = true;
-                bm.charCursedTurnCount = 2;
-                bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
-                bm.curse.SetActive(true);
+                if (bm.ChanceStatusEffect(0.5f))
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.debuffCanvas.SetActive(false);
+                    bm.isCharExposed = true;
+                    bm.charExposedTurnCount = 2;
+                    bm.charExposed.GetComponentInChildren<Text>().text = bm.charExposedTurnCount.ToString();
+                    bm.charExposed.SetActive(true);
+                }
             }
-
-            if (!bm.isCharSealed)
+            else
             {
                 if (bm.ChanceStatusEffect(0.7f))
                 {
@@ -223,27 +241,42 @@ public class Basic : EnemyController
                     bm.debuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
                     bm.debuffCanvas.SetActive(false);
-                    bm.sealedRuneIndex = Random.Range(0, 4);
-                    bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
-                    bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;
-                    bm.charSealedTurnCount = 2;
-                    bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
-                    bm.seal.SetActive(true);
-                    bm.isCharSealed = true;
+                    bm.isCharCursed = true;
+                    bm.charCursedTurnCount = 2;
+                    bm.curse.GetComponentInChildren<Text>().text = bm.charCursedTurnCount.ToString();
+                    bm.curse.SetActive(true);
                 }
-            }
 
-            if (bm.ChanceStatusEffect(0.7f))
-            {
-                yield return new WaitForSeconds(0.5f);
-                bm.debuffCanvas.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                bm.debuffCanvas.SetActive(false);
-                bm.isCharPoisoned = true;
-                bm.charPoisonedTurnCount = 2;
-                bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
-                bm.playerPoison.SetActive(true);
-                bm.pCannotHeal = true;
+                if (!bm.isCharSealed)
+                {
+                    if (bm.ChanceStatusEffect(0.7f))
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        bm.debuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        bm.debuffCanvas.SetActive(false);
+                        bm.sealedRuneIndex = Random.Range(0, 4);
+                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
+                        bm.runeObjs[bm.sealedRuneIndex].GetComponent<CanvasGroup>().alpha = 0.2f;
+                        bm.charSealedTurnCount = 2;
+                        bm.seal.GetComponentInChildren<Text>().text = bm.charSealedTurnCount.ToString();
+                        bm.seal.SetActive(true);
+                        bm.isCharSealed = true;
+                    }
+                }
+
+                if (bm.ChanceStatusEffect(0.7f))
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.debuffCanvas.SetActive(false);
+                    bm.isCharPoisoned = true;
+                    bm.charPoisonedTurnCount = 2;
+                    bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
+                    bm.playerPoison.SetActive(true);
+                    bm.pCannotHeal = true;
+                }
             }
         }
 
@@ -278,6 +311,6 @@ public class Basic : EnemyController
         enemyAttacking = false;
 
         yield return new WaitForSeconds(0.5f);
-        bm.CheckEnemyDeath(enemyId);
+        yield return bm.CheckEnemyDeath(enemyId);
     }
 }

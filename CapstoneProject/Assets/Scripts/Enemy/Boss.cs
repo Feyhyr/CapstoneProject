@@ -204,46 +204,68 @@ public class Boss : EnemyController
         {
             enemyAttacking = true;
 
-            if (((enemyHealthSlider.value / enemy.maxHealth) <= 0.5f) && bm.currentEnemyList.Count > 1)
+            if (((enemyHealthSlider.value / enemy.maxHealth) <= 0.3f) && bm.currentEnemyList.Count > 1 && !isPoisoned)
             {
+                int eaten = 0;
+                
                 AudioManager.Instance.Play(attackSFX);
                 currentState = "Attack";
                 SetCharacterState(currentState);
                 yield return new WaitForSeconds(1);
-                AudioManager.Instance.Play(bm.currentEnemyList[1].GetComponentInChildren<EnemyController>().damageSFX);
-                bm.currentEnemyList[1].GetComponentInChildren<ScreenShake>().TriggerShake();
-                yield return new WaitForSeconds(1);
-                bm.currentEnemyList[1].SetActive(false);
-                bm.currentEnemyList.RemoveAt(1);
+                for (int i = bm.currentEnemyList.Count - 1; i > 0; i--)
+                {
+                    GameObject tempGameObject = bm.currentEnemyList[i];
+                    AudioManager.Instance.Play(bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().damageSFX);
+                    bm.currentEnemyList[i].GetComponentInChildren<ScreenShake>().TriggerShake();
+                    yield return new WaitForSeconds(1);
+                    bm.currentEnemyList[i].SetActive(false);
+                    bm.currentEnemyList.RemoveAt(i);
+                    Destroy(tempGameObject);
+                    eaten++;
+
+                    int newEnemyIndex = 0;
+                    for (int j = 0; j < bm.currentEnemyList.Count; j++)
+                    {
+                        bm.currentEnemyList[j].GetComponentInChildren<EnemyController>().enemyId = newEnemyIndex;
+                        newEnemyIndex++;
+                    }
+                }
+                
                 yield return new WaitForSeconds(0.5f);
                 eBuffCanvas.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 eBuffCanvas.SetActive(false);
-                float healAmount = enemy.maxHealth * 0.2f;
+                float healAmount = (enemy.maxHealth * 0.2f) * eaten;
                 enemyHealthSlider.value += healAmount;
                 bm.EDamagePopup(transform.parent, (int)healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
             }
 
             else
             {
-                if (bm.currentEnemyList.Count < 3 && summonCount < 8)
+                if (bm.currentEnemyList.Count == 1 && summonCount < 8)
                 {
                     isSummoning = true;
-                    GameObject ePrefab;
-                    int enemyIndex = bm.currentEnemyList.Count;
-                    ePrefab = Instantiate(bm.enemyPrefab, bm.enemyLocation);
-
-                    ePrefab.GetComponentInChildren<EnemyController>().bm = bm;
-                    ePrefab.GetComponentInChildren<EnemyController>().enemy = hellSpireSummon;
-                    ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
-                    ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
-                    foreach (Transform t in ePrefab.transform)
+                    for (int i = 0; i < 2; i++)
                     {
-                        t.gameObject.tag = ePrefab.tag;
+                        GameObject ePrefab;
+                        int enemyIndex = i + 1;
+                        ePrefab = Instantiate(bm.enemyPrefab, bm.enemyLocation);
+                        if (i == 0)
+                        {
+                            gameObject.transform.parent.SetAsLastSibling();
+                        }
+                        ePrefab.GetComponentInChildren<EnemyController>().bm = bm;
+                        ePrefab.GetComponentInChildren<EnemyController>().enemy = hellSpireSummon;
+                        ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
+                        ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
+                        foreach (Transform t in ePrefab.transform)
+                        {
+                            t.gameObject.tag = ePrefab.tag;
+                        }
+                        ePrefab.GetComponentInChildren<EnemyController>().eText.text = ePrefab.GetComponentInChildren<EnemyController>().enemy.enemyName;
+                        bm.currentEnemyList.Add(ePrefab);
+                        summonCount++;
                     }
-                    ePrefab.GetComponentInChildren<EnemyController>().eText.text = ePrefab.GetComponentInChildren<EnemyController>().enemy.enemyName;
-                    bm.currentEnemyList.Add(ePrefab);
-                    summonCount++;
                     yield return new WaitForSeconds(0.5f);
                 }
 
@@ -286,7 +308,7 @@ public class Boss : EnemyController
         enemyAttacking = false;
 
         yield return new WaitForSeconds(0.5f);
-        bm.CheckEnemyDeath(enemyId);
+        yield return bm.CheckEnemyDeath(enemyId);
     }
 
     public IEnumerator SpawnLantern()

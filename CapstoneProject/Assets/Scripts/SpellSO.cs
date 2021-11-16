@@ -12,4 +12,5 @@ public class SpellSO : ScriptableObject
     public AudioClip sfx;
     public Sprite icon;
     public string description;
+    public int maxCooldown;
 }

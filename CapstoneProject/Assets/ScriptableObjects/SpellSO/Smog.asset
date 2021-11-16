@@ -19,3 +19,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: dc44b4e2d048b42438ee83bd2c7ccc85, type: 3}
   description: 'AOE: Casting Smog has a 50% chance to inflict the Poisoned status
     effect.'
+  maxCooldown: 3

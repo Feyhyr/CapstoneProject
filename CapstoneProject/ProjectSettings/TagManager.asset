@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - Lock
   - Lantern
+  - Hellhound
   layers:
   - Default
   - TransparentFX
