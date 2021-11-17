@@ -40,6 +40,7 @@ public class BattleManager : MonoBehaviour
     int randomEnemyCount;
     int randomEnemy;
     int enemyIndex = 0;
+    //public List<WaveList> enemyWavesList = new List<WaveList>();
     public List<BasicEnemyList> enemyScriptables = new List<BasicEnemyList>();
     public List<EnemySO> bossScriptables;
     public List<EnemySO> enemySummonScriptables;
@@ -82,7 +83,7 @@ public class BattleManager : MonoBehaviour
     bool isMelt = false;
     bool debrisHit = false;
     bool isAOE = false;
-    bool isCreatingSpell = false;
+    public bool isCreatingSpell = false;
     public bool pCannotHeal = false;
     public int charStuckTurnCount = 1;
     public bool isCharStuck = false;
@@ -101,7 +102,7 @@ public class BattleManager : MonoBehaviour
     public GameObject creationPrefab;
     public GameObject freezePrefab;
     public GameObject stuckPrefab;
-    public GameObject cancelBTN;
+    //public GameObject cancelBTN;
     public GameObject spellOnCDObj;
 
     public GameObject debuffCanvas;
@@ -837,7 +838,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void ResetSpell()
+    /*public void ResetSpell()
     {
         spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = false;
         spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
@@ -861,19 +862,19 @@ public class BattleManager : MonoBehaviour
         rune1 = "";
         rune2 = "";
         isCreatingSpell = false;
-    }
+    }*/
     #endregion
 
     #region Spell Creation
     public void CheckSpell()
     {
         isCreatingSpell = true;
-        cancelBTN.SetActive(true);
-        for (int i = 0; i < runeObjs.Length; i++)
-        {
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = false;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
-        }
+        //cancelBTN.SetActive(true);
+        //for (int i = 0; i < runeObjs.Length; i++)
+        //{
+        //    runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = false;
+        //    runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
+        //}
         ChooseSpell();
         SpellChosen();
     }

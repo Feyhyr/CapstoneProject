@@ -40,6 +40,10 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = false;
+            bm.isCreatingSpell = false;
+            bm.spellBTNList[bm.ChooseSpell()].GetComponent<Button>().interactable = false;
+            bm.spellBTNList[bm.ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
+            bm.spellOnCDObj.SetActive(false);
             if (eventData.pointerDrag.GetComponent<RuneController>().onFirstSlot)
             {
                 eventData.pointerDrag.GetComponent<RuneController>().onFirstSlot = false;

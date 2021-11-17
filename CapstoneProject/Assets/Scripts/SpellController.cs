@@ -35,7 +35,12 @@ public class SpellController : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void SpellSelect()
     {
-        bm.cancelBTN.SetActive(false);
+        //bm.cancelBTN.SetActive(false);
+        for (int i = 0; i < bm.runeObjs.Length; i++)
+        {
+            bm.runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = false;
+            bm.runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
+        }
         gameObject.GetComponent<Button>().interactable = false;
         selectedState.SetActive(false);
         message.SetActive(false);

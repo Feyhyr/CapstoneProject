@@ -7,3 +7,9 @@ public class BasicEnemyList
 {
     public List<EnemySO> enemyList;
 }
+
+[System.Serializable]
+public class WaveList
+{
+    public List<BasicEnemyList> enemyWaveList;
+}
