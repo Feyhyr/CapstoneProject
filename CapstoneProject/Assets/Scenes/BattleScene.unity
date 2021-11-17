@@ -10454,6 +10454,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d1648622d11554409add881921f5edd, type: 2}
   enemySummonScriptables:
   - {fileID: 11400000, guid: fafd0f0c3ed349f468e8f8739a12ddbf, type: 2}
+  - {fileID: 11400000, guid: fafd0f0c3ed349f468e8f8739a12ddbf, type: 2}
+  - {fileID: 11400000, guid: fafd0f0c3ed349f468e8f8739a12ddbf, type: 2}
   - {fileID: 11400000, guid: 5e56a92d9b7da77428882df998ace35e, type: 2}
   - {fileID: 11400000, guid: adeb5c5429dcee8469521ac2d20db1df, type: 2}
   enemyPrefab: {fileID: 4143568629198492943, guid: f27a6a0b1affa264e9e2466894f0b8d3, type: 3}
@@ -10479,6 +10481,7 @@ MonoBehaviour:
   charCursedTurnCount: 2
   isCharPoisoned: 0
   charPoisonedTurnCount: 2
+  isCreatingSpell: 0
   pCannotHeal: 0
   charStuckTurnCount: 1
   isCharStuck: 0
@@ -10493,7 +10496,6 @@ MonoBehaviour:
   creationPrefab: {fileID: 8974257423291223309, guid: 4c27a9b87d1b73643966cf166252e9a5, type: 3}
   freezePrefab: {fileID: 672203223211207016, guid: f94b9cea65e9e0341934c47598c6f00b, type: 3}
   stuckPrefab: {fileID: 4672803956464998634, guid: 01f7f891a1612d64eabef66f7511d307, type: 3}
-  cancelBTN: {fileID: 1993691032}
   spellOnCDObj: {fileID: 31895318}
   debuffCanvas: {fileID: 2094057219}
   buffCanvas: {fileID: 1477042091}

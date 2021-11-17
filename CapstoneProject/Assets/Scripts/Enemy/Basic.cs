@@ -175,7 +175,7 @@ public class Basic : EnemyController
                 ePrefab = Instantiate(bm.enemyPrefab, bm.enemyLocation);
 
                 ePrefab.GetComponentInChildren<EnemyController>().bm = bm;
-                ePrefab.GetComponentInChildren<EnemyController>().enemy = bm.enemySummonScriptables[1/*index*/];
+                ePrefab.GetComponentInChildren<EnemyController>().enemy = bm.enemySummonScriptables[index];
                 ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
                 ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
                 foreach (Transform t in ePrefab.transform)
