@@ -137,7 +137,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
     }
 
-    public void StatusTurnChange(int dmg, ref int count, ref bool status, GameObject obj, string statusName)
+    public void EStatusTurnChange(int dmg, ref int count, ref bool status, GameObject obj, string statusName)
     {
         if (dmg > 0)
         {
@@ -147,7 +147,7 @@ public class EnemyController : MonoBehaviour
         }
         count--;
         obj.GetComponentInChildren<Text>().text = count.ToString();
-        if (count <= 0)
+        if (count < 0)
         {
             status = false;
             obj.SetActive(false);

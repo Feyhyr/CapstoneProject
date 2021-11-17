@@ -294,18 +294,18 @@ public class Basic : EnemyController
         if (isPoisoned)
         {
             float poisonDmg = enemyHealthSlider.maxValue * 0.08f;
-            StatusTurnChange((int)poisonDmg, ref poisonTurnCount, ref isPoisoned, poisoned, "Poison");
+            EStatusTurnChange((int)poisonDmg, ref poisonTurnCount, ref isPoisoned, poisoned, "Poison");
         }
 
         if (isScald)
         {
-            StatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded, "Scald");
+            EStatusTurnChange(0, ref scaldTurnCount, ref isScald, scalded, "Scald");
         }
 
         if (isBurn)
         {
             float burnDmg = enemyHealthSlider.maxValue * 0.06f;
-            StatusTurnChange((int)burnDmg, ref burnTurnCount, ref isBurn, burned, "Burn");
+            EStatusTurnChange((int)burnDmg, ref burnTurnCount, ref isBurn, burned, "Burn");
         }
 
         enemyAttacking = false;

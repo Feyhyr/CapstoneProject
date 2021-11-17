@@ -264,7 +264,7 @@ public class BattleManager : MonoBehaviour
         {
             crystalTurnCount--;
             crystalize.GetComponentInChildren<Text>().text = crystalTurnCount.ToString();
-            if (crystalTurnCount <= 0)
+            if (crystalTurnCount < 0)
             {
                 isCrystalize = false;
                 crystalize.SetActive(false);
@@ -275,7 +275,7 @@ public class BattleManager : MonoBehaviour
         {
             charExposedTurnCount--;
             charExposed.GetComponentInChildren<Text>().text = charExposedTurnCount.ToString();
-            if (charPoisonedTurnCount <= 0)
+            if (charExposedTurnCount < 0)
             {
                 isCharExposed = false;
                 charExposed.SetActive(false);
@@ -284,9 +284,9 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
-            if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount > 0))
+            if ((currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed) && (currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount >= 0))
             {
-                StatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
+                PStatusTurnChange(0, i, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().exposedTurnCount, ref currentEnemyList[i].GetComponentInChildren<EnemyController>().isExposed, currentEnemyList[i].GetComponentInChildren<EnemyController>().exposed);
             }
         }
 
@@ -526,11 +526,11 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            if ((enemy.isExposed) && (enemy.exposedTurnCount == 1))
+            if (enemy.isExposed)
             {
                 damage *= 2;
-                enemy.isExposed = false;
-                enemy.exposed.SetActive(false);
+                //enemy.isExposed = false;
+                //enemy.exposed.SetActive(false);
             }
 
             if (CheckWeakness(enemy.weak) && !CheckNeutral(enemy.weak, enemy.resist))
@@ -605,11 +605,11 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                if ((currentEnemy.isExposed) && (currentEnemy.exposedTurnCount == 1))
+                if (currentEnemy.isExposed)
                 {
                     targetDmg *= 2;
-                    currentEnemy.isExposed = false;
-                    currentEnemy.exposed.SetActive(false);
+                    //currentEnemy.isExposed = false;
+                    //currentEnemy.exposed.SetActive(false);
                 }
 
                 if (CheckWeakness(currentEnemy.weak) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist))
@@ -758,7 +758,7 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    public void StatusTurnChange(int dmg, int index, ref int count, ref bool status, GameObject obj)
+    public void PStatusTurnChange(int dmg, int index, ref int count, ref bool status, GameObject obj)
     {
         if (dmg > 0)
         {
@@ -767,7 +767,7 @@ public class BattleManager : MonoBehaviour
         }
         count--;
         obj.GetComponentInChildren<Text>().text = count.ToString();
-        if (count <= 0)
+        if (count < 0)
         {
             status = false;
             obj.SetActive(false);
