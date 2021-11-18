@@ -308,7 +308,7 @@ public class BattleManager : MonoBehaviour
         enemy.targetSelected.SetActive(true);
         extraTurn = false;
         isCreatingSpell = false;
-        
+
         if (isCharStuck)
         {
             GameObject fPrefab = Instantiate(stuckPrefab, playerLocation2);
@@ -327,23 +327,26 @@ public class BattleManager : MonoBehaviour
             yield return EnemyTurn();
         }
 
-        for (int i = 0; i < runeObjs.Length; i++)
+        else
         {
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
-        }
-        if (isCharSealed)
-        {
-            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
-            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
-        }
+            for (int i = 0; i < runeObjs.Length; i++)
+            {
+                runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
+                runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
+            }
+            if (isCharSealed)
+            {
+                runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
+                runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
+            }
 
-        playerAttacked = false;
-        playerTurnUX.SetActive(true);
-        yield return new WaitForSeconds(1.6f);
-        playerTurnUX.SetActive(false);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+            playerAttacked = false;
+            playerTurnUX.SetActive(true);
+            yield return new WaitForSeconds(1.6f);
+            playerTurnUX.SetActive(false);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     IEnumerator PAttackPhase()
@@ -1100,7 +1103,7 @@ public class BattleManager : MonoBehaviour
             { 
                 yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-                if (ChooseSpell() == 3 || ChooseSpell() == 7)
+                if ((ChooseSpell() == 3 || ChooseSpell() == 7) && enemy.tag != "Lantern")
                 {
                     enemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);

@@ -230,7 +230,7 @@ public class Boss : EnemyController
                         newEnemyIndex++;
                     }
                 }
-                
+                bm.targetEnemy = 0;
                 yield return new WaitForSeconds(0.5f);
                 eBuffCanvas.SetActive(true);
                 yield return new WaitForSeconds(1f);
