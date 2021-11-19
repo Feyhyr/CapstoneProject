@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sName: Smog
   particleEffect: {fileID: 1705276595759794648, guid: f40cf73ba24344244bce62c2c35edef5, type: 3}
-  sDamage: 5
+  sDamage: 50
   sfx: {fileID: 8300000, guid: 7c21179558f35b04196539efca259b94, type: 3}
   icon: {fileID: 21300000, guid: dc44b4e2d048b42438ee83bd2c7ccc85, type: 3}
   description: 'AOE: Casting Smog has a 50% chance to inflict the Poisoned status

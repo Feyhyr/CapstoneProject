@@ -159,10 +159,11 @@ public class Boss : EnemyController
                 bm.debuffCanvas.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 bm.debuffCanvas.SetActive(false);
-                bm.isCharStuck = true;
-                bm.charStuckTurnCount = 1;
-                bm.charStuck.GetComponentInChildren<Text>().text = bm.charStuckTurnCount.ToString();
-                bm.charStuck.SetActive(true);
+                bm.isCharBound = true;
+                //bm.charStuckTurnCount = 1;
+                //bm.charStuck.GetComponentInChildren<Text>().text = bm.charStuckTurnCount.ToString();
+                bm.bound.SetActive(true);
+                //bm.charStuck.SetActive(true);
             }
 
             if (bm.ChanceStatusEffect(0.7f))

@@ -19,4 +19,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a2078d16318370e4cb4ebe3e25c49949, type: 3}
   description: Casting Steam will remove all debuffs and heal 15% of max HP. If you
     have no debuffs the healing will be increased to 20% of max HP.
-  maxCooldown: 2
+  maxCooldown: 3

@@ -65,7 +65,7 @@ public class BattleManager : MonoBehaviour
     public GameObject seal;
     public GameObject curse;
     public GameObject playerPoison;
-    public GameObject charStuck;
+    //public GameObject charStuck;
     public GameObject charExposed;
 
     public bool isCrystalize = false;
@@ -85,10 +85,12 @@ public class BattleManager : MonoBehaviour
     bool isAOE = false;
     public bool isCreatingSpell = false;
     public bool pCannotHeal = false;
-    public int charStuckTurnCount = 1;
-    public bool isCharStuck = false;
+    //public int charStuckTurnCount = 1;
+    public bool isCharBound = false;
     public bool isCharExposed = false;
     public int charExposedTurnCount = 2;
+    public bool isSteamGuard = false;
+    bool statusRemoved = false;
 
     bool bossBattle;
 
@@ -101,7 +103,8 @@ public class BattleManager : MonoBehaviour
 
     public GameObject creationPrefab;
     public GameObject freezePrefab;
-    public GameObject stuckPrefab;
+    public GameObject bound;
+    public GameObject steamGuard;
     //public GameObject cancelBTN;
     public GameObject spellOnCDObj;
 
@@ -272,6 +275,11 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        if (isSteamGuard)
+        {
+            steamGuard.SetActive(false);
+        }
+
         if (isCharExposed)
         {
             charExposedTurnCount--;
@@ -309,11 +317,11 @@ public class BattleManager : MonoBehaviour
         extraTurn = false;
         isCreatingSpell = false;
 
-        if (isCharStuck)
+        if (isCharBound)
         {
-            GameObject fPrefab = Instantiate(stuckPrefab, playerLocation2);
-            yield return new WaitForSeconds(1);
-            Destroy(fPrefab);
+            //GameObject fPrefab = Instantiate(stuckPrefab, playerLocation2);
+            //yield return new WaitForSeconds(1);
+            //Destroy(fPrefab);
 
             if (isCharPoisoned)
             {
@@ -406,8 +414,13 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        isCharStuck = false;
-        charStuck.SetActive(false);
+        if (isCharBound)
+        {
+            isCharBound = false;
+            bound.SetActive(false);
+            //charStuck.SetActive(false);
+        }
+
         enemy.targetSelected.SetActive(false);
         enemyTurnUX.SetActive(true);
         yield return new WaitForSeconds(1.6f);
@@ -982,7 +995,7 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 2 && enemy.tag != "Lantern")
         {
             enemy.isExposed = true;
-            enemy.exposedTurnCount = 2;
+            enemy.exposedTurnCount = 1;
             enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
         }
         else if (ChooseSpell() == 3 && enemy.tag != "Lantern")
@@ -1039,33 +1052,34 @@ public class BattleManager : MonoBehaviour
 
             yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-            if (!pCannotHeal)
+            if (isCharSealed || isCharCursed)
             {
-                charHealthSlider.value += healAmount;
-                PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
-            }
-            else if (pCannotHeal)
-            {
-                healAmount = charMaxHealth * 0.15f;
-                charHealthSlider.value += healAmount;
-                PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
-            }
-            if (isCharSealed)
-            {
-                isCharSealed = false;
-                seal.SetActive(false);
-            }
-            if (isCharCursed)
-            {
-                isCharCursed = false;
-                curse.SetActive(false);
+                healAmount = charMaxHealth * 0.1f;
+                statusRemoved = true;
             }
             if (isCharPoisoned)
             {
-                isCharPoisoned = false;
-                playerPoison.SetActive(false);
+                healAmount = 0;
                 pCannotHeal = false;
+                statusRemoved = true;
             }
+            buffCanvas.SetActive(true);
+            yield return new WaitForSeconds(0.8f);
+            buffCanvas.SetActive(false);
+            charHealthSlider.value += healAmount;
+            PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
+            isCharSealed = false;
+            seal.SetActive(false);
+            isCharCursed = false;
+            curse.SetActive(false);
+            isCharPoisoned = false;
+            playerPoison.SetActive(false);
+            if (statusRemoved)
+            {
+                isSteamGuard = true;
+                steamGuard.SetActive(true);
+            }
+
         }
         else if (ChooseSpell() == 10)
         {

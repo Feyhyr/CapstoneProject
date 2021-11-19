@@ -18,4 +18,4 @@ MonoBehaviour:
   sfx: {fileID: 8300000, guid: ce8e82b7d68d6f34dbfed0bde421c49a, type: 3}
   icon: {fileID: 21300000, guid: ed158a6788f1c09418c728b205a02f9d, type: 3}
   description: 'All damage you recieve for the next 3 turns is halved. '
-  maxCooldown: 2
+  maxCooldown: 4
