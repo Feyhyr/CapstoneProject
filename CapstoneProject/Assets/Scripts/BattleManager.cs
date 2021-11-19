@@ -84,7 +84,6 @@ public class BattleManager : MonoBehaviour
     bool debrisHit = false;
     bool isAOE = false;
     public bool isCreatingSpell = false;
-    public bool pCannotHeal = false;
     //public int charStuckTurnCount = 1;
     public bool isCharBound = false;
     public bool isCharExposed = false;
@@ -1052,17 +1051,12 @@ public class BattleManager : MonoBehaviour
 
             yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-            if (isCharSealed || isCharCursed)
+            if (isCharSealed || isCharCursed || isCharPoisoned)
             {
                 healAmount = charMaxHealth * 0.1f;
                 statusRemoved = true;
             }
-            if (isCharPoisoned)
-            {
-                healAmount = 0;
-                pCannotHeal = false;
-                statusRemoved = true;
-            }
+
             buffCanvas.SetActive(true);
             yield return new WaitForSeconds(0.8f);
             buffCanvas.SetActive(false);
@@ -1208,7 +1202,6 @@ public class BattleManager : MonoBehaviour
         {
             isCharPoisoned = false;
             playerPoison.SetActive(false);
-            pCannotHeal = false;
         }
     }
 
