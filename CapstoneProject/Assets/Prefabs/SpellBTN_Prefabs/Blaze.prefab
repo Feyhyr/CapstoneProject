@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5047767936772698202}
   - component: {fileID: 5047767936772698205}
+  - component: {fileID: 2541810687073918545}
   m_Layer: 5
   m_Name: Blaze
   m_TagString: Untagged
@@ -126,6 +127,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5047767936772698201}
   m_CullTransparentMesh: 1
+--- !u!114 &2541810687073918545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047767936772698201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0aeed4ef18f274eacb00097e900298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: {fileID: 8517791525168636198}
 --- !u!1 &5047767937222548023
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +501,7 @@ RectTransform:
   m_GameObject: {fileID: 5576071710179985740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 5047767936772698202}
   m_RootOrder: 4
@@ -519,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
