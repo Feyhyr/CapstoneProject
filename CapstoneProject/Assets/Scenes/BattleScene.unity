@@ -10431,7 +10431,7 @@ MonoBehaviour:
   - {fileID: 511785063}
   - {fileID: 1993286540}
   - {fileID: 1142550829}
-  charMaxHealth: 2500
+  charMaxHealth: 2000
   charHealthSlider: {fileID: 1424256421}
   charHealthText: {fileID: 1896626011}
   enemyScriptables:
@@ -17105,9 +17105,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 2500
+  m_MaxValue: 2000
   m_WholeNumbers: 1
-  m_Value: 2500
+  m_Value: 2000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -20779,7 +20779,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2500
+  m_Text: 2000
 --- !u!222 &1896626012
 CanvasRenderer:
   m_ObjectHideFlags: 0
