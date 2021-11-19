@@ -54,7 +54,7 @@ public class Basic : EnemyController
     {
         if (isFreeze && freezeTurnCount > 0)
         {
-            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
             yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
@@ -83,7 +83,7 @@ public class Basic : EnemyController
 
         if (isFreeze && freezeTurnCount > 0)
         {
-            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
             yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
@@ -150,7 +150,7 @@ public class Basic : EnemyController
 
         if (isFreeze && freezeTurnCount > 0)
         {
-            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
             yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
@@ -201,7 +201,7 @@ public class Basic : EnemyController
     {
         if (isFreeze && freezeTurnCount > 0)
         {
-            GameObject fPrefab = Instantiate(freezePrefab, transform);
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
             yield return new WaitForSeconds(1);
             Destroy(fPrefab);
             freezeTurnCount--;
