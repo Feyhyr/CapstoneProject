@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Starfish
   tagName: Enemy
-  dmg: 8
-  maxHealth: 40
+  dmg: 80
+  maxHealth: 400
   weakness:
   - Fire
   weakImages:

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Possessed
   tagName: Enemy
-  dmg: 5
-  maxHealth: 30
+  dmg: 50
+  maxHealth: 300
   weakness: []
   weakImages: []
   resistance: []

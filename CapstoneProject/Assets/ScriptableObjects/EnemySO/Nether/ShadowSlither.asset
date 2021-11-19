@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Shadow Slither
   tagName: Enemy
-  dmg: 12
-  maxHealth: 45
+  dmg: 120
+  maxHealth: 450
   weakness: []
   weakImages: []
   resistance: []

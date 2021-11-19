@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Whale
   tagName: Enemy
-  dmg: 7
-  maxHealth: 40
+  dmg: 70
+  maxHealth: 400
   weakness:
   - Fire
   weakImages:

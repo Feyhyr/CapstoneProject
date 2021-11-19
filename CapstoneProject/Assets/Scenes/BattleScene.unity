@@ -10431,7 +10431,7 @@ MonoBehaviour:
   - {fileID: 511785063}
   - {fileID: 1993286540}
   - {fileID: 1142550829}
-  charMaxHealth: 350
+  charMaxHealth: 2500
   charHealthSlider: {fileID: 1424256421}
   charHealthText: {fileID: 1896626011}
   enemyScriptables:
@@ -17105,9 +17105,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 350
+  m_MaxValue: 2500
   m_WholeNumbers: 1
-  m_Value: 350
+  m_Value: 2500
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -19564,7 +19564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768747361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 134, y: -366, z: 0}
+  m_LocalPosition: {x: 185.8, y: -449.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 873148015}
@@ -20779,7 +20779,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 350
+  m_Text: 2500
 --- !u!222 &1896626012
 CanvasRenderer:
   m_ObjectHideFlags: 0

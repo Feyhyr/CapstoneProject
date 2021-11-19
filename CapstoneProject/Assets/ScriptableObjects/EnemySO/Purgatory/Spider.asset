@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Spider
   tagName: Boss
-  dmg: 12
-  maxHealth: 90
+  dmg: 120
+  maxHealth: 900
   weakness: []
   weakImages: []
   resistance: []

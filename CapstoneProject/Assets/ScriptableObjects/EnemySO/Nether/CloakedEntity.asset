@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Cloaked Entity
   tagName: Enemy
-  dmg: 5
-  maxHealth: 60
+  dmg: 50
+  maxHealth: 600
   weakness: []
   weakImages: []
   resistance: []

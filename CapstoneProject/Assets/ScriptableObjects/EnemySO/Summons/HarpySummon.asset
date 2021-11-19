@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Harpy Summon
   tagName: Summon
-  dmg: 10
-  maxHealth: 40
+  dmg: 100
+  maxHealth: 400
   weakness: []
   weakImages: []
   resistance: []

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Lava Golem
   tagName: Boss
-  dmg: 13
-  maxHealth: 100
+  dmg: 130
+  maxHealth: 1000
   weakness:
   - Water
   - Wind

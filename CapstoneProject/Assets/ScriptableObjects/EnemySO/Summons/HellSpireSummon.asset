@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Twisted Amalgam
   tagName: Vampire
-  dmg: 8
-  maxHealth: 50
+  dmg: 80
+  maxHealth: 500
   weakness: []
   weakImages: []
   resistance: []

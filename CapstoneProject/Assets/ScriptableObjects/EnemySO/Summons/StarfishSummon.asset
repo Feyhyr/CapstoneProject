@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Starfish Summon
   tagName: Summon
-  dmg: 8
-  maxHealth: 40
+  dmg: 80
+  maxHealth: 400
   weakness: []
   weakImages: []
   resistance: []

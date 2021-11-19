@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Chimera
   tagName: Enemy
-  dmg: 8
-  maxHealth: 50
+  dmg: 80
+  maxHealth: 500
   weakness: []
   weakImages: []
   resistance: []

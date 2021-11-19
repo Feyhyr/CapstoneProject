@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Tree
   tagName: Enemy
-  dmg: 3
-  maxHealth: 35
+  dmg: 30
+  maxHealth: 350
   weakness:
   - Fire
   weakImages:

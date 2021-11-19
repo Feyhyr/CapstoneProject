@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Angler Fish
   tagName: Boss
-  dmg: 15
-  maxHealth: 85
+  dmg: 150
+  maxHealth: 850
   weakness:
   - Fire
   weakImages:

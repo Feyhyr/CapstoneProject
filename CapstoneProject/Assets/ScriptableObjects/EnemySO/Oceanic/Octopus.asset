@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Octopus
   tagName: Enemy
-  dmg: 5
-  maxHealth: 50
+  dmg: 50
+  maxHealth: 500
   weakness:
   - Fire
   weakImages:
