@@ -70,8 +70,12 @@ public class BattleManager : MonoBehaviour
 
     public bool isCrystalize = false;
     int crystalTurnCount = 2;
+    public GameObject reverbMissedMessage;
     bool isReverb = false;
-    int reverbTurnCount = 2;
+    bool reverbMissed = false;
+    float reverbBoost = 1.5f;
+    int reverbStacks = 0;
+    float reverbAccuracy = 1f;
     public bool isCharSealed = false;
     public int charSealedTurnCount = 2;
     public bool isCharCursed = false;
@@ -372,8 +376,10 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            reverbTurnCount = 2;
-            reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
+            reverbBoost = 1.5f;
+            reverbAccuracy = 1f;
+            reverbStacks = 0;
+            reverb.GetComponentInChildren<Text>().text = reverbStacks.ToString();
             reverb.SetActive(false);
         }
 
@@ -536,9 +542,14 @@ public class BattleManager : MonoBehaviour
     {
         string state = "normalEnemy";
 
-        if (CheckWeakness(enemy.immune))
+        if (CheckWeakness(enemy.immune) || reverbMissed)
         {
             damage = 0;
+            if (reverbMissed)
+            {
+                reverbMissedMessage.SetActive(true);
+                reverbMissed = false;
+            }
         }
         else
         {
@@ -572,16 +583,17 @@ public class BattleManager : MonoBehaviour
                 damage *= 1.5f;
             }
 
-            if ((enemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (enemy.burnTurnCount <= 2))
-            {
-                damage += 2;
-            }
+            //if ((enemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (enemy.burnTurnCount <= 2))
+            //{
+            //    damage += 2;
+            //}
 
-            if (isReverb)
+            if (isReverb && reverbStacks > 1)
             {
-                damage *= reverbTurnCount;
-                reverbTurnCount *= 2;
-                reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
+                damage *= reverbBoost;
+                reverbBoost *= 1.5f;
+                reverbAccuracy -= 0.1f;
+                reverb.GetComponentInChildren<Text>().text = reverbStacks.ToString();
             }
         }
 
@@ -593,7 +605,7 @@ public class BattleManager : MonoBehaviour
         EDamagePopup(currentEnemyList[targetEnemy].transform, (int)damage, state, false, enemyNumPopupObj);
         EnemyDamage((int)damage, targetEnemy);
         yield return new WaitForSeconds(1f);
-
+        reverbMissedMessage.SetActive(false);
         enemyState = "Idle";
         enemy.SetCharacterState(enemyState);
         if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
@@ -659,17 +671,17 @@ public class BattleManager : MonoBehaviour
                     targetDmg *= 1.5f;
                 }
 
-                if ((currentEnemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemy.burnTurnCount <= 2))
-                {
-                    targetDmg += 2;
-                }
+                //if ((currentEnemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemy.burnTurnCount <= 2))
+                //{
+                //    targetDmg += 2;
+                //}
 
-                if (isReverb)
-                {
-                    targetDmg += reverbTurnCount;
-                    reverbTurnCount++;
-                    reverb.GetComponentInChildren<Text>().text = reverbTurnCount.ToString();
-                }
+                //if (isReverb)
+                //{
+                //    targetDmg += reverbBoost;
+                //    reverbBoost++;
+                //    reverb.GetComponentInChildren<Text>().text = reverbBoost.ToString();
+                //}
             }
 
             AudioManager.Instance.Play(currentEnemy.damageSFX);
@@ -688,7 +700,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (ChooseSpell() == 1)
                 {
-                    if (ChanceStatusEffect(0f) && currentEnemy.enemyType != "LavaGolem")
+                    if (ChanceStatusEffect(1f) && currentEnemy.enemyType != "LavaGolem")
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
@@ -703,7 +715,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (ChooseSpell() == 6)
                 {
-                    if (ChanceStatusEffect(0f))
+                    if (ChanceStatusEffect(1f))
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
@@ -767,7 +779,7 @@ public class BattleManager : MonoBehaviour
 
     public bool ChanceStatusEffect(float chance)
     {
-        if (Random.value >= chance)
+        if (Random.value <= chance)
         {
             return true;
         }
@@ -1029,7 +1041,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 7 && enemy.tag != "Lantern")
         {
-            if (ChanceStatusEffect(0f))
+            if (ChanceStatusEffect(1f))
             {
                 enemy.isBurn = true;
                 enemy.burnTurnCount = 3;
@@ -1038,8 +1050,16 @@ public class BattleManager : MonoBehaviour
         }
         else if (ChooseSpell() == 8)
         {
-            isReverb = true;
-            reverb.SetActive(true);
+            if (ChanceStatusEffect(reverbAccuracy))
+            {
+                isReverb = true;
+                reverbStacks++;
+                reverb.SetActive(true);
+            }
+            else
+            {
+                reverbMissed = true;
+            }
         }
         else if (ChooseSpell() == 9)
         {

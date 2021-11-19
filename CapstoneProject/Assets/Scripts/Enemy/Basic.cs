@@ -237,7 +237,7 @@ public class Basic : EnemyController
                 }
                 else
                 {
-                    if (bm.ChanceStatusEffect(0.7f))
+                    if (bm.ChanceStatusEffect(0.3f))
                     {
                         yield return new WaitForSeconds(0.5f);
                         bm.debuffCanvas.SetActive(true);
@@ -251,7 +251,7 @@ public class Basic : EnemyController
 
                     if (!bm.isCharSealed)
                     {
-                        if (bm.ChanceStatusEffect(0.7f))
+                        if (bm.ChanceStatusEffect(0.3f))
                         {
                             yield return new WaitForSeconds(0.5f);
                             bm.debuffCanvas.SetActive(true);
@@ -267,7 +267,7 @@ public class Basic : EnemyController
                         }
                     }
 
-                    if (bm.ChanceStatusEffect(0.7f))
+                    if (bm.ChanceStatusEffect(0.3f))
                     {
                         yield return new WaitForSeconds(0.5f);
                         bm.debuffCanvas.SetActive(true);
@@ -277,7 +277,6 @@ public class Basic : EnemyController
                         bm.charPoisonedTurnCount = 2;
                         bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
                         bm.playerPoison.SetActive(true);
-                        bm.pCannotHeal = true;
                     }
                 }
             }

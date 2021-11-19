@@ -153,30 +153,32 @@ public class Boss : EnemyController
             bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
             yield return EnemyAttack();
 
-            if (bm.ChanceStatusEffect(0.7f))
+            if (!bm.isSteamGuard)
             {
-                yield return new WaitForSeconds(0.5f);
-                bm.debuffCanvas.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                bm.debuffCanvas.SetActive(false);
-                bm.isCharBound = true;
-                //bm.charStuckTurnCount = 1;
-                //bm.charStuck.GetComponentInChildren<Text>().text = bm.charStuckTurnCount.ToString();
-                bm.bound.SetActive(true);
-                //bm.charStuck.SetActive(true);
-            }
+                if (bm.ChanceStatusEffect(0.3f))
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.debuffCanvas.SetActive(false);
+                    bm.isCharBound = true;
+                    //bm.charStuckTurnCount = 1;
+                    //bm.charStuck.GetComponentInChildren<Text>().text = bm.charStuckTurnCount.ToString();
+                    bm.bound.SetActive(true);
+                    //bm.charStuck.SetActive(true);
+                }
 
-            if (bm.ChanceStatusEffect(0.7f))
-            {
-                yield return new WaitForSeconds(0.5f);
-                bm.debuffCanvas.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                bm.debuffCanvas.SetActive(false);
-                bm.isCharPoisoned = true;
-                bm.charPoisonedTurnCount = 2;
-                bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
-                bm.playerPoison.SetActive(true);
-                bm.pCannotHeal = true;
+                if (bm.ChanceStatusEffect(0.3f))
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    bm.debuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    bm.debuffCanvas.SetActive(false);
+                    bm.isCharPoisoned = true;
+                    bm.charPoisonedTurnCount = 2;
+                    bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
+                    bm.playerPoison.SetActive(true);
+                }
             }
         }
 
