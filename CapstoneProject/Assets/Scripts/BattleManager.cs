@@ -698,9 +698,18 @@ public class BattleManager : MonoBehaviour
 
             if (currentEnemy.enemyHealthSlider.value > 0 && currentEnemy.enemyType != "Lantern")
             {
+                float accuracy = 0.3f;
+                if (currentEnemyList.Count > 1)
+                {
+                    if (i == targetEnemy)
+                    {
+                        accuracy = 1f;
+                    }
+                }
+
                 if (ChooseSpell() == 1)
                 {
-                    if (ChanceStatusEffect(1f) && currentEnemy.enemyType != "LavaGolem")
+                    if (ChanceStatusEffect(accuracy) && currentEnemy.enemyType != "LavaGolem")
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
@@ -715,7 +724,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (ChooseSpell() == 6)
                 {
-                    if (ChanceStatusEffect(1f))
+                    if (ChanceStatusEffect(accuracy))
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
