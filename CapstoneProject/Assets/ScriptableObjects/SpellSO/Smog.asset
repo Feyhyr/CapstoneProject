@@ -19,5 +19,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: dc44b4e2d048b42438ee83bd2c7ccc85, type: 3}
   description: AOE - Casting Smog inflict the Poisoned status effect on your main
     target and has a 30% chance to be applied to other enemies. If there is only
-    one enemy the it will always be a 30% chance.
+    one enemy then it will always be a 30% chance.
   maxCooldown: 3
