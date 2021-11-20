@@ -17,6 +17,7 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: 7cf83aeb71715fe4a86354236ade481f, type: 3}
   icon: {fileID: 21300000, guid: 331704749751745478307a21d1158edd, type: 3}
-  description: The Reverb spell does not have a cooldown, additionally the damage
-    done from Reverb is doubled with each consecutive use.
+  description: This spell has no cooldown and if repeated its damage is increased
+    after each consecutive use, but has a greater chance to fail. Starts at 100%
+    chance to hit then decreases by 10% after each use.
   maxCooldown: 0
