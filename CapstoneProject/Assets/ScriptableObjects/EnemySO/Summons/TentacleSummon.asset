@@ -16,10 +16,16 @@ MonoBehaviour:
   tagName: Summon
   dmg: 120
   maxHealth: 450
-  weakness: []
-  weakImages: []
-  resistance: []
-  resistImages: []
+  weakness:
+  - Fire
+  weakImages:
+  - {fileID: 21300000, guid: d3fc8b619665f434d89419e6c560c759, type: 3}
+  resistance:
+  - Water
+  - Wind
+  resistImages:
+  - {fileID: 21300000, guid: 2007b9a641db52b45a2b2375094f02a4, type: 3}
+  - {fileID: 21300000, guid: f96720a6db39dc045b827db23b73b6ae, type: 3}
   immunity: []
   immuneImages: []
   idle: {fileID: 11400000, guid: 699d5900d28422840a6f4996cc3111d4, type: 2}

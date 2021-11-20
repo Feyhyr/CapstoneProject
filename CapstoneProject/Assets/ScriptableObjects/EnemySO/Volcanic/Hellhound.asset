@@ -19,13 +19,13 @@ MonoBehaviour:
   weakness:
   - Water
   - Wind
-  - Earth
   weakImages:
   - {fileID: 21300000, guid: 2007b9a641db52b45a2b2375094f02a4, type: 3}
   - {fileID: 21300000, guid: f96720a6db39dc045b827db23b73b6ae, type: 3}
+  resistance:
+  - Earth
+  resistImages:
   - {fileID: 21300000, guid: fd18adb96d4601c4eb7693ba320de2b1, type: 3}
-  resistance: []
-  resistImages: []
   immunity:
   - Fire
   immuneImages:

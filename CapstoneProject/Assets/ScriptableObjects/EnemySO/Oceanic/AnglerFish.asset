@@ -17,15 +17,15 @@ MonoBehaviour:
   dmg: 150
   maxHealth: 850
   weakness:
-  - Fire
+  - Earth
   weakImages:
-  - {fileID: 21300000, guid: d3fc8b619665f434d89419e6c560c759, type: 3}
-  resistance:
+  - {fileID: 21300000, guid: fd18adb96d4601c4eb7693ba320de2b1, type: 3}
+  resistance: []
+  resistImages: []
+  immunity:
   - Water
-  resistImages:
+  immuneImages:
   - {fileID: 21300000, guid: 2007b9a641db52b45a2b2375094f02a4, type: 3}
-  immunity: []
-  immuneImages: []
   idle: {fileID: 11400000, guid: 8360be8f9ff54b34f95f4db97b516012, type: 2}
   attack: {fileID: 11400000, guid: 05c84e724bc688d4bb2b2a6a581a294a, type: 2}
   damage: {fileID: 11400000, guid: 9c0b2cfb19c0dd047942a6b6f7273490, type: 2}
