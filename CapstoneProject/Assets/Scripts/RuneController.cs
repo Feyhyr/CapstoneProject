@@ -17,6 +17,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public CanvasGroup canvasGroup;
     public bool onFirstSlot;
     public bool onSecondSlot;
+    public GameObject textBox;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if (canvasGroup.interactable)
         {
+            textBox.SetActive(true);
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = false;
@@ -67,6 +69,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        textBox.SetActive(false);
         if (canvasGroup.interactable)
         {
             canvasGroup.alpha = 1f;

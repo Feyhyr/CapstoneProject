@@ -4559,10 +4559,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 873148014}
-    - target: {fileID: 511785065, guid: aa6eb3203e3355845bcf9d888b35008b, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 823993379849303736, guid: aa6eb3203e3355845bcf9d888b35008b, type: 3}
       propertyPath: m_Name
       value: EarthRune
@@ -11089,10 +11085,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 873148014}
-    - target: {fileID: 1142550831, guid: cd39d51e0ed40c1429ead865be8e1d3d, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 823993379849303736, guid: cd39d51e0ed40c1429ead865be8e1d3d, type: 3}
       propertyPath: m_Name
       value: WindRune
@@ -20556,10 +20548,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 873148014}
-    - target: {fileID: 1649571657, guid: 1ff1aa0ddaaf4b543a50706808024f6f, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 823993379849303736, guid: 1ff1aa0ddaaf4b543a50706808024f6f, type: 3}
       propertyPath: m_Name
       value: FireRune
@@ -23191,14 +23179,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 873148014}
-    - target: {fileID: 1993286542, guid: b0727d7766047ed48a21b715d2de894b, type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1993286542, guid: b0727d7766047ed48a21b715d2de894b, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 823993379849303736, guid: b0727d7766047ed48a21b715d2de894b, type: 3}
       propertyPath: m_Name
       value: WaterRune
