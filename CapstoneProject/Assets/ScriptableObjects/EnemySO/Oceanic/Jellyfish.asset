@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jellyfish
   m_EditorClassIdentifier: 
   enemyName: Jellyfish
-  tagName: Enemy
+  tagName: Jellyfish
   dmg: 70
   maxHealth: 400
   weakness:
@@ -33,3 +33,5 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: 6d2440a5c7007ed4ea850e4386fd0381, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Debuffer
+  healingPercent: 0
+  healingTargets: 0

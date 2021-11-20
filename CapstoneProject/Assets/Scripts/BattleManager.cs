@@ -702,7 +702,7 @@ public class BattleManager : MonoBehaviour
 
             if (currentEnemy.enemyHealthSlider.value > 0 && currentEnemy.enemyType != "Lantern")
             {
-                float accuracy = 0.3f;
+                float accuracy = 0.5f;
                 if (currentEnemyList.Count > 1)
                 {
                     if (i == targetEnemy)

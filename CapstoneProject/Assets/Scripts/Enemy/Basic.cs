@@ -270,9 +270,44 @@ public class Basic : EnemyController
                         bm.charExposed.SetActive(true);
                     }
                 }
-                else
+                else if (tag == "PoisonOak" || tag == "Jellyfish")
                 {
-                    if (bm.ChanceStatusEffect(0.3f))
+                    float poisonChance = 0;
+                    if (tag == "PoisonOak")
+                    {
+                        poisonChance = 0.3f;
+                    }
+                    else if (tag == "Jellyfish")
+                    {
+                        poisonChance = 0.5f;
+                    }
+                    if (bm.ChanceStatusEffect(poisonChance))
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        bm.debuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        bm.debuffCanvas.SetActive(false);
+                        bm.isCharPoisoned = true;
+                        bm.charPoisonedTurnCount = 2;
+                        bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
+                        bm.playerPoison.SetActive(true);
+                    }
+                }
+                else if (tag == "Possessed" || tag == "BlackSpiral")
+                {
+                    float curseChance = 0;
+                    float sealChance = 0;
+                    if (tag == "Possessed")
+                    {
+                        curseChance = 0.4f;
+                        sealChance = 0.3f;
+                    }
+                    else if (tag == "BlackSpiral")
+                    {
+                        curseChance = 0.5f;
+                        sealChance = 0.3f;
+                    }
+                    if (bm.ChanceStatusEffect(curseChance))
                     {
                         yield return new WaitForSeconds(0.5f);
                         bm.debuffCanvas.SetActive(true);
@@ -286,7 +321,7 @@ public class Basic : EnemyController
 
                     if (!bm.isCharSealed)
                     {
-                        if (bm.ChanceStatusEffect(0.3f))
+                        if (bm.ChanceStatusEffect(sealChance))
                         {
                             yield return new WaitForSeconds(0.5f);
                             bm.debuffCanvas.SetActive(true);
@@ -300,18 +335,6 @@ public class Basic : EnemyController
                             bm.seal.SetActive(true);
                             bm.isCharSealed = true;
                         }
-                    }
-
-                    if (bm.ChanceStatusEffect(0.3f))
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                        bm.debuffCanvas.SetActive(true);
-                        yield return new WaitForSeconds(1f);
-                        bm.debuffCanvas.SetActive(false);
-                        bm.isCharPoisoned = true;
-                        bm.charPoisonedTurnCount = 2;
-                        bm.playerPoison.GetComponentInChildren<Text>().text = bm.charPoisonedTurnCount.ToString();
-                        bm.playerPoison.SetActive(true);
                     }
                 }
             }

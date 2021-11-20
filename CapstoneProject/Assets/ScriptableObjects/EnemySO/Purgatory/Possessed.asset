@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Possessed
   m_EditorClassIdentifier: 
   enemyName: Possessed
-  tagName: Enemy
+  tagName: Possessed
   dmg: 50
   maxHealth: 300
   weakness:
@@ -33,3 +33,5 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: b02a078bf4d67ca47998a41295ed47fe, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Debuffer
+  healingPercent: 0
+  healingTargets: 0
