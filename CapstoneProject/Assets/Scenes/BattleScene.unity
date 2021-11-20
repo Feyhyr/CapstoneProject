@@ -10683,7 +10683,7 @@ MonoBehaviour:
   steamGuard: {fileID: 1097238706}
   spellOnCDObj: {fileID: 31895318}
   debuffCanvas: {fileID: 2094057219}
-  buffCanvas: {fileID: 1477042091}
+  buffCanvas: {fileID: 1499217677}
   floor: {fileID: 0}
   floorBackground: {fileID: 1188835439}
   spellConfirm: {fileID: 8300000, guid: 0bfed2d06c3a8c94d8276b983834f450, type: 3}
