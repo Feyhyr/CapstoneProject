@@ -37,11 +37,11 @@ public class BattleManager : MonoBehaviour
     public Slider charHealthSlider;
     public Text charHealthText;
 
-    int randomEnemyCount;
-    int randomEnemy;
+    //int randomEnemyCount;
+    //int randomEnemy;
     int enemyIndex = 0;
     //public List<WaveList> enemyWavesList = new List<WaveList>();
-    public List<BasicEnemyList> enemyScriptables = new List<BasicEnemyList>();
+    public List<WaveList> enemyScriptables = new List<WaveList>();
     public List<EnemySO> bossScriptables;
     public List<EnemySO> enemySummonScriptables;
     public GameObject enemyPrefab;
@@ -112,7 +112,8 @@ public class BattleManager : MonoBehaviour
     public GameObject spellOnCDObj;
 
     public GameObject debuffCanvas;
-    public GameObject buffCanvas;
+    public GameObject shieldBuffCanvas;
+    public GameObject healBuffCanvas;
 
     EnemyController enemy;
     bool startCheckEnemy;
@@ -192,15 +193,15 @@ public class BattleManager : MonoBehaviour
         GameObject ePrefab;
 
         enemyIndex = 0;
-        randomEnemyCount = Random.Range(1, 4);
+        //randomEnemyCount = Random.Range(1, 4);
 
-        for (int i = 0; i < randomEnemyCount; i++)
+        for (int i = 0; i < enemyScriptables[floor.floorCount - 1].enemyWaveList[floor.waveCount - 1].enemyList.Count; i++)
         {
-            randomEnemy = Random.Range(0, enemyScriptables[floor.floorCount - 1].enemyList.Count);
+            //randomEnemy = Random.Range(0, enemyScriptables[floor.floorCount - 1].enemyList.Count);
             ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
-            ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[floor.floorCount - 1].enemyList[randomEnemy];
+            ePrefab.GetComponentInChildren<EnemyController>().enemy = enemyScriptables[floor.floorCount - 1].enemyWaveList[floor.waveCount - 1].enemyList[i];
             ePrefab.GetComponentInChildren<EnemyController>().enemyId = enemyIndex;
             ePrefab.tag = ePrefab.GetComponentInChildren<EnemyController>().enemy.tagName;
             foreach (Transform t in ePrefab.transform)
@@ -1086,9 +1087,9 @@ public class BattleManager : MonoBehaviour
                 statusRemoved = true;
             }
 
-            buffCanvas.SetActive(true);
+            healBuffCanvas.SetActive(true);
             yield return new WaitForSeconds(0.8f);
-            buffCanvas.SetActive(false);
+            healBuffCanvas.SetActive(false);
             charHealthSlider.value += healAmount;
             PDamagePopup(playerLocation, (int)healAmount, "normalPlayer", true, playerNumPopupObj);
             isCharSealed = false;
@@ -1157,9 +1158,9 @@ public class BattleManager : MonoBehaviour
 
                 if (ChooseSpell() == 11)
                 {
-                    buffCanvas.SetActive(true);
+                    shieldBuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(0.8f);
-                    buffCanvas.SetActive(false);
+                    shieldBuffCanvas.SetActive(false);
                 }
             }
         }
