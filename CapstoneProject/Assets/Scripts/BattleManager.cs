@@ -156,14 +156,16 @@ public class BattleManager : MonoBehaviour
 
         ChangeSpellDisabled();
 
-        battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/5";
+        
 
         if (bossBattle)
         {
+            battleStartUXText.text = "Boss Wave";
             StartCoroutine(BeginBossBattle());
         }
         else
         {
+            battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/5";
             StartCoroutine(BeginNormalBattle());
         }
     }
