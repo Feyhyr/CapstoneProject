@@ -1406,6 +1406,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5770251381603956851, guid: ff6c2cec19d6bee4ba28d687275fba1c, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff6c2cec19d6bee4ba28d687275fba1c, type: 3}
 --- !u!224 &72620343 stripped
@@ -2928,6 +2932,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4809476210254604871, guid: bee91f656d200284b833487d7c76c975, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee91f656d200284b833487d7c76c975, type: 3}
 --- !u!224 &312921938 stripped
@@ -5394,6 +5402,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8472207321482613071, guid: 1a226321b9f8f81439646f7fac470425, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a226321b9f8f81439646f7fac470425, type: 3}
 --- !u!224 &585572761 stripped
@@ -6734,6 +6746,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808710073}
     m_Modifications:
+    - target: {fileID: 1731272513712174571, guid: 4daf4d9457757b54791962271921c686, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     - target: {fileID: 6795740918563335504, guid: 4daf4d9457757b54791962271921c686, type: 3}
       propertyPath: m_Name
       value: Cyclone
@@ -6915,6 +6931,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808710073}
     m_Modifications:
+    - target: {fileID: 4327167719004917597, guid: e67c4e2e3efdbcf4da3312e88d28d310, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     - target: {fileID: 8810401433819584485, guid: e67c4e2e3efdbcf4da3312e88d28d310, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8664,6 +8684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Storm
       objectReference: {fileID: 0}
+    - target: {fileID: 7554756827363567056, guid: 1846a49d3d5714c47a797cf8f393b023, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1846a49d3d5714c47a797cf8f393b023, type: 3}
 --- !u!224 &918353608 stripped
@@ -9409,6 +9433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591882124129304147, guid: e8eee99fbd99035458730e4389b2fcb3, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8eee99fbd99035458730e4389b2fcb3, type: 3}
 --- !u!224 &1003043337 stripped
@@ -11504,6 +11532,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5855268314182196134, guid: 3f607f1f55ba37949b381a868846f51b, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f607f1f55ba37949b381a868846f51b, type: 3}
 --- !u!224 &1183926192 stripped
@@ -13277,6 +13309,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6314843671451827299, guid: c368591741700204ebd95bea2d4da1a9, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c368591741700204ebd95bea2d4da1a9, type: 3}
 --- !u!224 &1389479800 stripped
@@ -18598,6 +18634,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808710073}
     m_Modifications:
+    - target: {fileID: 19319794264877282, guid: 2a88ef734bb1db14dbbe308ae8cbeb1c, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     - target: {fileID: 5047767936772698201, guid: 2a88ef734bb1db14dbbe308ae8cbeb1c, type: 3}
       propertyPath: m_Name
       value: Blaze
@@ -20019,6 +20059,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9162020578135333467, guid: 1073d74b8335a29419b6a4d4071e0d30, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1073d74b8335a29419b6a4d4071e0d30, type: 3}
 --- !u!224 &1571873524 stripped
@@ -23702,6 +23746,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808710073}
     m_Modifications:
+    - target: {fileID: 660286730695559082, guid: 62f54b11ce81546439e102b2bb427374, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
     - target: {fileID: 5719617951476784913, guid: 62f54b11ce81546439e102b2bb427374, type: 3}
       propertyPath: m_Name
       value: Crystalize
