@@ -18,6 +18,6 @@ MonoBehaviour:
   sfx: {fileID: 8300000, guid: e147c9bfd2ea011408c7c41d9eeb3bf1, type: 3}
   icon: {fileID: 21300000, guid: 9c92882a25ace01439d6455a742c4ef5, type: 3}
   description: AOE - Casting Ice Storm induce the Freeze status effect on your main
-    target but 30% on those who aren't. If there is only 1 enemy on the battlefield
-    it will always be a 30% chance.
+    target but 50% on those who aren't. If there is only 1 enemy on the battlefield
+    it will always be a 50% chance.
   maxCooldown: 3

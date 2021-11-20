@@ -9455,8 +9455,8 @@ MonoBehaviour:
     -----------
 
     AOE - Casting Smog inflict the Poisoned
-    status effect on your main target and has a 30% chance to be applied to other
-    enemies. If there is only one enemy then it will always be a 30% chance.'
+    status effect on your main target and has a 50% chance to be applied to other
+    enemies. If there is only one enemy then it will always be a 50% chance.'
   - 'Sandblast (Debuff)
 
     ----------
@@ -9545,8 +9545,8 @@ MonoBehaviour:
     -----------
 
     AOE - Casting Ice Storm induce the
-    Freeze status effect on your main target but 30% on those who aren''t. If there
-    is only 1 enemy on the battlefield it will always be a 30% chance.'
+    Freeze status effect on your main target but 50% on those who aren''t. If there
+    is only 1 enemy on the battlefield it will always be a 50% chance.'
   - 'Blaze (Damage & Debuff)
 
     -----
