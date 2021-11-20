@@ -1023,7 +1023,7 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 2 && enemy.tag != "Lantern")
         {
             enemy.isExposed = true;
-            enemy.exposedTurnCount = 1;
+            enemy.exposedTurnCount = 2;
             enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
         }
         else if (ChooseSpell() == 3 && enemy.tag != "Lantern")
