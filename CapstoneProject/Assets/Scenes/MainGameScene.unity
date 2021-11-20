@@ -9304,87 +9304,194 @@ MonoBehaviour:
   container: {fileID: 3770522805485687228}
   canOpen: 0
   spellInfoList:
-  - 'Wind + Water
+  - 'Cyclone
+
+    --------
 
 
-    Description:
+    Wind + Water
 
-
-    Casting Cyclone allows you to cast another
-    spell immediately after using it.'
-  - 'Wind + Fire
 
 
     Description:
 
+    -----------
 
-    AOE: Casting Smog inflict the Poisoned
-    status effect on your main target and has a 30% chance to be applied to other
-    enemies. If there is only one enemy the it will always be a 30% chance.'
-  - 'Wind + Earth
+    Casting
+    Cyclone allows you to cast another spell immediately after using it.'
+  - 'Smog
+
+    ------
 
 
-    Description:
+    Wind + Fire
 
-
-    Casting Sandblast induces the Exposed
-    status effect.'
-  - 'Water + Fire
 
 
     Description:
 
+    -----------
 
-'
-  - 'Water + Earth
+    AOE
+    - Casting Smog inflict the Poisoned status effect on your main target and has
+    a 30% chance to be applied to other enemies. If there is only one enemy the it
+    will always be a 30% chance.'
+  - 'Sandblast
+
+    ----------
 
 
-    Description:
+    Wind + Earth
 
-
-'
-  - 'Fire + Earth
-
-
-    Description:
-
-'
-  - 'Water + Wind
 
 
     Description:
 
-'
-  - 'Fire + Wind
+    -----------
+
+    Casting
+    Sandblast induces the Exposed status effect.'
+  - 'Boil
+
+    ----
 
 
-    Description:
+    Water + Fire
 
-'
-  - 'Earth + Wind
-
-
-    Description:
-
-'
-  - 'Fire + Water
 
 
     Description:
 
-'
-  - 'Earth + Water
+    -----------
+
+    Casting
+    Boil induces the Scald effect.'
+  - 'Tsunami
+
+    --------
+
+
+    Water + Earth
+
 
 
     Description:
 
-'
-  - 'Earth + Fire
+    -----------
+
+    AOE
+    - Casting Tsunami on enemies that are weak to water combos will do triple damage.'
+  - 'Erupt
+
+    -----
+
+
+    Fire + Earth
+
 
 
     Description:
 
-'
+    -----------
+
+    AOE
+    - Casting Erupt will do double damage if your  HP is 25% or less.'
+  - 'Ice Storm
+
+    ---------
+
+
+    Water + Wind
+
+
+
+    Description:
+
+    -----------
+
+    AOE
+    - Casting Ice Storm induce the Freeze status effect on your main target but 30%
+    on those who aren''t. If there is only 1 enemy on the battlefield it will always
+    be a 30% chance.'
+  - 'Blaze
+
+    -----
+
+
+    Fire + Wind
+
+
+
+    Description:
+
+    -----------
+
+    Deals
+    damage & has a 100% chance to inflict the Burn status.'
+  - 'Reverb
+
+    -------
+
+
+    Earth + Wind
+
+
+
+    Description:
+
+    -----------
+
+    This
+    spell has no cooldown and if repeated its damage is increased after each consecutive
+    use, but has a greater chance to fail. Starts at 100% chance to hit then decreases
+    by 10% after each use.'
+  - 'Steam
+
+    ------
+
+
+    Fire + Water
+
+
+
+    Description:
+
+    -----------
+
+    Casting
+    Steam will remove all debuffs and heal 15% of max HP, as an additional condition
+    you are protected from getting statuses until after your next turn. If you have
+    no debuffs the healing will be increased to 20% of max HP. '
+  - 'Lahar
+
+    -----
+
+
+    Earth + Water
+
+
+
+    Description:
+
+    -----------
+
+    Casting
+    Lahar will deal 1x-2.5x  damage to the enemy upon casting.'
+  - 'Crystalize
+
+    ----------
+
+
+    Earth + Fire
+
+
+
+    Description:
+
+    -----------
+
+    Damage
+    will be halved for 3 turns after use.'
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0
