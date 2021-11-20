@@ -79,7 +79,8 @@ public class Basic : EnemyController
     private IEnumerator Healer()
     {
         bool isHealing = false;
-        float healAmount = 0;
+        float healAmount1 = 0;
+        float healAmount2 = 0;
 
         if (isFreeze && freezeTurnCount > 0)
         {
@@ -104,6 +105,7 @@ public class Basic : EnemyController
             int healTarget1 = 0;
             int healTarget2 = 0;
             float lowestHealth = 0;
+            float secondLowHealth = 0;
 
             while (targetsToHeal != 0)
             {
@@ -116,13 +118,25 @@ public class Basic : EnemyController
                             if (lowestHealth == 0)
                             {
                                 lowestHealth = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value;
-                                healAmount = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * enemy.healingPercent;
+                                healAmount1 = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * enemy.healingPercent;
                                 healTarget1 = i;
+                            }
+                            else if (secondLowHealth == 0 && enemy.healingTargets > 1)
+                            {
+                                secondLowHealth = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value;
+                                healAmount2 = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * enemy.healingPercent;
+                                healTarget2 = i;
                             }
                             else if (lowestHealth > bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value)
                             {
                                 lowestHealth = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value;
-                                healAmount = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * enemy.healingPercent;
+                                healAmount1 = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * enemy.healingPercent;
+                                healTarget1 = i;
+                            }
+                            else if (secondLowHealth > bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value)
+                            {
+                                lowestHealth = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value;
+                                healAmount1 = bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth * enemy.healingPercent;
                                 healTarget1 = i;
                             }
                             isHealing = true;
@@ -137,8 +151,8 @@ public class Basic : EnemyController
                 bm.currentEnemyList[healTarget1].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 bm.currentEnemyList[healTarget1].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(false);
-                bm.currentEnemyList[healTarget1].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount;
-                bm.EDamagePopup(bm.currentEnemyList[healTarget1].transform, (int)healAmount, "normalEnemy", true, bm.enemyNumPopupObj);
+                bm.currentEnemyList[healTarget1].GetComponentInChildren<EnemyController>().enemyHealthSlider.value += healAmount1;
+                bm.EDamagePopup(bm.currentEnemyList[healTarget1].transform, (int)healAmount1, "normalEnemy", true, bm.enemyNumPopupObj);
             }
             else if (!isHealing)
             {
