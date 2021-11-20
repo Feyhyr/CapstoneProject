@@ -258,6 +258,8 @@ public class BattleManager : MonoBehaviour
     IEnumerator PlayerTurn()
     {
         isAudioPlaying = false;
+        isCreatingSpell = false;
+        extraTurn = false;
 
         if (currentEnemyList[0].GetComponentInChildren<EnemyController>().enemyType == "AnglerFish")
         {
@@ -317,9 +319,8 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+
         enemy.targetSelected.SetActive(true);
-        extraTurn = false;
-        isCreatingSpell = false;
 
         if (isCharBound)
         {
@@ -968,9 +969,13 @@ public class BattleManager : MonoBehaviour
         {
             index = 11;
         }
-        unlock.SetSpellKey(unlock.keys, ref unlock.unlockList, index, true);
-        unlock.CheckSpellBook();
-        ChangeSpellDisabled();
+
+        if (rune1 != "" && rune2 != "")
+        {
+            unlock.SetSpellKey(unlock.keys, ref unlock.unlockList, index, true);
+            unlock.CheckSpellBook();
+            ChangeSpellDisabled();
+        }
         return index;
     }
 
