@@ -10,6 +10,9 @@ public class FloorSelect : MonoBehaviour
     public int floorReached;
     public List<Button> floorButtons;
     public List<GameObject> lockSymbol;
+    public Text loreText;
+    [TextArea]
+    public List<string> floorLoreList;
 
     private void Start()
     {
@@ -30,6 +33,7 @@ public class FloorSelect : MonoBehaviour
     public void ChangeFloor(int floorNum)
     {
         floor.floorCount = floorNum;
+        loreText.text = floorLoreList[floorNum - 1];
         PlayerPrefs.SetInt(floor.prefWave, 1);
     }
 

@@ -920,7 +920,7 @@ Transform:
   - {fileID: 462097990}
   - {fileID: 1025180383}
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219413533
 GameObject:
@@ -4584,10 +4584,10 @@ RectTransform:
   - {fileID: 782634664}
   - {fileID: 1378160471}
   - {fileID: 1211059138}
+  - {fileID: 1568530872}
   - {fileID: 216033244}
   - {fileID: 1935323690}
   - {fileID: 1571182092}
-  - {fileID: 1568530872}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4662,6 +4662,30 @@ MonoBehaviour:
   - {fileID: 1498387130}
   - {fileID: 1581523854}
   - {fileID: 1211641473}
+  loreText: {fileID: 1424055423}
+  floorLoreList:
+  - "The Tower spiraled from a place that most could not mentally process. Demons
+    who reside here on this floor have gravitated towards the flora and fauna of
+    our world\u2019s forests and has tuned it perverse. The trees, the mud, the animals\u2026
+    all are no longer of this world."
+  - The second floor of the Tower which has taken its form based on the core of the
+    Earth. Demons who dwell on this floor are more accustomed to hellish temperatures
+    and more than act as such. The heat emanating from this floor could very well
+    melt the soul if one is not careful while treading.
+  - "The third floor of the Tower draws power from the abyssal darkness that the
+    ocean depths have to offer. Demons who stem from this floor thrive under watery
+    conditions and are sure lure their prey under where you can\u2019t be heard.
+    They yearn for nothing more than to have you join them where light does not reach\u2026"
+  - "The fourth floor of the Tower is a floor that is more of an \u201Cin-between\u201D
+    than one may think. The demons who lurk here share this theme in common with
+    one another and manifest it in their physical form. Between life and death, between
+    one form and another, and yet, neither is the path they walk."
+  - "The final floor of the Tower is where it all began. Atop of the tower lies the
+    mind shattering dimensional force that created the Tower. This is where concepts
+    of perception and realization blur and become only the notion that the world
+    is hastily advancing towards being a dystopia. Twisting realms together to form
+    a singular world that is melding and spinning forevermore. Are you prepared for
+    what lies ahead\u2026?"
 --- !u!1 &1286750530
 GameObject:
   m_ObjectHideFlags: 0
@@ -6076,7 +6100,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6171,7 +6195,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7591,7 +7615,7 @@ RectTransform:
   - {fileID: 2006348103}
   - {fileID: 1323564972}
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
