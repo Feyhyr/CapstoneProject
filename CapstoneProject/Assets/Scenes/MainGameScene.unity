@@ -9420,194 +9420,227 @@ MonoBehaviour:
   container: {fileID: 3770522805485687228}
   canOpen: 0
   spellInfoList:
-  - 'Cyclone
+  - 'Cyclone (Damage & Ability)
 
     --------
 
 
-    Wind + Water
+    Combination: Wind + Water
 
+
+    Cooldown:
+    3
 
 
     Description:
 
     -----------
 
-    Casting
-    Cyclone allows you to cast another spell immediately after using it.'
-  - 'Smog
+    Casting Cyclone allows you to cast
+    another spell immediately after using it.'
+  - 'Smog (Damage & Debuff)
 
     ------
 
 
-    Wind + Fire
+    Combination: Wind + Fire
 
+
+    Cooldown:
+    3
 
 
     Description:
 
     -----------
 
-    AOE
-    - Casting Smog inflict the Poisoned status effect on your main target and has
-    a 30% chance to be applied to other enemies. If there is only one enemy then
-    it will always be a 30% chance.'
-  - 'Sandblast
+    AOE - Casting Smog inflict the Poisoned
+    status effect on your main target and has a 30% chance to be applied to other
+    enemies. If there is only one enemy then it will always be a 30% chance.'
+  - 'Sandblast (Debuff)
 
     ----------
 
 
-    Wind + Earth
+    Combination: Wind + Earth
 
+
+    Cooldown:
+    4
 
 
     Description:
 
     -----------
 
-    Casting
-    Sandblast induces the Exposed status effect.'
-  - 'Boil
+    Casting Sandblast induces the Exposed
+    status effect.'
+  - 'Boil (Damage & Debuff)
 
     ----
 
 
-    Water + Fire
+    Combination: Water + Fire
 
+
+    Cooldown:
+    2
 
 
     Description:
 
     -----------
 
-    Casting
-    Boil induces the Scald effect.'
-  - 'Tsunami
+    Casting Boil induces the Scald effect.'
+  - 'Tsunami (Damage)
 
     --------
 
 
-    Water + Earth
+    Combination: Water + Earth
 
+
+    Cooldown:
+    4
 
 
     Description:
 
     -----------
 
-    AOE
-    - Casting Tsunami on enemies that are weak to water combos will do triple damage.'
-  - 'Erupt
+    AOE - Casting Tsunami on enemies that
+    are weak to water combos will do triple damage.'
+  - 'Erupt (Damage & Ability)
 
     -----
 
 
-    Fire + Earth
+    Combination: Fire + Earth
 
+
+    Cooldown:
+    2
 
 
     Description:
 
     -----------
 
-    AOE
-    - Casting Erupt will do double damage if your  HP is 25% or less.'
-  - 'Ice Storm
+    AOE - Casting Erupt will do double
+    damage if your  HP is 25% or less.'
+  - 'Ice Storm (Damage & Debuff)
 
     ---------
 
 
-    Water + Wind
+    Combination: Water + Wind
 
+
+    Cooldown:
+    3
 
 
     Description:
 
     -----------
 
-    AOE
-    - Casting Ice Storm induce the Freeze status effect on your main target but 30%
-    on those who aren''t. If there is only 1 enemy on the battlefield it will always
-    be a 30% chance.'
-  - 'Blaze
+    AOE - Casting Ice Storm induce the
+    Freeze status effect on your main target but 30% on those who aren''t. If there
+    is only 1 enemy on the battlefield it will always be a 30% chance.'
+  - 'Blaze (Damage & Debuff)
 
     -----
 
 
-    Fire + Wind
+    Combination: Fire + Wind
 
+
+    Cooldown:
+    4
 
 
     Description:
 
     -----------
 
-    Deals
-    damage & has a 100% chance to inflict the Burn status.'
-  - 'Reverb
+    Deals damage & has a 100% chance to
+    inflict the Burn status.'
+  - 'Reverb (Damage + Ability)
 
     -------
 
 
-    Earth + Wind
+    Combination: Earth + Wind
 
+
+    Cooldown:
+    0
 
 
     Description:
 
     -----------
 
-    This
-    spell has no cooldown and if repeated its damage is increased after each consecutive
-    use, but has a greater chance to fail. Starts at 100% chance to hit then decreases
-    by 10% after each use.'
-  - 'Steam
+    This spell has no cooldown and if
+    repeated its damage is increased after each consecutive use, but has a greater
+    chance to fail. Starts at 100% chance to hit then decreases by 10% after each
+    use.'
+  - 'Steam (Damage & Buff)
 
     ------
 
 
-    Fire + Water
+    Combination: Fire + Water
 
+
+    Cooldown:
+    3
 
 
     Description:
 
     -----------
 
-    Casting
-    Steam will remove all debuffs and heal 15% of max HP, as an additional condition
-    you are protected from getting statuses until after your next turn. If you have
-    no debuffs the healing will be increased to 20% of max HP. '
-  - 'Lahar
+    Casting Steam will remove all debuffs
+    and heal 15% of max HP, as an additional condition you are protected from getting
+    statuses until after your next turn. If you have no debuffs the healing will
+    be increased to 20% of max HP. '
+  - 'Lahar (Damage & Ability)
 
     -----
 
 
-    Earth + Water
+    Combination: Earth + Water
 
+
+    Cooldown:
+    2
 
 
     Description:
 
     -----------
 
-    Casting
-    Lahar will deal 1x-2.5x  damage to the enemy upon casting.'
-  - 'Crystalize
+    Casting Lahar will deal 1x-2.5x  damage
+    to the enemy upon casting.'
+  - 'Crystalize (Damage & Buff)
 
     ----------
 
 
-    Earth + Fire
+    Combination: Earth + Fire
 
+
+    Cooldown:
+    4
 
 
     Description:
 
     -----------
 
-    Damage
-    will be halved for 3 turns after use.'
+    Damage will be halved for 3 turns
+    after use.'
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0
