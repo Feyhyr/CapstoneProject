@@ -155,4 +155,9 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             return false;
         }
     }
+
+    public void TimeScaleNormal()
+    {
+        Time.timeScale = 1;
+    }
 }
