@@ -9304,18 +9304,87 @@ MonoBehaviour:
   container: {fileID: 3770522805485687228}
   canOpen: 0
   spellInfoList:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - 'Wind + Water
+
+
+    Description:
+
+
+    Casting Cyclone allows you to cast another
+    spell immediately after using it.'
+  - 'Wind + Fire
+
+
+    Description:
+
+
+    AOE: Casting Smog inflict the Poisoned
+    status effect on your main target and has a 30% chance to be applied to other
+    enemies. If there is only one enemy the it will always be a 30% chance.'
+  - 'Wind + Earth
+
+
+    Description:
+
+
+    Casting Sandblast induces the Exposed
+    status effect.'
+  - 'Water + Fire
+
+
+    Description:
+
+
+'
+  - 'Water + Earth
+
+
+    Description:
+
+
+'
+  - 'Fire + Earth
+
+
+    Description:
+
+'
+  - 'Water + Wind
+
+
+    Description:
+
+'
+  - 'Fire + Wind
+
+
+    Description:
+
+'
+  - 'Earth + Wind
+
+
+    Description:
+
+'
+  - 'Fire + Water
+
+
+    Description:
+
+'
+  - 'Earth + Water
+
+
+    Description:
+
+'
+  - 'Earth + Fire
+
+
+    Description:
+
+'
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0
