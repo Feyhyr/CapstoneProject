@@ -23,4 +23,6 @@ public class EnemySO : ScriptableObject
     public AudioClip attackSFX;
     public AudioClip damageSFX;
     public string attackType;
+    public float healingPercent;
+    public int healingTargets;
 }

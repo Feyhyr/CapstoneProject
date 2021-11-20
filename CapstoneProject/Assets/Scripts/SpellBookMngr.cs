@@ -18,6 +18,8 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     public GameObject textbox;
     public Transform container;
     public bool canOpen;
+    [TextArea]
+    public List<string> spellInfoList;
 
     private new void Awake()
     {
@@ -68,15 +70,15 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         }
     }
 
-    public void OpenDescription(string info)
+    public void OpenDescription(int index)
     {
         if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite == unknownIcon)
         {
-            textbox.GetComponent<Text>().text = "You have no unlocked this spell yet.";
+            textbox.GetComponent<Text>().text = "You have not unlocked this spell yet.";
         }
         else
         {
-            textbox.GetComponent<Text>().text = info;
+            textbox.GetComponent<Text>().text = spellInfoList[index];
         }
         textbox.SetActive(true);
     }
