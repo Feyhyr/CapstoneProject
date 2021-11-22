@@ -9634,7 +9634,7 @@ MonoBehaviour:
     This spell
     has no cooldown and if repeated its damage is increased by 1.5x after each consecutive
     use, but has a greater chance to fail. Starts at 100% chance to hit then decreases
-    by 10% after each use.'
+    by 10% after each use. Resets after missing the target.'
   - 'Steam (Damage & Buff)
 
     ------
@@ -9692,8 +9692,8 @@ MonoBehaviour:
 
     -----------
 
-    Damage will be halved for 3 turns
-    after use.'
+    Damage from enemy attacks is halved
+    for 3 turns.'
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0
