@@ -2080,7 +2080,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Burn: Does 1 damage every turn for 3 turns.'
+  m_Text: 'Burn: Does 6% of total health as damage every turn for 3 turns.'
 --- !u!1 &3848286077703872706
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,8 +2226,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Scald: If it is hit with an attack that includes fire in its combo, damage
-    is increased by 2.'
+  m_Text: 'Scald: For 4 turns, the enemy with the Scald status will take double damage
+    from spells containing the fire rune.'
 --- !u!1 &3967063865609841970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,7 +2900,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Poison: Does 3 damage every turn for 2 turns.'
+  m_Text: 'Poison: Does 8% of total health as damage every turn for 2 turns, cannot
+    heal while poisoned.'
 --- !u!1 &5191017551068701521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,7 +4059,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Expose: The next attack hits for double if the enemy is not resistant.'
+  m_Text: 'Exposed: For 2 turns, attacks received will do double damage.'
 --- !u!1 &7678421405748198989
 GameObject:
   m_ObjectHideFlags: 0
