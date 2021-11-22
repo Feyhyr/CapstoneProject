@@ -18,7 +18,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     public GameObject textbox;
     public Transform container;
     public bool canOpen;
-    [TextArea(15, 20)]
+    [TextArea(15, 30)]
     public List<string> spellInfoList;
 
     private new void Awake()
