@@ -17,5 +17,5 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: 885304bb5631697478b4cf4bb74201fa, type: 3}
   icon: {fileID: 21300000, guid: 83479701d47b66340bf90611e39f6365, type: 3}
-  description: Casting Boil induces the Scald effect.
+  description: Casting Boil deals damage and induces the Scald effect.
   maxCooldown: 2

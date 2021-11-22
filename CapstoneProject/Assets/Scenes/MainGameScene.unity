@@ -9428,16 +9428,20 @@ MonoBehaviour:
     Combination: Wind + Water
 
 
-    Cooldown:
-    3
+    Base
+    Damage: 50
+
+
+    Cooldown: 3
 
 
     Description:
 
     -----------
 
-    Casting Cyclone allows you to cast
-    another spell immediately after using it.'
+    Casting
+    Cyclone deals damage and allows you to cast another spell immediately after using
+    it.'
   - 'Smog (Damage & Debuff)
 
     ------
@@ -9446,17 +9450,25 @@ MonoBehaviour:
     Combination: Wind + Fire
 
 
-    Cooldown:
-    3
+    Base
+    Damage: 50
+
+
+    Cooldown: 3
 
 
     Description:
 
     -----------
 
-    AOE - Casting Smog inflict the Poisoned
-    status effect on your main target and has a 50% chance to be applied to other
-    enemies. If there is only one enemy then it will always be a 50% chance.'
+    Casting
+    Smog deals AOE damage and inflicts the Poisoned status effect on your main target,
+    but has a 50% chance to be applied to other enemies. If there is only 1 enemy
+    on the battlefield it will always be a 50% chance.
+
+
+    *Poisoned: Does 8% of
+    total health as damage every turn for 2 turns, cannot heal while poisoned.'
   - 'Sandblast (Debuff)
 
     ----------
@@ -9474,7 +9486,10 @@ MonoBehaviour:
     -----------
 
     Casting Sandblast induces the Exposed
-    status effect.'
+    status effect.
+
+
+    *Exposed: For 2 turns, attacks received will do double damage.'
   - 'Boil (Damage & Debuff)
 
     ----
@@ -9483,15 +9498,24 @@ MonoBehaviour:
     Combination: Water + Fire
 
 
-    Cooldown:
-    2
+    Base
+    Damage: 50
+
+
+    Cooldown: 2
 
 
     Description:
 
     -----------
 
-    Casting Boil induces the Scald effect.'
+    Casting
+    Boil deals damage and induces the Scald effect.
+
+
+    *Scald: For 4 turns, the
+    enemy with the Scald status will take double damage from spells containing the
+    fire rune.'
   - 'Tsunami (Damage)
 
     --------
@@ -9500,16 +9524,20 @@ MonoBehaviour:
     Combination: Water + Earth
 
 
-    Cooldown:
-    4
+    Base Damage:
+    50
+
+
+    Cooldown: 4
 
 
     Description:
 
     -----------
 
-    AOE - Casting Tsunami on enemies that
-    are weak to water combos will do triple damage.'
+    Casting Tsunami
+    will do AOE damage and if an enemy is weak to water combos the damage delt to
+    that enemy is tripled rather than doubled.'
   - 'Erupt (Damage & Ability)
 
     -----
@@ -9518,16 +9546,20 @@ MonoBehaviour:
     Combination: Fire + Earth
 
 
-    Cooldown:
-    2
+    Base
+    Damage: 50
+
+
+    Cooldown: 2
 
 
     Description:
 
     -----------
 
-    AOE - Casting Erupt will do double
-    damage if your  HP is 25% or less.'
+    Casting
+    Erupt will do AOE damage, and if your HP is at 25% or less the damage will be
+    doubled.'
   - 'Ice Storm (Damage & Debuff)
 
     ---------
@@ -9536,17 +9568,25 @@ MonoBehaviour:
     Combination: Water + Wind
 
 
-    Cooldown:
-    3
+    Base
+    Damage: 50
+
+
+    Cooldown: 3
 
 
     Description:
 
     -----------
 
-    AOE - Casting Ice Storm induce the
-    Freeze status effect on your main target but 50% on those who aren''t. If there
-    is only 1 enemy on the battlefield it will always be a 50% chance.'
+    Casting
+    Ice Storm deals AOE damage and induces the Freeze status effect on your main
+    target, but has a 50% chance to do so on others. If there is only 1 enemy on
+    the battlefield it will always be a 50% chance.
+
+
+    *Freeze: Cannot move for
+    2 turns.'
   - 'Blaze (Damage & Debuff)
 
     -----
@@ -9555,16 +9595,23 @@ MonoBehaviour:
     Combination: Fire + Wind
 
 
-    Cooldown:
-    4
+    Base
+    Damage: 50
+
+
+    Cooldown: 4
 
 
     Description:
 
     -----------
 
-    Deals damage & has a 100% chance to
-    inflict the Burn status.'
+    Deals damage
+    and has a 100% chance to inflict the Burn status.
+
+
+    Burn: Does 6% of total
+    heath as damage every turn for 3 turns.'
   - 'Reverb (Damage + Ability)
 
     -------
@@ -9573,18 +9620,21 @@ MonoBehaviour:
     Combination: Earth + Wind
 
 
-    Cooldown:
-    0
+    Base
+    Damage: 50
+
+
+    Cooldown: 0
 
 
     Description:
 
     -----------
 
-    This spell has no cooldown and if
-    repeated its damage is increased after each consecutive use, but has a greater
-    chance to fail. Starts at 100% chance to hit then decreases by 10% after each
-    use.'
+    This spell
+    has no cooldown and if repeated its damage is increased by 1.5x after each consecutive
+    use, but has a greater chance to fail. Starts at 100% chance to hit then decreases
+    by 10% after each use.'
   - 'Steam (Damage & Buff)
 
     ------
@@ -9613,16 +9663,19 @@ MonoBehaviour:
     Combination: Earth + Water
 
 
-    Cooldown:
-    2
+    Base
+    Damage: 50
+
+
+    Cooldown: 2
 
 
     Description:
 
     -----------
 
-    Casting Lahar will deal 1x-2.5x  damage
-    to the enemy upon casting.'
+    Casting
+    Lahar will deal 1x-2.5x  damage to the enemy upon casting.'
   - 'Crystalize (Damage & Buff)
 
     ----------

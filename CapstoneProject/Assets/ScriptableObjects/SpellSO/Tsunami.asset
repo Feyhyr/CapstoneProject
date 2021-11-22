@@ -17,6 +17,6 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: 2e98f0d09c03e7d40837fa53f5182715, type: 3}
   icon: {fileID: 21300000, guid: 3853efc941e655f4686a2fa4cd6e367c, type: 3}
-  description: AOE - Casting Tsunami on enemies that are weak to water combos will
-    do triple damage.
+  description: Casting Tsunami will do AOE damage and if an enemy is weak to water
+    combos the damage delt to that enemy is tripled rather than doubled.
   maxCooldown: 4
