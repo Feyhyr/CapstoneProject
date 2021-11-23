@@ -87,6 +87,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         {
             bm.rune1 = rune.runeName;
             onFirstSlot = true;
+            bm.isAudioPlaying = true;
         }
     }
 

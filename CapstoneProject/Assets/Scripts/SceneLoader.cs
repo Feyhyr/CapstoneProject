@@ -22,4 +22,9 @@ public class SceneLoader : MonoBehaviour
         Application.Quit();
     }
 
+    public void AlphaStart(string sceneName)
+    {
+        PlayerPrefs.SetInt("floorsUnlocked", 5);
+        SceneManager.LoadScene(sceneName);
+    }
 }

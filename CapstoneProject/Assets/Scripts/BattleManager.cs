@@ -132,6 +132,8 @@ public class BattleManager : MonoBehaviour
     public GameObject lanternPrefab;
     public GameObject noEffectText;
     GameObject tempEnemyObject;
+
+    public GameObject tutorialUX;
     #endregion
 
     private void Awake()
@@ -148,6 +150,11 @@ public class BattleManager : MonoBehaviour
 
         battleState = BattleState.START;
 
+        if (floor.waveCount > 1)
+        {
+            tutorialUX.SetActive(false);
+        }
+
         if (floor.waveCount == 5)
         {
             bossBattle = true;
@@ -156,7 +163,6 @@ public class BattleManager : MonoBehaviour
 
         ChangeSpellDisabled();
 
-        
 
         if (bossBattle)
         {
@@ -1367,6 +1373,7 @@ public class BattleManager : MonoBehaviour
         {
             if (rune1 != "" && rune2 != "")
             {
+                tutorialUX.SetActive(false);
                 CheckSpell();
             }
         }
