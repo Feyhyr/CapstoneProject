@@ -150,7 +150,7 @@ public class BattleManager : MonoBehaviour
 
         battleState = BattleState.START;
 
-        if (floor.waveCount > 1)
+        if (floor.waveCount > 1 || floor.floorCount > 1)
         {
             tutorialUX.SetActive(false);
         }

@@ -24,8 +24,8 @@ public class FloorSelect : MonoBehaviour
         {
             if (i + 1 > floorReached)
             {
-                //floorButtons[i].interactable = false;
-                //lockSymbol[i].SetActive(true);
+                floorButtons[i].interactable = false;
+                lockSymbol[i].SetActive(true);
             }
         }
     }
