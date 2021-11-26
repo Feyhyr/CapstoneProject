@@ -195,7 +195,7 @@ public class EnemyController : MonoBehaviour
 
     public void SelectTarget()
     {
-        if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
+        if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked) && (!bm.isSpellCasting))
         {
             AudioManager.Instance.Play(uiClick);
             bm.ChangeTarget(bm.targetEnemy);

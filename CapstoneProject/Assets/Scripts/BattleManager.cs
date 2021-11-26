@@ -88,6 +88,7 @@ public class BattleManager : MonoBehaviour
     bool debrisHit = false;
     bool isAOE = false;
     public bool isCreatingSpell = false;
+    public bool isSpellCasting = false;
     //public int charStuckTurnCount = 1;
     public bool isCharBound = false;
     public bool isCharExposed = false;
@@ -350,6 +351,11 @@ public class BattleManager : MonoBehaviour
 
         else
         {
+            playerAttacked = false;
+            playerTurnUX.SetActive(true);
+            yield return new WaitForSeconds(1.6f);
+            playerTurnUX.SetActive(false);
+            isSpellCasting = false;
             for (int i = 0; i < runeObjs.Length; i++)
             {
                 runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
@@ -360,11 +366,6 @@ public class BattleManager : MonoBehaviour
                 runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
                 runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
             }
-
-            playerAttacked = false;
-            playerTurnUX.SetActive(true);
-            yield return new WaitForSeconds(1.6f);
-            playerTurnUX.SetActive(false);
             //Cursor.visible = true;
             //Cursor.lockState = CursorLockMode.None;
         }
@@ -1094,7 +1095,7 @@ public class BattleManager : MonoBehaviour
 
             yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-            if (isCharSealed || isCharCursed || isCharPoisoned)
+            if (isCharSealed || isCharCursed || isCharPoisoned || isCharExposed)
             {
                 healAmount = charMaxHealth * 0.1f;
                 statusRemoved = true;
@@ -1111,6 +1112,8 @@ public class BattleManager : MonoBehaviour
             curse.SetActive(false);
             isCharPoisoned = false;
             playerPoison.SetActive(false);
+            isCharExposed = false;
+            charExposed.SetActive(false);
             if (statusRemoved)
             {
                 isSteamGuard = true;
