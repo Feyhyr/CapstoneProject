@@ -940,7 +940,7 @@ Transform:
   - {fileID: 462097990}
   - {fileID: 1025180383}
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219413533
 GameObject:
@@ -2795,7 +2795,7 @@ RectTransform:
   m_LocalScale: {x: 0.7619618, y: 0.67526233, z: 0.93517494}
   m_Children: []
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 117.927}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5189,7 +5189,6 @@ RectTransform:
   - {fileID: 782634664}
   - {fileID: 1378160471}
   - {fileID: 1211059138}
-  - {fileID: 1568530872}
   - {fileID: 216033244}
   - {fileID: 1935323690}
   - {fileID: 1571182092}
@@ -6784,7 +6783,7 @@ GameObject:
   - component: {fileID: 1568530874}
   - component: {fileID: 1568530873}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SpeechBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6797,16 +6796,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568530871}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.010101, y: 1.010101, z: 1.010101}
   m_Children: []
-  m_Father: {fileID: 1285865756}
-  m_RootOrder: 7
+  m_Father: {fileID: 1938277406}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -545.1, y: -16}
+  m_AnchoredPosition: {x: 50.00006, y: 55.55558}
   m_SizeDelta: {x: 35.8249, y: 33.9938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1568530873
@@ -6897,7 +6896,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8443,7 +8442,7 @@ RectTransform:
   - {fileID: 2006348103}
   - {fileID: 1323564972}
   m_Father: {fileID: 1285865756}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8518,7 +8517,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99, y: 0.99, z: 0.99}
-  m_Children: []
+  m_Children:
+  - {fileID: 1568530872}
   m_Father: {fileID: 1211059138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8680,6 +8680,7 @@ MonoBehaviour:
 
     Did you know you can mix 2 runes in any order?'
   mentorText: {fileID: 1961208312}
+  speechBubble: {fileID: 1568530871}
 --- !u!1 &1938953625
 GameObject:
   m_ObjectHideFlags: 0
