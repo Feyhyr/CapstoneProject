@@ -33,8 +33,8 @@ public class PauseGame : MonoBehaviour
     {
         if (gamePaused)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
             pauseCanvas.SetActive(true);
         }

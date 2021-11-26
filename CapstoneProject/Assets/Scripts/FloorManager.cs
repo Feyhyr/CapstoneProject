@@ -60,9 +60,9 @@ public class FloorManager : Singleton<FloorManager>
                 floorsUnlocked = 5;
             }
 
+            bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             waveCounterText = GameObject.Find("WaveCounterText").GetComponent<Text>();
             CheckCount(prefWave, ref waveCount, ref waveCounterText, "Wave");
-            bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             bm.floorBackground.sprite = floorBackgrounds[floorCount - 1];
             audioSource.clip = floorBGM[floorCount - 1];
             if (previousClip != audioSource.clip)
@@ -87,12 +87,8 @@ public class FloorManager : Singleton<FloorManager>
         if (count > 5)
         {
             count = 1;
-            text.text = prefix + " " + count + "/5";
         }
-        else
-        {
-            text.text = prefix + " " + count + "/5";
-        }
+        text.text = prefix + " " + count + "/" + (bm.enemyScriptables[floorCount - 1].enemyWaveList.Count + 1).ToString();
     }
 
     public void AddCount(ref int count, string key)

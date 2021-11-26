@@ -155,7 +155,7 @@ public class BattleManager : MonoBehaviour
             tutorialUX.SetActive(false);
         }
 
-        if (floor.waveCount == 5)
+        if (floor.waveCount == enemyScriptables[floor.floorCount - 1].enemyWaveList.Count + 1)
         {
             bossBattle = true;
         }
@@ -171,7 +171,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/5";
+            battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/" + (enemyScriptables[floor.floorCount - 1].enemyWaveList.Count + 1).ToString();
             StartCoroutine(BeginNormalBattle());
         }
     }
@@ -192,8 +192,8 @@ public class BattleManager : MonoBehaviour
     #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
         yield return new WaitForSeconds(2.3f);
         battleStartUX.SetActive(false);
@@ -232,8 +232,8 @@ public class BattleManager : MonoBehaviour
     
     IEnumerator BeginBossBattle()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
         yield return new WaitForSeconds(2.3f);
         battleStartUX.SetActive(false);
@@ -365,8 +365,8 @@ public class BattleManager : MonoBehaviour
             playerTurnUX.SetActive(true);
             yield return new WaitForSeconds(1.6f);
             playerTurnUX.SetActive(false);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -441,8 +441,8 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
         enemyTurnUX.SetActive(false);
         yield return new WaitForSeconds(1);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         for (int i = 0; i < currentEnemyList.Count; i++)
         {
@@ -474,8 +474,8 @@ public class BattleManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -497,16 +497,16 @@ public class BattleManager : MonoBehaviour
             }
             floor.AddCount(ref floor.floorCount, floor.prefFloor);
             gameWinScreen.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
             //SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
         {
             PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -520,8 +520,8 @@ public class BattleManager : MonoBehaviour
     IEnumerator EndWave()
     {
         endWaveCanvas.SetActive(true);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
         floor.AddCount(ref floor.waveCount, floor.prefWave);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("BattleScene");

@@ -93,8 +93,8 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     {
         if (spellBookState)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
             spellBookCanvas.SetActive(true);
         }
