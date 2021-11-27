@@ -1971,7 +1971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &169022557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26477,14 +26477,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a5a6b6ac39e500b44b8838b48d364bc2, type: 3}
   - {fileID: 21300000, guid: a5a6b6ac39e500b44b8838b48d364bc2, type: 3}
   unknownIcon: {fileID: 21300000, guid: 45e428204ad0bbd43aa0572f77392d71, type: 3}
-  spellBookCanvas: {fileID: 1780716070507022086}
+  journalCanvas: {fileID: 0}
   spellBookState: 0
   pause: {fileID: 0}
   textbox: {fileID: 3235213283516954795}
+  statusTextBox: {fileID: 0}
   spellContainer: {fileID: 0}
+  statusContainer: {fileID: 0}
   textContainer: {fileID: 0}
+  statusTextContainer: {fileID: 0}
   canOpen: 0
   spellInfoList: []
+  statusInfoList: []
 --- !u!4 &1780716070467569606
 Transform:
   m_ObjectHideFlags: 0
