@@ -632,6 +632,8 @@ public class BattleManager : MonoBehaviour
         EnemyController currentEnemy;
         float originalDmg = damage;
 
+        int selectedTarget = targetEnemy;
+
         for (int i = currentEnemyList.Count - 1; i >= 0; i--)
         {
             float targetDmg = originalDmg;
@@ -709,10 +711,10 @@ public class BattleManager : MonoBehaviour
 
             if (currentEnemy.enemyHealthSlider.value > 0 && currentEnemy.enemyType != "Lantern")
             {
-                float accuracy = 0.5f;
+                float accuracy = 0.8f;
                 if (currentEnemyList.Count > 1)
                 {
-                    if (i == targetEnemy)
+                    if (i == selectedTarget)
                     {
                         accuracy = 1f;
                     }

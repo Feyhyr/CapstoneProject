@@ -11,7 +11,7 @@ public class SpellSO : ScriptableObject
     public int sDamage;
     public AudioClip sfx;
     public Sprite icon;
-    [TextArea]
+    [TextArea(15, 20)]
     public string description;
     public int maxCooldown;
 }
