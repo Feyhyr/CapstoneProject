@@ -88,14 +88,14 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         {
             textbox.GetComponentInChildren<Text>().text = spellInfoList[index];
         }
-        statusTextContainer.localPosition = new Vector3(0, -450, 0);
+        textContainer.localPosition = new Vector3(0, -450, 0);
         textbox.SetActive(true);
     }
 
     public void OpenStatusDescription(int index)
     {
         statusTextBox.GetComponentInChildren<Text>().text = statusInfoList[index];
-        textContainer.localPosition = new Vector3(0, -450, 0);
+        statusTextContainer.localPosition = new Vector3(0, -90, 0);
         statusTextBox.SetActive(true);
     }
 
