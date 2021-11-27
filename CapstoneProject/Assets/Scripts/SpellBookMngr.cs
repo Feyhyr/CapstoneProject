@@ -16,12 +16,16 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     public bool spellBookState;
     public PauseGame pause;
     public GameObject textbox;
+    public GameObject statusTextBox;
     public Transform spellContainer;
     public Transform statusContainer;
     public Transform textContainer;
+    public Transform statusTextContainer;
     public bool canOpen;
     [TextArea(15, 100)]
     public List<string> spellInfoList;
+    [TextArea(15, 100)]
+    public List<string> statusInfoList;
 
     private new void Awake()
     {
@@ -84,8 +88,15 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         {
             textbox.GetComponentInChildren<Text>().text = spellInfoList[index];
         }
-        textContainer.localPosition = new Vector3(0, -450, 0);
+        statusTextContainer.localPosition = new Vector3(0, -450, 0);
         textbox.SetActive(true);
+    }
+
+    public void OpenStatusDescription(int index)
+    {
+        statusTextBox.GetComponentInChildren<Text>().text = statusInfoList[index];
+        textContainer.localPosition = new Vector3(0, -450, 0);
+        statusTextBox.SetActive(true);
     }
 
     public void ChangeState()
