@@ -16,7 +16,8 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     public bool spellBookState;
     public PauseGame pause;
     public GameObject textbox;
-    public Transform container;
+    public Transform spellContainer;
+    public Transform textContainer;
     public bool canOpen;
     [TextArea(15, 100)]
     public List<string> spellInfoList;
@@ -74,12 +75,13 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     {
         if (EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite == unknownIcon)
         {
-            textbox.GetComponent<Text>().text = "You have not unlocked this spell yet.";
+            textbox.GetComponentInChildren<Text>().text = "You have not unlocked this spell yet.";
         }
         else
         {
-            textbox.GetComponent<Text>().text = spellInfoList[index];
+            textbox.GetComponentInChildren<Text>().text = spellInfoList[index];
         }
+        textContainer.position = new Vector3(textContainer.position.x, -450, textContainer.position.z);
         textbox.SetActive(true);
     }
 
@@ -103,8 +105,8 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             Time.timeScale = 1;
             textbox.SetActive(false);
             spellBookCanvas.SetActive(false);
-            container.position = new Vector3(container.position.x, -450, container.position.z);
         }
+        spellContainer.position = new Vector3(spellContainer.position.x, -450, spellContainer.position.z);
     }
 
     public void SetSpellKey(string[] key, ref List<bool> spellUnlock, int index, bool state)
