@@ -35,6 +35,7 @@ public class SpellController : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void SpellSelect()
     {
+        bm.tutorialSelectUX.SetActive(false);
         //bm.cancelBTN.SetActive(false);
         bm.isSpellCasting = true;
         for (int i = 0; i < bm.runeObjs.Length; i++)

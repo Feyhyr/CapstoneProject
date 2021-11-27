@@ -55,6 +55,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             {
                 if (Input.GetKeyDown(KeyCode.S))
                 {
+                    textbox.SetActive(false);
                     ChangeState();
                 }
             }
@@ -64,6 +65,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
                 {
                     if (Input.GetKeyDown(KeyCode.S))
                     {
+                        textbox.SetActive(false);
                         ChangeState();
                     }
                 }

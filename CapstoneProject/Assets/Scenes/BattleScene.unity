@@ -11958,6 +11958,7 @@ MonoBehaviour:
   lanternPrefab: {fileID: 4143568629198492943, guid: bacf045edc456b64e81fc413193f238f, type: 3}
   noEffectText: {fileID: 706876119}
   tutorialUX: {fileID: 1842391521}
+  tutorialSelectUX: {fileID: 1870835571}
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0
@@ -22564,7 +22565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1842391522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26480,7 +26481,8 @@ MonoBehaviour:
   spellBookState: 0
   pause: {fileID: 0}
   textbox: {fileID: 3235213283516954795}
-  container: {fileID: 1780716070193578489}
+  spellContainer: {fileID: 0}
+  textContainer: {fileID: 0}
   canOpen: 0
   spellInfoList: []
 --- !u!4 &1780716070467569606

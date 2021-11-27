@@ -135,6 +135,7 @@ public class BattleManager : MonoBehaviour
     GameObject tempEnemyObject;
 
     public GameObject tutorialUX;
+    public GameObject tutorialSelectUX;
     #endregion
 
     private void Awake()
@@ -151,9 +152,9 @@ public class BattleManager : MonoBehaviour
 
         battleState = BattleState.START;
 
-        if (floor.waveCount > 1 || floor.floorCount > 1)
+        if (floor.waveCount == 1 && floor.floorCount == 1)
         {
-            tutorialUX.SetActive(false);
+            tutorialUX.SetActive(true);
         }
 
         if (floor.waveCount == enemyScriptables[floor.floorCount - 1].enemyWaveList.Count + 1)
@@ -225,6 +226,11 @@ public class BattleManager : MonoBehaviour
         startCheckEnemy = true;
         yield return new WaitForSeconds(0.1f);
         enemyState = enemy.currentState;
+
+        if (floor.waveCount == 2 && floor.floorCount == 1)
+        {
+            tutorialSelectUX.SetActive(true);
+        }
 
         battleState = BattleState.PLAYERTURN;
 
@@ -852,6 +858,7 @@ public class BattleManager : MonoBehaviour
                 battleState = BattleState.WIN;
                 startCheckEnemy = false;
                 EndBossBattle();
+                yield break;
             }
             if (currentEnemyList[index].tag == "Lantern")
             {
@@ -867,10 +874,12 @@ public class BattleManager : MonoBehaviour
                 if (bossBattle)
                 {
                     EndBossBattle();
+                    yield break;
                 }
                 else
                 {
                     EndNormalBattle();
+                    yield break;
                 }
             }
             else
