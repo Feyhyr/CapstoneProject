@@ -17,5 +17,8 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: dade1a2f75f01854daba0644d419fa8a, type: 3}
   icon: {fileID: 21300000, guid: 80e7abba160a26942b75beaccd5788fa, type: 3}
-  description: Casting Lahar will deal 1x-2.5x  damage to the enemy upon casting.
+  description: 'Earth + Water
+
+    Casting Lahar will deal 1x-2.5x  damage to the
+    enemy upon casting.'
   maxCooldown: 2

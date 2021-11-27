@@ -17,6 +17,8 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: 71adb1b855628a940af174e7b97e6831, type: 3}
   icon: {fileID: 21300000, guid: 9e385e0f57b42344586e67adbe55aad6, type: 3}
-  description: Casting Erupt will do AOE damage, and if your HP is at 25% or less
-    the damage will be doubled.
+  description: 'Fire + Earth
+
+    Casting Erupt will do AOE damage, and if your HP
+    is at 25% or less the damage will be doubled.'
   maxCooldown: 2

@@ -17,6 +17,8 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: c0c35e36c803057429f92a7b7bef43b1, type: 3}
   icon: {fileID: 21300000, guid: 3a1405eeb9e27c34891bc148e250a749, type: 3}
-  description: Casting Cyclone deals damage and allows you to cast another spell
-    immediately after using it.
+  description: 'Wind + Water
+
+    Casting Cyclone deals damage and allows you to
+    cast another spell immediately after using it.'
   maxCooldown: 3
