@@ -18,7 +18,7 @@ public class PauseGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ChangeState();
-            spellUnlock.spellBookCanvas.SetActive(false);
+            spellUnlock.journalCanvas.SetActive(false);
             spellUnlock.spellBookState = false;
         }
     }

@@ -12,11 +12,12 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     public List<GameObject> spellBookObj;
     public List<Sprite> iconList;
     public Sprite unknownIcon;
-    public GameObject spellBookCanvas;
+    public GameObject journalCanvas;
     public bool spellBookState;
     public PauseGame pause;
     public GameObject textbox;
     public Transform spellContainer;
+    public Transform statusContainer;
     public Transform textContainer;
     public bool canOpen;
     [TextArea(15, 100)]
@@ -83,7 +84,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         {
             textbox.GetComponentInChildren<Text>().text = spellInfoList[index];
         }
-        textContainer.position = new Vector3(textContainer.position.x, -450, textContainer.position.z);
+        textContainer.localPosition = new Vector3(0, -450, 0);
         textbox.SetActive(true);
     }
 
@@ -99,16 +100,19 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         {
             //Cursor.visible = true;
             //Cursor.lockState = CursorLockMode.None;
+            spellContainer.localPosition = new Vector3(0, -490, 0);
+            statusContainer.localPosition = new Vector3(0, -450, 0);
             Time.timeScale = 0f;
-            spellBookCanvas.SetActive(true);
+            journalCanvas.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
             textbox.SetActive(false);
-            spellBookCanvas.SetActive(false);
+            journalCanvas.SetActive(false);
         }
-        spellContainer.position = new Vector3(spellContainer.position.x, -450, spellContainer.position.z);
+        
+        //
     }
 
     public void SetSpellKey(string[] key, ref List<bool> spellUnlock, int index, bool state)
