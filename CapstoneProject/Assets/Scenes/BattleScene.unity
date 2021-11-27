@@ -11929,6 +11929,7 @@ MonoBehaviour:
   isCharPoisoned: 0
   charPoisonedTurnCount: 2
   isCreatingSpell: 0
+  isSpellCasting: 0
   isCharBound: 0
   isCharExposed: 0
   charExposedTurnCount: 2
@@ -21706,8 +21707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Poisoned: Does 8% of total health as damage every turn for 2 turns, cannot
-    heal while poisoned.'
+  m_Text: 'Poisoned: Does 8% of total health as damage every turn for 2 turns.'
 --- !u!222 &1779782707
 CanvasRenderer:
   m_ObjectHideFlags: 0

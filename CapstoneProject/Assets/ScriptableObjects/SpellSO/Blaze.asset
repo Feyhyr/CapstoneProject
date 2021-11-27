@@ -17,5 +17,6 @@ MonoBehaviour:
   sDamage: 50
   sfx: {fileID: 8300000, guid: ff90366a6a271344d8c90876db4ad994, type: 3}
   icon: {fileID: 21300000, guid: 31ef889870774ad4d86a04daea03eb22, type: 3}
-  description: Deals damage and has a 100% chance to inflict the Burn status.
+  description: Casting Blaze deals damage and has a 100% chance to inflict the Burn
+    status.
   maxCooldown: 4
