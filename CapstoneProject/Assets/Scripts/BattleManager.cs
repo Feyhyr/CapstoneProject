@@ -445,7 +445,7 @@ public class BattleManager : MonoBehaviour
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
 
-        for (int i = 0; i < currentEnemyList.Count; i++)
+        for (int i = currentEnemyList.Count - 1; i >= 0; i--)
         {
             CheckPlayerDeath();
             if (currentEnemyList[i].GetComponentInChildren<EnemyController>().tag != "Lantern")
