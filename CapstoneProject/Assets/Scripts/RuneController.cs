@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
+public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IDropHandler
 {
     public RuneSO rune;
     public Sprite runeIcon;
@@ -17,7 +17,11 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public CanvasGroup canvasGroup;
     public bool onFirstSlot;
     public bool onSecondSlot;
+    public string slotted;
     public GameObject textBox;
+
+    public RuneSlot firstSlot;
+    public RuneSlot secondSlot;
 
     private void Awake()
     {
@@ -42,18 +46,17 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = false;
-            bm.isCreatingSpell = false;
-            bm.spellBTNList[bm.ChooseSpell()].GetComponent<Button>().interactable = false;
-            bm.spellBTNList[bm.ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
-            bm.spellOnCDObj.SetActive(false);
+            RefreshSpellButton();
             if (eventData.pointerDrag.GetComponent<RuneController>().onFirstSlot)
             {
                 eventData.pointerDrag.GetComponent<RuneController>().onFirstSlot = false;
+                firstSlot.currentlyDroppedObj = null;
                 bm.rune1 = "";
             }
             if (eventData.pointerDrag.GetComponent<RuneController>().onSecondSlot)
             {
                 eventData.pointerDrag.GetComponent<RuneController>().onSecondSlot = false;
+                secondSlot.currentlyDroppedObj = null;
                 bm.rune2 = "";
             }
         }
@@ -74,9 +77,10 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         {
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
-            if (droppedOnSlot == false)
+            if (!droppedOnSlot)
             {
                 transform.position = defaultPos;
+                slotted = "";
             }
         }
     }
@@ -85,7 +89,10 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
+            RefreshSpellButton();
+            slotted = "first";
             bm.rune1 = rune.runeName;
+            onSecondSlot = false;
             onFirstSlot = true;
             bm.isAudioPlaying = true;
         }
@@ -95,10 +102,21 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
+            RefreshSpellButton();
+            slotted = "second";
             bm.rune2 = rune.runeName;
             onSecondSlot = true;
+            onFirstSlot = false;
             bm.isAudioPlaying = true;
         }
+    }
+
+    void RefreshSpellButton()
+    {
+        bm.isCreatingSpell = false;
+        bm.spellBTNList[bm.ChooseSpell()].GetComponent<Button>().interactable = false;
+        bm.spellBTNList[bm.ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
+        bm.spellOnCDObj.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -107,6 +125,59 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         {
             AudioManager.Instance.Play(rune.audioSFX);
             rectTransform.SetAsLastSibling();
+        }
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<CanvasGroup>().interactable)
+        {
+            if (onFirstSlot)
+            {
+                if (eventData.pointerDrag.GetComponent<RuneController>().slotted == "second")
+                {
+                    firstSlot.currentlyDroppedObj.GetComponent<RectTransform>().position = secondSlot.GetComponent<RectTransform>().position;
+                    firstSlot.currentlyDroppedObj.GetComponent<RuneController>().SelectSecondRune();
+                    secondSlot.currentlyDroppedObj = firstSlot.currentlyDroppedObj;
+                }
+                else
+                {
+                    firstSlot.currentlyDroppedObj.GetComponent<RuneController>().droppedOnSlot = false;
+                    firstSlot.currentlyDroppedObj.GetComponent<RuneController>().slotted = "";
+                    firstSlot.currentlyDroppedObj.GetComponent<RuneController>().onFirstSlot = false;
+                    firstSlot.currentlyDroppedObj.GetComponent<RectTransform>().position = firstSlot.currentlyDroppedObj.GetComponent<RuneController>().defaultPos;
+                }
+
+                AudioManager.Instance.Play(firstSlot.audioSFX);
+                eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = true;
+                eventData.pointerDrag.GetComponent<RectTransform>().position = firstSlot.GetComponent<RectTransform>().position;
+                eventData.pointerDrag.GetComponent<RuneController>().SelectFirstRune();
+
+                firstSlot.currentlyDroppedObj = eventData.pointerDrag.GetComponent<RuneController>().gameObject;
+            }
+            else if (onSecondSlot)
+            {
+                if (eventData.pointerDrag.GetComponent<RuneController>().slotted == "first")
+                {
+                    secondSlot.currentlyDroppedObj.GetComponent<RectTransform>().position = firstSlot.GetComponent<RectTransform>().position;
+                    secondSlot.currentlyDroppedObj.GetComponent<RuneController>().SelectFirstRune();
+                    firstSlot.currentlyDroppedObj = secondSlot.currentlyDroppedObj;
+                }
+                else
+                {
+                    secondSlot.currentlyDroppedObj.GetComponent<RuneController>().droppedOnSlot = false;
+                    secondSlot.currentlyDroppedObj.GetComponent<RuneController>().slotted = "";
+                    secondSlot.currentlyDroppedObj.GetComponent<RuneController>().onSecondSlot = false;
+                    secondSlot.currentlyDroppedObj.GetComponent<RectTransform>().position = secondSlot.currentlyDroppedObj.GetComponent<RuneController>().defaultPos;
+                }
+
+                AudioManager.Instance.Play(secondSlot.audioSFX);
+                eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = true;
+                eventData.pointerDrag.GetComponent<RectTransform>().position = secondSlot.GetComponent<RectTransform>().position;
+                eventData.pointerDrag.GetComponent<RuneController>().SelectSecondRune();
+
+                secondSlot.currentlyDroppedObj = eventData.pointerDrag.GetComponent<RuneController>().gameObject;
+            }
         }
     }
 }

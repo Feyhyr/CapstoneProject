@@ -26,6 +26,8 @@ public class BattleManager : MonoBehaviour
 
     public Transform spellButtonLocation;
 
+    public RuneSlot slotRune1;
+    public RuneSlot slotRune2;
     public string rune1;
     public string rune2;
     public int runeIndex;
@@ -305,7 +307,7 @@ public class BattleManager : MonoBehaviour
         {
             charExposedTurnCount--;
             charExposed.GetComponentInChildren<Text>().text = charExposedTurnCount.ToString();
-            if (charExposedTurnCount < 0)
+            if (charExposedTurnCount <= 0)
             {
                 isCharExposed = false;
                 charExposed.SetActive(false);
@@ -379,13 +381,22 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PAttackPhase()
     {
+        if (sPrefab != null)
+        {
+            sPrefab.GetComponent<SpellCreation>().DestroySpell();
+        }
+
         for (int i = 0; i < runeObjs.Length; i++)
         {
             runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
             runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
             runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
             runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
+            runeObjs[i].GetComponent<RuneController>().slotted = "";
         }
+
+        slotRune1.currentlyDroppedObj = null;
+        slotRune2.currentlyDroppedObj = null;
 
         if (isReverb)
         {
@@ -823,7 +834,7 @@ public class BattleManager : MonoBehaviour
         }
         count--;
         obj.GetComponentInChildren<Text>().text = count.ToString();
-        if (count < 0)
+        if (count <= 0)
         {
             status = false;
             obj.SetActive(false);
@@ -1041,8 +1052,8 @@ public class BattleManager : MonoBehaviour
         else if (ChooseSpell() == 2 && enemy.tag != "Lantern")
         {
             enemy.isExposed = true;
-            enemy.exposedTurnCount = 2;
-            enemy.exposed.GetComponentInChildren<Text>().text = enemy.exposedTurnCount.ToString();
+            enemy.exposedTurnCount = 3;
+            enemy.exposed.GetComponentInChildren<Text>().text = "2";
         }
         else if (ChooseSpell() == 3 && enemy.tag != "Lantern")
         {

@@ -147,7 +147,7 @@ public class EnemyController : MonoBehaviour
         }
         count--;
         obj.GetComponentInChildren<Text>().text = count.ToString();
-        if (count < 0)
+        if (count <= 0)
         {
             status = false;
             obj.SetActive(false);

@@ -265,8 +265,8 @@ public class Basic : EnemyController
                         yield return new WaitForSeconds(1f);
                         bm.debuffCanvas.SetActive(false);
                         bm.isCharExposed = true;
-                        bm.charExposedTurnCount = 2;
-                        bm.charExposed.GetComponentInChildren<Text>().text = bm.charExposedTurnCount.ToString();
+                        bm.charExposedTurnCount = 3;
+                        bm.charExposed.GetComponentInChildren<Text>().text = "2"/*bm.charExposedTurnCount.ToString()*/;
                         bm.charExposed.SetActive(true);
                     }
                 }
