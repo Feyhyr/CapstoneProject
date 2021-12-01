@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     public BattleManager bm;
     public EnemySO enemy;
     public Slider enemyHealthSlider;
+    public Image enemyHealthColor;
     public int atk;
     public int enemyId;
     public Text eText;
@@ -31,6 +32,9 @@ public class EnemyController : MonoBehaviour
     public GameObject poisoned;
     public GameObject exposed;
     public GameObject scalded;
+    public GameObject kindred;
+    public GameObject sorrow;
+    public GameObject buffed;
 
     public GameObject targetSelected;
 
@@ -45,6 +49,10 @@ public class EnemyController : MonoBehaviour
     public int freezeTurnCount;
     public bool isBurn;
     public int burnTurnCount;
+    public bool isKindred;
+    public bool isSorrow;
+    public bool isBuffed;
+    public int buffedTurnCount;
 
     public AudioClip uiClick;
     public AudioClip attackSFX;
@@ -64,13 +72,24 @@ public class EnemyController : MonoBehaviour
     public Transform enemyResistLocation;
     public Transform enemyImmuneLocation;
 
+    public bool isJuggernautShieldOn;
+    public GameObject juggernautShield;
+
     protected virtual void Start()
     {
         GetComponent<SkeletonAnimation>().skeletonDataAsset = enemy.skeletonData;
         GetComponent<SkeletonAnimation>().Initialize(true);
         eSkeletonAnimation = GetComponent<SkeletonAnimation>();
-        enemyHealthSlider.maxValue = enemy.maxHealth;
-        enemyHealthSlider.value = enemy.maxHealth;
+        if (tag == "Juggernaut")
+        {
+            enemyHealthColor.color = new Color32(200, 184, 41, 255);
+            enemyHealthSlider.maxValue = enemy.juggernautShieldHealth;
+        }
+        else
+        {
+            enemyHealthSlider.maxValue = enemy.maxHealth;
+        }
+        enemyHealthSlider.value = enemyHealthSlider.maxValue;
         atk = enemy.dmg;
         weak = enemy.weakness;
         resist = enemy.resistance;
@@ -106,12 +125,21 @@ public class EnemyController : MonoBehaviour
             }
         }
 
+        if (tag == "Kindred")
+        {
+            isKindred = true;
+            kindred.SetActive(true);
+        }
+
         StartCoroutine(FadeIn());
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        eHPText.text = enemyHealthSlider.value.ToString() + "/" + enemy.maxHealth;
+        if (tag != "Juggernaut")
+        {
+            eHPText.text = enemyHealthSlider.value.ToString() + "/" + enemy.maxHealth;
+        }
         if (tag != "Lantern")
         {
             if (bm.battleState == BattleManager.BattleState.ENEMYTURN)
@@ -176,6 +204,15 @@ public class EnemyController : MonoBehaviour
             enemyDmg /= 2;
         }
 
+        if (isKindred)
+        {
+            enemyDmg *= 2;
+        }
+        if (isBuffed)
+        {
+            enemyDmg *= 2;
+        }
+
         bm.charHealthSlider.value -= enemyDmg;
         currentState = "Attack";
         SetCharacterState(currentState);
@@ -195,7 +232,7 @@ public class EnemyController : MonoBehaviour
 
     public void SelectTarget()
     {
-        if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked) && (!bm.isSpellCasting))
+        if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked) && (!bm.isSpellCasting) && (!bm.isCharTaunted))
         {
             AudioManager.Instance.Play(uiClick);
             bm.ChangeTarget(bm.targetEnemy);

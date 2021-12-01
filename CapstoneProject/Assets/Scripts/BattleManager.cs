@@ -97,6 +97,8 @@ public class BattleManager : MonoBehaviour
     public int charExposedTurnCount = 2;
     public bool isSteamGuard = false;
     bool statusRemoved = false;
+    public bool isCharTaunted = false;
+    public GameObject taunt;
 
     bool bossBattle;
 
@@ -138,6 +140,8 @@ public class BattleManager : MonoBehaviour
 
     public GameObject tutorialUX;
     public GameObject tutorialSelectUX;
+
+    public GameObject jokerDiceDisplay;
     #endregion
 
     private void Awake()
@@ -416,6 +420,12 @@ public class BattleManager : MonoBehaviour
             PlayerSeal();
         }
 
+        if (isCharTaunted)
+        {
+            taunt.SetActive(false);
+            isCharTaunted = false;
+        }
+
         rune1 = "";
         rune2 = "";
 
@@ -550,7 +560,7 @@ public class BattleManager : MonoBehaviour
     public IEnumerator PlayerAttack(float damage)
     {
         enemy.targetSelected.SetActive(false);
-        if (isAOE)
+        if (isAOE && !isCharTaunted)
         {
             yield return DamageCheckAOE(damage);
             isAOE = false;
@@ -570,14 +580,19 @@ public class BattleManager : MonoBehaviour
     {
         string state = "normalEnemy";
 
-        if (CheckWeakness(enemy.immune) || reverbMissed)
+        if (enemy.isJuggernautShieldOn && (rune1 != "Earth") && (rune2 != "Earth"))
         {
             damage = 0;
-            if (reverbMissed)
-            {
-                reverbMissedMessage.SetActive(true);
-                reverbMissed = false;
-            }
+        }
+        else if (CheckWeakness(enemy.immune) && !enemy.isJuggernautShieldOn)
+        {
+            damage = 0;
+        }
+        else if (reverbMissed)
+        {
+            damage = 0;
+            reverbMissedMessage.SetActive(true);
+            reverbMissed = false;
         }
         else
         {
@@ -588,15 +603,23 @@ public class BattleManager : MonoBehaviour
                 //enemy.exposed.SetActive(false);
             }
 
-            if (CheckWeakness(enemy.weak) && !CheckNeutral(enemy.weak, enemy.resist))
+            if (CheckWeakness(enemy.weak) && !CheckNeutral(enemy.weak, enemy.resist) && !enemy.isJuggernautShieldOn)
             {
                 state = "criticalEnemy";
                 damage *= 2;
             }
-            else if (CheckWeakness(enemy.resist) && !CheckNeutral(enemy.weak, enemy.resist))
+            else if (CheckWeakness(enemy.resist) && !CheckNeutral(enemy.weak, enemy.resist) && !enemy.isJuggernautShieldOn)
             {
                 state = "weakEnemy";
                 damage /= 2;
+            }
+
+            if (isMelt)
+            {
+                if ((charHealthSlider.value / charMaxHealth) <= 0.25)
+                {
+                    damage *= 2;
+                }
             }
 
             if (debrisHit)
@@ -623,6 +646,11 @@ public class BattleManager : MonoBehaviour
                 reverbAccuracy -= 0.1f;
                 reverb.GetComponentInChildren<Text>().text = reverbStacks.ToString();
             }
+
+            if (enemy.isSorrow)
+            {
+                damage *= 4;
+            }
         }
 
         AudioManager.Instance.Play(enemy.damageSFX);
@@ -636,10 +664,46 @@ public class BattleManager : MonoBehaviour
         reverbMissedMessage.SetActive(false);
         enemyState = "Idle";
         enemy.SetCharacterState(enemyState);
-        if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
+
+        if (enemy.enemyHealthSlider.value > 0 && enemy.enemyType != "Lantern")
         {
-            currentEnemyList[targetEnemy].SetActive(false);
+            float accuracy = 1f;
+
+            if (ChooseSpell() == 1)
+            {
+                if (ChanceStatusEffect(accuracy) && enemy.enemyType != "LavaGolem" && !enemy.isJuggernautShieldOn)
+                {
+                    enemy.eDebuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    enemy.eDebuffCanvas.SetActive(false);
+                    enemy.isPoisoned = true;
+                    enemy.poisonTurnCount = 2;
+                    enemy.poisoned.GetComponentInChildren<Text>().text = enemy.poisonTurnCount.ToString();
+                    enemy.poisoned.SetActive(true);
+                    enemy.eCannotHeal = true;
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+            else if (ChooseSpell() == 6)
+            {
+                if (ChanceStatusEffect(accuracy) && !enemy.isJuggernautShieldOn)
+                {
+                    enemy.eDebuffCanvas.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    enemy.eDebuffCanvas.SetActive(false);
+                    enemy.isFreeze = true;
+                    enemy.freezeTurnCount = 2;
+                    enemy.frozen.GetComponentInChildren<Text>().text = enemy.freezeTurnCount.ToString();
+                    enemy.frozen.SetActive(true);
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
         }
+
+        //if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
+        //{
+        //    currentEnemyList[targetEnemy].SetActive(false);
+        //}
         yield return CheckEnemyDeath(targetEnemy);
         playerAttacked = true;
     }
@@ -657,7 +721,11 @@ public class BattleManager : MonoBehaviour
             string state = "normalEnemy";
             currentEnemy = currentEnemyList[i].GetComponentInChildren<EnemyController>();
 
-            if (CheckWeakness(currentEnemy.immune))
+            if (currentEnemy.isJuggernautShieldOn && ((rune1 != "Earth") || (rune2 != "Earth")))
+            {
+                targetDmg = 0;
+            }
+            else if (CheckWeakness(currentEnemy.immune) && !currentEnemy.isJuggernautShieldOn)
             {
                 targetDmg = 0;
             }
@@ -670,7 +738,7 @@ public class BattleManager : MonoBehaviour
                     //currentEnemy.exposed.SetActive(false);
                 }
 
-                if (CheckWeakness(currentEnemy.weak) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist))
+                if (CheckWeakness(currentEnemy.weak) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist) && !currentEnemy.isJuggernautShieldOn)
                 {
                     state = "criticalEnemy";
                     if (isDrowned)
@@ -682,7 +750,7 @@ public class BattleManager : MonoBehaviour
                         targetDmg *= 2;
                     }
                 }
-                else if (CheckWeakness(currentEnemy.resist) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist))
+                else if (CheckWeakness(currentEnemy.resist) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist) && !currentEnemy.isJuggernautShieldOn)
                 {
                     state = "weakEnemy";
                     targetDmg /= 2;
@@ -699,6 +767,11 @@ public class BattleManager : MonoBehaviour
                 if ((currentEnemy.isScald) && ((rune1 == "Fire") || (rune2 == "Fire")) && (currentEnemy.scaldTurnCount <= 3))
                 {
                     targetDmg *= 1.5f;
+                }
+
+                if (currentEnemy.isSorrow)
+                {
+                    targetDmg *= 4;
                 }
 
                 //if ((currentEnemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemy.burnTurnCount <= 2))
@@ -739,7 +812,7 @@ public class BattleManager : MonoBehaviour
 
                 if (ChooseSpell() == 1)
                 {
-                    if (ChanceStatusEffect(accuracy) && currentEnemy.enemyType != "LavaGolem")
+                    if (ChanceStatusEffect(accuracy) && currentEnemy.enemyType != "LavaGolem" && !currentEnemy.isJuggernautShieldOn)
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
@@ -754,7 +827,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (ChooseSpell() == 6)
                 {
-                    if (ChanceStatusEffect(accuracy))
+                    if (ChanceStatusEffect(accuracy) && !currentEnemy.isJuggernautShieldOn)
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
@@ -774,7 +847,7 @@ public class BattleManager : MonoBehaviour
         playerAttacked = true;
     }
 
-    public void EnemyAttack(int value)
+    /*public void EnemyAttack(int value)
     {
         AudioManager.Instance.Play(currentEnemyList[value].GetComponentInChildren<EnemyController>().attackSFX);
         int enemyDmg = currentEnemyList[value].GetComponentInChildren<EnemyController>().atk;
@@ -787,7 +860,7 @@ public class BattleManager : MonoBehaviour
         PDamagePopup(playerLocation, enemyDmg, "normalPlayer", false, playerNumPopupObj);
         enemyState = "Attack";
         currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-    }
+    }*/
 
     public void ChangeTarget(int index)
     {
@@ -860,10 +933,40 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator CheckEnemyDeath(int index)
     {
-        if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
+        if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0 && currentEnemyList[index].GetComponentInChildren<EnemyController>().isJuggernautShieldOn)
+        {
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().eDebuffCanvas.SetActive(true);
+            yield return new WaitForSeconds(1);
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().eDebuffCanvas.SetActive(false);
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().juggernautShield.SetActive(false);
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.maxValue = currentEnemyList[index].GetComponentInChildren<EnemyController>().enemy.maxHealth;
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value = currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.maxValue;
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthColor.color = new Color32(44, 108, 44, 255);
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().isJuggernautShieldOn = false;
+        }
+
+        else if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0 && !currentEnemyList[index].GetComponentInChildren<EnemyController>().isJuggernautShieldOn)
         {
             tempEnemyObject = currentEnemyList[index];
             currentEnemyList[index].SetActive(false);
+
+            if (currentEnemyList[index].tag == "Kindred")
+            {
+                for (int i = 0; i < currentEnemyList.Count; i++)
+                {
+                    if (currentEnemyList[i].GetComponentInChildren<EnemyController>().isKindred)
+                    {
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().isKindred = false;
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().kindred.SetActive(false);
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().eDebuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().eDebuffCanvas.SetActive(false);
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().isSorrow = true;
+                        currentEnemyList[i].GetComponentInChildren<EnemyController>().sorrow.SetActive(true);
+                    }
+                }
+            }
+
             if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyType == "AnglerFish")
             {
                 battleState = BattleState.WIN;
@@ -1055,7 +1158,7 @@ public class BattleManager : MonoBehaviour
             enemy.exposedTurnCount = 3;
             enemy.exposed.GetComponentInChildren<Text>().text = "2";
         }
-        else if (ChooseSpell() == 3 && enemy.tag != "Lantern")
+        else if (ChooseSpell() == 3 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
         {
             enemy.isScald = true;
             enemy.scaldTurnCount = 4;
@@ -1085,14 +1188,14 @@ public class BattleManager : MonoBehaviour
                 isAOE = true;
             }
         }
-        else if (ChooseSpell() == 7 && enemy.tag != "Lantern")
+        else if (ChooseSpell() == 7 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
         {
-            if (ChanceStatusEffect(1f))
-            {
+            //if (ChanceStatusEffect(1f))
+            //{
                 enemy.isBurn = true;
                 enemy.burnTurnCount = 3;
                 enemy.burned.GetComponentInChildren<Text>().text = enemy.burnTurnCount.ToString();
-            }
+            //}
         }
         else if (ChooseSpell() == 8)
         {
@@ -1179,7 +1282,7 @@ public class BattleManager : MonoBehaviour
             { 
                 yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-                if ((ChooseSpell() == 3 || ChooseSpell() == 7) && enemy.tag != "Lantern")
+                if ((ChooseSpell() == 3 || ChooseSpell() == 7) && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
                 {
                     enemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);

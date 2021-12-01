@@ -37,3 +37,4 @@ MonoBehaviour:
   attackType: Healer
   healingPercent: 0.1
   healingTargets: 1
+  juggernautShieldHealth: 0

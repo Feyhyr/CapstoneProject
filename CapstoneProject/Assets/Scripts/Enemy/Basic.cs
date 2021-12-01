@@ -7,6 +7,16 @@ public class Basic : EnemyController
 {
     public List<Sprite> TypeList;
 
+    int glassCannonTurnCount = 0;
+    public GameObject glassCannon;
+
+    int tauntCD = 0;
+    int buffCD = 0;
+
+    public List<Texture> diceImages;
+    int diceIndex = 0;
+    string jokerTarget;
+
     protected override void Start()
     {
         base.Start();
@@ -27,12 +37,21 @@ public class Basic : EnemyController
         {
             TypeIcon.sprite = TypeList[3];
         }
+        else if (enemyType == "GlassCannon")
+        {
+            glassCannon.SetActive(true);
+        }
+        else if (enemyType == "Juggernaut")
+        {
+            isJuggernautShieldOn = true;
+            juggernautShield.SetActive(true);
+        }
         TypeText.text = enemyType;
     }
 
     public override IEnumerator AttackPattern()
     {
-        if (enemyType == "Attack")
+        if (enemyType == "Attack" || enemyType == "Kindred" || enemyType == "Juggernaut")
         {
             yield return Attack();
         }
@@ -47,6 +66,39 @@ public class Basic : EnemyController
         else if (enemyType == "Debuffer")
         {
             yield return Debuffer();
+        }
+        else if (enemyType == "GlassCannon")
+        {
+            yield return GlassCannon();
+        }
+        else if (enemyType == "Tank")
+        {
+            yield return Tank();
+        }
+        else if (enemyType == "Buffer")
+        {
+            yield return Buffer();
+        }
+        else if (enemyType == "Joker")
+        {
+            yield return Joker();
+        }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (tag == "Juggernaut")
+        {
+            if (isJuggernautShieldOn)
+            {
+                eHPText.text = enemyHealthSlider.value.ToString() + "/" + enemy.juggernautShieldHealth;
+            }
+            else if (!isJuggernautShieldOn)
+            {
+                eHPText.text = enemyHealthSlider.value.ToString() + "/" + enemy.maxHealth;
+            }
         }
     }
 
@@ -343,6 +395,242 @@ public class Basic : EnemyController
         yield return CheckEnemyStatus();
     }
 
+    private IEnumerator GlassCannon()
+    {
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
+            yield return new WaitForSeconds(1);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            enemyAttacking = true;
+
+            if (glassCannonTurnCount <= 4)
+            {
+                eBuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1);
+                eBuffCanvas.SetActive(false);
+                glassCannonTurnCount++;
+                glassCannon.GetComponentInChildren<Text>().text = glassCannonTurnCount.ToString();
+
+                if (glassCannonTurnCount >= 4)
+                {
+                    bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+                    yield return EnemyAttack();
+                    glassCannonTurnCount = 0;
+                    glassCannon.GetComponentInChildren<Text>().text = glassCannonTurnCount.ToString();
+                }
+            }
+        }
+
+        yield return CheckEnemyStatus();
+    }
+
+    private IEnumerator Tank()
+    {
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
+            yield return new WaitForSeconds(1);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            enemyAttacking = true;
+            bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+            yield return EnemyAttack();
+
+            tauntCD--;
+
+            if (tauntCD <= 0)
+            {
+                yield return new WaitForSeconds(0.5f);
+                bm.debuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                bm.debuffCanvas.SetActive(false);
+                bm.isCharTaunted = true;
+                bm.taunt.SetActive(true);
+                bm.targetEnemy = enemyId;
+                tauntCD = 2;
+            }
+        }
+
+        yield return CheckEnemyStatus();
+    }
+
+    private IEnumerator Buffer()
+    {
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
+            yield return new WaitForSeconds(1);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            buffCD--;
+            if (buffCD <= 0)
+            {
+                enemyAttacking = true;
+                currentState = "Attack";
+                SetCharacterState(currentState);
+                int randomEnemy = Random.Range(0, bm.currentEnemyList.Count);
+                bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().eBuffCanvas.SetActive(false);
+                bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().isBuffed = true;
+                if (randomEnemy == enemyId)
+                {
+                    bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().buffedTurnCount = 3;
+                }
+                else
+                {
+                    bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().buffedTurnCount = 2;
+                }
+                bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().buffed.GetComponentInChildren<Text>().text = "2";
+                bm.currentEnemyList[randomEnemy].GetComponentInChildren<EnemyController>().buffed.SetActive(true);
+                buffCD = 3;
+            }
+            else
+            {
+                enemyAttacking = true;
+                bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+                yield return EnemyAttack();
+            }
+        }
+
+        yield return CheckEnemyStatus();
+    }
+
+    private IEnumerator Joker()
+    {
+        if (isFreeze && freezeTurnCount > 0)
+        {
+            GameObject fPrefab = Instantiate(freezePrefab, transform.parent);
+            yield return new WaitForSeconds(1);
+            Destroy(fPrefab);
+            freezeTurnCount--;
+            frozen.GetComponentInChildren<Text>().text = freezeTurnCount.ToString();
+            if (freezeTurnCount == 0)
+            {
+                isFreeze = false;
+                frozen.SetActive(false);
+            }
+        }
+
+        else
+        {
+            yield return RollDice();
+
+            if (jokerTarget == "player")
+            {
+                enemyAttacking = true;
+                bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
+                yield return EnemyAttack();
+            }
+            else if (jokerTarget == "ally")
+            {
+                int damage = atk;
+                int randomAlly;
+
+                if (bm.currentEnemyList.Count > 1)
+                {
+                    randomAlly = Random.Range(0, bm.currentEnemyList.Count);
+                }
+                else
+                {
+                    randomAlly = enemyId;
+                }
+
+                if (bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().isExposed)
+                {
+                    damage *= 2;
+                }
+
+                if (bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().isSorrow)
+                {
+                    damage *= 4;
+                }
+
+                AudioManager.Instance.Play(enemy.damageSFX);
+                bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState = "Damage";
+                bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().SetCharacterState(bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState);
+                bm.currentEnemyList[randomAlly].GetComponentInChildren<ScreenShake>().TriggerShake();
+                yield return new WaitForSeconds(0.5f);
+                bm.EDamagePopup(bm.currentEnemyList[randomAlly].transform, (int)damage, "normalEnemy", false, bm.enemyNumPopupObj);
+                bm.EnemyDamage((int)damage, randomAlly);
+                yield return new WaitForSeconds(1f);
+                bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState = "Idle";
+                bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().SetCharacterState(bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState);
+            }
+        }
+
+        yield return CheckEnemyStatus();
+    }
+
+    private IEnumerator RollDice()
+    {
+        float duration = Time.time + 3f;
+        bm.jokerDiceDisplay.GetComponentInChildren<Text>().text = "";
+        diceIndex = Random.Range(0, 6);
+        bm.jokerDiceDisplay.SetActive(true);
+
+        while (Time.time < duration)
+        {
+            bm.jokerDiceDisplay.GetComponentInChildren<RawImage>().texture = diceImages[diceIndex];
+            yield return new WaitForSeconds(0.1f);
+
+            if (diceIndex >= 5)
+            {
+                diceIndex = 0;
+            }
+            else
+            {
+                diceIndex++;
+            }
+        }
+
+        bm.jokerDiceDisplay.GetComponentInChildren<RawImage>().texture = diceImages[diceIndex];
+
+        if ((diceIndex + 1) % 2 == 0)
+        {
+            jokerTarget = "player";
+        }
+        else
+        {
+            jokerTarget = "ally";
+        }
+        bm.jokerDiceDisplay.GetComponentInChildren<Text>().text = eText.text + " will attack " + jokerTarget;
+        yield return new WaitForSeconds(2);
+        bm.jokerDiceDisplay.SetActive(false);
+    }
+
     private IEnumerator CheckEnemyStatus()
     {
         yield return new WaitForSeconds(0.5f);
@@ -366,6 +654,11 @@ public class Basic : EnemyController
         {
             float burnDmg = enemyHealthSlider.maxValue * 0.06f;
             EStatusTurnChange((int)burnDmg, ref burnTurnCount, ref isBurn, burned, "Burn");
+        }
+
+        if (isBuffed)
+        {
+            EStatusTurnChange(0, ref buffedTurnCount, ref isBuffed, buffed, "Buffed");
         }
 
         enemyAttacking = false;

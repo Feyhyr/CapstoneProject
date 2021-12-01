@@ -17,6 +17,8 @@ TagManager:
   - Jellyfish
   - Possessed
   - BlackSpiral
+  - Kindred
+  - Juggernaut
   layers:
   - Default
   - TransparentFX
