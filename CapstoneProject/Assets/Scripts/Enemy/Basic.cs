@@ -562,6 +562,10 @@ public class Basic : EnemyController
                 if (bm.currentEnemyList.Count > 1)
                 {
                     randomAlly = Random.Range(0, bm.currentEnemyList.Count);
+                    while (randomAlly == enemyId)
+                    {
+                        randomAlly = Random.Range(0, bm.currentEnemyList.Count);
+                    }
                 }
                 else
                 {
