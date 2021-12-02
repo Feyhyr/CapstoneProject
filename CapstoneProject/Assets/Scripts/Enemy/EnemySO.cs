@@ -26,4 +26,6 @@ public class EnemySO : ScriptableObject
     public float healingPercent;
     public int healingTargets;
     public int juggernautShieldHealth;
+    public bool hasSeen;
+    public int enemyKey;
 }

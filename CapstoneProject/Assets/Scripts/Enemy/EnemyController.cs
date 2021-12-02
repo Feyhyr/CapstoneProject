@@ -75,8 +75,11 @@ public class EnemyController : MonoBehaviour
     public bool isJuggernautShieldOn;
     public GameObject juggernautShield;
 
+    private SpellBookMngr unlock;
+
     protected virtual void Start()
     {
+        unlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
         GetComponent<SkeletonAnimation>().skeletonDataAsset = enemy.skeletonData;
         GetComponent<SkeletonAnimation>().Initialize(true);
         eSkeletonAnimation = GetComponent<SkeletonAnimation>();
@@ -132,6 +135,9 @@ public class EnemyController : MonoBehaviour
         }
 
         StartCoroutine(FadeIn());
+
+        unlock.SetPrefKey(unlock.enemyKeys, ref unlock.unlockEnemyList, enemy.enemyKey, true);
+        unlock.CheckBeastiary();
     }
 
     protected virtual void Update()

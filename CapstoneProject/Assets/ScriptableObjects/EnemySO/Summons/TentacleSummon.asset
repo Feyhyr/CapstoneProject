@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: TentacleSummon
   m_EditorClassIdentifier: 
-  enemyName: Tentacle Summon
+  enemyName: "Xa\u2019anis"
   tagName: Summon
   dmg: 120
   maxHealth: 450
@@ -35,3 +35,6 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: 6d2440a5c7007ed4ea850e4386fd0381, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Attack
+  healingPercent: 0
+  healingTargets: 0
+  juggernautShieldHealth: 0

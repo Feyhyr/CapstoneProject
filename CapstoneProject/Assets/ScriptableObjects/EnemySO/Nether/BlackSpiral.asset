@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: BlackSpiral
   m_EditorClassIdentifier: 
-  enemyName: Black Spiral
+  enemyName: Struxhe
   tagName: BlackSpiral
   dmg: 100
   maxHealth: 400
@@ -37,3 +37,6 @@ MonoBehaviour:
   attackType: Debuffer
   healingPercent: 0
   healingTargets: 0
+  juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 20

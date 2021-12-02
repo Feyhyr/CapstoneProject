@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: Octopus
   m_EditorClassIdentifier: 
-  enemyName: Octopus
+  enemyName: Arma Sapientia
   tagName: Enemy
   dmg: 50
   maxHealth: 500
@@ -35,3 +35,6 @@ MonoBehaviour:
   attackType: Healer
   healingPercent: 0.15
   healingTargets: 2
+  juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 10

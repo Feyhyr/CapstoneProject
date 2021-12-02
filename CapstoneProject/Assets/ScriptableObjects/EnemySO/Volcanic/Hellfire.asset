@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: Hellfire
   m_EditorClassIdentifier: 
-  enemyName: Hellfire
+  enemyName: Velox Ignis
   tagName: Enemy
   dmg: 150
   maxHealth: 250
@@ -39,3 +39,6 @@ MonoBehaviour:
   attackType: Attack
   healingPercent: 0
   healingTargets: 0
+  juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 4

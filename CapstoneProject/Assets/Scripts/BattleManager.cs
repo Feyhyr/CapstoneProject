@@ -1106,7 +1106,7 @@ public class BattleManager : MonoBehaviour
 
         if (rune1 != "" && rune2 != "")
         {
-            unlock.SetSpellKey(unlock.keys, ref unlock.unlockList, index, true);
+            unlock.SetPrefKey(unlock.spellKeys, ref unlock.unlockSpellList, index, true);
             unlock.CheckSpellBook();
             ChangeSpellDisabled();
         }
@@ -1435,7 +1435,7 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < spellBTNList.Count; i++)
         {
-            if (unlock.unlockList[i])
+            if (unlock.unlockSpellList[i])
             {
                 ColorBlock cb = spellBTNList[i].GetComponent<Button>().colors;
                 cb.disabledColor = Color.white;

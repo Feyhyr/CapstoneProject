@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: Phoenix
   m_EditorClassIdentifier: 
-  enemyName: Phoenix
+  enemyName: Fraxinus Marialis
   tagName: Enemy
   dmg: 50
   maxHealth: 500
@@ -39,3 +39,6 @@ MonoBehaviour:
   attackType: Healer
   healingPercent: 0.2
   healingTargets: 2
+  juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 15

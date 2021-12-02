@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: Bog
   m_EditorClassIdentifier: 
-  enemyName: Bog
+  enemyName: Sana Luto
   tagName: Enemy
   dmg: 30
   maxHealth: 350
@@ -38,3 +38,5 @@ MonoBehaviour:
   healingPercent: 0.1
   healingTargets: 1
   juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 1

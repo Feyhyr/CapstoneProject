@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f3e0b88e46c3a49abf9324642e884c, type: 3}
   m_Name: Harpy
   m_EditorClassIdentifier: 
-  enemyName: Harpy
+  enemyName: Furorem
   tagName: Enemy
   dmg: 100
   maxHealth: 400
@@ -33,3 +33,8 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: b02a078bf4d67ca47998a41295ed47fe, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Summoner
+  healingPercent: 0
+  healingTargets: 0
+  juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 16
