@@ -37,19 +37,6 @@ public class FloorManager : Singleton<FloorManager>
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainGameScene")
-        {
-            audioSource.Stop();
-            floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
-
-            if (floorsUnlocked > 5)
-            {
-                floorsUnlocked = 5;
-            }
-
-            floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
-            floorCounterText.text = "Floor " + floorsUnlocked.ToString();
-        }
         if (scene.name == "BattleScene")
         {
             previousClip = audioSource.clip;
@@ -70,14 +57,28 @@ public class FloorManager : Singleton<FloorManager>
                 audioSource.Play();
             }
         }
+        else if (scene.name == "MainGameScene")
+        {
+            audioSource.clip = null;
+
+            floorsUnlocked = PlayerPrefs.GetInt(prefFloorUnlock, 1);
+
+            if (floorsUnlocked > 5)
+            {
+                floorsUnlocked = 5;
+            }
+
+            floorCounterText = GameObject.Find("FloorCounterText").GetComponent<Text>();
+            floorCounterText.text = "Floor " + floorsUnlocked.ToString();
+        }
         else if (scene.name == "GameWinScene" || scene.name == "GameOverScene")
         {
-            audioSource.Stop();
+            audioSource.clip = null;
             waveCount = PlayerPrefs.GetInt(prefWave, 1);
         }
         else
         {
-            audioSource.Stop();
+            audioSource.clip = null;
         }
     }
 

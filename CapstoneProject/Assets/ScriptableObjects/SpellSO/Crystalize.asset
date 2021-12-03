@@ -22,3 +22,6 @@ MonoBehaviour:
     Casting Crystalize will reduce damage from enemy
     attacks by 50% for 3 turns after use.'
   maxCooldown: 4
+  spellIndex: 11
+  runeA: Earth
+  runeB: Fire

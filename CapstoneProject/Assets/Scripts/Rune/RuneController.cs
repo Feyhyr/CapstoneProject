@@ -8,7 +8,8 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 {
     public RuneSO rune;
     public Sprite runeIcon;
-    public BattleManager bm;
+    BattleManager bm;
+    ToggleSettings toggleSetting;
 
     private RectTransform rectTransform;
     public Vector3 defaultPos;
@@ -29,6 +30,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        toggleSetting = GameObject.Find("ToggleSetting").GetComponent<ToggleSettings>();
         runeIcon = rune.icon;
         gameObject.GetComponent<Image>().sprite = runeIcon;
     }
@@ -46,7 +48,10 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             eventData.pointerDrag.GetComponent<RuneController>().droppedOnSlot = false;
-            RefreshSpellButton();
+            if (!toggleSetting.instantSpell)
+            {
+                RefreshSpellButton();
+            }
             if (eventData.pointerDrag.GetComponent<RuneController>().onFirstSlot)
             {
                 eventData.pointerDrag.GetComponent<RuneController>().onFirstSlot = false;
@@ -89,7 +94,10 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
-            RefreshSpellButton();
+            if (!toggleSetting.instantSpell)
+            {
+                RefreshSpellButton();
+            }
             slotted = "first";
             bm.rune1 = rune.runeName;
             onSecondSlot = false;
@@ -102,7 +110,10 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         if ((bm.battleState == BattleManager.BattleState.PLAYERTURN) && (!bm.playerAttacked))
         {
-            RefreshSpellButton();
+            if (!toggleSetting.instantSpell)
+            {
+                RefreshSpellButton();
+            }
             slotted = "second";
             bm.rune2 = rune.runeName;
             onSecondSlot = true;

@@ -43,12 +43,21 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     private new void Awake()
     {
         base.Awake();
+        //SceneManager.sceneLoaded += OnLevelLoaded;
+    }
+
+    private void OnEnable()
+    {
         SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "BattleScene")
+        if (scene.name == "MainMenuScene")
+        {
+            canOpen = false;
+        }
+        else if (scene.name == "BattleScene")
         {
             canOpen = true;
             pause = GameObject.Find("OverlayCanvas").GetComponent<PauseGame>();
@@ -59,10 +68,6 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             pause = GameObject.Find("MainGameCanvas").GetComponent<PauseGame>();
             CheckSpellBook();
             CheckBeastiary();
-        }
-        else if (scene.name == "MainMenuScene")
-        {
-            canOpen = false;
         }
     }
 

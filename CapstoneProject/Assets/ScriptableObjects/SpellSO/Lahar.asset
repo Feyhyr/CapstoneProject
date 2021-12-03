@@ -22,3 +22,6 @@ MonoBehaviour:
     Casting Lahar will deal 1x-2.5x  damage to the
     enemy upon casting.'
   maxCooldown: 2
+  spellIndex: 10
+  runeA: Earth
+  runeB: Water

@@ -34,9 +34,9 @@ MonoBehaviour:
   skeletonData: {fileID: 11400000, guid: 5fa3ae269f6b326429fa54af73931065, type: 2}
   attackSFX: {fileID: 8300000, guid: 0ad81f8afe8437d4c88acc43fc8c901d, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
-  attackType: Joker
+  attackType: Attack
   healingPercent: 0
   healingTargets: 0
-  juggernautShieldHealth: 0
-  hasSeen: 0
-  enemyKey: f1
+  juggernautShieldHealth: 50
+  hasSeen: 1
+  enemyKey: 0

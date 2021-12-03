@@ -24,3 +24,6 @@ MonoBehaviour:
     at 100% chance to hit then decreases by 10% after each use. Resets after missing
     the target.'
   maxCooldown: 0
+  spellIndex: 8
+  runeA: Earth
+  runeB: Wind

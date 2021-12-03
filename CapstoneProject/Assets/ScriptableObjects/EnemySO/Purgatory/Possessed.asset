@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Possessed
   m_EditorClassIdentifier: 
   enemyName: Habiti Mortui
-  tagName: Possessed
+  tagName: Enemy
   dmg: 50
   maxHealth: 300
   weakness:
@@ -32,9 +32,9 @@ MonoBehaviour:
   skeletonData: {fileID: 11400000, guid: 92b3c663710f2424c830d83554c524e5, type: 2}
   attackSFX: {fileID: 8300000, guid: b02a078bf4d67ca47998a41295ed47fe, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
-  attackType: Debuffer
+  attackType: Buffer
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 0
   hasSeen: 0
-  enemyKey: 14
+  enemyKey: 13

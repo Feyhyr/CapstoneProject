@@ -163,7 +163,7 @@ public class Basic : EnemyController
             {
                 for (int i = 0; i < bm.currentEnemyList.Count; i++)
                 {
-                    if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value < bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth)
+                    if (bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemyHealthSlider.value < bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().enemy.maxHealth && !bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().isJuggernautShieldOn)
                     {
                         if (!bm.currentEnemyList[i].GetComponentInChildren<EnemyController>().eCannotHeal)
                         {

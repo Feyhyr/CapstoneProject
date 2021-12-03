@@ -14,4 +14,7 @@ public class SpellSO : ScriptableObject
     [TextArea(15, 20)]
     public string description;
     public int maxCooldown;
+    public int spellIndex;
+    public string runeA;
+    public string runeB;
 }

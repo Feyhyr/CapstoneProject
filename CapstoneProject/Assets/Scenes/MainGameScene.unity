@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 117886701}
   - component: {fileID: 117886700}
   m_Layer: 0
-  m_Name: PoisonOak
+  m_Name: Almagam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1208,12 +1208,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1498226042}
-  m_Father: {fileID: 1265843525}
-  m_RootOrder: 2
+  m_Father: {fileID: 1667871989}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -385}
+  m_AnchoredPosition: {x: 300, y: -695}
   m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &117886700
@@ -4981,6 +4981,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414149040}
   m_CullTransparentMesh: 1
+--- !u!1 &415237440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415237442}
+  - component: {fileID: 415237441}
+  m_Layer: 0
+  m_Name: ToggleSetting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &415237441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415237440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2b8fe4b0311794889351e30e184dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistOnSceneLoad: 1
+  instantSpell: 0
+  instantSpellKey: instantSpell
+--- !u!4 &415237442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415237440}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &431579507
 GameObject:
   m_ObjectHideFlags: 0
@@ -6823,11 +6869,11 @@ RectTransform:
   m_Children:
   - {fileID: 576668650}
   m_Father: {fileID: 1265843525}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -540}
+  m_AnchoredPosition: {x: 300, y: -385}
   m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &572258380
@@ -13144,15 +13190,14 @@ RectTransform:
   m_Children:
   - {fileID: 1125335308}
   - {fileID: 1095408985}
-  - {fileID: 117886699}
   - {fileID: 572258379}
   m_Father: {fileID: 690492441}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -470}
-  m_SizeDelta: {x: 600, y: 620}
+  m_AnchoredPosition: {x: 300, y: -392.5}
+  m_SizeDelta: {x: 600, y: 465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265843527
 MonoBehaviour:
@@ -15362,11 +15407,11 @@ RectTransform:
   m_Children:
   - {fileID: 1283087821}
   m_Father: {fileID: 1667871989}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -695}
+  m_AnchoredPosition: {x: 300, y: -850}
   m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495870188
@@ -15522,18 +15567,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d8942ecc859ee214bb93fbb08fa666bc, type: 3}
-    m_FontSize: 54
+    m_FontSize: 71
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 66
+    m_MaxSize: 72
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Arborous Venenum
+  m_Text: "Torqa\u2019xarnes"
 --- !u!222 &1498226044
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18342,14 +18387,15 @@ RectTransform:
   - {fileID: 255597594}
   - {fileID: 617674938}
   - {fileID: 65133630}
+  - {fileID: 117886699}
   - {fileID: 1495870187}
   m_Father: {fileID: 690492441}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -1187.5}
-  m_SizeDelta: {x: 600, y: 775}
+  m_AnchoredPosition: {x: 300, y: -1265}
+  m_SizeDelta: {x: 600, y: 930}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667871990
 MonoBehaviour:
@@ -23613,7 +23659,6 @@ MonoBehaviour:
   enemyListObj:
   - {fileID: 1125335307}
   - {fileID: 1095408984}
-  - {fileID: 117886698}
   - {fileID: 572258378}
   - {fileID: 1008638706}
   - {fileID: 1137740649}
@@ -23633,11 +23678,11 @@ MonoBehaviour:
   - {fileID: 255597593}
   - {fileID: 617674937}
   - {fileID: 65133629}
+  - {fileID: 117886698}
   - {fileID: 1495870186}
   enemySOList:
   - {fileID: 11400000, guid: d68f9c91898acc244b055d60d961fa7e, type: 2}
   - {fileID: 11400000, guid: 9efc2fa6651326644b0e45d8b6bebeee, type: 2}
-  - {fileID: 11400000, guid: 7a9d5d4e21da8104f8c3708612430ae5, type: 2}
   - {fileID: 11400000, guid: 0afc5f825c4992f4db7f767db93e7649, type: 2}
   - {fileID: 11400000, guid: 3010d35102fdd154c8ecd3835a1feb70, type: 2}
   - {fileID: 11400000, guid: 3ed9ad55e199ef643a00962021372b68, type: 2}
@@ -23657,6 +23702,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fd4450342b6ab8a4c91b3ee9c243c9f0, type: 2}
   - {fileID: 11400000, guid: ceeb1deb9a22370418286e6fffb07b59, type: 2}
   - {fileID: 11400000, guid: ed6e200d0d9ffdf4c97a4b27a360057f, type: 2}
+  - {fileID: 11400000, guid: fcb353712b120c8449e80f1b8235f1bf, type: 2}
   - {fileID: 11400000, guid: 8d1648622d11554409add881921f5edd, type: 2}
   iconList:
   - {fileID: 21300000, guid: 3a1405eeb9e27c34891bc148e250a749, type: 3}

@@ -136,8 +136,11 @@ public class EnemyController : MonoBehaviour
 
         StartCoroutine(FadeIn());
 
-        unlock.SetPrefKey(unlock.enemyKeys, ref unlock.unlockEnemyList, enemy.enemyKey, true);
-        unlock.CheckBeastiary();
+        if (tag != "Lantern" || tag != "Summon")
+        {
+            unlock.SetPrefKey(unlock.enemyKeys, ref unlock.unlockEnemyList, enemy.enemyKey, true);
+            unlock.CheckBeastiary();
+        }
     }
 
     protected virtual void Update()

@@ -142,6 +142,8 @@ public class BattleManager : MonoBehaviour
     public GameObject tutorialSelectUX;
 
     public GameObject jokerDiceDisplay;
+
+    ToggleSettings toggleSetting;
     #endregion
 
     private void Awake()
@@ -155,6 +157,7 @@ public class BattleManager : MonoBehaviour
 
         unlock = GameObject.Find("SpellUnlockMngr").GetComponent<SpellBookMngr>();
         floor = GameObject.Find("FloorManager").GetComponent<FloorManager>();
+        toggleSetting = GameObject.Find("ToggleSetting").GetComponent<ToggleSettings>();
 
         battleState = BattleState.START;
 
@@ -378,6 +381,18 @@ public class BattleManager : MonoBehaviour
                 runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.interactable = false;
                 runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
             }
+
+            if (toggleSetting.instantSpell)
+            {
+                for (int i = 0; i < spellBTNList.Count; i++)
+                {
+                    if (!spellBTNList[i].GetComponent<SpellController>().onCD && unlock.unlockSpellList[i])
+                    {
+                        spellBTNList[i].GetComponent<Button>().interactable = true;
+                        spellBTNList[i].GetComponent<SpellController>().selectedState.SetActive(true);
+                    }
+                }
+            }
             //Cursor.visible = true;
             //Cursor.lockState = CursorLockMode.None;
         }
@@ -569,10 +584,6 @@ public class BattleManager : MonoBehaviour
         {
             yield return DamageCheckSingle(damage);
         }
-        if (sPrefab != null)
-        {
-            sPrefab.GetComponent<SpellCreation>().DestroySpell();
-        }
         yield return PAttackPhase();
     }
 
@@ -721,7 +732,7 @@ public class BattleManager : MonoBehaviour
             string state = "normalEnemy";
             currentEnemy = currentEnemyList[i].GetComponentInChildren<EnemyController>();
 
-            if (currentEnemy.isJuggernautShieldOn && ((rune1 != "Earth") || (rune2 != "Earth")))
+            if (currentEnemy.isJuggernautShieldOn && ((rune1 != "Earth") && (rune2 != "Earth")))
             {
                 targetDmg = 0;
             }
@@ -1110,7 +1121,15 @@ public class BattleManager : MonoBehaviour
             unlock.CheckSpellBook();
             ChangeSpellDisabled();
         }
-        return index;
+
+        //if (toggleSetting.instantSpell)
+        //{
+        //    return sPrefab.GetComponent<SpellCreation>().spell.spellIndex;
+        //}
+        //else
+        //{
+            return index;
+        //}
     }
 
     public void SpellChosen()
@@ -1131,20 +1150,20 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public IEnumerator CreateSpell()
+    public IEnumerator CreateSpell(int index)
     {
         debuffing = false;
 
-        if (ChooseSpell() == 0)
+        if (index == 0)
         {
             extraTurn = true;
         }
-        else if (ChooseSpell() == 1)
+        else if (index == 1)
         {
             debuffing = true;
-            sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
-            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
-            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+            sPrefab = Instantiate(spellPrefab[index], aoeSpellLocation);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[index].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[index].GetComponent<SpellController>().spell.sDamage;
 
             yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
             if (enemy.tag != "Lantern")
@@ -1152,35 +1171,35 @@ public class BattleManager : MonoBehaviour
                 isAOE = true;
             }
         }
-        else if (ChooseSpell() == 2 && enemy.tag != "Lantern")
+        else if (index == 2 && enemy.tag != "Lantern")
         {
             enemy.isExposed = true;
             enemy.exposedTurnCount = 3;
             enemy.exposed.GetComponentInChildren<Text>().text = "2";
         }
-        else if (ChooseSpell() == 3 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
+        else if (index == 3 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
         {
             enemy.isScald = true;
             enemy.scaldTurnCount = 4;
             enemy.scalded.GetComponentInChildren<Text>().text = enemy.scaldTurnCount.ToString();
             
         }
-        else if (ChooseSpell() == 4 && enemy.tag != "Lantern")
+        else if (index == 4 && enemy.tag != "Lantern")
         {
             isDrowned = true;
             isAOE = true;
         }
-        else if (ChooseSpell() == 5 && enemy.tag != "Lantern")
+        else if (index == 5 && enemy.tag != "Lantern")
         {
             isMelt = true;
             isAOE = true;
         }
-        else if (ChooseSpell() == 6)
+        else if (index == 6)
         {
             debuffing = true;
-            sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
-            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
-            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+            sPrefab = Instantiate(spellPrefab[index], aoeSpellLocation);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[index].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[index].GetComponent<SpellController>().spell.sDamage;
 
             yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
             if (enemy.tag != "Lantern")
@@ -1188,7 +1207,7 @@ public class BattleManager : MonoBehaviour
                 isAOE = true;
             }
         }
-        else if (ChooseSpell() == 7 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
+        else if (index == 7 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
         {
             //if (ChanceStatusEffect(1f))
             //{
@@ -1197,7 +1216,7 @@ public class BattleManager : MonoBehaviour
                 enemy.burned.GetComponentInChildren<Text>().text = enemy.burnTurnCount.ToString();
             //}
         }
-        else if (ChooseSpell() == 8)
+        else if (index == 8)
         {
             if (ChanceStatusEffect(reverbAccuracy))
             {
@@ -1210,13 +1229,13 @@ public class BattleManager : MonoBehaviour
                 reverbMissed = true;
             }
         }
-        else if (ChooseSpell() == 9)
+        else if (index == 9)
         {
             float healAmount = charMaxHealth * 0.2f;
 
-            sPrefab = Instantiate(spellPrefab[ChooseSpell()], playerLocation2);
-            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
-            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+            sPrefab = Instantiate(spellPrefab[index], playerLocation2);
+            sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[index].GetComponent<SpellController>().spell;
+            sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[index].GetComponent<SpellController>().spell.sDamage;
 
             yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
@@ -1246,11 +1265,11 @@ public class BattleManager : MonoBehaviour
             }
 
         }
-        else if (ChooseSpell() == 10)
+        else if (index == 10)
         {
             debrisHit = true;
         }
-        else if (ChooseSpell() == 11)
+        else if (index == 11)
         {
             isCrystalize = true;
             crystalize.SetActive(true);
@@ -1260,29 +1279,29 @@ public class BattleManager : MonoBehaviour
 
         if (!debuffing)
         {
-            if (ChooseSpell() != 9)
+            if (index != 9)
             {
-                if (ChooseSpell() == 11)
+                if (index == 11)
                 {
-                    sPrefab = Instantiate(spellPrefab[ChooseSpell()], playerLocation2);
+                    sPrefab = Instantiate(spellPrefab[index], playerLocation2);
                 }
-                else if ((ChooseSpell() == 4 || ChooseSpell() == 5))
+                else if ((index == 4 || index == 5))
                 {
-                    sPrefab = Instantiate(spellPrefab[ChooseSpell()], aoeSpellLocation);
+                    sPrefab = Instantiate(spellPrefab[index], aoeSpellLocation);
                 }
                 else
                 {
-                    sPrefab = Instantiate(spellPrefab[ChooseSpell()], currentEnemyList[targetEnemy].transform);
+                    sPrefab = Instantiate(spellPrefab[index], currentEnemyList[targetEnemy].transform);
                 }
-                sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell;
-                sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[ChooseSpell()].GetComponent<SpellController>().spell.sDamage;
+                sPrefab.GetComponent<SpellCreation>().spell = spellBTNList[index].GetComponent<SpellController>().spell;
+                sPrefab.GetComponent<SpellCreation>().damage = spellBTNList[index].GetComponent<SpellController>().spell.sDamage;
             }
 
-            if (ChooseSpell() != 2 || ChooseSpell() != 9)
+            if (index != 2 || index != 9)
             { 
                 yield return new WaitForSeconds(sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + sPrefab.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
 
-                if ((ChooseSpell() == 3 || ChooseSpell() == 7) && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
+                if ((index == 3 || index == 7) && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
                 {
                     enemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
@@ -1297,7 +1316,7 @@ public class BattleManager : MonoBehaviour
                     }
                 }
 
-                if (ChooseSpell() == 11)
+                if (index == 11)
                 {
                     shieldBuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(0.8f);
@@ -1312,7 +1331,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (enemy.isExposed || enemy.tag == "Lantern")
         {
-            if (enemy.tag != "Lantern" && ChooseSpell() == 2)
+            if (enemy.tag != "Lantern" && index == 2)
             {
                 enemy.eDebuffCanvas.SetActive(true);
                 yield return new WaitForSeconds(1f);
@@ -1342,7 +1361,7 @@ public class BattleManager : MonoBehaviour
 
     public void TriggerAttack()
     {
-        StartCoroutine(CreateSpell());
+        StartCoroutine(CreateSpell(ChooseSpell()));
     }
     #endregion
 
@@ -1497,11 +1516,10 @@ public class BattleManager : MonoBehaviour
             fishCover.SetActive(true);
         }
 
-        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked) && !isCreatingSpell)
+        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked) && !isCreatingSpell && !isSpellCasting)
         {
             if (rune1 != "" && rune2 != "")
             {
-                tutorialUX.SetActive(false);
                 CheckSpell();
             }
         }

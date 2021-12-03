@@ -22,3 +22,6 @@ MonoBehaviour:
     Casting Blaze deals damage and has a 100% chance
     to inflict the Burn status.'
   maxCooldown: 4
+  spellIndex: 7
+  runeA: Fire
+  runeB: Wind

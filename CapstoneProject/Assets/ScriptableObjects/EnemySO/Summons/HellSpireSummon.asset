@@ -32,3 +32,5 @@ MonoBehaviour:
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 0
+  hasSeen: 0
+  enemyKey: 21

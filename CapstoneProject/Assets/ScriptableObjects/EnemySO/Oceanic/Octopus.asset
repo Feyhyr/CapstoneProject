@@ -36,5 +36,5 @@ MonoBehaviour:
   healingPercent: 0.15
   healingTargets: 2
   juggernautShieldHealth: 0
-  hasSeen: 0
-  enemyKey: 10
+  hasSeen: 1
+  enemyKey: 9

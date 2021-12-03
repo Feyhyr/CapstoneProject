@@ -24,3 +24,6 @@ MonoBehaviour:
     enemies. If there is only 1 enemy on the battlefield it will always be a 80%
     chance.'
   maxCooldown: 3
+  spellIndex: 1
+  runeA: Wind
+  runeB: Fire

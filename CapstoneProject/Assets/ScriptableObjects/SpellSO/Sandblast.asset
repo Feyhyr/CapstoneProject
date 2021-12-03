@@ -22,3 +22,6 @@ MonoBehaviour:
     Casting Sandblast has a 100% chance to induce the
     Exposed status effect.'
   maxCooldown: 4
+  spellIndex: 2
+  runeA: Wind
+  runeB: Earth

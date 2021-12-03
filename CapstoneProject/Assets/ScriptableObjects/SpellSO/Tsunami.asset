@@ -23,3 +23,6 @@ MonoBehaviour:
     is weak to water combos the damage dealt to that enemy is tripled rather than
     doubled.'
   maxCooldown: 4
+  spellIndex: 4
+  runeA: Water
+  runeB: Earth

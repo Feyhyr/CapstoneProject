@@ -22,3 +22,6 @@ MonoBehaviour:
     Casting Boil deals damage and has a 100% chance
     to induce the Scald effect.'
   maxCooldown: 2
+  spellIndex: 3
+  runeA: Water
+  runeB: Fire

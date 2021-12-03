@@ -24,3 +24,6 @@ MonoBehaviour:
     until after your next turn. If you have no debuffs the healing will be increased
     to 20% of max HP. '
   maxCooldown: 3
+  spellIndex: 9
+  runeA: Fire
+  runeB: Water

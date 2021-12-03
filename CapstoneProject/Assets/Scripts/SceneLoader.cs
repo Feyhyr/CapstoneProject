@@ -13,6 +13,7 @@ public class SceneLoader : MonoBehaviour
 
     public void SwitchToScene(string sceneName)
     {
+        StopAllCoroutines();
         SceneManager.LoadScene(sceneName);
     }
 
