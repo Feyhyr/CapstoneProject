@@ -458,7 +458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &10751181
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4997,7 +4997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &415237441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24072,11 +24072,31 @@ MonoBehaviour:
     drifting in the ocean waiting for unsuspecting swimmers to trapse by its stingers
     that rest on seaweed. Touching seaweed while swimming is already cursed, and
     thankfully not many have fallen prey to this demon because of that."
-  - "Arma Sapientia (Healer)\n\nHP: 500\n\nATK: 50\n\nHealing: 15% of Max HP (Two
-    Targets)\n\nWeaknesses: Fire\n\nResistances: Water (Immune)\n\nJournal Log:\n
+  - 'Arma Sapientia (Healer)
+
+
+    HP: 500
+
+
+    ATK: 50
+
+
+    Healing: 15% of Max
+    HP (Two Targets)
+
+
+    Weaknesses: Fire
+
+
+    Resistances: Water (Immune)
+
+
+    Journal
+    Log:
+
     Octopuses are already a forced to be reckoned with, given their intelligence,
     adaptability, and the ability to regenerate lost limbs. Opportunistic demons
-    leap at the chance to enhance these features for themselves."
+    leap at the chance to enhance these features for themselves.'
   - "Umbra Stella (Summoner)\n\nHP: 400\n\nATK: 80\n\nWeaknesses: Earth\n\nResistances:
     Water (Immune)\n\nJournal Log:\n It is said that demons who possess starfish
     yearn to multiply endlessly. In doing so, they will consume the stars in the
@@ -24092,10 +24112,10 @@ MonoBehaviour:
     nothing to lose. The tower had twisted together several creatures while it was
     forming is responsible for abominations like this one."
   - "Habiti Mortui (Debuffer)\n\nHP: 300\n\nATK: 50 (40% Chance to Curse, 30% Chance
-    to Seal)\n\nWeaknesses: Earth\n\nResistances: Wind (Immune)\n\nJournal Log:\n
-    Like shopping at a second-hand store, demons sometimes find dead human flesh
-    piles and wear them like a coat. Though when the mangled remains fall out of
-    place, the demon lets out a screech that\u2019d make a Mandrake blush."
+    to Seal)\n\nWeaknesses: Earth\n\nResistances: Wind (Immune)\n\nJournal Log:\nLike
+    shopping at a second-hand store, demons sometimes find dead human flesh piles
+    and wear them like a coat. Though when the mangled remains fall out of place,
+    the demon lets out a screech that\u2019d make a Mandrake blush."
   - "Fraxinus Marialis (Healer)\n\nHP: 500\n\nATK: 50\n\nHealing: 20% (Two Targets)\n\nWeaknesses:
     Wind, Earth\n\nResistances: Fire (Immune), Water\n\nJournal Log:\n Wings and
     gills burning to a crisp as it desperately tries to maintain flight while regenerating
@@ -25929,4 +25949,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
