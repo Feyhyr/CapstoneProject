@@ -1,0 +1,22 @@
+Wendigo.png
+size:814,1127
+filter:Linear,Linear
+pma:true
+Body
+bounds:516,233,296,500
+Body Fur
+bounds:555,735,257,390
+Head
+bounds:2,773,551,352
+Left Arm
+bounds:2,253,214,414
+rotate:90
+Left Leg
+bounds:422,2,229,389
+rotate:90
+Right Arm
+bounds:2,469,302,512
+rotate:90
+Right Leg
+bounds:2,15,216,418
+rotate:90

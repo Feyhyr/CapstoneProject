@@ -1,0 +1,48 @@
+Bog.png
+size:1367,1535
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,62,601,700
+Hand
+bounds:860,878,266,403
+rotate:90
+Layer 47
+bounds:572,4,582,56
+Layer 48
+bounds:2,2,568,58
+Layer 49
+bounds:1206,336,540,67
+rotate:90
+Layer 50
+bounds:1300,819,514,65
+rotate:90
+Layer 51
+bounds:860,1444,488,89
+Layer 52
+bounds:860,1343,468,99
+Layer 53
+bounds:860,1239,438,102
+Layer 54
+bounds:860,1146,408,91
+Layer 55
+bounds:1270,1134,103,26
+rotate:90
+Layer 56
+bounds:1330,1335,107,26
+rotate:90
+Layer 57
+bounds:1265,1031,101,25
+rotate:90
+Layer 58
+bounds:1265,945,84,23
+rotate:90
+Layer 59
+bounds:1156,7,69,37
+rotate:90
+Moss Back
+bounds:605,78,684,599
+rotate:90
+Moss Front
+bounds:2,764,769,856
+rotate:90
