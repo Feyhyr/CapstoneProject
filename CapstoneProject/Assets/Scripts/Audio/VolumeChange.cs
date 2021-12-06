@@ -55,7 +55,6 @@ public class VolumeChange : MonoBehaviour
         if (scene.name == "MainMenuScene")
         {
             audioM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-            musicM = GameObject.Find("MusicManager").GetComponent<MusicManager>();
         }
     }
 }

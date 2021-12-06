@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     int tempToggleValue;
+    float tempSFXValue;
+    float tempBGMValue;
 
     public void NewGame(string sceneName)
     {
         tempToggleValue = PlayerPrefs.GetInt("instantSpell", 0);
+        tempSFXValue = PlayerPrefs.GetFloat("SFXvalue", 1f);
+        tempBGMValue = PlayerPrefs.GetFloat("BGMvalue", 1f);
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("instantSpell", tempToggleValue);
+        PlayerPrefs.SetFloat("SFXvalue", tempSFXValue);
+        PlayerPrefs.SetFloat("BGMvalue", tempBGMValue);
         SceneManager.LoadScene(sceneName);
     }
 
