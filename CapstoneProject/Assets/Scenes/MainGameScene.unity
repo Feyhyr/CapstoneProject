@@ -24027,29 +24027,115 @@ MonoBehaviour:
     from spells containing the fire rune.'
   - 'Seal: One random rune type is blocked from usage for 2 turns.'
   enemyInfoList:
-  - The tree
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - "Arborous (Attacker)\n\nHP: 350\n\nATK: 30\n\nWeaknesses: Fire\n\nResistances:
+    Water, Earth\n\nJournal Log:\n These demons seem to have gravitated to the trees
+    of our world. They blend in seamlessly with the forests waiting for their prey
+    to wander too close... I think this setting is just missing a yellow brick road
+    to fit the picture..."
+  - "Sana Luto (Healer)\n\nHP: 350\n\nATK: 30\n\nHealing: 10% Max HP (Single Target)\n\nWeaknesses:
+    Fire\n\nResistances: Water, Earth\n\nJournal Log:\n A demon comprised of the
+    natural resources that have been used for eons to treat the wounded and cure
+    the sick. As far as I\u2019m concerned, this walking apothecary needs a taste
+    of its own medicine."
+  - "Gimoodoobii (Boss)\n\nHP: 600\n\nATK: 80\n\nWeaknesses: Wind\n\nResistances:
+    Earth (Immune)\n\nSpecial Feature:\n Each time Gimoodoobii does damage it regains
+    half the amount done as HP.\n\nJournal Log:\n This kind of demon I am no stranger
+    to. They possess animals such as deer and boom, suddenly they think Bloody Mary\u2019s
+    are a food group, poor girl\u2026"
+  - "Velox Ignis (Glass Cannon)\n\nHP: 250\n\nATK: 150\n\nWeaknesses: Water, Earth,
+    Wind\n\nResistances: Fire (Immune)\n\nJournal Log:\n Demons like these are the
+    very reason people are afraid of \u201Cspontaneous combustion\u201D, and honestly
+    I don\u2019t blame them."
+  - "Canis Infernum (Debuffer)\n\nHP: 350\n\nATK: 70 (50% chance to Expose)\n\nWeaknesses:
+    Water, Wind\n\nResistances: Fire (Immune), Earth\n\nJournal Log:\n These puppies
+    aren\u2019t the ones that you\u2019d want to pat. When a demon possesses a dog
+    they wreak havoc on everything in their surroundings. Usually they end up in
+    badland-esq territory, or make their own badlands. Protect your throw pillows
+    at all costs."
+  - "Mors Nube (Healer)\n\nHP: 400\n\nATK: 50\n\nHealing: 15% Max HP (Single Target)\n\nWeaknesses:
+    Wind\n\nResistances: Fire (Immune)\n\nJournal Log:\n Demons who vaporize into
+    the air form these malevolent clouds of phosphorus and other chemicals. Though
+    I could have sworn I saw one of these clouds with the most innocent look I have
+    ever seen\u2026 Bizarre."
+  - "Calidum Lapis (Boss)\n\nHP: 1000\n\nATK: 130\n\nWeaknesses: Water, Wind\n\nResistances:
+    Fire (Immune), Earth\n\nSpecial Feature:\n At the end of the Enemy Turn, Calidum
+    Lapis regains 5% HP.\n\nJournal Log:\n Contrary to popular belief, not all demons
+    can acclimate/are accustomed to hot temperatures. As for those who can endure
+    such heat, they go and possess a literal hot mess."
+  - "Molaris Cete (Tank)\n\nHP: 400\n\nATK: 70\n\nWeaknesses: Wind\n\nResistances:
+    Fire (Immune)\n\nJournal Log:\n The demons that possessed the whales still yearn
+    for hellish environments. As such, they linger near aquatic heat vents for long
+    periods of time. So much so, that they developed a heat exhaust in place of their
+    spiracle."
+  - "Mare Tristique (Debuffer)\n\nHP: 400\n\nATK: 70 (50% chance to Poison)\n\nWeaknesses:
+    Fire\n\nResistances: Water (Immune)\n\nJournal Log:\n These demons are often
+    drifting in the ocean waiting for unsuspecting swimmers to trapse by its stingers
+    that rest on seaweed. Touching seaweed while swimming is already cursed, and
+    thankfully not many have fallen prey to this demon because of that."
+  - "Arma Sapientia (Healer)\n\nHP: 500\n\nATK: 50\n\nHealing: 15% of Max HP (Two
+    Targets)\n\nWeaknesses: Fire\n\nResistances: Water (Immune)\n\nJournal Log:\n
+    Octopuses are already a forced to be reckoned with, given their intelligence,
+    adaptability, and the ability to regenerate lost limbs. Opportunistic demons
+    leap at the chance to enhance these features for themselves."
+  - "Umbra Stella (Summoner)\n\nHP: 400\n\nATK: 80\n\nWeaknesses: Earth\n\nResistances:
+    Water (Immune)\n\nJournal Log:\n It is said that demons who possess starfish
+    yearn to multiply endlessly. In doing so, they will consume the stars in the
+    night sky and be their replacement."
+  - "Lucerna Osseus (Boss)\n\nHP: 850\n\nATK: 150\n\nWeaknesses: Earth\n\nResistances:
+    Water (Immune), Fire\n\nSpecial Feature:\n Every 2 turns, the light will become
+    dim and you cannot attack Lucerna Osseus until you attack its lantern.\n\nJournal
+    Log:\n The vengeful energy left by the corpse of an anglerfish who died by choking
+    on a lantern has attracted a demon to its remains. The demon now shares a similar
+    disdain for bright objects and will entice others to join it in the abyss."
+  - "Cava Maxilla (Juggernaut)\n\nHP: 500\n\nATK: 80\n\nWeaknesses: Water\n\nResistances:
+    Earth (Immune)\n\nJournal Log:\n A thick hide, the shape of a crocodile, and
+    nothing to lose. The tower had twisted together several creatures while it was
+    forming is responsible for abominations like this one."
+  - "Habiti Mortui (Debuffer)\n\nHP: 300\n\nATK: 50 (40% Chance to Curse, 30% Chance
+    to Seal)\n\nWeaknesses: Earth\n\nResistances: Wind (Immune)\n\nJournal Log:\n
+    Like shopping at a second-hand store, demons sometimes find dead human flesh
+    piles and wear them like a coat. Though when the mangled remains fall out of
+    place, the demon lets out a screech that\u2019d make a Mandrake blush."
+  - "Fraxinus Marialis (Healer)\n\nHP: 500\n\nATK: 50\n\nHealing: 20% (Two Targets)\n\nWeaknesses:
+    Wind, Earth\n\nResistances: Fire (Immune), Water\n\nJournal Log:\n Wings and
+    gills burning to a crisp as it desperately tries to maintain flight while regenerating
+    anew. From those ashes comes a second wind for demon kind."
+  - "Furorem (Summoner)\n\nHP: 400\n\nATK: 100\n\nWeaknesses: Earth\n\nResistances:
+    Wind (Immune)\n\nJournal Log:\n Once beautiful birds, now corrupted by demons,
+    are filled to the brim with nothing but rage and the need to flock together."
+  - "Sartrix (Boss)\n\nHP: 900\n\nATK: 120\n\nWeaknesses: Fire\n\nResistances: Earth,
+    Wind (Immune)\n\nSpecial Feature: \n Sartrix has a 30% chance to inflict the
+    Bound status effect and a 50% chance to inflict the Poisoned status effect.\n\nJournal
+    Log:\n A once famous and respected witch quoted something along the lines of
+    \u201CWhat may be normal for the spider demon is chaos for the Exorcist\u201D,
+    or at least that\u2019s how I feel about the matter\u2026"
+  - "Laavantr (Joker)\n\nHP: 450\n\nATK: 120\n\nWeaknesses: Earth\n\nResistances:
+    Water (Immune)\n\nJournal Log:\n Lurking in the shadows of this realm, demons
+    needn\u2019t a body to take. This demon makes use of it\u2019s natural body to
+    slink into the shadows and attack when you can\u2019t expect it."
+  - "Xa'anis (Summoner)\n\nHP: 450\n\nATK: 120\n\nWeaknesses: Fire\n\nResistances:
+    Wind, Water\n\nJournal Log:\n These tendrils that sprout from the void beneath
+    are seemingly endless and they will not hesitate to rip anyone to shreds."
+  - "Struxhe (Debuffer)\n\nHP: 400\n\nATK: 100 (30% Chance to Seal, 50% Chance to
+    Curse)\n\nWeaknesses: Water\n\nResistances: Wind, Fire\n\nJournal Log:\n This
+    demon has so many rows of teeth that sharks would be afraid to swim at a beach
+    if one of these creatures were known to be lurking nearby."
+  - "Xanitam (Healer)\n\nHP: 600\n\nATK: 50\n\nHealing: 30% of Max HP (Two Targets)\n\nWeaknesses:
+    Water\n\nResistances: Fire (Immune), Earth\n\nJournal Log:\n An elder demon who
+    has witnessed planets be born and die. It\u2019s wisdom and experience is truly
+    something to fear."
+  - "Torqa\u2019xarnes (Attacker) \n\nHP: 500\n\nATK: 80\n\nWeaknesses: None\n\nResistances:
+    None\n\nSpecial Feature: \n Each time Torqa'xarnes does damage it regains half
+    the amount done as HP.\n\nJournal Log:\n A pure concentration of the flesh that
+    demons have discarded. Twisted into a barely sentient pile, this odious creation
+    is meant only to take and store blood for its master\u2026 "
+  - "Ngoxylethe (Boss)\n\nHP: 1000\n\nATK: 150\n\nWeaknesses: None\n\nResistances:
+    None\n\nSpecial Feature:\n Ngoxylethe can summon two Torqa'xarnes four times
+    per battle. When Ngoxylethe is at 30% HP or less, it can destroy all current
+    allies and regain 20% of its Max HP per ally destroyed.\n\nJournal Log:\n This
+    is the horrifying eldritch terror that formed the Tower. Its cries echo throughout
+    time and space causing a rift between worlds. Forever spiraling towards chaos,
+    it wishes to infect all with its madness\u2026"
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0
