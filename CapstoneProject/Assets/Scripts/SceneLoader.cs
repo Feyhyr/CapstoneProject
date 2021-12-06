@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    int tempToggleValue;
+
     public void NewGame(string sceneName)
     {
+        tempToggleValue = PlayerPrefs.GetInt("instantSpell", 0);
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("instantSpell", tempToggleValue);
         SceneManager.LoadScene(sceneName);
     }
 

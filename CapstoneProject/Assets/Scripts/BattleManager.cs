@@ -1115,13 +1115,6 @@ public class BattleManager : MonoBehaviour
             index = 11;
         }
 
-        if (rune1 != "" && rune2 != "")
-        {
-            unlock.SetPrefKey(unlock.spellKeys, ref unlock.unlockSpellList, index, true);
-            unlock.CheckSpellBook();
-            ChangeSpellDisabled();
-        }
-
         //if (toggleSetting.instantSpell)
         //{
         //    return sPrefab.GetComponent<SpellCreation>().spell.spellIndex;
@@ -1134,6 +1127,13 @@ public class BattleManager : MonoBehaviour
 
     public void SpellChosen()
     {
+        if (rune1 != "" && rune2 != "")
+        {
+            unlock.SetPrefKey(unlock.spellKeys, ref unlock.unlockSpellList, ChooseSpell(), true);
+            unlock.CheckSpellBook();
+            ChangeSpellDisabled();
+        }
+
         if (!spellBTNList[ChooseSpell()].GetComponent<SpellController>().onCD)
         {
             if (isAudioPlaying)

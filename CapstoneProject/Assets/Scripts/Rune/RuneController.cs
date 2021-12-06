@@ -42,6 +42,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        bm.spellOnCDObj.SetActive(false);
         if (canvasGroup.interactable)
         {
             textBox.SetActive(true);
@@ -78,6 +79,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public void OnEndDrag(PointerEventData eventData)
     {
         textBox.SetActive(false);
+        bm.isCreatingSpell = false;
         if (canvasGroup.interactable)
         {
             canvasGroup.alpha = 1f;
@@ -103,6 +105,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             onSecondSlot = false;
             onFirstSlot = true;
             bm.isAudioPlaying = true;
+            //bm.isCreatingSpell = false;
         }
     }
 
@@ -119,15 +122,14 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             onSecondSlot = true;
             onFirstSlot = false;
             bm.isAudioPlaying = true;
+            //bm.isCreatingSpell = false;
         }
     }
 
     void RefreshSpellButton()
     {
-        bm.isCreatingSpell = false;
         bm.spellBTNList[bm.ChooseSpell()].GetComponent<Button>().interactable = false;
         bm.spellBTNList[bm.ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
-        bm.spellOnCDObj.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -141,6 +143,7 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnDrop(PointerEventData eventData)
     {
+        bm.isCreatingSpell = true;
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<CanvasGroup>().interactable)
         {
             if (onFirstSlot)
