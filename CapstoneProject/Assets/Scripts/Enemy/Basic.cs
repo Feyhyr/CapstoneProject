@@ -21,7 +21,7 @@ public class Basic : EnemyController
     {
         base.Start();
 
-        if (enemyType == "Attack")
+        if (enemyType == "Attacker")
         {
             TypeIcon.sprite = TypeList[0];
         }
@@ -37,21 +37,39 @@ public class Basic : EnemyController
         {
             TypeIcon.sprite = TypeList[3];
         }
+        else if (enemyType == "Buffer")
+        {
+            TypeIcon.sprite = TypeList[4];
+        }
         else if (enemyType == "GlassCannon")
         {
+            TypeIcon.sprite = TypeList[5];
             glassCannon.SetActive(true);
+        }
+        else if (enemyType == "Joker")
+        {
+            TypeIcon.sprite = TypeList[6];
         }
         else if (enemyType == "Juggernaut")
         {
+            TypeIcon.sprite = TypeList[7];
             isJuggernautShieldOn = true;
             juggernautShield.SetActive(true);
+        }
+        else if (enemyType == "Kindred")
+        {
+            TypeIcon.sprite = TypeList[8];
+        }
+        else if (enemyType == "Tank")
+        {
+            TypeIcon.sprite = TypeList[9];
         }
         TypeText.text = enemyType;
     }
 
     public override IEnumerator AttackPattern()
     {
-        if (enemyType == "Attack" || enemyType == "Kindred" || enemyType == "Juggernaut")
+        if (enemyType == "Attacker" || enemyType == "Kindred" || enemyType == "Juggernaut")
         {
             yield return Attack();
         }

@@ -18,15 +18,15 @@ public class ToggleSettings : Singleton<ToggleSettings>
     {
         if (scene.name == "BattleScene")
         {
-            //GetInstantSpellKey();
+            GetInstantSpellKey();
         }
         else if (scene.name == "MainGameScene")
         {
-            //GetInstantSpellKey();
+            GetInstantSpellKey();
         }
         else if (scene.name == "MainMenuScene")
         {
-            //GetInstantSpellKey();
+            GetInstantSpellKey();
         }
     }
 
