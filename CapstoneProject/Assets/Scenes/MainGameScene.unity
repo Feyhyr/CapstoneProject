@@ -24896,12 +24896,16 @@ MonoBehaviour:
   - 'Scald: For 4 turns, the enemy with the Scald status will take double damage
     from spells containing the fire rune.'
   - 'Seal: One random rune type is blocked from usage for 2 turns.'
-  - 'Taunt:'
-  - 'Kindred:'
-  - 'Sorrow:'
-  - 'Buff:'
-  - GlassCannon
-  - 'Juggernaut:'
+  - 'Taunt: For 1 turn the player is forced to only attack the tank, aoe attacks
+    will also become single target for that duration of taunt.'
+  - 'Kindred: Those with this status are linked together and will deal 2x the damage
+    compared to normal enemies.'
+  - 'Sorrow: When afflicted with this debuff the remaining kindred recieve 4x damage.'
+  - 'Buff: Enemies with this status indicated that they are buffed and will deal
+    2x their normal damage.'
+  - 'GlassCannon: After 4 turns this enemy will infliced a hug amount of damage,
+    this status keeps track of how many turns are left before the attack.'
+  - 'Juggernaut: This special shield can only be destroyed by using earth runes.'
   enemyInfoList:
   - "Arborous (Attacker)\n\nHP: 350\n\nATK: 30\n\nWeaknesses: Fire\n\nResistances:
     Water, Earth\n\nJournal Log:\n These demons seem to have gravitated to the trees
