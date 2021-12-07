@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour
     public GameObject kindred;
     public GameObject sorrow;
     public GameObject buffed;
+    public GameObject shield;
 
     public GameObject targetSelected;
 

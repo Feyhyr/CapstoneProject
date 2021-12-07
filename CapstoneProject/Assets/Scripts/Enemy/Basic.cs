@@ -53,6 +53,7 @@ public class Basic : EnemyController
         else if (enemyType == "Juggernaut")
         {
             TypeIcon.sprite = TypeList[7];
+
             isJuggernautShieldOn = true;
             juggernautShield.SetActive(true);
         }

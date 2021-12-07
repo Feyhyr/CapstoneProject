@@ -151,7 +151,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             //Cursor.visible = true;
             //Cursor.lockState = CursorLockMode.None;
             spellContainer.localPosition = new Vector3(0, -490, 0);
-            statusContainer.localPosition = new Vector3(0, -450, 0);
+            statusContainer.localPosition = new Vector3(0, -640, 0);
             enemyContainer.localPosition = new Vector3(0, 0, 0);
             for (int i = 0; i < enemyBiomesList.Count; i++)
             {
