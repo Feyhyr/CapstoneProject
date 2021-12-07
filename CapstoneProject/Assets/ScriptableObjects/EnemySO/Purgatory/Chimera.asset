@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Cava Maxilla
   tagName: Juggernaut
   dmg: 80
-  maxHealth: 500
+  maxHealth: 350
   weakness:
   - Water
   weakImages:
@@ -36,5 +36,5 @@ MonoBehaviour:
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 500
-  hasSeen: 0
+  hasSeen: 1
   enemyKey: 12

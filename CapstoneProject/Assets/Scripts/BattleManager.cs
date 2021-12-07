@@ -134,7 +134,7 @@ public class BattleManager : MonoBehaviour
     public GameObject endWaveCanvas;
 
     public GameObject fishCover;
-    public GameObject lanternPrefab;
+    public Transform lanternLocation;
     public GameObject noEffectText;
     GameObject tempEnemyObject;
 

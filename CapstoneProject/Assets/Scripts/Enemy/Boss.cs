@@ -317,7 +317,7 @@ public class Boss : EnemyController
     public IEnumerator SpawnLantern()
     {
         yield return bm.FadeInFishCover(bm.fishCover.GetComponent<Image>());
-        GameObject lantern = Instantiate(lanternPrefab, bm.fishCover.transform);
+        GameObject lantern = Instantiate(lanternPrefab, bm.lanternLocation);
         lantern.GetComponentInChildren<EnemyController>().bm = bm;
         lantern.GetComponentInChildren<EnemyController>().enemyId = 1;
         lantern.tag = lantern.GetComponentInChildren<EnemyController>().enemy.tagName;

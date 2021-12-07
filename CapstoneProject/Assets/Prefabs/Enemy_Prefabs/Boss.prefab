@@ -1448,7 +1448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327178587643501043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.63, z: 0}
+  m_LocalPosition: {x: 0, y: -0.68, z: 0}
   m_LocalScale: {x: 0.6, y: 0.54216003, z: 1}
   m_Children: []
   m_Father: {fileID: 8285648919941634976}
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: e9309e40d25fea84fab403dd5c680a01, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 7ee31891d348cbf4a8b2b33d7874e79f, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
@@ -1577,6 +1577,7 @@ MonoBehaviour:
   kindred: {fileID: 0}
   sorrow: {fileID: 0}
   buffed: {fileID: 0}
+  shield: {fileID: 0}
   targetSelected: {fileID: 685297641216822}
   eCannotHeal: 0
   isPoisoned: 0
@@ -3585,7 +3586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6257899577869437050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.23, z: 0}
+  m_LocalPosition: {x: 0.14, y: -3.1, z: 0}
   m_LocalScale: {x: 29.439999, y: 4.42, z: 1}
   m_Children: []
   m_Father: {fileID: 8285648919941634976}

@@ -564,7 +564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327178587643501043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.36, z: 0}
+  m_LocalPosition: {x: 0, y: 0.44, z: 0}
   m_LocalScale: {x: 0.5, y: 0.482, z: 1}
   m_Children: []
   m_Father: {fileID: 8285648919941634976}
@@ -597,7 +597,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb21fcadf0091af4a90a5b1109119d2b, type: 2}
+  - {fileID: 2100000, guid: 5c7fef2e124e16a4081639cd73ead88f, type: 2}
+  - {fileID: 2100000, guid: 7019e024263545b4794b9617164c4d98, type: 2}
+  - {fileID: 2100000, guid: 5c7fef2e124e16a4081639cd73ead88f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -631,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 92b3c663710f2424c830d83554c524e5, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: d513de2133663a94491c30040a6699fc, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
@@ -685,6 +687,7 @@ MonoBehaviour:
   bm: {fileID: 0}
   enemy: {fileID: 11400000, guid: b85bc0c46997ee34d9802f851997f606, type: 2}
   enemyHealthSlider: {fileID: 1473678378521140171}
+  enemyHealthColor: {fileID: 0}
   atk: 0
   enemyId: 0
   eText: {fileID: 4010756260636110268}
@@ -702,6 +705,10 @@ MonoBehaviour:
   poisoned: {fileID: 0}
   exposed: {fileID: 0}
   scalded: {fileID: 0}
+  kindred: {fileID: 0}
+  sorrow: {fileID: 0}
+  buffed: {fileID: 0}
+  shield: {fileID: 0}
   targetSelected: {fileID: 685297641216822}
   eCannotHeal: 0
   isPoisoned: 0
@@ -714,6 +721,10 @@ MonoBehaviour:
   freezeTurnCount: 0
   isBurn: 0
   burnTurnCount: 0
+  isKindred: 0
+  isSorrow: 0
+  isBuffed: 0
+  buffedTurnCount: 0
   uiClick: {fileID: 0}
   attackSFX: {fileID: 0}
   damageSFX: {fileID: 0}
@@ -728,6 +739,8 @@ MonoBehaviour:
   enemyWeakLocation: {fileID: 0}
   enemyResistLocation: {fileID: 0}
   enemyImmuneLocation: {fileID: 0}
+  isJuggernautShieldOn: 0
+  juggernautShield: {fileID: 0}
 --- !u!1 &3213513465037777991
 GameObject:
   m_ObjectHideFlags: 0
