@@ -22,10 +22,10 @@ MonoBehaviour:
   resistImages: []
   immunity: []
   immuneImages: []
-  idle: {fileID: 11400000, guid: 9ff31d816d77ba44faeebffa00faf18c, type: 2}
-  attack: {fileID: 11400000, guid: 331bda8764d84e74b90c3c16e8a92929, type: 2}
-  damage: {fileID: 11400000, guid: 943143954d7950a4c9a3b009928b6fa5, type: 2}
-  skeletonData: {fileID: 11400000, guid: 92b3c663710f2424c830d83554c524e5, type: 2}
+  idle: {fileID: 11400000, guid: 118208c816bf1be4fa59927237e2a51c, type: 2}
+  attack: {fileID: 11400000, guid: 348573d0ad5a305459dc55ad8e653da4, type: 2}
+  damage: {fileID: 11400000, guid: ef46e33f6789c4f41910bc845eefaeff, type: 2}
+  skeletonData: {fileID: 11400000, guid: d513de2133663a94491c30040a6699fc, type: 2}
   attackSFX: {fileID: 8300000, guid: 0c06912225797f244986ac33b09b48b4, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Lantern

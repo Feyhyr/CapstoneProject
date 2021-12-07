@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: Angler Fish_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 8fc0016766ac3f44fb7111e994eb7f32, type: 2}
+  - {fileID: 11400000, guid: 7d12a9751b51a124d8401bb4fe7054e1, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 6865c57f9ea2875408b3fb0626e57fd8, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: deee6363c46f91245b82548090abd0c9, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
-    requiresBlendModeMaterials: 0
+    requiresBlendModeMaterials: 1
     applyAdditiveMaterial: 1
-    additiveMaterials: []
+    additiveMaterials:
+    - pageName: Angler Fish.png
+      material: {fileID: 2100000, guid: 7019e024263545b4794b9617164c4d98, type: 2}
     multiplyMaterials: []
     screenMaterials: []
   skeletonDataModifiers: []
