@@ -24895,17 +24895,19 @@ MonoBehaviour:
     cannot heal while poisoned.'
   - 'Scald: For 4 turns, the enemy with the Scald status will take double damage
     from spells containing the fire rune.'
-  - 'Seal: One random rune type is blocked from usage for 2 turns.'
-  - 'Taunt: For 1 turn the player is forced to only attack the tank, aoe attacks
+  - 'Seal: 1 random rune type is blocked from usage for 2 turns.'
+  - 'Taunt: For 1 turn the player is forced to only attack the Tank, AOE attacks
     will also become single target for that duration of taunt.'
-  - 'Kindred: Those with this status are linked together and will deal 2x the damage
-    compared to normal enemies.'
-  - 'Sorrow: When afflicted with this debuff the remaining kindred recieve 4x damage.'
-  - 'Buff: Enemies with this status indicated that they are buffed and will deal
-    2x their normal damage.'
-  - 'GlassCannon: After 4 turns this enemy will infliced a huge amount of damage,
-    this status keeps track of how many turns are left before the attack.'
-  - 'Juggernaut: This special shield can only be destroyed by using earth runes.'
+  - 'Kindred: Attacks will deal 2x damage. Two enemies within the Kindred class must
+    be active to gain this effect.'
+  - 'Sorrow: When only one enemy in the Kindred class is active, they will take 4x
+    damage from attacks.'
+  - 'Buff: Damage is boosted by 2x for 2 turns.'
+  - 'Glass Cannon: For 3 turns this enemy will not do damage, but on every 4th turn
+    it will do severe damage to the player.'
+  - 'Juggernaut: The enemy starts off with a special shield that can only be broken
+    using Earth rune spells. Once the shield is broken the player can inflict damage
+    onto the enemy.'
   enemyInfoList:
   - "Arborous (Attacker)\n\nHP: 350\n\nATK: 30\n\nWeaknesses: Fire\n\nResistances:
     Water, Earth\n\nJournal Log:\n These demons seem to have gravitated to the trees
