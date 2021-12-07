@@ -1,0 +1,9 @@
+Angler Fish.png
+size:622,149
+filter:Linear,Linear
+pma:true
+Lamp Line
+bounds:2,2,445,145
+Layer 107
+bounds:449,59,88,171
+rotate:90

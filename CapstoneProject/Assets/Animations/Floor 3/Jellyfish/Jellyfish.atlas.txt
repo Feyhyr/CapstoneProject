@@ -1,0 +1,67 @@
+Jellyfish.png
+size:2033,1094
+filter:Linear,Linear
+pma:true
+Head
+bounds:833,146,359,256
+rotate:90
+Layer 101
+bounds:1091,149,356,254
+rotate:90
+Layer 102
+bounds:1504,161,265,282
+Layer 103
+bounds:1811,445,319,218
+rotate:90
+Layer 104
+bounds:833,4,305,140
+Layer 105
+bounds:1442,518,308,208
+rotate:90
+Layer 106
+bounds:1115,507,221,325
+rotate:90
+Layer 107
+bounds:572,604,276,488
+Layer 108
+bounds:1108,730,90,362
+Layer 109
+bounds:239,8,234,496
+Layer 110
+bounds:291,506,91,455
+rotate:90
+Layer 111
+bounds:149,506,140,586
+Layer 112
+bounds:1465,5,152,344
+rotate:90
+Layer 113
+bounds:850,671,256,421
+T1
+bounds:1504,828,264,286
+rotate:90
+T10
+bounds:1347,159,155,346
+T11
+bounds:570,81,261,423
+T2
+bounds:1811,766,326,220
+rotate:90
+T3
+bounds:1140,2,323,145
+T4
+bounds:1811,132,311,213
+rotate:90
+T5
+bounds:1200,763,225,329
+T6
+bounds:291,599,279,493
+T6-2
+bounds:748,507,95,365
+rotate:90
+T7
+bounds:2,4,235,497
+T8
+bounds:475,45,93,459
+T9
+bounds:2,503,145,589

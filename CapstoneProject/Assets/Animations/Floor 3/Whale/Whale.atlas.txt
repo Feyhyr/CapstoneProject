@@ -1,0 +1,13 @@
+Whale.png
+size:1261,453
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,10,703,441
+Layer 87
+bounds:1186,162,76,42
+rotate:90
+Left Fin
+bounds:707,240,552,211
+Lower Mouth
+bounds:707,2,477,236

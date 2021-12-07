@@ -1,0 +1,28 @@
+Hellfire.png
+size:1097,1056
+filter:Linear,Linear
+pma:true
+Body1
+bounds:2,182,359,872
+Chain Left Arm
+bounds:962,818,125,236
+Chain Right Arm
+bounds:2,13,167,155
+rotate:90
+Chest Armour
+bounds:726,235,329,288
+rotate:90
+Ground
+bounds:1016,386,430,79
+rotate:90
+Ground Back
+bounds:726,566,488,219
+rotate:90
+Ground Front
+bounds:407,2,553,186
+Layer 77
+bounds:363,190,361,864
+Left Hand
+bounds:159,19,101,161
+Right Hand
+bounds:262,34,143,146

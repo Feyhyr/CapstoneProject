@@ -1,0 +1,22 @@
+Smog Cloud.png
+size:1403,517
+filter:Linear,Linear
+pma:true
+Blushes
+bounds:295,35,398,27
+Body
+bounds:2,64,901,451
+Cute_Eyes
+bounds:2,2,291,60
+Cute_Hands
+bounds:695,17,125,45
+Cute_Mouth
+bounds:295,4,92,29
+Eyes
+bounds:1322,144,371,79
+rotate:90
+Heal Icon
+bounds:1322,67,77,75
+Mouth
+bounds:905,5,510,415
+rotate:90
