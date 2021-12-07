@@ -1042,6 +1042,7 @@ MonoBehaviour:
   bm: {fileID: 0}
   enemy: {fileID: 11400000, guid: edecbf53d7f557d4497bd971eee381fc, type: 2}
   enemyHealthSlider: {fileID: 6987536947702012384}
+  enemyHealthColor: {fileID: 0}
   atk: 0
   enemyId: 0
   eText: {fileID: 4010756260636110268}
@@ -1059,6 +1060,10 @@ MonoBehaviour:
   poisoned: {fileID: 8233151695237784382}
   exposed: {fileID: 6375052792984744950}
   scalded: {fileID: 1857785858537756805}
+  kindred: {fileID: 0}
+  sorrow: {fileID: 0}
+  buffed: {fileID: 0}
+  shield: {fileID: 0}
   targetSelected: {fileID: 685297641216822}
   eCannotHeal: 0
   isPoisoned: 0
@@ -1071,6 +1076,10 @@ MonoBehaviour:
   freezeTurnCount: 0
   isBurn: 0
   burnTurnCount: 0
+  isKindred: 0
+  isSorrow: 0
+  isBuffed: 0
+  buffedTurnCount: 0
   uiClick: {fileID: 8300000, guid: e9378d1e53c37f74ab10e7b582066680, type: 3}
   attackSFX: {fileID: 0}
   damageSFX: {fileID: 0}
@@ -1079,6 +1088,14 @@ MonoBehaviour:
   freezePrefab: {fileID: 0}
   eDebuffCanvas: {fileID: 0}
   eBuffCanvas: {fileID: 0}
+  TypeIcon: {fileID: 0}
+  TypeText: {fileID: 0}
+  enemyResistance: {fileID: 0}
+  enemyWeakLocation: {fileID: 0}
+  enemyResistLocation: {fileID: 0}
+  enemyImmuneLocation: {fileID: 0}
+  isJuggernautShieldOn: 0
+  juggernautShield: {fileID: 0}
 --- !u!1 &2964090800663495307
 GameObject:
   m_ObjectHideFlags: 0
