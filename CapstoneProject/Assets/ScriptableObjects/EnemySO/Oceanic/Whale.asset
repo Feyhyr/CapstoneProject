@@ -29,12 +29,12 @@ MonoBehaviour:
   idle: {fileID: 11400000, guid: cf9817d24509bec4dbc1da82b650edfe, type: 2}
   attack: {fileID: 11400000, guid: 1c0bf23c818af014bb1f16d3a869c61a, type: 2}
   damage: {fileID: 11400000, guid: 162386cb93386b84394f243e8bcae146, type: 2}
-  skeletonData: {fileID: 11400000, guid: 5fa3ae269f6b326429fa54af73931065, type: 2}
+  skeletonData: {fileID: 11400000, guid: 0ff6c34787fc551439080e79fe230809, type: 2}
   attackSFX: {fileID: 8300000, guid: 6d2440a5c7007ed4ea850e4386fd0381, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Tank
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 0
-  hasSeen: 1
+  hasSeen: 0
   enemyKey: 7
