@@ -954,6 +954,7 @@ public class BattleManager : MonoBehaviour
             currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value = currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.maxValue;
             currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthColor.color = new Color32(44, 108, 44, 255);
             currentEnemyList[index].GetComponentInChildren<EnemyController>().isJuggernautShieldOn = false;
+            currentEnemyList[index].GetComponentInChildren<EnemyController>().shield.SetActive(false);
         }
 
         else if (currentEnemyList[index].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0 && !currentEnemyList[index].GetComponentInChildren<EnemyController>().isJuggernautShieldOn)
