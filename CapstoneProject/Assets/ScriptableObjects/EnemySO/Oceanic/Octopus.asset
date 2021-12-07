@@ -26,9 +26,9 @@ MonoBehaviour:
   - Water
   immuneImages:
   - {fileID: 21300000, guid: 2007b9a641db52b45a2b2375094f02a4, type: 3}
-  idle: {fileID: 11400000, guid: 699d5900d28422840a6f4996cc3111d4, type: 2}
-  attack: {fileID: 11400000, guid: 6f0d8021d1db8774f8e14f8274d942e2, type: 2}
-  damage: {fileID: 11400000, guid: 4fc6795ebdb51be458f9796d451a1aeb, type: 2}
+  idle: {fileID: 11400000, guid: 66895626eca06d649b717592e968287c, type: 2}
+  attack: {fileID: 11400000, guid: 3187c72f1947b0a4ab86c8b0edc4a1be, type: 2}
+  damage: {fileID: 11400000, guid: 0fe73abd19d3afa458865427c245af11, type: 2}
   skeletonData: {fileID: 11400000, guid: df8d3816d33b0924a8407f2bc22656a9, type: 2}
   attackSFX: {fileID: 8300000, guid: 6d2440a5c7007ed4ea850e4386fd0381, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
