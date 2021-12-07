@@ -458,7 +458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &10751181
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4675,7 +4675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &415237441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24903,7 +24903,7 @@ MonoBehaviour:
   - 'Sorrow: When afflicted with this debuff the remaining kindred recieve 4x damage.'
   - 'Buff: Enemies with this status indicated that they are buffed and will deal
     2x their normal damage.'
-  - 'GlassCannon: After 4 turns this enemy will infliced a hug amount of damage,
+  - 'GlassCannon: After 4 turns this enemy will infliced a huge amount of damage,
     this status keeps track of how many turns are left before the attack.'
   - 'Juggernaut: This special shield can only be destroyed by using earth runes.'
   enemyInfoList:
@@ -28747,4 +28747,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
