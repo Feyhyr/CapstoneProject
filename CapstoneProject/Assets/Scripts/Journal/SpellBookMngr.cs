@@ -51,6 +51,11 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
         SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
+    private void Start()
+    {
+        PlayerPrefs.SetInt("GameData", 1);
+    }
+
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "MainMenuScene")

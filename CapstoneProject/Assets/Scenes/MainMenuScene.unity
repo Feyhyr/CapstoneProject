@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 387697719}
   - component: {fileID: 387697723}
   - component: {fileID: 387697724}
+  - component: {fileID: 387697725}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -667,6 +668,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSFX: {fileID: 8300000, guid: e9378d1e53c37f74ab10e7b582066680, type: 3}
+--- !u!114 &387697725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387697718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa90314f497c1f4888eaee32496b37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneload: {fileID: 387697723}
+  continueBTN: {fileID: 1859268035}
+  newGameConfirmPanel: {fileID: 1938679903}
 --- !u!1 &401962968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,10 +3210,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1938679903}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 387697725}
+        m_TargetAssemblyTypeName: CheckContinue, Assembly-CSharp
+        m_MethodName: CheckNewGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
