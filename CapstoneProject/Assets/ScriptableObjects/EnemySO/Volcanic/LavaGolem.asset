@@ -32,7 +32,7 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 05c84e724bc688d4bb2b2a6a581a294a, type: 2}
   damage: {fileID: 11400000, guid: 9c0b2cfb19c0dd047942a6b6f7273490, type: 2}
   skeletonData: {fileID: 11400000, guid: a66dc1ac83f377e41a1bc31ecf063976, type: 2}
-  attackSFX: {fileID: 8300000, guid: ef6ccb5bccac81d4db451aa3a782bd0e, type: 3}
+  attackSFX: {fileID: 8300000, guid: ede823170fbb8844391d909d6e4e64f1, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: LavaGolem
   healingPercent: 0

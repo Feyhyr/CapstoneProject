@@ -30,7 +30,7 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: e16cc02b09f3a0a478faf1ae71355afc, type: 2}
   damage: {fileID: 11400000, guid: fda9bd37bfb1bc34fb4c137bfe907b6c, type: 2}
   skeletonData: {fileID: 11400000, guid: 7ee31891d348cbf4a8b2b33d7874e79f, type: 2}
-  attackSFX: {fileID: 8300000, guid: 6d2440a5c7007ed4ea850e4386fd0381, type: 3}
+  attackSFX: {fileID: 8300000, guid: ac17bcf4327b4ad4f983c13f7cebdab4, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: AnglerFish
   healingPercent: 0
