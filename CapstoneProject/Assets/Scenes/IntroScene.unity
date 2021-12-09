@@ -467,7 +467,7 @@ AudioSource:
   m_GameObject: {fileID: 10751180}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8d652cedb62e1cc439bef1cc8e144ae7, type: 2}
   m_audioClip: {fileID: 8300000, guid: 76bae223c2d2bcf40bce34693af3210e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.134
@@ -566,7 +566,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &18752444
 GameObject:
@@ -6985,6 +6985,8 @@ PlayableDirector:
     value: {fileID: 1322947417}
   - key: {fileID: 6117027029328250093, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
     value: {fileID: 2143124882}
+  - key: {fileID: 8354831257458678909, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 10751180}
   m_ExposedReferences:
     m_References:
     - 735492f3fe6ae9746b66106c08a57087: {fileID: 1973950776}
@@ -22469,7 +22471,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833885917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 477.48996, y: 333.7222, z: -44600}
+  m_LocalPosition: {x: 477.54553, y: 333.7222, z: -44600}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1745467676}
@@ -24291,7 +24293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957833387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 480.02777, y: 335.31482, z: -44600}
+  m_LocalPosition: {x: 480.02777, y: 335.28705, z: -44600}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1189285363}
@@ -24507,7 +24509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973950775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 481.08606, y: 335.2107, z: -44603.21}
+  m_LocalPosition: {x: 481.12964, y: 335.2107, z: -44603.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1473907801}
@@ -27729,7 +27731,7 @@ Transform:
   - {fileID: 485624868}
   - {fileID: 1260905241}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3770522805350657466
 GameObject:
