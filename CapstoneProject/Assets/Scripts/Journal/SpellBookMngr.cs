@@ -40,6 +40,9 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     [TextArea(15, 100)]
     public List<string> enemyInfoList;
 
+    public ScrollRect enemyScrollRect;
+    public List<GameObject> floorBTNs;
+
     private new void Awake()
     {
         base.Awake();
@@ -161,6 +164,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
             for (int i = 0; i < enemyBiomesList.Count; i++)
             {
                 enemyBiomesList[i].SetActive(false);
+                floorBTNs[i].SetActive(true);
                 enemyBiomeState[i] = false;
             }
             Time.timeScale = 0f;
@@ -209,6 +213,7 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     {
         enemyBiomeState[index] = !enemyBiomeState[index];
         OpenBiomeList(index);
+        StartCoroutine(ScrollToBTN(index));
     }
 
     public void OpenBiomeList(int index)
@@ -244,6 +249,41 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
                 enemyListObj[i].GetComponentInChildren<Text>().text = "???";
             }
         }
+    }
+
+    IEnumerator ScrollToBTN(int btnNum)
+    {
+        for (int i = 0; i < floorBTNs.Count; i++)
+        {
+            if (i < btnNum)
+            {
+                if (enemyBiomeState[btnNum])
+                {
+                    floorBTNs[i].SetActive(false);
+                    enemyBiomesList[i].SetActive(false);
+                    enemyBiomeState[i] = false;
+                }
+                else
+                {
+                    floorBTNs[i].SetActive(true);
+                }
+            }
+            else if (i > btnNum)
+            {
+                floorBTNs[i].SetActive(true);
+            }
+        }
+        yield return new WaitForSecondsRealtime(0.1f);
+        enemyScrollRect.verticalNormalizedPosition = 1;
+        
+        /*float totalHeight = (5 - btnNum) * 150 + 10 * (5 - btnNum - 1) + 150 * enemyBiomesList[btnNum].transform.childCount + 5 * enemyBiomesList[btnNum].transform.childCount;
+
+        float normalizedPos = totalHeight / enemyScrollRect.content.sizeDelta.y;
+
+        enemyScrollRect.verticalNormalizedPosition = normalizedPos;
+        Debug.Log("normal " + normalizedPos);
+        Debug.Log("scrollrect " + enemyScrollRect.content.sizeDelta.y);
+        Debug.Log("height " + totalHeight);*/
     }
     #endregion
 

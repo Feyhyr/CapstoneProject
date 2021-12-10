@@ -458,7 +458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &10751181
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4675,7 +4675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &415237441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25148,6 +25148,13 @@ MonoBehaviour:
     is the horrifying eldritch terror that formed the Tower. Its cries echo throughout
     time and space causing a rift between worlds. Forever spiraling towards chaos,
     it wishes to infect all with its madness\u2026"
+  enemyScrollRect: {fileID: 974123591}
+  floorBTNs:
+  - {fileID: 914464745}
+  - {fileID: 228459743}
+  - {fileID: 1169789276}
+  - {fileID: 1231966720}
+  - {fileID: 1257296531}
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0
@@ -28859,4 +28866,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
