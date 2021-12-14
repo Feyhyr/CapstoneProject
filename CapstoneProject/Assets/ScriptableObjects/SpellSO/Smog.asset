@@ -20,7 +20,7 @@ MonoBehaviour:
   description: 'Wind + Fire
 
     Casting Smog deals AOE damage and inflicts the Poisoned
-    status effect on your main target, but has a 50% chance to be applied to other
+    status effect on your main target, but has a 80% chance to be applied to other
     enemies. If there is only 1 enemy on the battlefield it will always be a 80%
     chance.'
   maxCooldown: 3

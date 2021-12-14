@@ -21927,7 +21927,8 @@ MonoBehaviour:
   - 'Hail Wanderer!
 
 
-    If you''re stump go try your luck with clearing this tower.'
+    If you''re stumped try consulting your journal as you encounter
+    new foes.'
   - 'Hail Wanderer!
 
 
@@ -21937,6 +21938,17 @@ MonoBehaviour:
 
 
     Did you know you can mix 2 runes in any order?'
+  - 'Hail Wanderer!
+
+
+    Don''t forget to consider the synergy of your spells, lest
+    the demons get the best of you...'
+  - 'Hail Wanderer!
+
+
+    Did you know that demons fall under certain catagories
+    that denote what their powers may do? Be sure to check the icon beside their
+    name when you encounter them.'
   mentorText: {fileID: 1961208312}
   speechBubble: {fileID: 1568530871}
 --- !u!1 &1938953625

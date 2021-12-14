@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Velox Ignis
   tagName: Enemy
-  dmg: 1000
+  dmg: 700
   maxHealth: 250
   weakness:
   - Water
@@ -40,5 +40,5 @@ MonoBehaviour:
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 0
-  hasSeen: 1
+  hasSeen: 0
   enemyKey: 3

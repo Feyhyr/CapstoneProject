@@ -20,7 +20,7 @@ MonoBehaviour:
   description: 'Fire + Earth
 
     Casting Erupt will do AOE damage, and if your HP
-    is at 25% or less the damage will be doubled.'
+    is at 50% or less the damage will be doubled.'
   maxCooldown: 2
   spellIndex: 5
   runeA: Fire

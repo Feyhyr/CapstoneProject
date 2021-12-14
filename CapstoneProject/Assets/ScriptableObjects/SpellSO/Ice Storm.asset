@@ -20,9 +20,9 @@ MonoBehaviour:
   description: 'Water + Wind
 
     Casting Ice Storm deals AOE damage and induces
-    the Freeze status effect on your main target, but has a 50% chance to do so on
+    the Freeze status effect on your main target, but has a 80% chance to do so on
     others. If there is only 1 enemy on the battlefield it will always be a 80% chance.'
-  maxCooldown: 3
+  maxCooldown: 5
   spellIndex: 6
   runeA: Water
   runeB: Wind
