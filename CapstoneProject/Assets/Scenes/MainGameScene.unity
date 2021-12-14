@@ -3410,7 +3410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &289716863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13607,7 +13607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1260905240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25207,8 +25207,8 @@ MonoBehaviour:
     Wind (Immune)\n\nJournal Log:\n Once beautiful birds, now corrupted by demons,
     are filled to the brim with nothing but rage and the need to flock together."
   - "Sartrix (Boss)\n\nHP: 900\n\nATK: 120\n\nWeaknesses: Fire\n\nResistances: Earth,
-    Wind (Immune)\n\nSpecial Feature: \n Sartrix has a 30% chance to inflict the
-    Bound status effect and a 50% chance to inflict the Poisoned status effect.\n\nJournal
+    Wind (Immune)\n\nSpecial Feature: \n Sartrix has a 50% chance to inflict the
+    Bound status effect and a 40% chance to inflict the Poisoned status effect.\n\nJournal
     Log:\n A once famous and respected witch quoted something along the lines of
     \u201CWhat may be normal for the spider demon is chaos for the Exorcist\u201D,
     or at least that\u2019s how I feel about the matter\u2026"
