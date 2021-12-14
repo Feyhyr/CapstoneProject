@@ -233,8 +233,6 @@ public class BattleManager : MonoBehaviour
     #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
         yield return new WaitForSeconds(2.3f);
         battleStartUX.SetActive(false);
@@ -242,11 +240,9 @@ public class BattleManager : MonoBehaviour
         GameObject ePrefab;
 
         enemyIndex = 0;
-        //randomEnemyCount = Random.Range(1, 4);
 
         for (int i = 0; i < enemyScriptables[floor.floorCount - 1].enemyWaveList[floor.waveCount - 1].enemyList.Count; i++)
         {
-            //randomEnemy = Random.Range(0, enemyScriptables[floor.floorCount - 1].enemyList.Count);
             ePrefab = Instantiate(enemyPrefab, enemyLocation);
 
             ePrefab.GetComponentInChildren<EnemyController>().bm = this;
@@ -278,8 +274,6 @@ public class BattleManager : MonoBehaviour
     
     IEnumerator BeginBossBattle()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
         battleStartUX.SetActive(true);
         yield return new WaitForSeconds(2.3f);
         battleStartUX.SetActive(false);
@@ -378,10 +372,6 @@ public class BattleManager : MonoBehaviour
 
         if (isCharBound)
         {
-            //GameObject fPrefab = Instantiate(stuckPrefab, playerLocation2);
-            //yield return new WaitForSeconds(1);
-            //Destroy(fPrefab);
-
             if (isCharPoisoned)
             {
                 yield return new WaitForSeconds(1);
@@ -432,8 +422,6 @@ public class BattleManager : MonoBehaviour
                     }
                 }
             }
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -515,7 +503,6 @@ public class BattleManager : MonoBehaviour
         {
             isCharBound = false;
             bound.SetActive(false);
-            //charStuck.SetActive(false);
         }
 
         enemy.targetSelected.SetActive(false);
@@ -523,8 +510,6 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
         enemyTurnUX.SetActive(false);
         yield return new WaitForSeconds(1);
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
 
         for (int i = currentEnemyList.Count - 1; i >= 0; i--)
         {
@@ -547,17 +532,11 @@ public class BattleManager : MonoBehaviour
         if (battleState == BattleState.WIN)
         {
             StartCoroutine(EndWave());
-            /*gameWinScreen.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            floor.AddCount(ref floor.waveCount, floor.prefWave);*/
         }
         else if (battleState == BattleState.LOSE)
         {
             PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -579,16 +558,11 @@ public class BattleManager : MonoBehaviour
             }
             floor.AddCount(ref floor.floorCount, floor.prefFloor);
             gameWinScreen.SetActive(true);
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
-            //SceneManager.LoadScene("GameWinScene");
         }
         else if (battleState == BattleState.LOSE)
         {
             PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -602,8 +576,6 @@ public class BattleManager : MonoBehaviour
     IEnumerator EndWave()
     {
         endWaveCanvas.SetActive(true);
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
         floor.AddCount(ref floor.waveCount, floor.prefWave);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("BattleScene");
@@ -649,8 +621,6 @@ public class BattleManager : MonoBehaviour
             if (enemy.isExposed)
             {
                 damage *= 2;
-                //enemy.isExposed = false;
-                //enemy.exposed.SetActive(false);
             }
 
             if (CheckWeakness(enemy.weak) && !CheckNeutral(enemy.weak, enemy.resist) && !enemy.isJuggernautShieldOn)
@@ -683,11 +653,6 @@ public class BattleManager : MonoBehaviour
             {
                 damage *= 1.5f;
             }
-
-            //if ((enemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (enemy.burnTurnCount <= 2))
-            //{
-            //    damage += 2;
-            //}
 
             if (isReverb && reverbStacks > 1)
             {
@@ -750,10 +715,6 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        //if (currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>().enemyHealthSlider.value <= 0)
-        //{
-        //    currentEnemyList[targetEnemy].SetActive(false);
-        //}
         yield return CheckEnemyDeath(targetEnemy);
         playerAttacked = true;
     }
@@ -784,8 +745,6 @@ public class BattleManager : MonoBehaviour
                 if (currentEnemy.isExposed)
                 {
                     targetDmg *= 2;
-                    //currentEnemy.isExposed = false;
-                    //currentEnemy.exposed.SetActive(false);
                 }
 
                 if (CheckWeakness(currentEnemy.weak) && !CheckNeutral(currentEnemy.weak, currentEnemy.resist) && !currentEnemy.isJuggernautShieldOn)
@@ -1033,44 +992,12 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
-
-    /*public void ResetSpell()
-    {
-        spellBTNList[ChooseSpell()].GetComponent<Button>().interactable = false;
-        spellBTNList[ChooseSpell()].GetComponent<SpellController>().selectedState.SetActive(false);
-
-        for (int i = 0; i < runeObjs.Length; i++)
-        {
-            runeObjs[i].GetComponent<RuneController>().transform.position = runeObjs[i].GetComponent<RuneController>().defaultPos;
-            runeObjs[i].GetComponent<RuneController>().droppedOnSlot = false;
-            runeObjs[i].GetComponent<RuneController>().onFirstSlot = false;
-            runeObjs[i].GetComponent<RuneController>().onSecondSlot = false;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = true;
-            runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 1;
-        }
-
-        if (isCharSealed)
-        {
-            runeObjs[sealedRuneIndex].GetComponent<CanvasGroup>().interactable = false;
-            runeObjs[sealedRuneIndex].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
-        }
-
-        rune1 = "";
-        rune2 = "";
-        isCreatingSpell = false;
-    }*/
     #endregion
 
     #region Spell Creation
     public void CheckSpell()
     {
         isCreatingSpell = true;
-        //cancelBTN.SetActive(true);
-        //for (int i = 0; i < runeObjs.Length; i++)
-        //{
-        //    runeObjs[i].GetComponent<RuneController>().canvasGroup.interactable = false;
-        //    runeObjs[i].GetComponent<RuneController>().canvasGroup.alpha = 0.2f;
-        //}
         ChooseSpell();
         SpellChosen();
     }
@@ -1128,14 +1055,7 @@ public class BattleManager : MonoBehaviour
             index = 11;
         }
 
-        //if (toggleSetting.instantSpell)
-        //{
-        //    return sPrefab.GetComponent<SpellCreation>().spell.spellIndex;
-        //}
-        //else
-        //{
-            return index;
-        //}
+        return index;
     }
 
     public void SpellChosen()

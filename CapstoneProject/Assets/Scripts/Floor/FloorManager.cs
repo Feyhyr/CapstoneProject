@@ -27,7 +27,6 @@ public class FloorManager : Singleton<FloorManager>
     private new void Awake()
     {
         base.Awake();
-        //SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void Start()

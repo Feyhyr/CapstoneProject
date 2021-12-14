@@ -105,7 +105,6 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             onSecondSlot = false;
             onFirstSlot = true;
             bm.isAudioPlaying = true;
-            //bm.isCreatingSpell = false;
         }
     }
 
@@ -122,7 +121,6 @@ public class RuneController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             onSecondSlot = true;
             onFirstSlot = false;
             bm.isAudioPlaying = true;
-            //bm.isCreatingSpell = false;
         }
     }
 

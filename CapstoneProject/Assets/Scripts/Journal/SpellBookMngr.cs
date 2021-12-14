@@ -49,7 +49,6 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     private new void Awake()
     {
         base.Awake();
-        //SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void OnEnable()
@@ -161,8 +160,6 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     {
         if (spellBookState)
         {
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
             spellContainer.localPosition = new Vector3(0, -490, 0);
             statusContainer.localPosition = new Vector3(0, -640, 0);
             enemyContainer.localPosition = new Vector3(0, 0, 0);

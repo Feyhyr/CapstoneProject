@@ -155,20 +155,17 @@ public class Boss : EnemyController
 
             if (!bm.isSteamGuard)
             {
-                if (bm.ChanceStatusEffect(0.3f))
+                if (bm.ChanceStatusEffect(0.5f))
                 {
                     yield return new WaitForSeconds(0.5f);
                     bm.debuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
                     bm.debuffCanvas.SetActive(false);
                     bm.isCharBound = true;
-                    //bm.charStuckTurnCount = 1;
-                    //bm.charStuck.GetComponentInChildren<Text>().text = bm.charStuckTurnCount.ToString();
                     bm.bound.SetActive(true);
-                    //bm.charStuck.SetActive(true);
                 }
 
-                if (bm.ChanceStatusEffect(0.3f))
+                if (bm.ChanceStatusEffect(0.4f))
                 {
                     yield return new WaitForSeconds(0.5f);
                     bm.debuffCanvas.SetActive(true);
