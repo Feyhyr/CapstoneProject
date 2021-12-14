@@ -223,6 +223,7 @@ public class BattleManager : MonoBehaviour
 
     public void SkipCinematic()
     {
+        StopAllCoroutines();
         StartCoroutine(BattleType());
     }
 
@@ -1206,10 +1207,12 @@ public class BattleManager : MonoBehaviour
         }
         else if (index == 3 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
         {
-            enemy.isScald = true;
-            enemy.scaldTurnCount = 4;
-            enemy.scalded.GetComponentInChildren<Text>().text = enemy.scaldTurnCount.ToString();
-            
+            if (!enemy.immune.Contains("Fire"))
+            {
+                enemy.isScald = true;
+                enemy.scaldTurnCount = 4;
+                enemy.scalded.GetComponentInChildren<Text>().text = enemy.scaldTurnCount.ToString();
+            }
         }
         else if (index == 4 && enemy.tag != "Lantern")
         {
@@ -1236,12 +1239,12 @@ public class BattleManager : MonoBehaviour
         }
         else if (index == 7 && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
         {
-            //if (ChanceStatusEffect(1f))
-            //{
+            if (!enemy.immune.Contains("Fire"))
+            {
                 enemy.isBurn = true;
                 enemy.burnTurnCount = 3;
                 enemy.burned.GetComponentInChildren<Text>().text = enemy.burnTurnCount.ToString();
-            //}
+            }
         }
         else if (index == 8)
         {
@@ -1331,15 +1334,18 @@ public class BattleManager : MonoBehaviour
 
                 if ((index == 3 || index == 7) && enemy.tag != "Lantern" && !enemy.isJuggernautShieldOn)
                 {
-                    enemy.eDebuffCanvas.SetActive(true);
-                    yield return new WaitForSeconds(1f);
-                    enemy.eDebuffCanvas.SetActive(false);
                     if (enemy.isScald)
                     {
+                        enemy.eDebuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        enemy.eDebuffCanvas.SetActive(false);
                         enemy.scalded.SetActive(true);
                     }
                     if (enemy.isBurn)
                     {
+                        enemy.eDebuffCanvas.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        enemy.eDebuffCanvas.SetActive(false);
                         enemy.burned.SetActive(true);
                     }
                 }
