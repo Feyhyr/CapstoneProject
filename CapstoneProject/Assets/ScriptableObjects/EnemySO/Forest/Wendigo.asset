@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Gimoodoobii
   tagName: Boss
-  dmg: 80
+  dmg: 100
   maxHealth: 600
   weakness:
   - Wind

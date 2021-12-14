@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Calidum Lapis
   tagName: Boss
-  dmg: 130
+  dmg: 150
   maxHealth: 1000
   weakness:
   - Water
