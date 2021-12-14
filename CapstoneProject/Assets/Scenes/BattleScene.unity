@@ -1340,7 +1340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 6.6192017}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 13.2383}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &67352915
@@ -1590,6 +1590,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94903250}
   m_CullTransparentMesh: 1
+--- !u!1 &100320292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100320293}
+  m_Layer: 0
+  m_Name: Floor 3 Cinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &100320293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100320292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1067.2529, y: 517.1103, z: -268.12756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1902681311}
+  - {fileID: 1874810613}
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &114485082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2302,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185961223}
   m_CullTransparentMesh: 1
+--- !u!1 &188204769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188204770}
+  m_Layer: 0
+  m_Name: Floor 2 Cinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &188204770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188204769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1067.2529, y: 517.1103, z: -268.12756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 369077213}
+  - {fileID: 432616641}
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237906184
 GameObject:
   m_ObjectHideFlags: 0
@@ -3577,6 +3641,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367688593}
   m_CullTransparentMesh: 1
+--- !u!1 &369077212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 369077213}
+  - component: {fileID: 369077214}
+  - component: {fileID: 369077215}
+  m_Layer: 0
+  m_Name: TimelineFloor2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &369077213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369077212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 188204770}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &369077214
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369077212}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 4d9d73e1756a886438b396bd4363550a, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -6564772472710067130, guid: 4d9d73e1756a886438b396bd4363550a, type: 2}
+    value: {fileID: 67352915}
+  - key: {fileID: 8758931587026207127, guid: 4d9d73e1756a886438b396bd4363550a, type: 2}
+    value: {fileID: 508021475}
+  - key: {fileID: -4306648300319366357, guid: 4d9d73e1756a886438b396bd4363550a, type: 2}
+    value: {fileID: 417253755}
+  - key: {fileID: 2262835967380024669, guid: 4d9d73e1756a886438b396bd4363550a, type: 2}
+    value: {fileID: 369077212}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &369077215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369077212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3f0f4fb023694114e987a17fdf437f22, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 432616642}
+          m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
+          m_MethodName: StartDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &395909856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4397,6 +4548,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422489561}
   m_CullTransparentMesh: 1
+--- !u!1 &432616640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432616641}
+  - component: {fileID: 432616642}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &432616641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432616640}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 188204770}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &432616642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432616640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafcffe171601b04c971121c3a365eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 508021477}
+  sentences:
+  - Ascending from the forest you feel a heat that nearly dries out your throat just
+    by mere breath. The warmth emanating from this floor can be seen warping the
+    air around this ravaged space. Each step you take creates an audible sizzle that
+    could convince anyone that time here is limited...
+  typingSpeed: 0.052
 --- !u!1 &444352554
 GameObject:
   m_ObjectHideFlags: 0
@@ -7850,6 +8051,40 @@ PlayableDirector:
     value: {fileID: 803030256}
   - key: {fileID: 2735232538102828635, guid: 58963768fb0752145ad364b07706fd4d, type: 2}
     value: {fileID: 417253755}
+  - key: {fileID: 324514828149148168, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2914334261524362247, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4058457913806699901, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7169378813313009141, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2766407015955500167, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7789624123521664238, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8885919949821180045, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1267712736681470152, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6117027029328250093, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8354831257458678909, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8663541514130322539, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3937617161992852598, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6429897270237320022, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 185183829404520625, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4317028286370347838, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -209662795276054431, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8959543827153813147, guid: 098853b1dcd55bf44a718e8193429d19, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &803030259
@@ -12193,6 +12428,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6363913152080794035, guid: 1846a49d3d5714c47a797cf8f393b023, type: 3}
   m_PrefabInstance: {fileID: 918353606}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1214242914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214242915}
+  m_Layer: 0
+  m_Name: Floor 4 Cinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1214242915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214242914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1067.2529, y: 517.1103, z: -268.12756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1373780178}
+  - {fileID: 1791025802}
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1220174977
 GameObject:
   m_ObjectHideFlags: 0
@@ -12772,6 +13039,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255241681}
   m_CullTransparentMesh: 1
+--- !u!1 &1261113009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261113010}
+  - component: {fileID: 1261113011}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1261113010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261113009}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1440025706}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1261113011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261113009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafcffe171601b04c971121c3a365eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 508021477}
+  sentences:
+  - The final ascension has taken you to the top of the tower where logic and matter
+    are simply tossed out the window. Baleful energy radiates all throughout this
+    place and shooting up into your mind. Everything in sight is twisting and undulating
+    constantly like a heartbeat without a single moment of respite. All aspects of
+    the Tower up to this point seem to coalesce into the fever dream that is the
+    pinnacle penthouse of chaos. Worlds are converging, and you are the only thing
+    standing between destruction and salvation...
+  typingSpeed: 0.052
 --- !u!1 &1262910393
 GameObject:
   m_ObjectHideFlags: 0
@@ -13891,6 +14211,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369357142}
   m_CullTransparentMesh: 1
+--- !u!1 &1373780177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373780178}
+  - component: {fileID: 1373780180}
+  - component: {fileID: 1373780179}
+  m_Layer: 0
+  m_Name: TimelineFloor4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373780178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373780177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1214242915}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373780179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373780177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3f0f4fb023694114e987a17fdf437f22, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1791025803}
+          m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
+          m_MethodName: StartDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!320 &1373780180
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373780177}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 5abb101ea09626645865bacd354642af, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 7723113282643483139, guid: 5abb101ea09626645865bacd354642af, type: 2}
+    value: {fileID: 508021475}
+  - key: {fileID: -7578574894906111658, guid: 5abb101ea09626645865bacd354642af, type: 2}
+    value: {fileID: 417253755}
+  - key: {fileID: -1934479451541551447, guid: 5abb101ea09626645865bacd354642af, type: 2}
+    value: {fileID: 67352915}
+  - key: {fileID: -8230350172844676862, guid: 5abb101ea09626645865bacd354642af, type: 2}
+    value: {fileID: 1373780177}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1378203802
 GameObject:
   m_ObjectHideFlags: 0
@@ -19231,6 +19638,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424256419}
   m_CullTransparentMesh: 1
+--- !u!1 &1440025705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440025706}
+  m_Layer: 0
+  m_Name: Floor 5 Cinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1440025706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440025705}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1067.2529, y: 517.1103, z: -268.12756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1261113010}
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452211181
 GameObject:
   m_ObjectHideFlags: 0
@@ -22703,6 +23141,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789235457}
   m_CullTransparentMesh: 1
+--- !u!1 &1791025801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791025802}
+  - component: {fileID: 1791025803}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1791025802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791025801}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1214242915}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1791025803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791025801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafcffe171601b04c971121c3a365eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 508021477}
+  sentences:
+  - "Emerging triumphantly out from the murky abyss, you take notice of your new
+    surroundings. The land is warped to a degree where it appears the foundation
+    of what makes this floor has spun into multiple collisions of landmass causing
+    them to merge together. Presiding over the land hangs a wistful emptiness that
+    can\u2019t help but make you feel a certain loneliness on this solitary journey."
+  typingSpeed: 0.052
 --- !u!1 &1798910961
 GameObject:
   m_ObjectHideFlags: 0
@@ -23571,6 +24060,57 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1874810612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874810613}
+  - component: {fileID: 1874810614}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1874810613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874810612}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 100320293}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1874810614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874810612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafcffe171601b04c971121c3a365eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 508021477}
+  sentences:
+  - After braving the intense heat of the volcanic badlands, you are submerged in
+    a peculiar aquatic environment. Your initial instinct is to hold your breath,
+    but to your surprise you feel nothing impeding your breath. You begin to move
+    with an eerie weightlessness as though one were swimming underwater. The pitch
+    of the depths is growing evermore as you make your way through...
+  typingSpeed: 0.052
 --- !u!1 &1878134140
 GameObject:
   m_ObjectHideFlags: 0
@@ -23801,6 +24341,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896626009}
   m_CullTransparentMesh: 1
+--- !u!1 &1902681310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1902681311}
+  - component: {fileID: 1902681313}
+  - component: {fileID: 1902681312}
+  m_Layer: 0
+  m_Name: TimelineFloor3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1902681311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902681310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 100320293}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1902681312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902681310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3f0f4fb023694114e987a17fdf437f22, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1874810614}
+          m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
+          m_MethodName: StartDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!320 &1902681313
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902681310}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 3a8fbe3a4d89a1b499f213f731acc691, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4068019702235759111, guid: 3a8fbe3a4d89a1b499f213f731acc691, type: 2}
+    value: {fileID: 67352915}
+  - key: {fileID: -4716706954842656878, guid: 3a8fbe3a4d89a1b499f213f731acc691, type: 2}
+    value: {fileID: 508021475}
+  - key: {fileID: -290573288180031354, guid: 3a8fbe3a4d89a1b499f213f731acc691, type: 2}
+    value: {fileID: 417253755}
+  - key: {fileID: -4836404429069242548, guid: 3a8fbe3a4d89a1b499f213f731acc691, type: 2}
+    value: {fileID: 1902681310}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1921452334
 GameObject:
   m_ObjectHideFlags: 0
