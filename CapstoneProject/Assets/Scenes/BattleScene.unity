@@ -12177,16 +12177,16 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 67438cc81aec20745917d9f2bdc56ca1, type: 2}
   - enemyWaveList:
     - enemyList:
-      - {fileID: 11400000, guid: ed6e200d0d9ffdf4c97a4b27a360057f, type: 2}
-      - {fileID: 11400000, guid: ed6e200d0d9ffdf4c97a4b27a360057f, type: 2}
       - {fileID: 11400000, guid: aff4c38cda19f9e488baa207009fd0ba, type: 2}
+      - {fileID: 11400000, guid: ed6e200d0d9ffdf4c97a4b27a360057f, type: 2}
+      - {fileID: 11400000, guid: ed6e200d0d9ffdf4c97a4b27a360057f, type: 2}
     - enemyList:
+      - {fileID: 11400000, guid: aff4c38cda19f9e488baa207009fd0ba, type: 2}
       - {fileID: 11400000, guid: fd4450342b6ab8a4c91b3ee9c243c9f0, type: 2}
-      - {fileID: 11400000, guid: aff4c38cda19f9e488baa207009fd0ba, type: 2}
     - enemyList:
       - {fileID: 11400000, guid: aff4c38cda19f9e488baa207009fd0ba, type: 2}
       - {fileID: 11400000, guid: ed6e200d0d9ffdf4c97a4b27a360057f, type: 2}
-      - {fileID: 11400000, guid: aff4c38cda19f9e488baa207009fd0ba, type: 2}
+      - {fileID: 11400000, guid: ceeb1deb9a22370418286e6fffb07b59, type: 2}
     - enemyList:
       - {fileID: 11400000, guid: ceeb1deb9a22370418286e6fffb07b59, type: 2}
       - {fileID: 11400000, guid: ceeb1deb9a22370418286e6fffb07b59, type: 2}

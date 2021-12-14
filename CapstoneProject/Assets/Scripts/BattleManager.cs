@@ -174,7 +174,7 @@ public class BattleManager : MonoBehaviour
 
         if (floor.waveCount == 1)
         {
-            StartCoroutine(BeginCinematic(floorCinematics[floor.floorCount - 1]));
+            StartCoroutine(BeginCinematic());
         }
         else
         {
@@ -196,19 +196,19 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Cinematics
-    IEnumerator BeginCinematic(GameObject obj)
+    IEnumerator BeginCinematic()
     {
-        obj.SetActive(true);
+        floorCinematics[floor.floorCount - 1].SetActive(true);
         yield return new WaitForSeconds(16f);
-        timelinePanel.SetActive(false);
-        dialoguePanel.SetActive(false);
-        obj.SetActive(false);
         yield return BattleType();
     }
     #endregion
 
     IEnumerator BattleType()
     {
+        floorCinematics[floor.floorCount - 1].SetActive(false);
+        timelinePanel.SetActive(false);
+        dialoguePanel.SetActive(false);
         if (bossBattle)
         {
             battleStartUXText.text = "Boss Wave";
@@ -653,7 +653,7 @@ public class BattleManager : MonoBehaviour
 
             if (isMelt)
             {
-                if ((charHealthSlider.value / charMaxHealth) <= 0.25)
+                if ((charHealthSlider.value / charMaxHealth) <= 0.5)
                 {
                     damage *= 2;
                 }
@@ -1249,6 +1249,7 @@ public class BattleManager : MonoBehaviour
             {
                 isReverb = true;
                 reverbStacks++;
+                reverb.GetComponentInChildren<Text>().text = reverbStacks.ToString();
                 reverb.SetActive(true);
             }
             else

@@ -606,7 +606,7 @@ public class Basic : EnemyController
                 bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().SetCharacterState(bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState);
                 bm.currentEnemyList[randomAlly].GetComponentInChildren<ScreenShake>().TriggerShake();
                 yield return new WaitForSeconds(0.5f);
-                bm.EDamagePopup(bm.currentEnemyList[randomAlly].transform, (int)damage, "normalEnemy", false, bm.enemyNumPopupObj);
+                bm.EDamagePopup(bm.currentEnemyList[randomAlly].transform, damage, "normalEnemy", false, bm.enemyNumPopupObj);
                 bm.EnemyDamage((int)damage, randomAlly);
                 yield return new WaitForSeconds(1f);
                 bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState = "Idle";
