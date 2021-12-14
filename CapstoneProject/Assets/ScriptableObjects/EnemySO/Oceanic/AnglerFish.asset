@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Lucerna Osseus
   tagName: Boss
-  dmg: 150
+  dmg: 170
   maxHealth: 850
   weakness:
   - Earth
@@ -36,5 +36,5 @@ MonoBehaviour:
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 0
-  hasSeen: 0
+  hasSeen: 1
   enemyKey: 11

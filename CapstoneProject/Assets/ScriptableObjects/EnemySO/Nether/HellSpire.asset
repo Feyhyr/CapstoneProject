@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Ngoxylethe
   tagName: Boss
-  dmg: 150
+  dmg: 180
   maxHealth: 1000
   weakness: []
   weakImages: []
@@ -32,5 +32,5 @@ MonoBehaviour:
   healingPercent: 0
   healingTargets: 0
   juggernautShieldHealth: 0
-  hasSeen: 0
+  hasSeen: 1
   enemyKey: 22

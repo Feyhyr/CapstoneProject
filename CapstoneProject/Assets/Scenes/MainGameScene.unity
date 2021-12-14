@@ -25041,7 +25041,7 @@ MonoBehaviour:
     natural resources that have been used for eons to treat the wounded and cure
     the sick. As far as I\u2019m concerned, this walking apothecary needs a taste
     of its own medicine."
-  - "Gimoodoobii (Boss)\n\nHP: 600\n\nATK: 80\n\nWeaknesses: Wind\n\nResistances:
+  - "Gimoodoobii (Boss)\n\nHP: 600\n\nATK: 100\n\nWeaknesses: Wind\n\nResistances:
     Earth (Immune)\n\nSpecial Feature:\n Each time Gimoodoobii does damage it regains
     half the amount done as HP.\n\nJournal Log:\n This kind of demon I am no stranger
     to. They possess animals such as deer and boom, suddenly they think Bloody Mary\u2019s
@@ -25061,7 +25061,7 @@ MonoBehaviour:
     the air form these malevolent clouds of phosphorus and other chemicals. Though
     I could have sworn I saw one of these clouds with the most innocent look I have
     ever seen\u2026 Bizarre."
-  - "Calidum Lapis (Boss)\n\nHP: 1000\n\nATK: 130\n\nWeaknesses: Water, Wind\n\nResistances:
+  - "Calidum Lapis (Boss)\n\nHP: 1000\n\nATK: 150\n\nWeaknesses: Water, Wind\n\nResistances:
     Fire (Immune), Earth\n\nSpecial Feature:\n At the end of the Enemy Turn, Calidum
     Lapis regains 5% HP. The Poison status effect cannot stop this HP regain, but
     the Freeze status effect can.\n\nJournal Log:\n Contrary to popular belief, not
