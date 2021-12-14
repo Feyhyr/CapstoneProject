@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_TrackProperties:
-    volume: 0.134
+    volume: 0.4
     stereoPan: 0
     spatialBlend: 0
 --- !u!74 &-4741976889227493524
@@ -837,4 +837,4 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.134
+    volume: 0.4
