@@ -709,7 +709,7 @@ public class BattleManager : MonoBehaviour
 
             if (ChooseSpell() == 1)
             {
-                if (ChanceStatusEffect(accuracy) && enemy.enemyType != "LavaGolem" && !enemy.isJuggernautShieldOn)
+                if (ChanceStatusEffect(accuracy) && enemy.enemyType != "LavaGolem" && !enemy.isJuggernautShieldOn && enemy.enemyType != "HellSpire")
                 {
                     enemy.eDebuffCanvas.SetActive(true);
                     yield return new WaitForSeconds(1f);
@@ -838,7 +838,7 @@ public class BattleManager : MonoBehaviour
 
                 if (ChooseSpell() == 1)
                 {
-                    if (ChanceStatusEffect(accuracy) && currentEnemy.enemyType != "LavaGolem" && !currentEnemy.isJuggernautShieldOn)
+                    if (ChanceStatusEffect(accuracy) && currentEnemy.enemyType != "LavaGolem" && !currentEnemy.isJuggernautShieldOn && currentEnemy.enemyType != "HellSpire")
                     {
                         currentEnemy.eDebuffCanvas.SetActive(true);
                         yield return new WaitForSeconds(1f);
