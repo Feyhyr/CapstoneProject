@@ -611,6 +611,7 @@ public class Basic : EnemyController
                 yield return new WaitForSeconds(1f);
                 bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState = "Idle";
                 bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().SetCharacterState(bm.currentEnemyList[randomAlly].GetComponentInChildren<EnemyController>().currentState);
+                yield return bm.CheckEnemyDeath(randomAlly);
             }
         }
 
