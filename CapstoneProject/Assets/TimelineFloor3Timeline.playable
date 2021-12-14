@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 1
+    volume: 0.134
 --- !u!114 &-5500318247021258194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -520,8 +520,8 @@ MonoBehaviour:
     m_Duration: 26
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2981833927694600628}
-    m_EaseInDuration: 1
-    m_EaseOutDuration: 1
+    m_EaseInDuration: 2
+    m_EaseOutDuration: 2
     m_BlendInDuration: -1
     m_BlendOutDuration: -1
     m_MixInCurve:
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_TrackProperties:
-    volume: 1
+    volume: 0.134
     stereoPan: 0
     spatialBlend: 0
 --- !u!114 &5553990068878546445
