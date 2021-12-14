@@ -420,6 +420,15 @@ public class BattleManager : MonoBehaviour
                     {
                         spellBTNList[i].GetComponent<Button>().interactable = true;
                         spellBTNList[i].GetComponent<SpellController>().selectedState.SetActive(true);
+
+                        if (isCharSealed)
+                        {
+                            if ((runeObjs[sealedRuneIndex].GetComponent<RuneController>().rune.runeName == spellBTNList[i].GetComponent<SpellController>().spell.runeA) || (runeObjs[sealedRuneIndex].GetComponent<RuneController>().rune.runeName == spellBTNList[i].GetComponent<SpellController>().spell.runeB))
+                            {
+                                spellBTNList[i].GetComponent<Button>().interactable = false;
+                                spellBTNList[i].GetComponent<SpellController>().selectedState.SetActive(false);
+                            }
+                        }
                     }
                 }
             }
