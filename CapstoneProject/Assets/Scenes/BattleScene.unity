@@ -8106,12 +8106,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: ebbcaf6307802bc468c50c95df93c302, type: 2}
+    - {fileID: 11400000, guid: 48df6138cfec2b6428e4e03c9591dc5c, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 356794852}
           m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
           m_MethodName: StartDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1220174978}
+          m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+          m_MethodName: SkipCinematic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
