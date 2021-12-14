@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RandomMentorText : MonoBehaviour
 {
-    [TextArea]
+    [TextArea(5, 100)]
     public List<string> mentorTextList;
     public Text mentorText;
     const string mentorKey = "mentor";

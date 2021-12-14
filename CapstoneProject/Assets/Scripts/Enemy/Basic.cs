@@ -434,7 +434,7 @@ public class Basic : EnemyController
         {
             enemyAttacking = true;
 
-            if (glassCannonTurnCount <= 4)
+            if (glassCannonTurnCount <= 3)
             {
                 eBuffCanvas.SetActive(true);
                 yield return new WaitForSeconds(1);
@@ -442,7 +442,7 @@ public class Basic : EnemyController
                 glassCannonTurnCount++;
                 glassCannon.GetComponentInChildren<Text>().text = glassCannonTurnCount.ToString();
 
-                if (glassCannonTurnCount >= 4)
+                if (glassCannonTurnCount >= 3)
                 {
                     bm.playerShakeObject.GetComponent<ScreenShake>().TriggerShake();
                     yield return EnemyAttack();

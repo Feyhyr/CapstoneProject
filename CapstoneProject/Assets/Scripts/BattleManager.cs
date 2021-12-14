@@ -172,7 +172,14 @@ public class BattleManager : MonoBehaviour
 
         ChangeSpellDisabled();
 
-        StartCoroutine(BeginCinematic(floorCinematics[floor.floorCount - 1]));
+        if (floor.waveCount == 1)
+        {
+            StartCoroutine(BeginCinematic(floorCinematics[floor.floorCount - 1]));
+        }
+        else
+        {
+            StartCoroutine(BattleType());
+        }
     }
     
     /*TO BE DELETED*/
