@@ -295,6 +295,7 @@ public class Boss : EnemyController
         {
             float poisonDmg = enemyHealthSlider.maxValue * 0.08f;
             EStatusTurnChange((int)poisonDmg, ref poisonTurnCount, ref isPoisoned, poisoned, "Poison");
+            yield return new WaitForSeconds(0.8f);
         }
 
         if (isScald)
@@ -306,6 +307,7 @@ public class Boss : EnemyController
         {
             float burnDmg = enemyHealthSlider.maxValue * 0.06f;
             EStatusTurnChange((int)burnDmg, ref burnTurnCount, ref isBurn, burned, "Burn");
+            yield return new WaitForSeconds(0.8f);
         }
 
         enemyAttacking = false;

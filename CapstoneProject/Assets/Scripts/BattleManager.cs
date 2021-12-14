@@ -811,18 +811,6 @@ public class BattleManager : MonoBehaviour
                 {
                     targetDmg *= 4;
                 }
-
-                //if ((currentEnemy.isBurn) && ((rune1 == "Wind") || (rune2 == "Wind")) && ((rune1 != "Water") && (rune2 != "Water")) && (currentEnemy.burnTurnCount <= 2))
-                //{
-                //    targetDmg += 2;
-                //}
-
-                //if (isReverb)
-                //{
-                //    targetDmg += reverbBoost;
-                //    reverbBoost++;
-                //    reverb.GetComponentInChildren<Text>().text = reverbBoost.ToString();
-                //}
             }
 
             AudioManager.Instance.Play(currentEnemy.damageSFX);
@@ -884,21 +872,6 @@ public class BattleManager : MonoBehaviour
         isMelt = false;
         playerAttacked = true;
     }
-
-    /*public void EnemyAttack(int value)
-    {
-        AudioManager.Instance.Play(currentEnemyList[value].GetComponentInChildren<EnemyController>().attackSFX);
-        int enemyDmg = currentEnemyList[value].GetComponentInChildren<EnemyController>().atk;
-        if (isCrystalize)
-        {
-            enemyDmg /= 2;
-        }
-
-        charHealthSlider.value -= enemyDmg;
-        PDamagePopup(playerLocation, enemyDmg, "normalPlayer", false, playerNumPopupObj);
-        enemyState = "Attack";
-        currentEnemyList[value].GetComponentInChildren<EnemyController>().SetCharacterState(enemyState);
-    }*/
 
     public void ChangeTarget(int index)
     {
@@ -1468,10 +1441,6 @@ public class BattleManager : MonoBehaviour
     public void PDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
     {
         GameObject damagePopup = Instantiate(popup, location);
-        /*if (isHeal)
-        {
-            damagePopup.transform.localPosition += new Vector3(0, 80, 0);
-        }*/
         damagePopup.GetComponent<PlayerNumberPopup>().Setup(damage, state, isHeal);
     }
     public void EDamagePopup(Transform location, int damage, string state, bool isHeal, GameObject popup)
@@ -1500,13 +1469,6 @@ public class BattleManager : MonoBehaviour
                         child.gameObject.SetActive(false);
                     }
                 }
-                //foreach (GameObject child in s)
-                //{
-                //    if (child.name == "Lock")
-                //    {
-                //        child.SetActive(false);
-                //    }
-                //}
             }
         }
     }
