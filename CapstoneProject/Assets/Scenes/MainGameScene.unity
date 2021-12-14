@@ -317,11 +317,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 512949944}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 325, y: -500}
+  m_AnchoredPosition: {x: 325.14, y: -810}
   m_SizeDelta: {x: 650, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6285568
@@ -799,7 +799,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 21
+          m_IntArgument: 20
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1192,7 +1192,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 21
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2927,7 +2927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &232218581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3195,7 +3195,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 19
+          m_IntArgument: 18
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3822,7 +3822,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4113,7 +4113,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5732,14 +5732,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1879980040}
   - {fileID: 6285567}
   m_Father: {fileID: 232218581}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.141, y: 0}
-  m_SizeDelta: {x: 650.28, y: 1000}
+  m_AnchoredPosition: {x: -25.141, y: -0.000019073486}
+  m_SizeDelta: {x: 650.28, y: 1310}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &512949945
 MonoBehaviour:
@@ -5750,7 +5751,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 512949943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -5758,13 +5759,15 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 650, y: 1000}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 1
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
+  m_ReverseArrangement: 0
 --- !u!114 &512949946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5965,8 +5968,8 @@ RectTransform:
   m_Father: {fileID: 1184410414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.09072}
-  m_AnchorMax: {x: 1, y: 0.90928}
+  m_AnchorMin: {x: 0, y: 0.18757251}
+  m_AnchorMax: {x: 1, y: 0.8124275}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6563,7 +6566,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7011,7 +7014,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 20
+          m_IntArgument: 19
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8115,7 +8118,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 14
+          m_IntArgument: 13
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8610,7 +8613,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 17
+          m_IntArgument: 16
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9998,7 +10001,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12085,7 +12088,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12540,7 +12543,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 13
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15055,7 +15058,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 18
+          m_IntArgument: 17
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16989,7 +16992,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 15
+          m_IntArgument: 14
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -17713,7 +17716,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -20427,7 +20430,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 526567215}
   m_Direction: 2
   m_Value: 0.5
-  m_Size: 0.81856
+  m_Size: 0.624855
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21092,6 +21095,78 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872937025}
+  m_CullTransparentMesh: 1
+--- !u!1 &1879980039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879980040}
+  - component: {fileID: 1879980042}
+  - component: {fileID: 1879980041}
+  m_Layer: 0
+  m_Name: EnemyImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1879980040
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879980039}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 512949944}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 325.14, y: -155}
+  m_SizeDelta: {x: 300, y: 310}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1879980041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879980039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: ef435acacda82be418e089e613ebd796, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1879980042
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879980039}
   m_CullTransparentMesh: 1
 --- !u!1 &1884448235
 GameObject:
@@ -22113,7 +22188,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 12
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23039,7 +23114,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23319,7 +23394,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 16
+          m_IntArgument: 15
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23452,7 +23527,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23585,7 +23660,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 11
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -25139,10 +25214,10 @@ MonoBehaviour:
     or at least that\u2019s how I feel about the matter\u2026"
   - "Laavantr (Joker)\n\nHP: 450\n\nATK: 120 (Rolls a die, on even numbers it attacks
     the player, on odd numbers it attacks its allies or itself if there are no other
-    allies left)\n\nWeaknesses: Earth\n\nResistances: Water (Immune)\n\nJournal Log:\n
-    Lurking in the shadows of this realm, demons needn\u2019t a body to take. This
-    demon makes use of it\u2019s natural body to slink into the shadows and attack
-    when you can\u2019t expect it."
+    allies left)\n\nWeaknesses: Earth\n\nResistances: Water (Immune)\n\nJournal Log:\nLurking
+    in the shadows of this realm, demons needn\u2019t a body to take. This demon
+    makes use of it\u2019s natural body to slink into the shadows and attack when
+    you can\u2019t expect it."
   - "Xa'anis (Summoner)\n\nHP: 450\n\nATK: 120\n\nWeaknesses: Fire\n\nResistances:
     Wind, Water\n\nJournal Log:\n These tendrils that sprout from the void beneath
     are seemingly endless and they will not hesitate to rip anyone to shreds."
@@ -25173,6 +25248,31 @@ MonoBehaviour:
   - {fileID: 1169789276}
   - {fileID: 1231966720}
   - {fileID: 1257296531}
+  enemyImages:
+  - {fileID: 2800000, guid: b3049f6e7d86edf49b17cf092bc7d103, type: 3}
+  - {fileID: 2800000, guid: 0173f23468d529b4a80f3c0c8ac148b8, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  - {fileID: 2800000, guid: af87dfe5b59f45440a91fb3475eec8c0, type: 3}
+  unknownEnemy: {fileID: 2800000, guid: ef435acacda82be418e089e613ebd796, type: 3}
 --- !u!1 &3770522805204981633
 GameObject:
   m_ObjectHideFlags: 0

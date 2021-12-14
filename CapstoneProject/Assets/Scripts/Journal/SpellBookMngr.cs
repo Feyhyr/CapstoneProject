@@ -43,6 +43,9 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     public ScrollRect enemyScrollRect;
     public List<GameObject> floorBTNs;
 
+    public List<Texture> enemyImages;
+    public Texture unknownEnemy;
+
     private new void Awake()
     {
         base.Awake();
@@ -135,13 +138,15 @@ public class SpellBookMngr : Singleton<SpellBookMngr>
     {
         if (EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text == "???")
         {
+            enemyTextBox.GetComponentInChildren<RawImage>().texture = unknownEnemy;
             enemyTextBox.GetComponentInChildren<Text>().text = "You have not encountered this enemy yet.";
         }
         else
         {
+            enemyTextBox.GetComponentInChildren<RawImage>().texture = enemyImages[index];
             enemyTextBox.GetComponentInChildren<Text>().text = enemyInfoList[index];
         }
-        enemyTextContainer.localPosition = new Vector3(0, -90, 0);
+        enemyTextContainer.localPosition = new Vector3(0, -245, 0);
         enemyTextBox.SetActive(true);
     }
     #endregion
