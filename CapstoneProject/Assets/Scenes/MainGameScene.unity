@@ -24774,8 +24774,8 @@ MonoBehaviour:
 
     Casting
     Smog deals AOE damage and inflicts the Poisoned status effect on your main target,
-    but has a 50% chance to be applied to other enemies. If there is only 1 enemy
-    on the battlefield it will always be a 50% chance.
+    but has a 80% chance to be applied to other enemies. If there is only 1 enemy
+    on the battlefield it will always be a 80% chance.
 
 
     *Poisoned: Does 8% of
@@ -24869,7 +24869,7 @@ MonoBehaviour:
     -----------
 
     Casting
-    Erupt will do AOE damage, and if your HP is at 25% or less the damage will be
+    Erupt will do AOE damage, and if your HP is at 50% or less the damage will be
     doubled.'
   - 'Ice Storm (Damage & Debuff)
 
@@ -24883,7 +24883,7 @@ MonoBehaviour:
     Damage: 50
 
 
-    Cooldown: 3
+    Cooldown: 4
 
 
     Description:
@@ -24892,8 +24892,8 @@ MonoBehaviour:
 
     Casting
     Ice Storm deals AOE damage and induces the Freeze status effect on your main
-    target, but has a 50% chance to do so on others. If there is only 1 enemy on
-    the battlefield it will always be a 50% chance.
+    target, but has a 80% chance to do so on others. If there is only 1 enemy on
+    the battlefield it will always be a 80% chance.
 
 
     *Freeze: Cannot move for
@@ -25046,7 +25046,7 @@ MonoBehaviour:
     half the amount done as HP.\n\nJournal Log:\n This kind of demon I am no stranger
     to. They possess animals such as deer and boom, suddenly they think Bloody Mary\u2019s
     are a food group, poor girl\u2026"
-  - "Velox Ignis (Glass Cannon)\n\nHP: 250\n\nATK: 150\n\nWeaknesses: Water, Earth,
+  - "Velox Ignis (Glass Cannon)\n\nHP: 250\n\nATK: 700\n\nWeaknesses: Water, Earth,
     Wind\n\nResistances: Fire (Immune)\n\nJournal Log:\n Demons like these are the
     very reason people are afraid of \u201Cspontaneous combustion\u201D, and honestly
     I don\u2019t blame them."
@@ -25063,9 +25063,10 @@ MonoBehaviour:
     ever seen\u2026 Bizarre."
   - "Calidum Lapis (Boss)\n\nHP: 1000\n\nATK: 130\n\nWeaknesses: Water, Wind\n\nResistances:
     Fire (Immune), Earth\n\nSpecial Feature:\n At the end of the Enemy Turn, Calidum
-    Lapis regains 5% HP.\n\nJournal Log:\n Contrary to popular belief, not all demons
-    can acclimate/are accustomed to hot temperatures. As for those who can endure
-    such heat, they go and possess a literal hot mess."
+    Lapis regains 5% HP. The Poison status effect cannot stop this HP regain, but
+    the Freeze status effect can.\n\nJournal Log:\n Contrary to popular belief, not
+    all demons can acclimate/are accustomed to hot temperatures. As for those who
+    can endure such heat, they go and possess a literal hot mess."
   - "Molaris Cete (Tank)\n\nHP: 400\n\nATK: 70\n\nWeaknesses: Wind\n\nResistances:
     Fire (Immune)\n\nJournal Log:\n The demons that possessed the whales still yearn
     for hellish environments. As such, they linger near aquatic heat vents for long
