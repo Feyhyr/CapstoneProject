@@ -25067,11 +25067,11 @@ MonoBehaviour:
     the Freeze status effect can.\n\nJournal Log:\n Contrary to popular belief, not
     all demons can acclimate/are accustomed to hot temperatures. As for those who
     can endure such heat, they go and possess a literal hot mess."
-  - "Molaris Cete (Tank)\n\nHP: 400\n\nATK: 70\n\nWeaknesses: Wind\n\nResistances:
-    Fire (Immune)\n\nJournal Log:\n The demons that possessed the whales still yearn
-    for hellish environments. As such, they linger near aquatic heat vents for long
-    periods of time. So much so, that they developed a heat exhaust in place of their
-    spiracle."
+  - "Molaris Cete (Tank)\n\nHP: 400\n\nATK: 70 (Taunts player for 1 turn, and can
+    only Taunt every 2 turns)\n\nWeaknesses: Wind\n\nResistances: Fire (Immune)\n\nJournal
+    Log:\n The demons that possessed the whales still yearn for hellish environments.
+    As such, they linger near aquatic heat vents for long periods of time. So much
+    so, that they developed a heat exhaust in place of their spiracle."
   - "Mare Tristique (Debuffer)\n\nHP: 400\n\nATK: 70 (50% chance to Poison)\n\nWeaknesses:
     Fire\n\nResistances: Water (Immune)\n\nJournal Log:\n These demons are often
     drifting in the ocean waiting for unsuspecting swimmers to trapse by its stingers
@@ -25112,15 +25112,18 @@ MonoBehaviour:
     Log:\n The vengeful energy left by the corpse of an anglerfish who died by choking
     on a lantern has attracted a demon to its remains. The demon now shares a similar
     disdain for bright objects and will entice others to join it in the abyss."
-  - "Cava Maxilla (Juggernaut)\n\nHP: 500\n\nATK: 80\n\nWeaknesses: Water\n\nResistances:
-    Earth (Immune)\n\nJournal Log:\n A thick hide, the shape of a crocodile, and
-    nothing to lose. The tower had twisted together several creatures while it was
-    forming is responsible for abominations like this one."
-  - "Habiti Mortui (Debuffer)\n\nHP: 300\n\nATK: 50 (40% Chance to Curse, 30% Chance
-    to Seal)\n\nWeaknesses: Earth\n\nResistances: Wind (Immune)\n\nJournal Log:\nLike
-    shopping at a second-hand store, demons sometimes find dead human flesh piles
-    and wear them like a coat. Though when the mangled remains fall out of place,
-    the demon lets out a screech that\u2019d make a Mandrake blush."
+  - "Cava Maxilla (Juggernaut)\n\nHP: 500 (Has a shield equal to it's max HP at the
+    start of battle\nand can only be broken by spells that contain the Earth Rune)\n\nATK:
+    80\n\nWeaknesses: Water\n\nResistances: Earth (Immune)\n\nJournal Log:\n A thick
+    hide, the shape of a crocodile, and nothing to lose. The tower had twisted together
+    several creatures while it was forming is responsible for abominations like this
+    one."
+  - "Habiti Mortui (Buffer)\n\nHP: 300\n\nATK: 50 (Buffs an ally's attacks by 2x.
+    Buff lasts for 2 turns,\nand buffing can only occur every 3 turns)\n\nWeaknesses:
+    Earth\n\nResistances: Wind (Immune)\n\nJournal Log:\nLike shopping at a second-hand
+    store, demons sometimes find dead human flesh piles and wear them like a coat.
+    Though when the mangled remains fall out of place, the demon lets out a screech
+    that\u2019d make a Mandrake blush."
   - "Fraxinus Marialis (Healer)\n\nHP: 500\n\nATK: 50\n\nHealing: 20% (Two Targets)\n\nWeaknesses:
     Wind, Earth\n\nResistances: Fire (Immune), Water\n\nJournal Log:\n Wings and
     gills burning to a crisp as it desperately tries to maintain flight while regenerating
@@ -25134,10 +25137,12 @@ MonoBehaviour:
     Log:\n A once famous and respected witch quoted something along the lines of
     \u201CWhat may be normal for the spider demon is chaos for the Exorcist\u201D,
     or at least that\u2019s how I feel about the matter\u2026"
-  - "Laavantr (Joker)\n\nHP: 450\n\nATK: 120\n\nWeaknesses: Earth\n\nResistances:
-    Water (Immune)\n\nJournal Log:\n Lurking in the shadows of this realm, demons
-    needn\u2019t a body to take. This demon makes use of it\u2019s natural body to
-    slink into the shadows and attack when you can\u2019t expect it."
+  - "Laavantr (Joker)\n\nHP: 450\n\nATK: 120 (Rolls a die, on even numbers it attacks
+    the player, on odd numbers it attacks its allies or itself if there are no other
+    allies left)\n\nWeaknesses: Earth\n\nResistances: Water (Immune)\n\nJournal Log:\n
+    Lurking in the shadows of this realm, demons needn\u2019t a body to take. This
+    demon makes use of it\u2019s natural body to slink into the shadows and attack
+    when you can\u2019t expect it."
   - "Xa'anis (Summoner)\n\nHP: 450\n\nATK: 120\n\nWeaknesses: Fire\n\nResistances:
     Wind, Water\n\nJournal Log:\n These tendrils that sprout from the void beneath
     are seemingly endless and they will not hesitate to rip anyone to shreds."
