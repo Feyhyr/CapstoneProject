@@ -172,6 +172,8 @@ public class BattleManager : MonoBehaviour
 
         ChangeSpellDisabled();
 
+        floor.audioSource.mute = true;
+
         if (floor.waveCount == 1)
         {
             StartCoroutine(BeginCinematic());
@@ -206,6 +208,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator BattleType()
     {
+        floor.audioSource.mute = false;
         floorCinematics[floor.floorCount - 1].SetActive(false);
         timelinePanel.SetActive(false);
         dialoguePanel.SetActive(false);

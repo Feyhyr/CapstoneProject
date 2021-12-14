@@ -364,16 +364,11 @@ public class Basic : EnemyController
                         bm.playerPoison.SetActive(true);
                     }
                 }
-                else if (tag == "Possessed" || tag == "BlackSpiral")
+                else if (tag == "BlackSpiral")
                 {
                     float curseChance = 0;
                     float sealChance = 0;
-                    if (tag == "Possessed")
-                    {
-                        curseChance = 0.4f;
-                        sealChance = 0.3f;
-                    }
-                    else if (tag == "BlackSpiral")
+                    if (tag == "BlackSpiral")
                     {
                         curseChance = 0.5f;
                         sealChance = 0.3f;
