@@ -12772,10 +12772,10 @@ MonoBehaviour:
   dialoguePanel: {fileID: 508021475}
   floorCinematics:
   - {fileID: 2092135581}
-  - {fileID: 2092135581}
-  - {fileID: 2092135581}
-  - {fileID: 2092135581}
-  - {fileID: 2092135581}
+  - {fileID: 188204769}
+  - {fileID: 100320292}
+  - {fileID: 1214242914}
+  - {fileID: 1440025705}
 --- !u!4 &1220174979
 Transform:
   m_ObjectHideFlags: 0
@@ -28177,6 +28177,8 @@ MonoBehaviour:
   enemyInfoList: []
   enemyScrollRect: {fileID: 0}
   floorBTNs: []
+  enemyImages: []
+  unknownEnemy: {fileID: 0}
 --- !u!4 &1780716070467569606
 Transform:
   m_ObjectHideFlags: 0

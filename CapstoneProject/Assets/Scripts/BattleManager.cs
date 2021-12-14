@@ -172,11 +172,10 @@ public class BattleManager : MonoBehaviour
 
         ChangeSpellDisabled();
 
-        floor.audioSource.mute = true;
-
         if (floor.waveCount == 1)
         {
-            StartCoroutine(BeginCinematic());
+            floor.audioSource.Stop();
+            BeginCinematic();
         }
         else
         {
@@ -198,18 +197,19 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Cinematics
-    IEnumerator BeginCinematic()
+    public void BeginCinematic()
     {
         floorCinematics[floor.floorCount - 1].SetActive(true);
-        yield return new WaitForSeconds(16f);
-        yield return BattleType();
     }
     #endregion
 
     IEnumerator BattleType()
     {
-        floor.audioSource.mute = false;
-        floorCinematics[floor.floorCount - 1].SetActive(false);
+        if (floor.waveCount == 1)
+        {
+            floor.audioSource.Play();
+            floorCinematics[floor.floorCount - 1].SetActive(false);
+        }
         timelinePanel.SetActive(false);
         dialoguePanel.SetActive(false);
         if (bossBattle)
