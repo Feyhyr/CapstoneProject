@@ -39,10 +39,7 @@ public class BattleManager : MonoBehaviour
     public Slider charHealthSlider;
     public Text charHealthText;
 
-    //int randomEnemyCount;
-    //int randomEnemy;
     int enemyIndex = 0;
-    //public List<WaveList> enemyWavesList = new List<WaveList>();
     public List<WaveList> enemyScriptables = new List<WaveList>();
     public List<EnemySO> bossScriptables;
     public List<EnemySO> enemySummonScriptables;
@@ -67,7 +64,6 @@ public class BattleManager : MonoBehaviour
     public GameObject seal;
     public GameObject curse;
     public GameObject playerPoison;
-    //public GameObject charStuck;
     public GameObject charExposed;
 
     public bool isCrystalize = false;
@@ -91,7 +87,6 @@ public class BattleManager : MonoBehaviour
     bool isAOE = false;
     public bool isCreatingSpell = false;
     public bool isSpellCasting = false;
-    //public int charStuckTurnCount = 1;
     public bool isCharBound = false;
     public bool isCharExposed = false;
     public int charExposedTurnCount = 2;
@@ -113,7 +108,6 @@ public class BattleManager : MonoBehaviour
     public GameObject freezePrefab;
     public GameObject bound;
     public GameObject steamGuard;
-    //public GameObject cancelBTN;
     public GameObject spellOnCDObj;
 
     public GameObject debuffCanvas;
@@ -144,6 +138,10 @@ public class BattleManager : MonoBehaviour
     public GameObject jokerDiceDisplay;
 
     ToggleSettings toggleSetting;
+
+    public GameObject timelinePanel;
+    public GameObject dialoguePanel;
+    public List<GameObject> floorCinematics;
     #endregion
 
     private void Awake()
@@ -174,17 +172,7 @@ public class BattleManager : MonoBehaviour
 
         ChangeSpellDisabled();
 
-
-        if (bossBattle)
-        {
-            battleStartUXText.text = "Boss Wave";
-            StartCoroutine(BeginBossBattle());
-        }
-        else
-        {
-            battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/" + (enemyScriptables[floor.floorCount - 1].enemyWaveList.Count + 1).ToString();
-            StartCoroutine(BeginNormalBattle());
-        }
+        StartCoroutine(BeginCinematic(floorCinematics[floor.floorCount - 1]));
     }
     
     /*TO BE DELETED*/
@@ -198,6 +186,37 @@ public class BattleManager : MonoBehaviour
     {
         battleState = BattleState.WIN;
         EndBossBattle();
+    }
+
+    #region Cinematics
+    IEnumerator BeginCinematic(GameObject obj)
+    {
+        obj.SetActive(true);
+        yield return new WaitForSeconds(16f);
+        timelinePanel.SetActive(false);
+        dialoguePanel.SetActive(false);
+        obj.SetActive(false);
+        yield return BattleType();
+    }
+    #endregion
+
+    IEnumerator BattleType()
+    {
+        if (bossBattle)
+        {
+            battleStartUXText.text = "Boss Wave";
+            yield return BeginBossBattle();
+        }
+        else
+        {
+            battleStartUXText.text = "Wave " + floor.waveCount.ToString() + "/" + (enemyScriptables[floor.floorCount - 1].enemyWaveList.Count + 1).ToString();
+            yield return BeginNormalBattle();
+        }
+    }
+
+    public void SkipCinematic()
+    {
+        StartCoroutine(BattleType());
     }
 
     #region Turn Phases
