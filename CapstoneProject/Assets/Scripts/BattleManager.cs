@@ -227,6 +227,7 @@ public class BattleManager : MonoBehaviour
     public void SkipCinematic()
     {
         StopAllCoroutines();
+        fadeInCanvas.SetActive(false);
         StartCoroutine(BattleType());
     }
 
