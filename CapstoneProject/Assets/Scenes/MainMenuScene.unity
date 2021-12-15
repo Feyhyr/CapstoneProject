@@ -5697,9 +5697,9 @@ MonoBehaviour:
   floorBGM:
   - {fileID: 8300000, guid: f4c99b178129ba94c96a56d787352dbd, type: 3}
   - {fileID: 8300000, guid: 065d7ad279cdf644a87cbd585567bb1a, type: 3}
-  - {fileID: 8300000, guid: dc6ff82254279a447aff90f0f7fd58ce, type: 3}
-  - {fileID: 8300000, guid: f3ba1ea3cba77ae4c8ebdbd42775ee94, type: 3}
-  - {fileID: 8300000, guid: 49a76c4eaa9f7e74d82edfd562efb5be, type: 3}
+  - {fileID: 8300000, guid: 4997b33924b9cfa44b3fe2c4bca4e16d, type: 3}
+  - {fileID: 8300000, guid: 2bcd6e2e71abf6e439ea0d20a1942cde, type: 3}
+  - {fileID: 8300000, guid: b5aaf364becbbba4093e7c25ec6315aa, type: 3}
 --- !u!4 &3440770073576554921
 Transform:
   m_ObjectHideFlags: 0
