@@ -1,0 +1,12 @@
+Sprouting Tentacle.png
+size:1005,932
+filter:Linear,Linear
+pma:true
+T1
+bounds:2,2,294,928
+T2
+bounds:770,104,233,826
+T3
+bounds:298,104,234,826
+T4
+bounds:534,104,234,826

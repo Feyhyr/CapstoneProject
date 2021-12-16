@@ -1,17 +1,8 @@
 Angler Fish.png
-size:531,449
+size:458,494
 filter:Linear,Linear
 pma:true
-Heart
-bounds:474,21,55,81
+Cage
+bounds:2,149,347,343
 Lamp Line
-bounds:2,2,445,145
-rotate:90
-LanternCage
-bounds:322,15,87,150
-rotate:90
-Layer 113
-bounds:149,14,88,171
-rotate:90
-Layer 114
-bounds:149,104,347,343
+bounds:2,2,454,145

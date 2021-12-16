@@ -28,10 +28,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f96720a6db39dc045b827db23b73b6ae, type: 3}
   immunity: []
   immuneImages: []
-  idle: {fileID: 11400000, guid: aed2c03a1812604428e89c65a0636912, type: 2}
-  attack: {fileID: 11400000, guid: 89fb05f5e7b59d740a485582406145d5, type: 2}
-  damage: {fileID: 11400000, guid: f4144ba69e83da143b5afb54b488e619, type: 2}
-  skeletonData: {fileID: 11400000, guid: 92b3c663710f2424c830d83554c524e5, type: 2}
+  idle: {fileID: 11400000, guid: 674f2907efe87d44daed729afbb3aff4, type: 2}
+  attack: {fileID: 11400000, guid: 90af132a52a0e27468d9b3b9a63ac4b6, type: 2}
+  damage: {fileID: 11400000, guid: 0e43e71abc02004428fef5b16fc3493f, type: 2}
+  skeletonData: {fileID: 11400000, guid: d8418e43767e4df438f8c1634647ed6a, type: 2}
   attackSFX: {fileID: 8300000, guid: 7cf83aeb71715fe4a86354236ade481f, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Debuffer

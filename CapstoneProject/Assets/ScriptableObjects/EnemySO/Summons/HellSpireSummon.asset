@@ -22,10 +22,10 @@ MonoBehaviour:
   resistImages: []
   immunity: []
   immuneImages: []
-  idle: {fileID: 11400000, guid: 699d5900d28422840a6f4996cc3111d4, type: 2}
-  attack: {fileID: 11400000, guid: 6f0d8021d1db8774f8e14f8274d942e2, type: 2}
-  damage: {fileID: 11400000, guid: 4fc6795ebdb51be458f9796d451a1aeb, type: 2}
-  skeletonData: {fileID: 11400000, guid: df8d3816d33b0924a8407f2bc22656a9, type: 2}
+  idle: {fileID: 11400000, guid: 71fe75c6385d58d4abb910b256e43803, type: 2}
+  attack: {fileID: 11400000, guid: eb1255880ec3bc54da28bac562441987, type: 2}
+  damage: {fileID: 11400000, guid: 08cb285a8fd210341ad3d8897e8ee948, type: 2}
+  skeletonData: {fileID: 11400000, guid: 4b9dc05eb1c4fe745957b3a394be41fe, type: 2}
   attackSFX: {fileID: 8300000, guid: 0c06912225797f244986ac33b09b48b4, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Attacker

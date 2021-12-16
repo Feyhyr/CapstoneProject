@@ -1,43 +1,30 @@
 Octopus.png
-size:1868,779
+size:839,1039
 filter:Linear,Linear
 pma:true
-Back Left T
-bounds:749,437,340,305
-rotate:90
-Back Right T
-bounds:803,15,378,247
 Base
-bounds:2,252,384,525
+bounds:2,642,395,526
+rotate:90
 Eyes
-bounds:1033,291,144,71
+bounds:410,496,144,71
 rotate:90
-Front Left T
-bounds:1056,500,269,277
-Front Middle T
-bounds:408,12,250,393
+T1
+bounds:521,6,273,252
 rotate:90
-Front Right T
-bounds:1106,326,172,307
+T2
+bounds:530,594,269,278
 rotate:90
-Layer 103
-bounds:388,264,359,513
-Layer 105
-bounds:1183,49,275,266
+T3
+bounds:2,389,251,406
 rotate:90
-Layer 106
-bounds:749,264,171,282
+T4
+bounds:530,865,172,307
 rotate:90
-Layer 107
-bounds:2,2,248,404
+T5
+bounds:251,2,277,268
 rotate:90
-Layer 108
-bounds:1327,512,265,278
+T6
+bounds:2,9,378,247
 rotate:90
-Layer 109
-bounds:1451,257,273,250
-Middle Left T
-bounds:1451,2,253,252
-rotate:90
-Middle Right T
-bounds:1607,509,259,268
+T7
+bounds:483,281,340,311

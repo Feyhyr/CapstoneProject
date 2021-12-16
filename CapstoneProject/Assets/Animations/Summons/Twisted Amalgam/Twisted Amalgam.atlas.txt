@@ -1,0 +1,8 @@
+Twisted Amalgam.png
+size:877,698
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,2,830,694
+Eye
+bounds:834,655,41,41

@@ -5,20 +5,20 @@ pma:true
 Back Right Leg
 bounds:735,455,190,360
 rotate:90
+Body
+bounds:2,2,731,643
 Bottom Jaw
 bounds:735,6,112,139
 rotate:90
 Eye
-bounds:876,56,49,50
+bounds:876,55,49,50
 Fur
-bounds:1097,406,239,241
+bounds:1097,402,243,246
 rotate:90
-Main Body
-bounds:2,2,731,643
 Pupil
-bounds:1340,629,16,16
+bounds:1345,629,16,16
 Tail
-bounds:1088,108,291,296
+bounds:1088,107,291,293
 Top Jaw
 bounds:735,120,333,351
 rotate:90

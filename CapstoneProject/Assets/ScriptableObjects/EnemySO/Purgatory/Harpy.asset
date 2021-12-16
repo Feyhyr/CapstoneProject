@@ -26,10 +26,10 @@ MonoBehaviour:
   - Wind
   immuneImages:
   - {fileID: 21300000, guid: f96720a6db39dc045b827db23b73b6ae, type: 3}
-  idle: {fileID: 11400000, guid: 4d6a2912f971b7142b32e9a96ab4ebd3, type: 2}
-  attack: {fileID: 11400000, guid: f7d45314dfb566a4a9afe7ef3841f500, type: 2}
-  damage: {fileID: 11400000, guid: 5e7ae9bd182ca6a419b9520b3aa1e427, type: 2}
-  skeletonData: {fileID: 11400000, guid: d772d2f214e2af54fbdb6c952434039f, type: 2}
+  idle: {fileID: 11400000, guid: e51b6802da6cabf4f8e2b8144a655c0c, type: 2}
+  attack: {fileID: 11400000, guid: 9edfc315b95df38438ae1b634362e76d, type: 2}
+  damage: {fileID: 11400000, guid: 6f60901cf4f6ffd408c41ade061fae24, type: 2}
+  skeletonData: {fileID: 11400000, guid: 411c428293d6ba242884f6afa003f5df, type: 2}
   attackSFX: {fileID: 8300000, guid: 19e99c009766bd441a30275e4b9cb03b, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Kindred

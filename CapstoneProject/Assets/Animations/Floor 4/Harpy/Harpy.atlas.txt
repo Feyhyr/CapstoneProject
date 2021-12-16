@@ -1,0 +1,18 @@
+Harpy.png
+size:715,1067
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,391,350,674
+Head
+bounds:330,2,286,200
+Left Leg
+bounds:562,206,135,291
+Left Wing
+bounds:2,204,185,558
+rotate:90
+Right Leg
+bounds:2,2,200,326
+rotate:90
+Right Wing
+bounds:354,499,359,566

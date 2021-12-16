@@ -1,26 +1,13 @@
 Angler Fish.png
-size:2009,968
+size:1584,749
 filter:Linear,Linear
 pma:true
 Body
-bounds:571,221,1084,745
+bounds:2,2,1084,745
+Cage
+bounds:1088,404,347,343
 Head
-bounds:1657,654,312,350
-rotate:90
-Heart
-bounds:92,2,55,81
-rotate:90
+bounds:1088,52,312,350
 Lamp Line
-bounds:181,64,445,145
-LanternCage
-bounds:92,59,87,150
-Layer 110
-bounds:2,211,755,567
+bounds:1437,293,454,145
 rotate:90
-Layer 112
-bounds:1657,5,302,343
-rotate:90
-Layer 113
-bounds:2,38,88,171
-Layer 114
-bounds:1657,309,347,343

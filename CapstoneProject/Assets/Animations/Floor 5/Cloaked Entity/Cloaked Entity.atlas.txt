@@ -1,0 +1,10 @@
+Cloaked Entity.png
+size:1241,767
+filter:Linear,Linear
+pma:true
+Layer 150
+bounds:2,2,763,936
+rotate:90
+T
+bounds:940,91,674,299
+rotate:90

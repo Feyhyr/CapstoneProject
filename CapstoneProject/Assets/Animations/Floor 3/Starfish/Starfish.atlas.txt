@@ -1,0 +1,11 @@
+Starfish.png
+size:1022,726
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,2,722,902
+rotate:90
+Eye
+bounds:906,600,114,124
+Pupil
+bounds:906,547,43,51

@@ -1,0 +1,15 @@
+Crocodile.png
+size:1415,782
+filter:Linear,Linear
+pma:true
+Eyes
+bounds:2,2,58,53
+rotate:90
+Layer 110
+bounds:2,62,940,718
+Layer 111
+bounds:944,389,391,451
+rotate:90
+Layer 112
+bounds:944,26,361,469
+rotate:90

@@ -1,28 +1,32 @@
 Hellfire.png
-size:1097,1056
+size:1300,1045
 filter:Linear,Linear
 pma:true
-Body1
-bounds:2,182,359,872
+Body
+bounds:2,171,365,872
 Chain Left Arm
-bounds:962,818,125,236
+bounds:393,7,125,236
 Chain Right Arm
-bounds:2,13,167,155
+bounds:2,2,167,155
 rotate:90
 Chest Armour
-bounds:726,235,329,288
+bounds:1010,714,329,288
 rotate:90
+Fire 2
+bounds:706,302,290,741
+Fire1
+bounds:369,245,335,798
+Flickers
+bounds:159,2,129,167
 Ground
-bounds:1016,386,430,79
+bounds:998,282,430,79
 rotate:90
 Ground Back
-bounds:726,566,488,219
-rotate:90
+bounds:520,24,488,219
 Ground Front
-bounds:407,2,553,186
-Layer 77
-bounds:363,190,361,864
+bounds:1079,159,553,186
+rotate:90
 Left Hand
-bounds:159,19,101,161
+bounds:290,8,101,161
 Right Hand
-bounds:262,34,143,146
+bounds:1010,11,143,146

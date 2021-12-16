@@ -30,10 +30,10 @@ MonoBehaviour:
   - Fire
   immuneImages:
   - {fileID: 21300000, guid: d3fc8b619665f434d89419e6c560c759, type: 3}
-  idle: {fileID: 11400000, guid: 699d5900d28422840a6f4996cc3111d4, type: 2}
-  attack: {fileID: 11400000, guid: 6f0d8021d1db8774f8e14f8274d942e2, type: 2}
-  damage: {fileID: 11400000, guid: 4fc6795ebdb51be458f9796d451a1aeb, type: 2}
-  skeletonData: {fileID: 11400000, guid: df8d3816d33b0924a8407f2bc22656a9, type: 2}
+  idle: {fileID: 11400000, guid: be6f2cb1bdf473147ad2ab9e4665bb64, type: 2}
+  attack: {fileID: 11400000, guid: e5bf2b3505540334fbd10897cb8d83ab, type: 2}
+  damage: {fileID: 11400000, guid: d165b456bcd901943ad4bf5df7c8a68a, type: 2}
+  skeletonData: {fileID: 11400000, guid: 4a8ebbc57766b224bb29b4de55ab4653, type: 2}
   attackSFX: {fileID: 8300000, guid: bee769c581bc60a4c9e42f1e1f3d57d7, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: Healer

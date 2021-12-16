@@ -1,0 +1,11 @@
+Shadow Slither.png
+size:913,1025
+filter:Linear,Linear
+pma:true
+Layer 138
+bounds:2,403,810,620
+Layer 141
+bounds:2,2,702,399
+Layer 142
+bounds:706,28,373,205
+rotate:90

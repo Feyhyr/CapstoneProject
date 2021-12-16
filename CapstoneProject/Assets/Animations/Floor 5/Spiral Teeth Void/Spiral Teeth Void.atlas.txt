@@ -1,0 +1,10 @@
+Spiral Teeth Void.png
+size:783,689
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,2,685,422
+rotate:90
+Teeths
+bounds:426,46,641,355
+rotate:90

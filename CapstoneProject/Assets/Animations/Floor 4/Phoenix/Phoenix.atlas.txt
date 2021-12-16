@@ -1,0 +1,9 @@
+Phoenix.png
+size:1575,934
+filter:Linear,Linear
+pma:true
+Base
+bounds:2,2,930,1011
+rotate:90
+Right Wing
+bounds:1015,272,558,660

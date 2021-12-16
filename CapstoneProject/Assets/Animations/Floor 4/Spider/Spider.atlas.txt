@@ -1,0 +1,29 @@
+Spider.png
+size:1009,1026
+filter:Linear,Linear
+pma:true
+Back Left Leg
+bounds:385,367,87,248
+Back Right Leg
+bounds:776,6,238,231
+rotate:90
+Body
+bounds:2,617,553,407
+Eyes
+bounds:501,58,47,16
+Front Left Leg
+bounds:557,504,165,437
+rotate:90
+Front Right Leg
+bounds:557,671,394,353
+Left T
+bounds:501,76,273,426
+Middle Left Leg
+bounds:2,230,381,385
+Middle Right Leg
+bounds:776,246,229,256
+Right T
+bounds:2,2,226,497
+rotate:90
+Super Back Leg
+bounds:953,872,42,152

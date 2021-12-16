@@ -1,13 +1,17 @@
 Whale.png
-size:1261,453
+size:1315,453
 filter:Linear,Linear
 pma:true
 Body
 bounds:2,10,703,441
-Layer 87
-bounds:1186,162,76,42
+Eyes
+bounds:1261,375,76,42
 rotate:90
 Left Fin
 bounds:707,240,552,211
 Lower Mouth
 bounds:707,2,477,236
+Pupil
+bounds:1186,54,22,24
+flaming-sheet
+bounds:1186,80,127,158
