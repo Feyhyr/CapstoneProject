@@ -4510,9 +4510,9 @@ MonoBehaviour:
   textDisplay: {fileID: 508021477}
   sentences:
   - Ascending from the forest you feel a heat that nearly dries out your throat just
-    by mere breath. The warmth emanating from this floor can be seen warping the
-    air around this ravaged space. Each step you take creates an audible sizzle that
-    could convince anyone that time here is limited...
+    by mere inhalation. The warmth emanating from this floor can be seen warping
+    the air around this ravaged space. Each step you take creates an audible sizzle
+    that could convince anyone that their time here is limited...
   typingSpeed: 0.052
 --- !u!1 &444352554
 GameObject:
@@ -13360,13 +13360,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 508021477}
   sentences:
-  - The final ascension has taken you to the top of the tower where logic and matter
+  - The final ascension has taken you to the top of the tower where logic and proportion
     are simply tossed out the window. Baleful energy radiates all throughout this
-    place and shooting up into your mind. Everything in sight is twisting and undulating
-    constantly like a heartbeat without a single moment of respite. All aspects of
-    the Tower up to this point seem to coalesce into the fever dream that is the
-    pinnacle penthouse of chaos. Worlds are converging, and you are the only thing
-    standing between destruction and salvation...
+    place and is shooting up into your mind. Everything in sight is twisting and
+    undulating constantly like a heartbeat without a single moment of respite. All
+    aspects of the Tower up to this point seem to coalesce into the fever dream that
+    is this pinnacle penthouse of chaos. Worlds are converging, and you are the only
+    thing standing between destruction and salvation...
   typingSpeed: 0.052
 --- !u!1 &1262910393
 GameObject:
