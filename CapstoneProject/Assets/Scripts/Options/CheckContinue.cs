@@ -25,7 +25,7 @@ public class CheckContinue : MonoBehaviour
         }
         else
         {
-            sceneload.NewGame("IntroScene");
+            sceneload.NewGame("MainGameScene");
         }
     }
 }
