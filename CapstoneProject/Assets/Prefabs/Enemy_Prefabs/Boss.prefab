@@ -1448,7 +1448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327178587643501043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.68, z: 0}
+  m_LocalPosition: {x: 0, y: -0.48, z: 0}
   m_LocalScale: {x: 0.6, y: 0.54216003, z: 1}
   m_Children: []
   m_Father: {fileID: 8285648919941634976}
@@ -1481,9 +1481,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93deff88dcfeef341a6350552b855770, type: 2}
-  - {fileID: 2100000, guid: a07c120419c36f04286bd9c17af71201, type: 2}
-  - {fileID: 2100000, guid: 93deff88dcfeef341a6350552b855770, type: 2}
+  - {fileID: 2100000, guid: 721bd3982fbf13e4095caea05c89e1b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5064,6 +5062,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 614264375722220085}
     m_Modifications:
+    - target: {fileID: 38737525180473074, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_CellSize.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 38737525180473074, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_CellSize.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2591127151620902615, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_CellSize.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2591127151620902615, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_CellSize.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4860860047416369714, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5147,6 +5161,18 @@ PrefabInstance:
     - target: {fileID: 4860860047416369714, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160202986439042007, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.147
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323851598264606261, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_CellSize.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323851598264606261, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
+      propertyPath: m_CellSize.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6699976403571959606, guid: b62c9a072b43eaf48a1b65e635029dfc, type: 3}
       propertyPath: m_Name
