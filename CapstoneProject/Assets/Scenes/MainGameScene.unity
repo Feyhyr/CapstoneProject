@@ -14610,26 +14610,26 @@ MonoBehaviour:
   - {fileID: 1211641473}
   loreText: {fileID: 1424055423}
   floorLoreList:
-  - "The Tower spiraled from a place that most could not mentally process. Demons
-    who reside here on this floor have gravitated towards the flora and fauna of
-    our world\u2019s forests and has turned it perverse. The trees, the mud, the
-    animals\u2026 all are no longer of this world."
+  - "The Tower spiraled from a place that most cannot mentally process. Demons who
+    reside here on this floor have gravitated towards the flora and fauna of our
+    world\u2019s forests, distorting them into cursed beings. The trees, the mud,
+    the animals\u2026 they are no longer of this world."
   - The second floor of the Tower which has taken its form based on the core of the
     Earth. Demons who dwell on this floor are more accustomed to hellish temperatures
-    and more than act as such. The heat emanating from this floor could very well
+    and certainly act as such. The heat emanating from this floor could very well
     melt the soul if one is not careful while treading.
-  - "The third floor of the Tower draws power from the abyssal darkness that the
+  - "The third floor of the Tower draws power from the abyssal darkness that our
     ocean depths have to offer. Demons who stem from this floor thrive under watery
-    conditions and are sure lure their prey under where you can\u2019t be heard.
-    They yearn for nothing more than to have you join them where light does not reach\u2026"
+    conditions and are sure lure their prey where they can\u2019t be heard. They
+    yearn for nothing more than to have you join them where light does not reach\u2026"
   - "The fourth floor of the Tower is a floor that is more of an \u201Cin-between\u201D
     than one may think. The demons who lurk here share this theme in common with
     one another and manifest it in their physical form. Between life and death, between
     one form and another, and yet, neither is the path they walk."
   - "The final floor of the Tower is where it all began. Atop of the tower lies the
     mind shattering dimensional force that created the Tower. This is where concepts
-    of perception and realization blur and become only the notion that the world
-    is hastily advancing towards being a dystopia. Twisting realms together to form
+    of perception and realization blur, becoming only the notion that the world is
+    hastily advancing towards being a dystopia. Twisting realms together to form
     a singular world that is melding and spinning forevermore. Are you prepared for
     what lies ahead\u2026?"
 --- !u!114 &1285865761
@@ -22649,13 +22649,13 @@ MonoBehaviour:
   - 'Hail Wanderer!
 
 
-    If you''re stumped try consulting your journal as you encounter
+    If you''re stumped try consulting your Journal as you encounter
     new foes.'
   - 'Hail Wanderer!
 
 
     Did you know that you can press "s" on your keyboard to
-    open the spellbook?'
+    open the Journal?'
   - 'Hail Wanderer!
 
 
@@ -25971,7 +25971,7 @@ MonoBehaviour:
   - 'Sorrow: When only one enemy in the Kindred class is active, they will take 4x
     damage from attacks.'
   - 'Buff: Damage is boosted by 2x for 2 turns.'
-  - 'Glass Cannon: For 3 turns this enemy will not do damage, but on every 4th turn
+  - 'Glass Cannon: For 2 turns this enemy will not do damage, but on every 3rd turn
     it will do severe damage to the player.'
   - 'Juggernaut: The enemy starts off with a special shield that can only be broken
     using Earth rune spells. Once the shield is broken the player can inflict damage
