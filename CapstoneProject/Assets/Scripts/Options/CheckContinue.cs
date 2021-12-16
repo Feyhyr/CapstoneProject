@@ -21,11 +21,11 @@ public class CheckContinue : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("GameData"))
         {
-            sceneload.NewGame("IntroScene");
+            newGameConfirmPanel.SetActive(true);
         }
         else
         {
-            newGameConfirmPanel.SetActive(true);
+            sceneload.NewGame("IntroScene");
         }
     }
 }
