@@ -28,10 +28,10 @@ MonoBehaviour:
   - Fire
   immuneImages:
   - {fileID: 21300000, guid: d3fc8b619665f434d89419e6c560c759, type: 3}
-  idle: {fileID: 11400000, guid: 8360be8f9ff54b34f95f4db97b516012, type: 2}
-  attack: {fileID: 11400000, guid: 05c84e724bc688d4bb2b2a6a581a294a, type: 2}
-  damage: {fileID: 11400000, guid: 9c0b2cfb19c0dd047942a6b6f7273490, type: 2}
-  skeletonData: {fileID: 11400000, guid: a66dc1ac83f377e41a1bc31ecf063976, type: 2}
+  idle: {fileID: 11400000, guid: 5f2eb5ac65f878e43b2362eaecb7f4e4, type: 2}
+  attack: {fileID: 11400000, guid: 8af0ed7a119c7194f9707936334e15a4, type: 2}
+  damage: {fileID: 11400000, guid: 8b79e75c3816f4c4d8ec3e72fbf06534, type: 2}
+  skeletonData: {fileID: 11400000, guid: 21d9bdb307b46e243a718039defdcb00, type: 2}
   attackSFX: {fileID: 8300000, guid: ede823170fbb8844391d909d6e4e64f1, type: 3}
   damageSFX: {fileID: 8300000, guid: 7a7cea876d472544faf333633b1db9ba, type: 3}
   attackType: LavaGolem
