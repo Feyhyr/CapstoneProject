@@ -16,7 +16,7 @@ MonoBehaviour:
   particleEffect: {fileID: 1705276595759794648, guid: 3719c534352af624e8161f6abba6fc3d, type: 3}
   sDamage: 0
   sfx: {fileID: 8300000, guid: ce8e82b7d68d6f34dbfed0bde421c49a, type: 3}
-  icon: {fileID: 21300000, guid: ed158a6788f1c09418c728b205a02f9d, type: 3}
+  icon: {fileID: 21300000, guid: 365decd82001d3e41b9ea30527f05825, type: 3}
   description: 'Earth + Fire
 
     Casting Crystalize will reduce damage from enemy

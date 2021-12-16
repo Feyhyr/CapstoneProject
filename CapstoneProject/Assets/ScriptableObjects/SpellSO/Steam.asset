@@ -16,7 +16,7 @@ MonoBehaviour:
   particleEffect: {fileID: 5058625723356079543, guid: f73ed35e851082c4cbcacabfe85db722, type: 3}
   sDamage: 0
   sfx: {fileID: 8300000, guid: 15b34a0dece3cbf4199d68171061cece, type: 3}
-  icon: {fileID: 21300000, guid: a2078d16318370e4cb4ebe3e25c49949, type: 3}
+  icon: {fileID: 21300000, guid: 2e4e805053a706f4a9c1d789fe3684ac, type: 3}
   description: 'Fire + Water
 
     Casting Steam will remove all debuffs and heal
