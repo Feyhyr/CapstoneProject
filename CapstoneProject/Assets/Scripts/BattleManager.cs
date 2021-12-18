@@ -182,7 +182,34 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(BattleType());
         }
     }
-    
+
+    private void Update()
+    {
+        charHealthText.text = charHealthSlider.value.ToString();
+        if (startCheckEnemy)
+        {
+            enemy = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>();
+        }
+
+        if (fishCover.GetComponent<Image>().color.a <= 0)
+        {
+            fishCover.SetActive(false);
+        }
+        else if (fishCover.GetComponent<Image>().color.a > 0)
+        {
+            fishCover.SetActive(true);
+        }
+
+        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked) && !isCreatingSpell && !isSpellCasting)
+        {
+            if (rune1 != "" && rune2 != "")
+            {
+                CheckSpell();
+            }
+        }
+    }
+
+    #region Testing Buttons
     /*TO BE DELETED*/
     public void WinNormalBattle()
     {
@@ -195,13 +222,29 @@ public class BattleManager : MonoBehaviour
         battleState = BattleState.WIN;
         EndBossBattle();
     }
+    #endregion
 
     #region Cinematics
     public void BeginCinematic()
     {
         floorCinematics[floor.floorCount - 1].SetActive(true);
     }
+
+    public void SkipCinematic()
+    {
+        StopAllCoroutines();
+        fadeInCanvas.SetActive(false);
+        StartCoroutine(BattleType());
+    }
     #endregion
+
+    #region Turn Phases
+    IEnumerator WaveStart()
+    {
+        fadeInCanvas.SetActive(true);
+        yield return new WaitForSeconds(1.8f);
+        fadeInCanvas.SetActive(false);
+    }
 
     IEnumerator BattleType()
     {
@@ -224,14 +267,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void SkipCinematic()
-    {
-        StopAllCoroutines();
-        fadeInCanvas.SetActive(false);
-        StartCoroutine(BattleType());
-    }
-
-    #region Turn Phases
     IEnumerator BeginNormalBattle()
     {
         battleStartUX.SetActive(true);
@@ -565,13 +600,6 @@ public class BattleManager : MonoBehaviour
             PlayerPrefs.SetInt(floor.prefWave, 1);
             gameLoseScreen.SetActive(true);
         }
-    }
-
-    IEnumerator WaveStart()
-    {
-        fadeInCanvas.SetActive(true);
-        yield return new WaitForSeconds(1.8f);
-        fadeInCanvas.SetActive(false);
     }
 
     IEnumerator EndWave()
@@ -1427,30 +1455,4 @@ public class BattleManager : MonoBehaviour
         }
     }
     #endregion
-
-    private void Update()
-    {
-        charHealthText.text = charHealthSlider.value.ToString();
-        if (startCheckEnemy)
-        {
-            enemy = currentEnemyList[targetEnemy].GetComponentInChildren<EnemyController>();
-        }
-
-        if (fishCover.GetComponent<Image>().color.a <= 0)
-        {
-            fishCover.SetActive(false);
-        }
-        else if (fishCover.GetComponent<Image>().color.a > 0)
-        {
-            fishCover.SetActive(true);
-        }
-
-        if ((battleState == BattleState.PLAYERTURN) && (!playerAttacked) && !isCreatingSpell && !isSpellCasting)
-        {
-            if (rune1 != "" && rune2 != "")
-            {
-                CheckSpell();
-            }
-        }
-    }
 }
